@@ -1,0 +1,33 @@
+{
+  "@@last_modified": "2020-03-28T11:32:33.772706",
+  "splash_meet": "Nice to meet you",
+  "@splash_meet": {
+    "description": "splash_meet",
+    "type": "text",
+    "placeholders": {}
+  },
+  "skip": "skip",
+  "@skip": {
+    "description": "skip",
+    "type": "text",
+    "placeholders": {}
+  },
+  "projecting": "projecting",
+  "@projecting": {
+    "description": "projecting",
+    "type": "text",
+    "placeholders": {}
+  },
+  "billboard": "billboard",
+  "@billboard": {
+    "description": "billboard",
+    "type": "text",
+    "placeholders": {}
+  },
+  "mine": "mine",
+  "@mine": {
+    "description": "mine",
+    "type": "text",
+    "placeholders": {}
+  }
+}
