@@ -1,14 +1,11 @@
 import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/page/billboard_page.dart';
 import 'package:douban_movie_flutter/page/mine_page.dart';
-import 'package:douban_movie_flutter/page/projecting_page.dart';
+import 'package:douban_movie_flutter/page/projection_page.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../model/theme_model.dart';
 
 List<Widget> pages = [
-  ProjectingPage(),
+  ProjectionPage(),
   BillboardPage(),
   MinePage()
 ];
@@ -56,7 +53,7 @@ class IndexState extends State<IndexPage> {
           items: <BottomNavigationBarItem> [
             BottomNavigationBarItem(
               icon: Icon(Icons.palette),
-              title: Text(DouBanLocalizations.of(context).projecting),
+              title: Text(DouBanLocalizations.of(context).projection),
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.library_books),

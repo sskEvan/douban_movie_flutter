@@ -3,7 +3,7 @@
 import 'package:douban_movie_flutter/page/billboard_page.dart';
 import 'package:douban_movie_flutter/page/index_page.dart';
 import 'package:douban_movie_flutter/page/mine_page.dart';
-import 'package:douban_movie_flutter/page/projecting_page.dart';
+import 'package:douban_movie_flutter/page/projection_page.dart';
 import 'package:douban_movie_flutter/page/splash.dart';
 import 'package:douban_movie_flutter/widget/page_route_anim.dart';
 import 'package:flutter/cupertino.dart';

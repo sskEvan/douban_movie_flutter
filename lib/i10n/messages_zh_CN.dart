@@ -23,7 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static _notInlinedMessages(_) => <String, Function> {
     "billboard" : MessageLookupByLibrary.simpleMessage("榜单"),
     "mine" : MessageLookupByLibrary.simpleMessage("我的"),
-    "projecting" : MessageLookupByLibrary.simpleMessage("热映"),
+    "projection" : MessageLookupByLibrary.simpleMessage("热映"),
     "skip" : MessageLookupByLibrary.simpleMessage("跳过"),
     "splash_meet" : MessageLookupByLibrary.simpleMessage("遇见你,真美好")
   };

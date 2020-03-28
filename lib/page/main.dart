@@ -4,7 +4,6 @@ import 'package:douban_movie_flutter/model/theme_model.dart';
 import 'package:douban_movie_flutter/service/provider_manager.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/service/storage_manager.dart';
-import 'package:douban_movie_flutter/page/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -43,14 +42,15 @@ class DouBanApp extends StatelessWidget {
               locale: localeModel.locale,
               debugShowCheckedModeBanner: false,
               localizationsDelegates: [
-                DouBanLocalizations.delegate,
                 // 本地化的代理类
-                RefreshLocalizations.delegate, //下拉刷新
+                DouBanLocalizations.delegate,
+                //下拉刷新
+                RefreshLocalizations.delegate,
                 GlobalCupertinoLocalizations.delegate,
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate,
               ],
-              //这句必须加上,否则切换语音后不会自动刷新
+              //这句必须加上,否则切换语言后不会自动刷新
               supportedLocales: DouBanLocalizations.delegate.supportedLocales,
               onGenerateRoute: Router.generateRoute,
               initialRoute: RouteName.splash,

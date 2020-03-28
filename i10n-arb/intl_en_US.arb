@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-03-28T11:29:48.996640",
+  "@@last_modified": "2020-03-28T12:11:57.581061",
   "splash_meet": "Nice to meet you",
   "@splash_meet": {
     "description": "splash_meet",
@@ -12,9 +12,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "projecting": "projecting",
-  "@projecting": {
-    "description": "projecting",
+  "projection": "projection",
+  "@projection": {
+    "description": "projection",
     "type": "text",
     "placeholders": {}
   },

@@ -12,22 +12,22 @@
     "type": "text",
     "placeholders": {}
   },
- "projecting": "热映",
-       "@projecting": {
-         "description": "projecting",
-         "type": "text",
-         "placeholders": {}
-       },
-  "billboard": "榜单",
-       "@billboard": {
-         "description": "billboard",
-         "type": "text",
-         "placeholders": {}
-       },
-       "mine": "我的",
-       "@mine": {
-         "description": "mine",
-         "type": "text",
-         "placeholders": {}
-       }
+  "projection": "热映",
+  "@projection": {
+    "description": "projection",
+    "type": "text",
+    "placeholders": {}
+  },
+ "billboard": "榜单",
+   "@billboard": {
+     "description": "billboard",
+     "type": "text",
+     "placeholders": {}
+   },
+   "mine": "我的",
+   "@mine": {
+     "description": "mine",
+     "type": "text",
+     "placeholders": {}
+   }
 }

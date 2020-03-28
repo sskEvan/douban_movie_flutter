@@ -36,11 +36,11 @@ class DouBanLocalizations {
     );
   }
 
-  String get projecting {
+  String get projection {
     return Intl.message(
-      'projecting',
-      name: 'projecting',
-      desc: 'projecting',
+      'projection',
+      name: 'projection',
+      desc: 'projection',
     );
   }
 

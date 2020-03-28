@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ProjectingPage extends StatefulWidget {
+class ProjectionPage extends StatefulWidget {
   @override
-  State<ProjectingPage> createState() {
-    return ProjectingState();
+  State<ProjectionPage> createState() {
+    return ProjectionState();
   }
 }
 
-class ProjectingState extends State<ProjectingPage> {
+class ProjectionState extends State<ProjectionPage> {
 
   @override
   Widget build(BuildContext context) {
