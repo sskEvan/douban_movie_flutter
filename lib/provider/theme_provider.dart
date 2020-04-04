@@ -5,7 +5,7 @@ import 'package:douban_movie_flutter/utils/theme_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ThemeModel extends ChangeNotifier {
+class ThemeProvider extends ChangeNotifier {
   static const kThemeColorIndex = 'kThemeColorIndex';
   static const kThemeUserDarkMode = 'kThemeUserDarkMode';
   static const kFontIndex = 'kFontIndex';
@@ -16,7 +16,7 @@ class ThemeModel extends ChangeNotifier {
   /// 当前主题颜色
   MaterialColor _themeColor;
 
-  ThemeModel() {
+  ThemeProvider() {
     _userDarkMode =
         StorageManager.sharedPreferences.getBool(kThemeUserDarkMode) ?? false;
 

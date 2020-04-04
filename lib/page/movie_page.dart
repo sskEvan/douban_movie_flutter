@@ -1,0 +1,68 @@
+
+import 'package:douban_movie_flutter/model/showing_movie.dart';
+import 'package:douban_movie_flutter/provider/movie_list_provider.dart';
+import 'package:douban_movie_flutter/provider/view_state_refresh_list_provider.dart';
+import 'package:douban_movie_flutter/service/net/douban_movie_repository.dart';
+import 'package:douban_movie_flutter/widget/common_empty_widget.dart';
+import 'package:douban_movie_flutter/widget/common_error_widget.dart';
+import 'package:douban_movie_flutter/widget/movie_item_widget.dart';
+import 'package:douban_movie_flutter/widget/movie_skeleton_item_widget.dart';
+import 'package:douban_movie_flutter/widget/skeleton.dart';
+import 'package:douban_movie_flutter/widget/view_state_widget.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+
+class MoviePage  extends StatefulWidget {
+  final bool isShowing;
+
+  MoviePage({this.isShowing});
+
+  @override
+  State<StatefulWidget> createState() {
+    return MovieState(isShowing);
+  }
+}
+
+class MovieState extends State<MoviePage> with AutomaticKeepAliveClientMixin {
+  final bool isShowing;
+
+  MovieState(this.isShowing);
+
+  @override
+  Widget build(BuildContext context) {
+    return ViewStateWidget<MovieListProvider>(
+        provider: MovieListProvider(isShowing: isShowing),
+        onProviderReady: (model) async {
+          await model.initData();
+        },
+        builder: (context, MovieListProvider model, child) {
+          if (model.isBusy) {
+            return SkeletonList(
+              builder: (context, index) => MovieSkeletonItemWidget(),
+            );
+          } else if (model.isEmpty) {
+            return CommonEmptyWidget(onPressed: model.initData);
+          } else if (model.isError) {
+            return CommonErrorWidget(onPressed: model.initData);
+          }
+          return SmartRefresher(
+            controller: model.refreshController,
+            header: WaterDropHeader(),
+            footer: ClassicFooter(),
+            onRefresh: model.refresh,
+            onLoading: model.loadMore,
+            enablePullUp: true,
+            child: ListView.builder(
+                itemCount: model.list.length,
+                itemBuilder: (context, index) {
+                  MovieSubject item = model.list[index];
+                  return MovieItemWidget(movieSubject: item);
+                }),
+          );
+        });
+  }
+
+  @override
+  bool get wantKeepAlive => true;
+
+}

@@ -28,6 +28,9 @@ dependencies:
   # 国际化
   intl: ^0.16.0
 
+  dio: ^3.0.1
+  dio_cookie_manager: ^1.0.0
+  cookie_jar: ^1.0.0
   shared_preferences: ^0.5.3+5
   # 本地json对象存储
   localstorage: ^2.0.0
@@ -35,6 +38,14 @@ dependencies:
   # UI
   oktoast: ^2.3.1
   pull_to_refresh: ^1.5.6
+
+  path_provider: ^1.1.0
+
+  # 谁用谁闪亮
+  shimmer: ^1.0.0
+
+  cached_network_image: ^2.0.0-rc.1
+
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,6 @@
 import 'package:douban_movie_flutter/i10n/localization_intl.dart';
-import 'package:douban_movie_flutter/model/locale_model.dart';
-import 'package:douban_movie_flutter/model/theme_model.dart';
+import 'package:douban_movie_flutter/provider/locale_provider.dart';
+import 'package:douban_movie_flutter/provider/theme_provider.dart';
 import 'package:douban_movie_flutter/service/provider_manager.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/service/storage_manager.dart';
@@ -33,7 +33,7 @@ class DouBanApp extends StatelessWidget {
     return OKToast(
         child: MultiProvider(
       providers: providers,
-      child: Consumer2<ThemeModel, LocaleModel>(builder: (context, themeModel, localeModel, child) {
+      child: Consumer2<ThemeProvider, LocaleProvider>(builder: (context, themeModel, localeModel, child) {
         return RefreshConfiguration(
             hideFooterWhenNotFull: true, //列表数据不满一页,不触发加载更多
             child: MaterialApp(

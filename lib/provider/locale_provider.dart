@@ -4,7 +4,7 @@ import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/service/storage_manager.dart';
 import 'package:flutter/cupertino.dart';
 
-class LocaleModel extends ChangeNotifier {
+class LocaleProvider extends ChangeNotifier {
   static const kLocaleIndex = 'kLocaleIndex';
   static List<String> localeValueList = ['', 'zh-CN', 'en-Us'];
 
@@ -21,7 +21,7 @@ class LocaleModel extends ChangeNotifier {
     return null;
   }
 
-  LocaleModel() {
+  LocaleProvider() {
     _localeIndex = StorageManager.sharedPreferences.get(kLocaleIndex) ?? 0;
   }
 

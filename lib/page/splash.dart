@@ -8,7 +8,7 @@ import 'package:date_format/date_format.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import '../model/locale_model.dart';
+import '../provider/locale_provider.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -31,7 +31,7 @@ class SplashState extends State<SplashPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     var date = '';
-    LocaleModel localeModel = LocaleModel();
+    LocaleProvider localeModel = LocaleProvider();
     if(localeModel.locale != null && localeModel.locale.countryCode == "US") {
       date = formatDate(DateTime.now(), [yyyy, '-', mm, '-', dd, ',    ', DD]);
     }else {
