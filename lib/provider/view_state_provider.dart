@@ -1,4 +1,4 @@
-
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -72,21 +72,18 @@ class ViewStateProvider extends ChangeNotifier {
         errorType = ViewStateErrorType.networkTimeOutError;
         message = e.error;
       } else if (e.type == DioErrorType.RESPONSE) {
-        // incorrect status, such as 404, 503...
-        message = e.error;
+        var errorData = (e as DioError).response.data.toString();
+        Map errorMap = json.decode(errorData);
+        message = '错误码:${errorMap['code']},${errorMap['msg']}';
       } else if (e.type == DioErrorType.CANCEL) {
         // to be continue...
         message = e.error;
       } else {
         // dio将原error重新套了一层
         e = e.error;
-//       if (e is NotSuccessException) {
-//          stackTrace = null;
-//          message = e.message;
-//        } else
-          if (e is SocketException) {
+        if (e is SocketException) {
           errorType = ViewStateErrorType.networkTimeOutError;
-          message = e.message;
+          message = '网络不给力~请检查网络设置';
         } else {
           message = e.message;
         }
@@ -95,8 +92,7 @@ class ViewStateProvider extends ChangeNotifier {
     viewState = ViewState.error;
     _viewStateError = ViewStateError(
       errorType,
-      message: message,
-      errorMessage: e.toString(),
+      errorMessage: message ?? e.toString(),
     );
     printErrorStack(e, stackTrace);
     onError(viewStateError);
@@ -106,16 +102,16 @@ class ViewStateProvider extends ChangeNotifier {
 
   /// 显示错误消息
   showErrorMessage(context, {String message}) {
-    if (viewStateError != null || message != null) {
-      if (viewStateError.isNetworkTimeOut) {
-        message ??= "网络错误";
-      } else {
-        message ??= viewStateError.message;
-      }
+//    if (viewStateError != null || message != null) {
+//      if (viewStateError.isNetworkTimeOut) {
+//        message ??= "网络错误";
+//      } else {
+//        message ??= viewStateError.errorMessage;
+//      }
 //      Future.microtask(() {
 ////        showToast(message, context: context);
 ////      });
-    }
+//    }
   }
 
   @override
@@ -138,15 +134,14 @@ class ViewStateProvider extends ChangeNotifier {
   }
 }
 
-
-  /// [e]为错误类型 :可能为 Error , Exception ,String
-  /// [s]为堆栈信息
-  printErrorStack(e, s) {
-    debugPrint('''
+/// [e]为错误类型 :可能为 Error , Exception ,String
+/// [s]为堆栈信息
+printErrorStack(e, s) {
+  debugPrint('''
 <-----↓↓↓↓↓↓↓↓↓↓-----error-----↓↓↓↓↓↓↓↓↓↓----->
 $e
 <-----↑↑↑↑↑↑↑↑↑↑-----error-----↑↑↑↑↑↑↑↑↑↑----->''');
-    if (s != null) debugPrint('''
+  if (s != null) debugPrint('''
 <-----↓↓↓↓↓↓↓↓↓↓-----trace-----↓↓↓↓↓↓↓↓↓↓----->
 $s
 <-----↑↑↑↑↑↑↑↑↑↑-----trace-----↑↑↑↑↑↑↑↑↑↑----->

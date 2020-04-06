@@ -1,4 +1,3 @@
-
 import 'package:douban_movie_flutter/model/showing_movie.dart';
 import 'package:douban_movie_flutter/provider/movie_list_provider.dart';
 import 'package:douban_movie_flutter/provider/view_state_refresh_list_provider.dart';
@@ -12,7 +11,7 @@ import 'package:douban_movie_flutter/widget/view_state_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class MoviePage  extends StatefulWidget {
+class MoviePage extends StatefulWidget {
   final bool isShowing;
 
   MoviePage({this.isShowing});
@@ -32,30 +31,31 @@ class MovieState extends State<MoviePage> with AutomaticKeepAliveClientMixin {
   Widget build(BuildContext context) {
     return ViewStateWidget<MovieListProvider>(
         provider: MovieListProvider(isShowing: isShowing),
-        onProviderReady: (model) async {
-          await model.initData();
+        onProviderReady: (provider) async {
+          await provider.initData();
         },
-        builder: (context, MovieListProvider model, child) {
-          if (model.isBusy) {
+        builder: (context, MovieListProvider provider, child) {
+          if (provider.isBusy) {
             return SkeletonList(
               builder: (context, index) => MovieSkeletonItemWidget(),
             );
-          } else if (model.isEmpty) {
-            return CommonEmptyWidget(onPressed: model.initData);
-          } else if (model.isError) {
-            return CommonErrorWidget(onPressed: model.initData);
+          } else if (provider.isEmpty) {
+            return CommonEmptyWidget(onPressed: provider.initData);
+          } else if (provider.isError) {
+            return CommonErrorWidget(
+                error: provider.viewStateError, onPressed: provider.initData);
           }
           return SmartRefresher(
-            controller: model.refreshController,
+            controller: provider.refreshController,
             header: WaterDropHeader(),
             footer: ClassicFooter(),
-            onRefresh: model.refresh,
-            onLoading: model.loadMore,
+            onRefresh: provider.refresh,
+            onLoading: provider.loadMore,
             enablePullUp: true,
             child: ListView.builder(
-                itemCount: model.list.length,
+                itemCount: provider.list.length,
                 itemBuilder: (context, index) {
-                  MovieSubject item = model.list[index];
+                  MovieSubject item = provider.list[index];
                   return MovieItemWidget(movieSubject: item);
                 }),
           );
@@ -64,5 +64,4 @@ class MovieState extends State<MoviePage> with AutomaticKeepAliveClientMixin {
 
   @override
   bool get wantKeepAlive => true;
-
 }

@@ -14,12 +14,11 @@ enum ViewStateErrorType {
 
 class ViewStateError {
   ViewStateErrorType _errorType;
-  String message;
   String errorMessage;
 
-  ViewStateError(this._errorType, {this.message, this.errorMessage}) {
+  ViewStateError(this._errorType, {this.errorMessage}) {
     _errorType ??= ViewStateErrorType.defaultError;
-    message ??= errorMessage;
+    errorMessage;
   }
 
   ViewStateErrorType get errorType => _errorType;
@@ -30,6 +29,6 @@ class ViewStateError {
 
   @override
   String toString() {
-    return 'ViewStateError{errorType: $_errorType, message: $message, errorMessage: $errorMessage}';
+    return 'ViewStateError{errorType: $_errorType, errorMessage: $errorMessage}';
   }
 }

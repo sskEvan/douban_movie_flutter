@@ -33,5 +33,4 @@ abstract class ViewStateListProvider<T> extends ViewStateProvider {
   Future<List<T>> loadData();
 
   onCompleted(List<T> data) {}
-
 }
