@@ -1,3 +1,4 @@
+import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/view_state.dart';
 import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,9 +18,9 @@ class CommonErrorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     if(message == null) {
       if(error.errorType == ViewStateErrorType.defaultError) {
-        message = error.errorMessage ?? '加载出错~请重新刷新';
+        message = error.errorMessage ?? DouBanLocalizations.of(context).load_data_failed_tip;
       }else {
-        message = error.errorMessage ?? '网络不给力~请检查网络设置';
+        message = error.errorMessage ?? DouBanLocalizations.of(context).network_poor_tip;
       }
     }
     return Align(
@@ -43,7 +44,7 @@ class CommonErrorWidget extends StatelessWidget {
           OutlineButton(
               padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
               child: Text(
-                '刷新',
+                DouBanLocalizations.of(context).refresh,
                 style: TextStyle(fontSize: 16),
               ),
               onPressed: onPressed,

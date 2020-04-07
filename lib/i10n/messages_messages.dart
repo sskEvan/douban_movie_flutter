@@ -22,9 +22,20 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "billboard" : MessageLookupByLibrary.simpleMessage("billboard"),
+    "buy" : MessageLookupByLibrary.simpleMessage("buy"),
+    "cancel" : MessageLookupByLibrary.simpleMessage("cancel"),
+    "empty_data_tip" : MessageLookupByLibrary.simpleMessage("empty data,please refresh"),
+    "error_code" : MessageLookupByLibrary.simpleMessage("error code"),
+    "load_data_failed_tip" : MessageLookupByLibrary.simpleMessage("load data falied, please refresh"),
     "mine" : MessageLookupByLibrary.simpleMessage("mine"),
+    "network_poor_tip" : MessageLookupByLibrary.simpleMessage("network poor,please check the network connection"),
     "projection" : MessageLookupByLibrary.simpleMessage("projection"),
+    "refresh" : MessageLookupByLibrary.simpleMessage("refresh"),
+    "search_content_hint" : MessageLookupByLibrary.simpleMessage("please input search content"),
+    "seen" : MessageLookupByLibrary.simpleMessage("seen"),
+    "showing_projection" : MessageLookupByLibrary.simpleMessage("showing projection"),
     "skip" : MessageLookupByLibrary.simpleMessage("skip"),
-    "splash_meet" : MessageLookupByLibrary.simpleMessage("Nice to meet you")
+    "splash_meet" : MessageLookupByLibrary.simpleMessage("Nice to meet you"),
+    "upcoming_projection" : MessageLookupByLibrary.simpleMessage("upcoming projection")
   };
 }

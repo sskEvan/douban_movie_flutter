@@ -1,3 +1,4 @@
+import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class SearchWidget extends StatelessWidget {
               minLines: 1,
               enableInteractiveSelection: false,
               decoration: InputDecoration(
-                hintText: '请输入搜索内容',
+                hintText: DouBanLocalizations.of(context).search_content_hint,
                 contentPadding: EdgeInsets.all(0),
                 icon: Icon(Icons.search),
                 alignLabelWithHint: true,
@@ -55,7 +56,7 @@ class SearchWidget extends StatelessWidget {
           offstage: false,
           child: Padding(
             padding: const EdgeInsets.only(left: 15),
-            child: new Text("取消",
+            child: new Text(DouBanLocalizations.of(context).cancel,
                 style: new TextStyle(fontSize: 16, color: Colors.white)),
           ),
         )

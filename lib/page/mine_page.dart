@@ -1,3 +1,4 @@
+import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:flutter/material.dart';
 
 
@@ -15,10 +16,10 @@ class MineState extends State<MinePage> {
     var index = 1;
     return new Scaffold(
       appBar: AppBar(
-        title: Text("我的"),
+        title: Text(DouBanLocalizations.of(context).mine),
       ),
       body: Center(
-        child: Text("我的"),
+        child: Text(DouBanLocalizations.of(context).mine),
       ),
     );
   }

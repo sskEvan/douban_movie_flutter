@@ -2,10 +2,14 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/view_state.dart';
 import 'package:flutter/cupertino.dart';
 
 class ViewStateProvider extends ChangeNotifier {
+
+  BuildContext context;
+
   /// 防止页面销毁后,异步任务才完成,导致报错
   bool _disposed = false;
 
@@ -19,7 +23,7 @@ class ViewStateProvider extends ChangeNotifier {
   ///
   /// 子类可以在构造函数指定需要的页面状态
   /// FooModel():super(viewState:ViewState.busy);
-  ViewStateProvider({ViewState viewState})
+  ViewStateProvider(this.context, {ViewState viewState})
       : _viewState = viewState ?? ViewState.idle {
     debugPrint('ViewStateModel---constructor--->$runtimeType');
   }
@@ -74,7 +78,7 @@ class ViewStateProvider extends ChangeNotifier {
       } else if (e.type == DioErrorType.RESPONSE) {
         var errorData = (e as DioError).response.data.toString();
         Map errorMap = json.decode(errorData);
-        message = '错误码:${errorMap['code']},${errorMap['msg']}';
+        message = '${DouBanLocalizations.of(context).error_code}:${errorMap['code']},${errorMap['msg']}';
       } else if (e.type == DioErrorType.CANCEL) {
         // to be continue...
         message = e.error;
@@ -83,7 +87,7 @@ class ViewStateProvider extends ChangeNotifier {
         e = e.error;
         if (e is SocketException) {
           errorType = ViewStateErrorType.networkTimeOutError;
-          message = '网络不给力~请检查网络设置';
+          message = DouBanLocalizations.of(context).network_poor_tip;
         } else {
           message = e.message;
         }

@@ -1,3 +1,4 @@
+import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/page/movie_page.dart';
 import 'package:douban_movie_flutter/widget/search_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,7 +11,7 @@ class ProjectionPage extends StatefulWidget {
 
 class ProjectionState extends State<ProjectionPage>
     with TickerProviderStateMixin {
-  final _tabs = [Tab(text: '正在上映'), Tab(text: '即将上映')];
+  var _tabs;
 
   var _tabController;
 
@@ -22,6 +23,8 @@ class ProjectionState extends State<ProjectionPage>
 
   @override
   Widget build(BuildContext context) {
+    _tabs = [Tab(text: DouBanLocalizations.of(context).showing_projection),
+      Tab(text: DouBanLocalizations.of(context).upcoming_projection)];
     _tabController = TabController(length: 2, vsync: this);
 
     return new Scaffold(

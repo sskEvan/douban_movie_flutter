@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-03-28T12:13:01.583481",
+  "@@last_modified": "2020-04-07T21:28:15.780533",
   "splash_meet": "Nice to meet you",
   "@splash_meet": {
     "description": "splash_meet",
@@ -27,6 +27,72 @@
   "mine": "mine",
   "@mine": {
     "description": "mine",
+    "type": "text",
+    "placeholders": {}
+  },
+  "showing_projection": "showing projection",
+  "@showing_projection": {
+    "description": "showing_projection",
+    "type": "text",
+    "placeholders": {}
+  },
+  "upcoming_projection": "upcoming projection",
+  "@upcoming_projection": {
+    "description": "upcoming_projection",
+    "type": "text",
+    "placeholders": {}
+  },
+  "network_poor_tip": "network poor,please check the network connection",
+  "@network_poor_tip": {
+    "description": "network_poor_tip",
+    "type": "text",
+    "placeholders": {}
+  },
+  "load_data_failed_tip": "load data falied, please refresh",
+  "@load_data_failed_tip": {
+    "description": "load_data_failed_tip",
+    "type": "text",
+    "placeholders": {}
+  },
+  "error_code": "error code",
+  "@error_code": {
+    "description": "error_code",
+    "type": "text",
+    "placeholders": {}
+  },
+  "empty_data_tip": "empty data,please refresh",
+  "@empty_data_tip": {
+    "description": "empty_data_tip",
+    "type": "text",
+    "placeholders": {}
+  },
+  "refresh": "refresh",
+  "@refresh": {
+    "description": "refresh",
+    "type": "text",
+    "placeholders": {}
+  },
+  "buy": "buy",
+  "@buy": {
+    "description": "buy",
+    "type": "text",
+    "placeholders": {}
+  },
+  "seen": "seen",
+  "@seen": {
+    "description": "seen",
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "cancel",
+  "@cancel": {
+    "description": "cancel",
+    "type": "text",
+    "placeholders": {}
+  },
+  "search_content_hint": "please input search content",
+  "@search_content_hint": {
+    "description": "search_content_hint",
     "type": "text",
     "placeholders": {}
   }

@@ -1,3 +1,5 @@
+
+import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/showing_movie.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +29,7 @@ class MovieItemWidget extends StatelessWidget {
                   SizedBox(width: 10),
                   _buildDottedLine(),
                   SizedBox(width: 10),
-                  _buildTicketPurchase()
+                  _buildTicketPurchase(context)
                 ],
               ),
             ),
@@ -149,7 +151,7 @@ class MovieItemWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildTicketPurchase() {
+  Widget _buildTicketPurchase(BuildContext context) {
     return Container(
       height: 120,
       child: Column(
@@ -158,7 +160,7 @@ class MovieItemWidget extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(vertical: 3, horizontal: 14),
             child: Text(
-              '购票',
+              DouBanLocalizations.of(context).buy,
               style: TextStyle(fontSize: 14, color: Colors.red),
             ),
             decoration: new BoxDecoration(
@@ -168,7 +170,7 @@ class MovieItemWidget extends StatelessWidget {
           ),
           SizedBox(height: 8),
           Text(
-            '${movieSubject.collectCount}人看过',
+            '${movieSubject.collectCount}${DouBanLocalizations.of(context).seen}',
             style: TextStyle(color: Colors.black45, fontSize: 12),
           ),
         ],

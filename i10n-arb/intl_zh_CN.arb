@@ -29,5 +29,71 @@
      "description": "mine",
      "type": "text",
      "placeholders": {}
-   }
+   },
+"showing_projection": "正在热映",
+  "@showing_projection": {
+    "description": "showing_projection",
+    "type": "text",
+    "placeholders": {}
+  },
+  "upcoming_projection": "即将上映",
+  "@upcoming_projection": {
+    "description": "upcoming_projection",
+    "type": "text",
+    "placeholders": {}
+  },
+  "network_poor_tip": "网络不给力～请检查网络设置",
+  "@network_poor_tip": {
+    "description": "network_poor_tip",
+    "type": "text",
+    "placeholders": {}
+  },
+  "load_data_failed_tip": "加载数据失败～请刷新",
+  "@load_data_failed_tip": {
+    "description": "load_data_failed_tip",
+    "type": "text",
+    "placeholders": {}
+  },
+  "error_code": "错误码",
+  "@error_code": {
+    "description": "error_code",
+    "type": "text",
+    "placeholders": {}
+  },
+  "empty_data_tip": "数据为空～请刷新",
+  "@empty_data_tip": {
+    "description": "empty_data_tip",
+    "type": "text",
+    "placeholders": {}
+  },
+  "refresh": "刷新",
+  "@refresh": {
+    "description": "refresh",
+    "type": "text",
+    "placeholders": {}
+  },
+  "buy": "购票",
+  "@buy": {
+    "description": "buy",
+    "type": "text",
+    "placeholders": {}
+  },
+  "seen": "看过",
+  "@seen": {
+    "description": "seen",
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "取消",
+  "@cancel": {
+    "description": "cancel",
+    "type": "text",
+    "placeholders": {}
+  },
+  "search_content_hint": "请输入搜索内容",
+  "@search_content_hint": {
+    "description": "search_content_hint",
+    "type": "text",
+    "placeholders": {}
+  }
 }

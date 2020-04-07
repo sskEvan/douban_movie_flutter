@@ -15,6 +15,8 @@ abstract class ViewStateRefreshListProvider<T> extends ViewStateListProvider<T> 
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
 
+  ViewStateRefreshListProvider(BuildContext context) : super(context);
+
   RefreshController get refreshController => _refreshController;
 
   Future<List<T>> refresh({bool init = false}) async {

@@ -1,11 +1,12 @@
 import 'package:douban_movie_flutter/provider/vew_state_list_provider.dart';
 import 'package:douban_movie_flutter/provider/view_state_refresh_list_provider.dart';
 import 'package:douban_movie_flutter/service/net/douban_movie_repository.dart';
+import 'package:flutter/cupertino.dart';
 
 class MovieListProvider extends ViewStateRefreshListProvider {
 
   final bool isShowing;
-  MovieListProvider({this.isShowing});
+  MovieListProvider(BuildContext context, {this.isShowing}) : super(context);
 
   @override
   Future<List> loadData({int pageNum}) async{

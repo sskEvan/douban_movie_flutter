@@ -1,3 +1,4 @@
+import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/view_state.dart';
 import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,14 +28,14 @@ class CommonEmptyWidget extends StatelessWidget {
           Padding(
             padding: EdgeInsets.fromLTRB(40, 20, 40, 40),
             child: Text(
-              message ?? "亲~当前数据为空！",
+              message ?? DouBanLocalizations.of(context).empty_data_tip,
               style: TextStyle(color: Colors.black38, fontSize: 16),
             ),
           ),
           OutlineButton(
               padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
               child: Text(
-                '刷新',
+                DouBanLocalizations.of(context).refresh,
                 style: TextStyle(
                     fontSize: 16
                 ),),

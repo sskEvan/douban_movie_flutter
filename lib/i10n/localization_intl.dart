@@ -60,6 +60,94 @@ class DouBanLocalizations {
     );
   }
 
+  String get showing_projection {
+    return Intl.message(
+      'showing projection',
+      name: 'showing_projection',
+      desc: 'showing_projection',
+    );
+  }
+
+  String get upcoming_projection {
+    return Intl.message(
+      'upcoming projection',
+      name: 'upcoming_projection',
+      desc: 'upcoming_projection',
+    );
+  }
+
+  String get network_poor_tip {
+    return Intl.message(
+      'network poor,please check the network connection',
+      name: 'network_poor_tip',
+      desc: 'network_poor_tip',
+    );
+  }
+
+  String get load_data_failed_tip {
+    return Intl.message(
+      'load data falied, please refresh',
+      name: 'load_data_failed_tip',
+      desc: 'load_data_failed_tip',
+    );
+  }
+
+  String get error_code {
+    return Intl.message(
+      'error code',
+      name: 'error_code',
+      desc: 'error_code',
+    );
+  }
+
+  String get empty_data_tip {
+    return Intl.message(
+      'empty data,please refresh',
+      name: 'empty_data_tip',
+      desc: 'empty_data_tip',
+    );
+  }
+
+  String get refresh {
+    return Intl.message(
+      'refresh',
+      name: 'refresh',
+      desc: 'refresh',
+    );
+  }
+
+  String get buy{
+    return Intl.message(
+      'buy',
+      name: 'buy',
+      desc: 'buy',
+    );
+  }
+
+  String get seen{
+    return Intl.message(
+      'seen',
+      name: 'seen',
+      desc: 'seen',
+    );
+  }
+
+  String get cancel{
+    return Intl.message(
+      'cancel',
+      name: 'cancel',
+      desc: 'cancel',
+    );
+  }
+
+  String get search_content_hint{
+    return Intl.message(
+      'please input search content',
+      name: 'search_content_hint',
+      desc: 'search_content_hint',
+    );
+  }
+
 }
 
 //Locale代理类

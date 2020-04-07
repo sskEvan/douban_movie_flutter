@@ -1,8 +1,11 @@
 import 'package:douban_movie_flutter/provider/view_state_provider.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
 abstract class ViewStateListProvider<T> extends ViewStateProvider {
   /// 页面数据
   List<T> list = [];
+
+  ViewStateListProvider(BuildContext context) : super(context);
 
   /// 第一次进入页面loading skeleton
   initData() async {

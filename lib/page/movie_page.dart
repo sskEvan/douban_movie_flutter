@@ -30,7 +30,7 @@ class MovieState extends State<MoviePage> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     return ViewStateWidget<MovieListProvider>(
-        provider: MovieListProvider(isShowing: isShowing),
+        provider: MovieListProvider(context, isShowing: isShowing),
         onProviderReady: (provider) async {
           await provider.initData();
         },
