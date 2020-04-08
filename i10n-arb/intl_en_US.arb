@@ -95,5 +95,17 @@
       "description": "search_content_hint",
       "type": "text",
       "placeholders": {}
-    }
+    },
+       "want_to_see": " want",
+       "@want_to_see": {
+         "description": "want_to_see",
+         "type": "text",
+         "placeholders": {}
+       },
+       "no_scare": "no scare",
+       "@no_scare": {
+         "description": "no_scare",
+         "type": "text",
+         "placeholders": {}
+       }
   }

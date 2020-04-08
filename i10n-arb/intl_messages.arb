@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-04-07T21:28:15.780533",
+  "@@last_modified": "2020-04-08T21:54:59.898593",
   "splash_meet": "Nice to meet you",
   "@splash_meet": {
     "description": "splash_meet",
@@ -93,6 +93,18 @@
   "search_content_hint": "please input search content",
   "@search_content_hint": {
     "description": "search_content_hint",
+    "type": "text",
+    "placeholders": {}
+  },
+  "want_to_see": " want",
+  "@want_to_see": {
+    "description": "want_to_see",
+    "type": "text",
+    "placeholders": {}
+  },
+  "no_scare": "no scare",
+  "@no_scare": {
+    "description": "no_scare",
     "type": "text",
     "placeholders": {}
   }

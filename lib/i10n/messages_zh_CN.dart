@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "load_data_failed_tip" : MessageLookupByLibrary.simpleMessage("加载数据失败～请刷新"),
     "mine" : MessageLookupByLibrary.simpleMessage("我的"),
     "network_poor_tip" : MessageLookupByLibrary.simpleMessage("网络不给力～请检查网络设置"),
+    "no_scare" : MessageLookupByLibrary.simpleMessage("暂无评分"),
     "projection" : MessageLookupByLibrary.simpleMessage("热映"),
     "refresh" : MessageLookupByLibrary.simpleMessage("刷新"),
     "search_content_hint" : MessageLookupByLibrary.simpleMessage("请输入搜索内容"),
@@ -36,6 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "showing_projection" : MessageLookupByLibrary.simpleMessage("正在热映"),
     "skip" : MessageLookupByLibrary.simpleMessage("跳过"),
     "splash_meet" : MessageLookupByLibrary.simpleMessage("遇见你,真美好"),
-    "upcoming_projection" : MessageLookupByLibrary.simpleMessage("即将上映")
+    "upcoming_projection" : MessageLookupByLibrary.simpleMessage("即将上映"),
+    "want_to_see" : MessageLookupByLibrary.simpleMessage("想看")
   };
 }

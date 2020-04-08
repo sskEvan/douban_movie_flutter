@@ -78,7 +78,6 @@ class ThemeProvider extends ChangeNotifier {
       hintColor: themeData.hintColor.withAlpha(90),
       errorColor: Colors.red,
       cursorColor: accentColor,
-
       textTheme: themeData.textTheme.copyWith(
         /// 解决中文hint不居中的问题 https://github.com/flutter/flutter/issues/40248
           subhead: themeData.textTheme.subhead

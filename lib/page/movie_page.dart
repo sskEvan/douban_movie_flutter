@@ -56,7 +56,7 @@ class MovieState extends State<MoviePage> with AutomaticKeepAliveClientMixin {
                 itemCount: provider.list.length,
                 itemBuilder: (context, index) {
                   MovieSubject item = provider.list[index];
-                  return MovieItemWidget(movieSubject: item);
+                  return MovieItemWidget(isShowing: isShowing, movieSubject: item);
                 }),
           );
         });

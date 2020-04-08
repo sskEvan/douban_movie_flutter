@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "load_data_failed_tip" : MessageLookupByLibrary.simpleMessage("load data falied, please refresh"),
     "mine" : MessageLookupByLibrary.simpleMessage("mine"),
     "network_poor_tip" : MessageLookupByLibrary.simpleMessage("network poor,please check the network connection"),
+    "no_scare" : MessageLookupByLibrary.simpleMessage("no scare"),
     "projection" : MessageLookupByLibrary.simpleMessage("projection"),
     "refresh" : MessageLookupByLibrary.simpleMessage("refresh"),
     "search_content_hint" : MessageLookupByLibrary.simpleMessage("please input search content"),
@@ -36,6 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "showing_projection" : MessageLookupByLibrary.simpleMessage("showing projection"),
     "skip" : MessageLookupByLibrary.simpleMessage("skip"),
     "splash_meet" : MessageLookupByLibrary.simpleMessage("Nice to meet you"),
-    "upcoming_projection" : MessageLookupByLibrary.simpleMessage("upcoming projection")
+    "upcoming_projection" : MessageLookupByLibrary.simpleMessage("upcoming projection"),
+    "want_to_see" : MessageLookupByLibrary.simpleMessage(" want")
   };
 }

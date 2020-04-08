@@ -148,6 +148,22 @@ class DouBanLocalizations {
     );
   }
 
+  String get want_to_see{
+    return Intl.message(
+      ' want',
+      name: 'want_to_see',
+      desc: 'want_to_see',
+    );
+  }
+
+  String get no_scare{
+    return Intl.message(
+      'no scare',
+      name: 'no_scare',
+      desc: 'no_scare',
+    );
+  }
+
 }
 
 //Locale代理类
