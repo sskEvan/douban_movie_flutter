@@ -23,7 +23,7 @@ class SplashState extends State<SplashPage> with TickerProviderStateMixin {
   @override
   void initState() {
     _countDownController =
-        AnimationController(vsync: this, duration: Duration(seconds: 4));
+        AnimationController(vsync: this, duration: Duration(seconds: 3));
     _countDownController.forward();
     super.initState();
   }

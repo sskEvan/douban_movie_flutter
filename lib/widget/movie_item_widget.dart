@@ -6,6 +6,7 @@ import 'package:douban_movie_flutter/widget/rating_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 
+import 'dotted_line_widget.dart';
 import 'skeleton.dart';
 
 class MovieItemWidget extends StatelessWidget {
@@ -74,62 +75,14 @@ class MovieItemWidget extends StatelessWidget {
 
   Widget _buildDottedLine() {
     return Container(
-        height: 120,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              width: 1,
-              height: 10,
-              color: Colors.black12,
-            ),
-            Container(
-              width: 1,
-              height: 10,
-            ),
-            Container(
-              width: 1,
-              height: 10,
-              color: Colors.black12,
-            ),
-            Container(
-              width: 1,
-              height: 10,
-            ),
-            Container(
-              width: 1,
-              height: 10,
-              color: Colors.black12,
-            ),
-            Container(
-              width: 1,
-              height: 10,
-            ),
-            Container(
-              width: 1,
-              height: 10,
-              color: Colors.black12,
-            ),
-            Container(
-              width: 1,
-              height: 10,
-            ),
-            Container(
-              width: 1,
-              height: 10,
-              color: Colors.black12,
-            ),
-            Container(
-              width: 1,
-              height: 10,
-            ),
-            Container(
-              width: 1,
-              height: 10,
-              color: Colors.black12,
-            ),
-          ],
-        ));
+      height: 120,
+      child: Center(
+        child: DottledLine(
+            length: 100,
+            spacing: 6,
+            orientation: orientationVertical),
+      ),
+    );
   }
 
   Widget _buildMovieTitle() {
@@ -184,7 +137,7 @@ class MovieItemWidget extends StatelessWidget {
               onTap: () {
                 print('------------------------点击购票');
                 showToast(
-                  '购票',
+                  '购票:${movieSubject.title}',
                   context: context,
                 );
               },

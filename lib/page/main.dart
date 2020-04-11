@@ -59,6 +59,8 @@ class DouBanApp extends StatelessWidget {
         }),
       ),
       radius: 5,
+      textPadding: EdgeInsets.fromLTRB(15, 8, 15, 8),
+      dismissOtherOnShow: true,
     );
   }
 }
