@@ -1,6 +1,6 @@
-import 'package:douban_movie_flutter/model/showing_movie.dart';
+import 'package:douban_movie_flutter/model/movie.dart';
 
-showingMovieFromJson(ShowingMovie data, Map<String, dynamic> json) {
+showingMovieFromJson(Movie data, Map<String, dynamic> json) {
 	if (json['count'] != null) {
 		data.count = json['count']?.toInt();
 	}
@@ -22,7 +22,7 @@ showingMovieFromJson(ShowingMovie data, Map<String, dynamic> json) {
 	return data;
 }
 
-Map<String, dynamic> showingMovieToJson(ShowingMovie entity) {
+Map<String, dynamic> showingMovieToJson(Movie entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	data['count'] = entity.count;
 	data['start'] = entity.start;

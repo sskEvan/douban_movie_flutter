@@ -2,7 +2,7 @@ import 'package:douban_movie_flutter/generated/json/base/json_convert_content.da
 import 'package:douban_movie_flutter/generated/json/base/json_filed.dart';
 
 
-class ShowingMovie with JsonConvert<ShowingMovie> {
+class Movie with JsonConvert<Movie> {
 	int count;
 	int start;
 	int total;

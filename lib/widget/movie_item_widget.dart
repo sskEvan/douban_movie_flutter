@@ -1,5 +1,5 @@
 import 'package:douban_movie_flutter/i10n/localization_intl.dart';
-import 'package:douban_movie_flutter/model/showing_movie.dart';
+import 'package:douban_movie_flutter/model/movie.dart';
 import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:douban_movie_flutter/widget/rating_widget.dart';
