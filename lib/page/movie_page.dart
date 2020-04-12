@@ -1,4 +1,5 @@
 import 'package:douban_movie_flutter/model/movie.dart';
+import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/provider/movie_list_provider.dart';
 import 'package:douban_movie_flutter/provider/view_state_refresh_list_provider.dart';
 import 'package:douban_movie_flutter/service/net/douban_movie_repository.dart';

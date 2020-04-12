@@ -66,7 +66,7 @@ class MovieSkeletonItemWidget extends StatelessWidget {
   Widget _buildMovieTitleSkeleton() {
     return Container(
       width: 50,
-      height: 12,
+      height: 8,
       decoration: SkeletonDecoration(isDark: isDark),
     );
   }
@@ -74,7 +74,7 @@ class MovieSkeletonItemWidget extends StatelessWidget {
   Widget _buildMovieScoreSkeleton() {
     return Container(
       width: 50,
-      height: 12,
+      height: 8,
       decoration: SkeletonDecoration(isDark: isDark),
     );
   }
@@ -82,7 +82,7 @@ class MovieSkeletonItemWidget extends StatelessWidget {
   Widget _buildMovieTagSkeleton() {
     return Container(
       width: 100,
-      height: 24,
+      height: 16,
       decoration: SkeletonDecoration(isDark: isDark),
     );
   }
@@ -95,13 +95,13 @@ class MovieSkeletonItemWidget extends StatelessWidget {
         children: <Widget>[
           Container(
             width: 60,
-            height: 24,
+            height: 16,
             decoration: SkeletonDecoration(isDark: isDark),
           ),
           SizedBox(height: 8),
           Container(
             width: 60,
-            height: 12,
+            height: 8,
             decoration: SkeletonDecoration(isDark: isDark),
           ),
         ],

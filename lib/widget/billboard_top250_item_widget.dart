@@ -1,5 +1,6 @@
 import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/movie.dart';
+import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:douban_movie_flutter/widget/rating_widget.dart';
@@ -9,10 +10,10 @@ import 'package:oktoast/oktoast.dart';
 import 'dotted_line_widget.dart';
 import 'skeleton.dart';
 
-class BillboardItemWidget extends StatelessWidget {
+class BillboardTop250ItemWidget extends StatelessWidget {
   final MovieSubject movieSubject;
 
-  BillboardItemWidget({this.movieSubject})
+  BillboardTop250ItemWidget({this.movieSubject})
       : super(key: ValueKey(movieSubject.id));
 
   @override
@@ -22,14 +23,13 @@ class BillboardItemWidget extends StatelessWidget {
           print('----------item click');
         },
         child:  Container(
+
           padding: EdgeInsets.all(5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               _buildMoviePoster(),
-              SizedBox(width: 4),
               _buildMovieTitle(),
-              SizedBox(width: 4),
               _buildMovieScore(context)
             ],
           ),

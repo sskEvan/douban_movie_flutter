@@ -73,3 +73,88 @@ class SkeletonList extends StatelessWidget {
     );
   }
 }
+
+/// 骨架屏
+class SkeletonGrid extends StatelessWidget {
+  final EdgeInsetsGeometry padding;
+  final int length;
+  final int crossAxisCount;
+  final double childAspectRatio;
+  final IndexedWidgetBuilder builder;
+
+  SkeletonGrid(
+      {this.length: 6,
+      this.padding = const EdgeInsets.all(0),
+      @required this.builder,
+      this.crossAxisCount = 3,
+      this.childAspectRatio = 1});
+
+  @override
+  Widget build(BuildContext context) {
+    var theme = Theme.of(context);
+    bool isDark = theme.brightness == Brightness.dark;
+
+//    var highlightColor = isDark
+//        ? Colors.grey[500]
+//        : Color.alphaBlend(theme.accentColor.withAlpha(20), Colors.grey[100]);
+
+    return SingleChildScrollView(
+      physics: NeverScrollableScrollPhysics(),
+      child: Shimmer.fromColors(
+          period: Duration(milliseconds: 1200),
+          baseColor: isDark ? Colors.grey[700] : Colors.grey[350],
+          highlightColor: isDark ? Colors.grey[500] : Colors.grey[200],
+              child: Padding(
+            padding: padding,
+            child: GridView.builder(
+                shrinkWrap: true,
+                itemCount: length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: crossAxisCount, //横轴三个子widget
+                  childAspectRatio: childAspectRatio,
+                ),
+                itemBuilder: (context, index) {
+                  return builder(context, index);
+                }),
+          )),
+    );
+
+//    return SingleChildScrollView(
+//        physics: NeverScrollableScrollPhysics(),
+//        child: Shimmer.fromColors(
+//            period: Duration(milliseconds: 1200),
+//            baseColor: isDark ? Colors.grey[700] : Colors.grey[350],
+//            highlightColor: isDark ? Colors.grey[500] : Colors.grey[200],
+//            child: Flexible(
+//                child: Padding(
+//              padding: padding,
+//              child: GridView.builder(
+//                  shrinkWrap: true,
+//                  itemCount: length,
+//                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//                    crossAxisCount: crossAxisCount, //横轴三个子widget
+//                    childAspectRatio: childAspectRatio,
+//                  ),
+//                  itemBuilder: (context, index) {
+//                    return builder(context, index);
+//                  }),
+//            ))));
+//
+//
+//    return Flexible(
+//        child: Padding(
+//          padding: padding,
+//          child: GridView.builder(
+//              shrinkWrap: true,
+//              itemCount: length,
+//              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//                crossAxisCount: crossAxisCount, //横轴三个子widget
+//                childAspectRatio: childAspectRatio,
+//              ),
+//              itemBuilder: (context, index) {
+//                return builder(context, index);
+//              }),
+//        )
+//    );
+  }
+}

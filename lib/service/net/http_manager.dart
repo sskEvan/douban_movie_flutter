@@ -36,6 +36,7 @@ class HttpManager {
   ///通用的GET请求
   get(url, {queryParameters, noTip = false}) async {
     Response response = await _dio.get(url, queryParameters: queryParameters);
+    print("-----------${url} response" + response.data);
     return ResultData(response.data, true);
   }
 }
