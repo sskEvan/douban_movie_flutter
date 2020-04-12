@@ -36,34 +36,11 @@ class JsonConvert<T> {
 			return movieSubjectsDirectorFromJson(data as MovieSubjectsDirector, json) as T;			case MovieSubjectsDirectorsAvatars:
 			return movieSubjectsDirectorsAvatarsFromJson(data as MovieSubjectsDirectorsAvatars, json) as T;			case MovieSubjectsImages:
 			return movieSubjectsImagesFromJson(data as MovieSubjectsImages, json) as T;			case NewMovieEntity:
-			return newMovieEntityFromJson(data as NewMovieEntity, json) as T;			case NewMovieSubject:
-			return newMovieSubjectFromJson(data as NewMovieSubject, json) as T;			case NewMovieSubjectsRating:
-			return newMovieSubjectsRatingFromJson(data as NewMovieSubjectsRating, json) as T;			case NewMovieSubjectsRatingDetails:
-			return newMovieSubjectsRatingDetailsFromJson(data as NewMovieSubjectsRatingDetails, json) as T;			case NewMovieSubjectsCast:
-			return newMovieSubjectsCastFromJson(data as NewMovieSubjectsCast, json) as T;			case NewMovieSubjectsCastsAvatars:
-			return newMovieSubjectsCastsAvatarsFromJson(data as NewMovieSubjectsCastsAvatars, json) as T;			case NewMovieSubjectsDirector:
-			return newMovieSubjectsDirectorFromJson(data as NewMovieSubjectsDirector, json) as T;			case NewMovieSubjectsDirectorsAvatars:
-			return newMovieSubjectsDirectorsAvatarsFromJson(data as NewMovieSubjectsDirectorsAvatars, json) as T;			case NewMovieSubjectsImages:
-			return newMovieSubjectsImagesFromJson(data as NewMovieSubjectsImages, json) as T;			case WeeklyMovieEntity:
+			return newMovieEntityFromJson(data as NewMovieEntity, json) as T;				case WeeklyMovieEntity:
 			return weeklyMovieEntityFromJson(data as WeeklyMovieEntity, json) as T;			case WeeklyMovieSubject:
-			return weeklyMovieSubjectFromJson(data as WeeklyMovieSubject, json) as T;			case WeeklyMovieSubjectsSubject:
-			return weeklyMovieSubjectsSubjectFromJson(data as WeeklyMovieSubjectsSubject, json) as T;			case WeeklyMovieSubjectsSubjectRating:
-			return weeklyMovieSubjectsSubjectRatingFromJson(data as WeeklyMovieSubjectsSubjectRating, json) as T;			case WeeklyMovieSubjectsSubjectRatingDetails:
-			return weeklyMovieSubjectsSubjectRatingDetailsFromJson(data as WeeklyMovieSubjectsSubjectRatingDetails, json) as T;			case WeeklyMovieSubjectsSubjectCast:
-			return weeklyMovieSubjectsSubjectCastFromJson(data as WeeklyMovieSubjectsSubjectCast, json) as T;			case WeeklyMovieSubjectsSubjectDirector:
-			return weeklyMovieSubjectsSubjectDirectorFromJson(data as WeeklyMovieSubjectsSubjectDirector, json) as T;			case WeeklyMovieSubjectsSubjectDirectorsAvatars:
-			return weeklyMovieSubjectsSubjectDirectorsAvatarsFromJson(data as WeeklyMovieSubjectsSubjectDirectorsAvatars, json) as T;			case WeeklyMovieSubjectsSubjectImages:
-			return weeklyMovieSubjectsSubjectImagesFromJson(data as WeeklyMovieSubjectsSubjectImages, json) as T;			case UsboxMovieEntity:
+			return weeklyMovieSubjectFromJson(data as WeeklyMovieSubject, json) as T;					case UsboxMovieEntity:
 			return usboxMovieEntityFromJson(data as UsboxMovieEntity, json) as T;			case UsboxMovieSubject:
-			return usboxMovieSubjectFromJson(data as UsboxMovieSubject, json) as T;			case UsboxMovieSubjectsSubject:
-			return usboxMovieSubjectsSubjectFromJson(data as UsboxMovieSubjectsSubject, json) as T;			case UsboxMovieSubjectsSubjectRating:
-			return usboxMovieSubjectsSubjectRatingFromJson(data as UsboxMovieSubjectsSubjectRating, json) as T;			case UsboxMovieSubjectsSubjectRatingDetails:
-			return usboxMovieSubjectsSubjectRatingDetailsFromJson(data as UsboxMovieSubjectsSubjectRatingDetails, json) as T;			case UsboxMovieSubjectsSubjectCast:
-			return usboxMovieSubjectsSubjectCastFromJson(data as UsboxMovieSubjectsSubjectCast, json) as T;			case UsboxMovieSubjectsSubjectCastsAvatars:
-			return usboxMovieSubjectsSubjectCastsAvatarsFromJson(data as UsboxMovieSubjectsSubjectCastsAvatars, json) as T;			case UsboxMovieSubjectsSubjectDirector:
-			return usboxMovieSubjectsSubjectDirectorFromJson(data as UsboxMovieSubjectsSubjectDirector, json) as T;			case UsboxMovieSubjectsSubjectDirectorsAvatars:
-			return usboxMovieSubjectsSubjectDirectorsAvatarsFromJson(data as UsboxMovieSubjectsSubjectDirectorsAvatars, json) as T;			case UsboxMovieSubjectsSubjectImages:
-			return usboxMovieSubjectsSubjectImagesFromJson(data as UsboxMovieSubjectsSubjectImages, json) as T;			case DioErrorEntity:
+			return usboxMovieSubjectFromJson(data as UsboxMovieSubject, json) as T;				case DioErrorEntity:
 			return dioErrorEntityFromJson(data as DioErrorEntity, json) as T;    }
     return data as T;
   }
@@ -79,34 +56,11 @@ class JsonConvert<T> {
 			return movieSubjectsDirectorToJson(data as MovieSubjectsDirector);			case MovieSubjectsDirectorsAvatars:
 			return movieSubjectsDirectorsAvatarsToJson(data as MovieSubjectsDirectorsAvatars);			case MovieSubjectsImages:
 			return movieSubjectsImagesToJson(data as MovieSubjectsImages);			case NewMovieEntity:
-			return newMovieEntityToJson(data as NewMovieEntity);			case NewMovieSubject:
-			return newMovieSubjectToJson(data as NewMovieSubject);			case NewMovieSubjectsRating:
-			return newMovieSubjectsRatingToJson(data as NewMovieSubjectsRating);			case NewMovieSubjectsRatingDetails:
-			return newMovieSubjectsRatingDetailsToJson(data as NewMovieSubjectsRatingDetails);			case NewMovieSubjectsCast:
-			return newMovieSubjectsCastToJson(data as NewMovieSubjectsCast);			case NewMovieSubjectsCastsAvatars:
-			return newMovieSubjectsCastsAvatarsToJson(data as NewMovieSubjectsCastsAvatars);			case NewMovieSubjectsDirector:
-			return newMovieSubjectsDirectorToJson(data as NewMovieSubjectsDirector);			case NewMovieSubjectsDirectorsAvatars:
-			return newMovieSubjectsDirectorsAvatarsToJson(data as NewMovieSubjectsDirectorsAvatars);			case NewMovieSubjectsImages:
-			return newMovieSubjectsImagesToJson(data as NewMovieSubjectsImages);			case WeeklyMovieEntity:
+			return newMovieEntityToJson(data as NewMovieEntity);					case WeeklyMovieEntity:
 			return weeklyMovieEntityToJson(data as WeeklyMovieEntity);			case WeeklyMovieSubject:
-			return weeklyMovieSubjectToJson(data as WeeklyMovieSubject);			case WeeklyMovieSubjectsSubject:
-			return weeklyMovieSubjectsSubjectToJson(data as WeeklyMovieSubjectsSubject);			case WeeklyMovieSubjectsSubjectRating:
-			return weeklyMovieSubjectsSubjectRatingToJson(data as WeeklyMovieSubjectsSubjectRating);			case WeeklyMovieSubjectsSubjectRatingDetails:
-			return weeklyMovieSubjectsSubjectRatingDetailsToJson(data as WeeklyMovieSubjectsSubjectRatingDetails);			case WeeklyMovieSubjectsSubjectCast:
-			return weeklyMovieSubjectsSubjectCastToJson(data as WeeklyMovieSubjectsSubjectCast);			case WeeklyMovieSubjectsSubjectDirector:
-			return weeklyMovieSubjectsSubjectDirectorToJson(data as WeeklyMovieSubjectsSubjectDirector);			case WeeklyMovieSubjectsSubjectDirectorsAvatars:
-			return weeklyMovieSubjectsSubjectDirectorsAvatarsToJson(data as WeeklyMovieSubjectsSubjectDirectorsAvatars);			case WeeklyMovieSubjectsSubjectImages:
-			return weeklyMovieSubjectsSubjectImagesToJson(data as WeeklyMovieSubjectsSubjectImages);			case UsboxMovieEntity:
+			return weeklyMovieSubjectToJson(data as WeeklyMovieSubject);				case UsboxMovieEntity:
 			return usboxMovieEntityToJson(data as UsboxMovieEntity);			case UsboxMovieSubject:
-			return usboxMovieSubjectToJson(data as UsboxMovieSubject);			case UsboxMovieSubjectsSubject:
-			return usboxMovieSubjectsSubjectToJson(data as UsboxMovieSubjectsSubject);			case UsboxMovieSubjectsSubjectRating:
-			return usboxMovieSubjectsSubjectRatingToJson(data as UsboxMovieSubjectsSubjectRating);			case UsboxMovieSubjectsSubjectRatingDetails:
-			return usboxMovieSubjectsSubjectRatingDetailsToJson(data as UsboxMovieSubjectsSubjectRatingDetails);			case UsboxMovieSubjectsSubjectCast:
-			return usboxMovieSubjectsSubjectCastToJson(data as UsboxMovieSubjectsSubjectCast);			case UsboxMovieSubjectsSubjectCastsAvatars:
-			return usboxMovieSubjectsSubjectCastsAvatarsToJson(data as UsboxMovieSubjectsSubjectCastsAvatars);			case UsboxMovieSubjectsSubjectDirector:
-			return usboxMovieSubjectsSubjectDirectorToJson(data as UsboxMovieSubjectsSubjectDirector);			case UsboxMovieSubjectsSubjectDirectorsAvatars:
-			return usboxMovieSubjectsSubjectDirectorsAvatarsToJson(data as UsboxMovieSubjectsSubjectDirectorsAvatars);			case UsboxMovieSubjectsSubjectImages:
-			return usboxMovieSubjectsSubjectImagesToJson(data as UsboxMovieSubjectsSubjectImages);			case DioErrorEntity:
+			return usboxMovieSubjectToJson(data as UsboxMovieSubject);				case DioErrorEntity:
 			return dioErrorEntityToJson(data as DioErrorEntity);    }
     return data as T;
   }
@@ -122,34 +76,11 @@ class JsonConvert<T> {
 			return MovieSubjectsDirector().fromJson(json);			case 'MovieSubjectsDirectorsAvatars':
 			return MovieSubjectsDirectorsAvatars().fromJson(json);			case 'MovieSubjectsImages':
 			return MovieSubjectsImages().fromJson(json);			case 'NewMovieEntity':
-			return NewMovieEntity().fromJson(json);			case 'NewMovieSubject':
-			return NewMovieSubject().fromJson(json);			case 'NewMovieSubjectsRating':
-			return NewMovieSubjectsRating().fromJson(json);			case 'NewMovieSubjectsRatingDetails':
-			return NewMovieSubjectsRatingDetails().fromJson(json);			case 'NewMovieSubjectsCast':
-			return NewMovieSubjectsCast().fromJson(json);			case 'NewMovieSubjectsCastsAvatars':
-			return NewMovieSubjectsCastsAvatars().fromJson(json);			case 'NewMovieSubjectsDirector':
-			return NewMovieSubjectsDirector().fromJson(json);			case 'NewMovieSubjectsDirectorsAvatars':
-			return NewMovieSubjectsDirectorsAvatars().fromJson(json);			case 'NewMovieSubjectsImages':
-			return NewMovieSubjectsImages().fromJson(json);			case 'WeeklyMovieEntity':
+			return NewMovieEntity().fromJson(json);					case 'WeeklyMovieEntity':
 			return WeeklyMovieEntity().fromJson(json);			case 'WeeklyMovieSubject':
-			return WeeklyMovieSubject().fromJson(json);			case 'WeeklyMovieSubjectsSubject':
-			return WeeklyMovieSubjectsSubject().fromJson(json);			case 'WeeklyMovieSubjectsSubjectRating':
-			return WeeklyMovieSubjectsSubjectRating().fromJson(json);			case 'WeeklyMovieSubjectsSubjectRatingDetails':
-			return WeeklyMovieSubjectsSubjectRatingDetails().fromJson(json);			case 'WeeklyMovieSubjectsSubjectCast':
-			return WeeklyMovieSubjectsSubjectCast().fromJson(json);			case 'WeeklyMovieSubjectsSubjectDirector':
-			return WeeklyMovieSubjectsSubjectDirector().fromJson(json);			case 'WeeklyMovieSubjectsSubjectDirectorsAvatars':
-			return WeeklyMovieSubjectsSubjectDirectorsAvatars().fromJson(json);			case 'WeeklyMovieSubjectsSubjectImages':
-			return WeeklyMovieSubjectsSubjectImages().fromJson(json);			case 'UsboxMovieEntity':
+			return WeeklyMovieSubject().fromJson(json);					case 'UsboxMovieEntity':
 			return UsboxMovieEntity().fromJson(json);			case 'UsboxMovieSubject':
-			return UsboxMovieSubject().fromJson(json);			case 'UsboxMovieSubjectsSubject':
-			return UsboxMovieSubjectsSubject().fromJson(json);			case 'UsboxMovieSubjectsSubjectRating':
-			return UsboxMovieSubjectsSubjectRating().fromJson(json);			case 'UsboxMovieSubjectsSubjectRatingDetails':
-			return UsboxMovieSubjectsSubjectRatingDetails().fromJson(json);			case 'UsboxMovieSubjectsSubjectCast':
-			return UsboxMovieSubjectsSubjectCast().fromJson(json);			case 'UsboxMovieSubjectsSubjectCastsAvatars':
-			return UsboxMovieSubjectsSubjectCastsAvatars().fromJson(json);			case 'UsboxMovieSubjectsSubjectDirector':
-			return UsboxMovieSubjectsSubjectDirector().fromJson(json);			case 'UsboxMovieSubjectsSubjectDirectorsAvatars':
-			return UsboxMovieSubjectsSubjectDirectorsAvatars().fromJson(json);			case 'UsboxMovieSubjectsSubjectImages':
-			return UsboxMovieSubjectsSubjectImages().fromJson(json);			case 'DioErrorEntity':
+			return UsboxMovieSubject().fromJson(json);				case 'DioErrorEntity':
 			return DioErrorEntity().fromJson(json);    }
     return null;
   }
@@ -166,34 +97,11 @@ class JsonConvert<T> {
 			return List<MovieSubjectsDirector>();			case 'MovieSubjectsDirectorsAvatars':
 			return List<MovieSubjectsDirectorsAvatars>();			case 'MovieSubjectsImages':
 			return List<MovieSubjectsImages>();			case 'NewMovieEntity':
-			return List<NewMovieEntity>();			case 'NewMovieSubject':
-			return List<NewMovieSubject>();			case 'NewMovieSubjectsRating':
-			return List<NewMovieSubjectsRating>();			case 'NewMovieSubjectsRatingDetails':
-			return List<NewMovieSubjectsRatingDetails>();			case 'NewMovieSubjectsCast':
-			return List<NewMovieSubjectsCast>();			case 'NewMovieSubjectsCastsAvatars':
-			return List<NewMovieSubjectsCastsAvatars>();			case 'NewMovieSubjectsDirector':
-			return List<NewMovieSubjectsDirector>();			case 'NewMovieSubjectsDirectorsAvatars':
-			return List<NewMovieSubjectsDirectorsAvatars>();			case 'NewMovieSubjectsImages':
-			return List<NewMovieSubjectsImages>();			case 'WeeklyMovieEntity':
+			return List<NewMovieEntity>();					case 'WeeklyMovieEntity':
 			return List<WeeklyMovieEntity>();			case 'WeeklyMovieSubject':
-			return List<WeeklyMovieSubject>();			case 'WeeklyMovieSubjectsSubject':
-			return List<WeeklyMovieSubjectsSubject>();			case 'WeeklyMovieSubjectsSubjectRating':
-			return List<WeeklyMovieSubjectsSubjectRating>();			case 'WeeklyMovieSubjectsSubjectRatingDetails':
-			return List<WeeklyMovieSubjectsSubjectRatingDetails>();			case 'WeeklyMovieSubjectsSubjectCast':
-			return List<WeeklyMovieSubjectsSubjectCast>();			case 'WeeklyMovieSubjectsSubjectDirector':
-			return List<WeeklyMovieSubjectsSubjectDirector>();			case 'WeeklyMovieSubjectsSubjectDirectorsAvatars':
-			return List<WeeklyMovieSubjectsSubjectDirectorsAvatars>();			case 'WeeklyMovieSubjectsSubjectImages':
-			return List<WeeklyMovieSubjectsSubjectImages>();			case 'UsboxMovieEntity':
+			return List<WeeklyMovieSubject>();			case 'UsboxMovieEntity':
 			return List<UsboxMovieEntity>();			case 'UsboxMovieSubject':
-			return List<UsboxMovieSubject>();			case 'UsboxMovieSubjectsSubject':
-			return List<UsboxMovieSubjectsSubject>();			case 'UsboxMovieSubjectsSubjectRating':
-			return List<UsboxMovieSubjectsSubjectRating>();			case 'UsboxMovieSubjectsSubjectRatingDetails':
-			return List<UsboxMovieSubjectsSubjectRatingDetails>();			case 'UsboxMovieSubjectsSubjectCast':
-			return List<UsboxMovieSubjectsSubjectCast>();			case 'UsboxMovieSubjectsSubjectCastsAvatars':
-			return List<UsboxMovieSubjectsSubjectCastsAvatars>();			case 'UsboxMovieSubjectsSubjectDirector':
-			return List<UsboxMovieSubjectsSubjectDirector>();			case 'UsboxMovieSubjectsSubjectDirectorsAvatars':
-			return List<UsboxMovieSubjectsSubjectDirectorsAvatars>();			case 'UsboxMovieSubjectsSubjectImages':
-			return List<UsboxMovieSubjectsSubjectImages>();			case 'DioErrorEntity':
+			return List<UsboxMovieSubject>();					case 'DioErrorEntity':
 			return List<DioErrorEntity>();    }
     return null;
   }

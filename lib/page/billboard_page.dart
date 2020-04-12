@@ -1,21 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:douban_movie_flutter/i10n/localization_intl.dart';
-import 'package:douban_movie_flutter/model/movie.dart';
 import 'package:douban_movie_flutter/model/movie_subject.dart';
-import 'package:douban_movie_flutter/model/new_movie_entity.dart';
-import 'package:douban_movie_flutter/model/usbox_movie_entity.dart';
-import 'package:douban_movie_flutter/model/weekly_movie_entity.dart';
 import 'package:douban_movie_flutter/provider/billboard_new_movies_provider.dart';
 import 'package:douban_movie_flutter/provider/billboard_top250_provider.dart';
 import 'package:douban_movie_flutter/provider/billboard_usbox_provider.dart';
 import 'package:douban_movie_flutter/provider/billboard_weekly_provider.dart';
-import 'package:douban_movie_flutter/provider/vew_state_list_provider.dart';
+import 'package:douban_movie_flutter/widget/billboard_banner_widget.dart';
 import 'package:douban_movie_flutter/widget/billboard_top250_item_widget.dart';
 import 'package:douban_movie_flutter/widget/billboard_section_widget.dart';
 import 'package:douban_movie_flutter/widget/billboard_top250_skeleton_item_widget.dart';
-import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
-import 'package:douban_movie_flutter/widget/common_empty_widget.dart';
-import 'package:douban_movie_flutter/widget/common_loading_widget.dart';
 import 'package:douban_movie_flutter/widget/search_widget.dart';
 import 'package:douban_movie_flutter/widget/skeleton.dart';
 import 'package:douban_movie_flutter/widget/view_state_widget.dart';
@@ -101,47 +94,13 @@ Widget _buildTop250GridView(BuildContext context) {
 Widget _buildOtherBillboardBaners(BuildContext context) {
   return Container(
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-      child: CarouselSlider(initialPage: 3, items: <Widget>[
-        _buildBannerItem<BillboardWeekly>(BillboardWeekly(context)),
-        _buildBannerItem<BillboardUsBox>(BillboardUsBox(context)),
-        _buildBannerItem<BillboardNewMovies>(BillboardNewMovies(context)),
-      ]));
-}
-
-Widget _buildBannerItem<T extends ViewStateListProvider>(
-    ViewStateListProvider provider) {
-  var url;
-  return ViewStateWidget<T>(
-    provider: provider,
-    onProviderReady: (provider) async {
-      await provider.initData();
-    },
-    builder: (context, T provider, child) {
-      if (provider.isBusy) {
-        return CommonLoadingWidget();
-      } else if (provider.isEmpty) {
-        return Container();
-      } else if (provider.isError) {
-        return Container();
-      }
-      if (provider is BillboardWeekly) {
-        url = (provider.list[0] as WeeklyMovieSubject).subject.images.small;
-      } else if (provider is BillboardNewMovies) {
-        url = (provider.list[0] as NewMovieSubject).images.small;
-      } else if (provider is BillboardUsBox) {
-        url = (provider.list[0] as UsboxMovieSubject).subject.images.small;
-      }
-      return Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10),
-        child: SizedBox(
-          width: 90,
-          height: 120,
-          child: CacheImageWidget(
-            url: url,
-            radius: 5,
-          ),
-        ),
-      );
-    },
-  );
+      child: CarouselSlider(
+          enableInfiniteScroll: true,
+          initialPage: 3,
+          aspectRatio: 2,
+          items: <Widget>[
+            BillboardBanner<BillboardWeekly>(BillboardWeekly(context)),
+            BillboardBanner<BillboardUsBox>(BillboardUsBox(context)),
+            BillboardBanner<BillboardNewMovies>(BillboardNewMovies(context)),
+          ]));
 }
