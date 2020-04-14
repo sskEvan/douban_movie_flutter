@@ -21,6 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "all" : MessageLookupByLibrary.simpleMessage("all"),
     "billboard" : MessageLookupByLibrary.simpleMessage("billboard"),
     "buy" : MessageLookupByLibrary.simpleMessage("buy"),
     "cancel" : MessageLookupByLibrary.simpleMessage("cancel"),
@@ -30,6 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "mine" : MessageLookupByLibrary.simpleMessage("mine"),
     "network_poor_tip" : MessageLookupByLibrary.simpleMessage("network poor,please check the network connection"),
     "no_scare" : MessageLookupByLibrary.simpleMessage("no scare"),
+    "other_billboard" : MessageLookupByLibrary.simpleMessage("other billboard"),
     "projection" : MessageLookupByLibrary.simpleMessage("projection"),
     "refresh" : MessageLookupByLibrary.simpleMessage("refresh"),
     "search_content_hint" : MessageLookupByLibrary.simpleMessage("please input search content"),
@@ -37,6 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "showing_projection" : MessageLookupByLibrary.simpleMessage("showing projection"),
     "skip" : MessageLookupByLibrary.simpleMessage("skip"),
     "splash_meet" : MessageLookupByLibrary.simpleMessage("Nice to meet you"),
+    "top_250" : MessageLookupByLibrary.simpleMessage("TOP250"),
     "upcoming_projection" : MessageLookupByLibrary.simpleMessage("upcoming projection"),
     "want_to_see" : MessageLookupByLibrary.simpleMessage(" want")
   };

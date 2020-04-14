@@ -164,6 +164,30 @@ class DouBanLocalizations {
     );
   }
 
+  String get top_250{
+    return Intl.message(
+      'TOP250',
+      name: 'top_250',
+      desc: 'top_250',
+    );
+  }
+
+  String get all{
+    return Intl.message(
+      'all',
+      name: 'all',
+      desc: 'all',
+    );
+  }
+
+  String get other_billboard{
+    return Intl.message(
+      'other billboard',
+      name: 'other_billboard',
+      desc: 'other_billboard',
+    );
+  }
+
 }
 
 //Locale代理类

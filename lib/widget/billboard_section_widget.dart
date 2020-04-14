@@ -27,29 +27,31 @@ class BillboardSection extends StatelessWidget {
           ),
           Offstage(
             offstage: action == null,
-            child: InkWell(
-                onTap: onTap,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                  child: Row(
-                    children: <Widget>[
-                      Text(
-                        action ?? '',
-                        style: TextStyle(
-                          color: Colors.black87,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
+            child: Material(
+              child: InkWell(
+                  onTap: onTap,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    child: Row(
+                      children: <Widget>[
+                        Text(
+                          action ?? '',
+                          style: TextStyle(
+                            color: Colors.black87,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
                         ),
-                      ),
-                      SizedBox(width: 5),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        size: 18,
-                        color: Colors.black87,
-                      )
-                    ],
-                  ),
-                )),
+                        SizedBox(width: 5),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          size: 18,
+                          color: Colors.black87,
+                        )
+                      ],
+                    ),
+                  )),
+            )
           )
         ],
       ),

@@ -1,14 +1,16 @@
 import 'package:douban_movie_flutter/provider/vew_state_list_provider.dart';
+import 'package:douban_movie_flutter/provider/view_state_refresh_list_provider.dart';
 import 'package:douban_movie_flutter/service/net/douban_movie_repository.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class BillboardTop250 extends ViewStateListProvider {
+class BillboardTop250Provider extends ViewStateRefreshListProvider {
 
-  BillboardTop250(BuildContext context) : super(context);
+  BillboardTop250Provider(BuildContext context) : super(context);
 
   @override
-  Future<List> loadData({int count, int start}) async {
-    return await DouBanMovieRepository.getTop250(count: 6, start: 0);
+  Future<List> loadData({int pageSize, int pageNum}) async {
+    return await DouBanMovieRepository.getTop250MovieList(count: pageSize, start: pageSize * pageNum);
   }
+
 
 }

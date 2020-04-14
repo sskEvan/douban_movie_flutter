@@ -1,10 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/movie_subject.dart';
-import 'package:douban_movie_flutter/provider/billboard_new_movies_provider.dart';
+import 'package:douban_movie_flutter/model/new_movie_entity.dart';
+import 'package:douban_movie_flutter/model/usbox_movie_entity.dart';
+import 'package:douban_movie_flutter/model/weekly_movie_entity.dart';
 import 'package:douban_movie_flutter/provider/billboard_top250_provider.dart';
-import 'package:douban_movie_flutter/provider/billboard_usbox_provider.dart';
-import 'package:douban_movie_flutter/provider/billboard_weekly_provider.dart';
+import 'package:douban_movie_flutter/service/net/douban_movie_repository.dart';
+import 'package:douban_movie_flutter/service/router_manager.dart';
+import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/billboard_banner_widget.dart';
 import 'package:douban_movie_flutter/widget/billboard_top250_item_widget.dart';
 import 'package:douban_movie_flutter/widget/billboard_section_widget.dart';
@@ -25,6 +28,18 @@ class BillboardPage extends StatefulWidget {
 
 class BillboardState extends State<BillboardPage>
     with AutomaticKeepAliveClientMixin {
+  var banners = <Widget>[
+    BillboardBannerSkeleton(),
+    BillboardBannerSkeleton(),
+    BillboardBannerSkeleton(),
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchOtherBillboard();
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -36,30 +51,61 @@ class BillboardState extends State<BillboardPage>
             child: Column(
               children: <Widget>[
                 BillboardSection(
-                  title: '豆瓣TOP250',
-                  action: '全部',
+                  title: DouBanLocalizations.of(context).top_250,
+                  action: DouBanLocalizations.of(context).all,
                   onTap: () {
-                    showToast('查看豆瓣TOP250', context: context);
+                    Navigator.of(context).pushNamed(RouteName.billboardDetail);
                   },
                 ),
                 _buildTop250GridView(context),
-                BillboardSection(title: '其他榜单'),
-                _buildOtherBillboardBaners(context)
+                BillboardSection(
+                    title: DouBanLocalizations.of(context).other_billboard),
+                _buildOtherBillboardBaners(context, banners)
               ],
             )));
   }
 
   @override
   bool get wantKeepAlive => true;
+
+  Future<void> _fetchOtherBillboard() async {
+    WeeklyMovieEntity weeklyMovieEntity =
+        await DouBanMovieRepository.getWeeklyMovieEntity();
+    UsboxMovieEntity usboxMovieEntity =
+        await DouBanMovieRepository.getUsBoxMovieEntity();
+    NewMovieEntity newMovieEntity =
+        await DouBanMovieRepository.getNewMovieEntity();
+
+    var weeklyMovieSubjects = <MovieSubject>[];
+    weeklyMovieEntity.subjects.forEach((it) {
+      weeklyMovieSubjects.add(it.subject);
+    });
+    List<MovieSubject> newMovieSubjects = newMovieEntity.subjects;
+    var usboxMovieSubjects = <MovieSubject>[];
+    usboxMovieEntity.subjects.forEach((it) {
+      usboxMovieSubjects.add(it.subject);
+    });
+
+    setState(() {
+      banners = [
+        BillboardBanner(
+            title: weeklyMovieEntity.title, movieSubjects: weeklyMovieSubjects),
+        BillboardBanner(
+            title: usboxMovieEntity.title, movieSubjects: newMovieSubjects),
+        BillboardBanner(
+            title: newMovieEntity.title, movieSubjects: usboxMovieSubjects),
+      ];
+    });
+  }
 }
 
 Widget _buildTop250GridView(BuildContext context) {
-  return ViewStateWidget<BillboardTop250>(
-    provider: BillboardTop250(context),
+  return ViewStateWidget<BillboardTop250Provider>(
+    provider: BillboardTop250Provider(context),
     onProviderReady: (provider) async {
       await provider.initData();
     },
-    builder: (context, BillboardTop250 provider, child) {
+    builder: (context, BillboardTop250Provider provider, child) {
       if (provider.isBusy) {
         return SkeletonGrid(
           padding: EdgeInsets.symmetric(horizontal: 10),
@@ -77,7 +123,7 @@ Widget _buildTop250GridView(BuildContext context) {
         child: GridView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
-            itemCount: provider.list.length,
+            itemCount: 6,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3, //横轴三个子widget
               childAspectRatio: 0.65,
@@ -91,16 +137,13 @@ Widget _buildTop250GridView(BuildContext context) {
   );
 }
 
-Widget _buildOtherBillboardBaners(BuildContext context) {
+Widget _buildOtherBillboardBaners(BuildContext context, List<Widget> banners) {
   return Container(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+      width: ScreenUtil.width,
+      height: 200,
       child: CarouselSlider(
-          enableInfiniteScroll: true,
-          initialPage: 3,
-          aspectRatio: 2,
-          items: <Widget>[
-            BillboardBanner<BillboardWeekly>(BillboardWeekly(context)),
-            BillboardBanner<BillboardUsBox>(BillboardUsBox(context)),
-            BillboardBanner<BillboardNewMovies>(BillboardNewMovies(context)),
-          ]));
+        aspectRatio: 15 / 9,
+        items: banners,
+      ));
 }

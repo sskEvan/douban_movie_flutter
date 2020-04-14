@@ -107,5 +107,23 @@
        "description": "no_scare",
        "type": "text",
        "placeholders": {}
-     }
+     },
+        "top_250": "TOP250",
+        "@top_250": {
+          "description": "top_250",
+          "type": "text",
+          "placeholders": {}
+        },
+        "all": "全部",
+        "@all": {
+          "description": "all",
+          "type": "text",
+          "placeholders": {}
+        },
+        "other_billboard": "其他榜单",
+        "@other_billboard": {
+          "description": "other_billboard",
+          "type": "text",
+          "placeholders": {}
+        }
 }

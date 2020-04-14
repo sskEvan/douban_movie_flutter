@@ -1,5 +1,6 @@
 
 
+import 'package:douban_movie_flutter/page/billboard_detail_page.dart';
 import 'package:douban_movie_flutter/page/billboard_page.dart';
 import 'package:douban_movie_flutter/page/index_page.dart';
 import 'package:douban_movie_flutter/page/mine_page.dart';
@@ -11,6 +12,7 @@ import 'package:flutter/cupertino.dart';
 class RouteName {
   static const String splash = 'splash';
   static const String index = '/';
+  static const String billboardDetail = 'billboardDetail';
 }
 
 class Router {
@@ -21,6 +23,9 @@ class Router {
       break;
       case RouteName.index:
         return NoAnimRouteBuilder(IndexPage());
+        break;
+      case RouteName.billboardDetail:
+        return NoAnimRouteBuilder(BillboardDetailPage());
         break;
     }
   }
