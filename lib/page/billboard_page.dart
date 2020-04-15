@@ -54,7 +54,7 @@ class BillboardState extends State<BillboardPage>
                   title: DouBanLocalizations.of(context).top_250,
                   action: DouBanLocalizations.of(context).all,
                   onTap: () {
-                    Navigator.of(context).pushNamed(RouteName.billboardDetail);
+                    Navigator.of(context).pushNamed(RouteName.billboardTop250);
                   },
                 ),
                 _buildTop250GridView(context),
@@ -89,11 +89,11 @@ class BillboardState extends State<BillboardPage>
     setState(() {
       banners = [
         BillboardBanner(
-            title: weeklyMovieEntity.title, movieSubjects: weeklyMovieSubjects),
+            title: weeklyMovieEntity.title, movieSubjects: weeklyMovieSubjects, routerName: RouteName.billboardWeekly),
         BillboardBanner(
-            title: usboxMovieEntity.title, movieSubjects: newMovieSubjects),
+            title: usboxMovieEntity.title, movieSubjects: newMovieSubjects, routerName: RouteName.billboardUsBox),
         BillboardBanner(
-            title: newMovieEntity.title, movieSubjects: usboxMovieSubjects),
+            title: newMovieEntity.title, movieSubjects: usboxMovieSubjects, routerName: RouteName.billboardNewMovies),
       ];
     });
   }

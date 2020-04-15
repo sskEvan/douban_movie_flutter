@@ -10,7 +10,7 @@ abstract class ViewStateRefreshListProvider<T> extends ViewStateListProvider<T> 
   int _currentPageNum = pageNumFirst;
 
   /// 分页条目数量
-  static const int pageSize = 10;
+  static const int pageSize = 20;
 
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);

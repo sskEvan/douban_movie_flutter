@@ -8,17 +8,18 @@ import 'package:oktoast/oktoast.dart';
 import 'package:shimmer/shimmer.dart';
 
 class BillboardBanner extends StatelessWidget {
-  var title;
-  List<MovieSubject> movieSubjects;
+  final String title;
+  final List<MovieSubject> movieSubjects;
+  final String routerName;
 
-  BillboardBanner({this.title, this.movieSubjects});
+  BillboardBanner({this.title, this.movieSubjects, this.routerName});
 
   @override
   Widget build(BuildContext context) {
     final height = 190.0;
     return InkWell(
       onTap: () {
-        showToast('查看榜单:${title}');
+        Navigator.of(context).pushNamed(routerName);
       },
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 5.0),

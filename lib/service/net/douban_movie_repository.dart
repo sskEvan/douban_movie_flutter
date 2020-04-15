@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:douban_movie_flutter/model/movie.dart';
+import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/model/new_movie_entity.dart';
 import 'package:douban_movie_flutter/model/usbox_movie_entity.dart';
 import 'package:douban_movie_flutter/model/weekly_movie_entity.dart';
@@ -62,16 +63,24 @@ class DouBanMovieRepository {
     ResultData resultData = await HttpManager.getInstance()
         .get('weekly', queryParameters: {"start": start, 'count': count});
     Map movieMap = json.decode(resultData.data.toString());
-    var movie = new WeeklyMovieEntity().fromJson(movieMap);
-    return movie.subjects;
+    var weeklyMovieEntity = new WeeklyMovieEntity().fromJson(movieMap);
+    var weeklyMovieSubjects = <MovieSubject>[];
+    weeklyMovieEntity.subjects.forEach((it) {
+      weeklyMovieSubjects.add(it.subject);
+    });
+    return weeklyMovieSubjects;
   }
 
   static Future getUsBoxMovieList({int start, int count}) async {
     ResultData resultData = await HttpManager.getInstance()
         .get('us_box', queryParameters: {"start": start, 'count': count});
     Map movieMap = json.decode(resultData.data.toString());
-    var movie = new UsboxMovieEntity().fromJson(movieMap);
-    return movie.subjects;
+    var usboxMovieEntity = new UsboxMovieEntity().fromJson(movieMap);
+    var usboxMovieSubjects = <MovieSubject>[];
+    usboxMovieEntity.subjects.forEach((it) {
+      usboxMovieSubjects.add(it.subject);
+    });
+    return usboxMovieSubjects;
   }
 
   static Future getNewMovieList({int start, int count}) async {

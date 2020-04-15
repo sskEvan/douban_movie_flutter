@@ -38,7 +38,7 @@ class MovieState extends State<MoviePage> with AutomaticKeepAliveClientMixin {
         builder: (context, MovieListProvider provider, child) {
           if (provider.isBusy) {
             return SkeletonList(
-              builder: (context, index) => MovieSkeletonItemWidget(),
+              builder: (context, index) => MovieSkeletonItemWidget(showIndexNumber: false,),
             );
           } else if (provider.isEmpty) {
             return CommonEmptyWidget(onPressed: provider.initData);
@@ -57,7 +57,7 @@ class MovieState extends State<MoviePage> with AutomaticKeepAliveClientMixin {
                 itemCount: provider.list.length,
                 itemBuilder: (context, index) {
                   MovieSubject item = provider.list[index];
-                  return MovieItemWidget(isShowing: isShowing, movieSubject: item);
+                  return MovieItemWidget(isShowing: isShowing, showIndexNumber: false, index: index, movieSubject: item);
                 }),
           );
         });

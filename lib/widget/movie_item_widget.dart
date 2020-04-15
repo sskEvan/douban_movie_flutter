@@ -13,8 +13,16 @@ import 'skeleton.dart';
 class MovieItemWidget extends StatelessWidget {
   final MovieSubject movieSubject;
   final bool isShowing;
+  final bool showIndexNumber;
+  final int index;
+  final bool showMovieSynopsis;
 
-  MovieItemWidget({this.isShowing, this.movieSubject})
+  MovieItemWidget(
+      {this.isShowing,
+      this.showIndexNumber,
+      this.index,
+      this.showMovieSynopsis,
+      this.movieSubject})
       : super(key: ValueKey(movieSubject.id));
 
   @override
@@ -24,7 +32,9 @@ class MovieItemWidget extends StatelessWidget {
           print('----------item click');
         },
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            _buildIndexNumber(),
             Container(
               padding: EdgeInsets.all(14),
               child: Row(
@@ -44,6 +54,30 @@ class MovieItemWidget extends StatelessWidget {
             Divider(height: 1)
           ],
         ));
+  }
+
+  Widget _buildIndexNumber() {
+    var boxColor = Colors.black12;
+    if (index == 0) {
+      boxColor = Colors.redAccent;
+    } else if (index == 1) {
+      boxColor = Colors.deepOrangeAccent;
+    } else if (index == 2) {
+      boxColor = Colors.orangeAccent;
+    }
+    return Offstage(
+      offstage: showIndexNumber == false,
+      child: Container(
+        margin: EdgeInsets.fromLTRB(14, 10, 0, 0),
+        padding: EdgeInsets.symmetric(vertical: 4, horizontal: 6),
+        decoration: BoxDecoration(
+          color: boxColor,
+          borderRadius: BorderRadius.circular(4),
+        ),
+        child: Text('No.${index + 1}',
+            style: TextStyle(fontSize: 14, color: Colors.white)),
+      ),
+    );
   }
 
   Widget _buildMoviePoster() {
@@ -79,9 +113,7 @@ class MovieItemWidget extends StatelessWidget {
       height: 120,
       child: Center(
         child: DottledLine(
-            length: 100,
-            spacing: 6,
-            orientation: orientationVertical),
+            length: 100, spacing: 6, orientation: orientationVertical),
       ),
     );
   }

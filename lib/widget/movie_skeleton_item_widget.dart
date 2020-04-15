@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'skeleton.dart';
 
 class MovieSkeletonItemWidget extends StatelessWidget {
-  final int index;
   var isDark;
+  final bool showIndexNumber;
 
-  MovieSkeletonItemWidget({this.index: 0});
+  MovieSkeletonItemWidget({this.showIndexNumber});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,9 @@ class MovieSkeletonItemWidget extends StatelessWidget {
         .brightness == Brightness.dark;
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
+        _buildIndexNumberSkeleton(),
         Container(
           padding: EdgeInsets.all(14),
           child: Row(
@@ -33,8 +35,26 @@ class MovieSkeletonItemWidget extends StatelessWidget {
         ),
         Divider(
             height: 1,
-          color: Colors.black)
+            color: Colors.black)
       ],
+    );
+  }
+
+  Widget _buildIndexNumberSkeleton() {
+    return Offstage(
+      offstage: showIndexNumber == false,
+      child: Container(
+        margin: EdgeInsets.fromLTRB(14, 10, 0, 0),
+        padding: EdgeInsets.symmetric(vertical: 4, horizontal: 6),
+        decoration: BoxDecoration(
+          color: Colors.black45,
+          borderRadius: BorderRadius.circular(4),
+        ),
+        child: Container(
+          width: 30,
+          height: 16,
+        ),
+      ),
     );
   }
 
