@@ -12,6 +12,8 @@ import 'package:douban_movie_flutter/widget/billboard_banner_widget.dart';
 import 'package:douban_movie_flutter/widget/billboard_top250_item_widget.dart';
 import 'package:douban_movie_flutter/widget/billboard_section_widget.dart';
 import 'package:douban_movie_flutter/widget/billboard_top250_skeleton_item_widget.dart';
+import 'package:douban_movie_flutter/widget/common_empty_widget.dart';
+import 'package:douban_movie_flutter/widget/common_error_widget.dart';
 import 'package:douban_movie_flutter/widget/search_widget.dart';
 import 'package:douban_movie_flutter/widget/skeleton.dart';
 import 'package:douban_movie_flutter/widget/view_state_widget.dart';
@@ -29,9 +31,9 @@ class BillboardPage extends StatefulWidget {
 class BillboardState extends State<BillboardPage>
     with AutomaticKeepAliveClientMixin {
   var banners = <Widget>[
-    BillboardBannerSkeleton(),
-    BillboardBannerSkeleton(),
-    BillboardBannerSkeleton(),
+    BillboardBannerSkeleton(shimmer: true),
+    BillboardBannerSkeleton(shimmer: true),
+    BillboardBannerSkeleton(shimmer: true),
   ];
 
   @override
@@ -97,44 +99,56 @@ class BillboardState extends State<BillboardPage>
       ];
     });
   }
-}
 
-Widget _buildTop250GridView(BuildContext context) {
-  return ViewStateWidget<BillboardTop250Provider>(
-    provider: BillboardTop250Provider(context),
-    onProviderReady: (provider) async {
-      await provider.initData();
-    },
-    builder: (context, BillboardTop250Provider provider, child) {
-      if (provider.isBusy) {
-        return SkeletonGrid(
+  Widget _buildTop250GridView(BuildContext context) {
+    return ViewStateWidget<BillboardTop250Provider>(
+      provider: BillboardTop250Provider(context),
+      onProviderReady: (provider) async {
+        await provider.initData();
+      },
+      builder: (context, BillboardTop250Provider provider, child) {
+        if (provider.isBusy) {
+          return SkeletonGrid(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            childAspectRatio: 0.65,
+            builder: (context, index) =>
+                BillboardTop250SkeletonItemWidget(index: index),
+          );
+        } else if (provider.isEmpty) {
+          return CommonEmptyWidget(onPressed: provider.initData);
+        } else if (provider.isError) {
+          return CommonErrorWidget(
+              error: provider.viewStateError,
+              onPressed: () {
+                provider.initData;
+                setState(() {
+                  banners = <Widget>[
+                    BillboardBannerSkeleton(),
+                    BillboardBannerSkeleton(),
+                    BillboardBannerSkeleton(),
+                  ];
+                });
+                _fetchOtherBillboard();
+              });
+        }
+        return Padding(
           padding: EdgeInsets.symmetric(horizontal: 10),
-          childAspectRatio: 0.65,
-          builder: (context, index) =>
-              BillboardTop250SkeletonItemWidget(index: index),
+          child: GridView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: 6,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3, //横轴三个子widget
+                childAspectRatio: 0.65,
+              ),
+              itemBuilder: (context, index) {
+                MovieSubject item = provider.list[index];
+                return BillboardTop250ItemWidget(movieSubject: item);
+              }),
         );
-      } else if (provider.isEmpty) {
-        return Container();
-      } else if (provider.isError) {
-        return Container();
-      }
-      return Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10),
-        child: GridView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemCount: 6,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3, //横轴三个子widget
-              childAspectRatio: 0.65,
-            ),
-            itemBuilder: (context, index) {
-              MovieSubject item = provider.list[index];
-              return BillboardTop250ItemWidget(movieSubject: item);
-            }),
-      );
-    },
-  );
+      },
+    );
+  }
 }
 
 Widget _buildOtherBillboardBaners(BuildContext context, List<Widget> banners) {

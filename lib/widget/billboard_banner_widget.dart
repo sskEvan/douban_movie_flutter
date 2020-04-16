@@ -107,58 +107,67 @@ class BillboardBanner extends StatelessWidget {
 
 class BillboardBannerSkeleton extends StatelessWidget {
   var isDark;
+  final bool shimmer;
 
-  BillboardBannerSkeleton();
+  BillboardBannerSkeleton({this.shimmer});
 
   @override
   Widget build(BuildContext context) {
     isDark = Theme.of(context).brightness == Brightness.dark;
 
     final height = 190.0;
-    return Shimmer.fromColors(
-        period: Duration(milliseconds: 1200),
-        baseColor: isDark ? Colors.grey[700] : Colors.grey[350],
-        highlightColor: isDark ? Colors.grey[500] : Colors.grey[200],
-        child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 5.0),
-          child: Stack(
-            children: <Widget>[
-              Align(
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Color(0xAAFDFDFD),
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                  ),
-                ),
+    if(shimmer) {
+      return Shimmer.fromColors(
+          period: Duration(milliseconds: 1200),
+          baseColor: isDark ? Colors.grey[700] : Colors.grey[350],
+          highlightColor: isDark ? Colors.grey[500] : Colors.grey[200],
+          child: _buildBillboardBannerSkeleton());
+    }else {
+      return _buildBillboardBannerSkeleton();
+    }
+  }
+
+  Widget _buildBillboardBannerSkeleton() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 5.0),
+      child: Stack(
+        children: <Widget>[
+          Align(
+            child: Container(
+              decoration: BoxDecoration(
+                color: Color(0xAAFDFDFD),
+                borderRadius: BorderRadius.all(Radius.circular(5)),
               ),
-              Align(
-                alignment: Alignment(-0.6, -0.2),
-                child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 30),
-                  height: 14,
-                  width: ScreenUtil.width,
-                  decoration: SkeletonDecoration(isDark: isDark),
-                ),
-              ),
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: Container(
-                    width: ScreenUtil.width,
-                    height: height * 0.45,
-                    child: Center(
-                      child: ListView.builder(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            return _buildMovieInfoItemSkeleton(index);
-                          },
-                          itemCount: 3),
-                    )),
-              ),
-            ],
+            ),
           ),
-        ));
+          Align(
+            alignment: Alignment(-0.6, -0.2),
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 30),
+              height: 14,
+              width: ScreenUtil.width,
+              decoration: SkeletonDecoration(isDark: isDark),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: Container(
+                width: ScreenUtil.width,
+                height: 190 * 0.45,
+                child: Center(
+                  child: ListView.builder(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return _buildMovieInfoItemSkeleton(index);
+                      },
+                      itemCount: 3),
+                )),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _buildMovieInfoItemSkeleton(int index) {
