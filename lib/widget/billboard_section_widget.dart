@@ -28,6 +28,7 @@ class BillboardSection extends StatelessWidget {
           Offstage(
             offstage: action == null,
             child: Material(
+              color: Color(0xFFF7F7F7),
               child: InkWell(
                   onTap: onTap,
                   child: Padding(

@@ -10,8 +10,6 @@ import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:douban_movie_flutter/widget/common_empty_widget.dart';
 import 'package:douban_movie_flutter/widget/common_error_widget.dart';
 import 'package:douban_movie_flutter/widget/movie_item_widget.dart';
-import 'package:douban_movie_flutter/widget/movie_skeleton_item_widget.dart';
-import 'package:douban_movie_flutter/widget/skeleton.dart';
 import 'package:douban_movie_flutter/widget/view_state_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -72,7 +70,7 @@ class BillboardDetailState<T extends ViewStateRefreshListProvider>
               } else if (provider.isError) {
                 return CommonErrorWidget(
                     error: provider.viewStateError,
-                    onPressed: provider.initData);
+                    onPressed: provider.initData());
               }
 
               return SmartRefresher(

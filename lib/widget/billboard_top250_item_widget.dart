@@ -2,6 +2,7 @@ import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/movie.dart';
 import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/service/resource_manager.dart';
+import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:douban_movie_flutter/widget/rating_widget.dart';
 import 'package:flutter/material.dart';
@@ -13,17 +14,22 @@ import 'skeleton.dart';
 class BillboardTop250ItemWidget extends StatelessWidget {
   final MovieSubject movieSubject;
 
+  var contentWidth;
+  var contentHeight;
+
   BillboardTop250ItemWidget({this.movieSubject})
       : super(key: ValueKey(movieSubject.id));
 
   @override
   Widget build(BuildContext context) {
+    contentWidth = (ScreenUtil.width - 20) / 3 - 10;
+    contentHeight = contentWidth / 0.65 - 10;
+
     return InkWell(
         onTap: () {
           print('----------item click');
         },
         child:  Container(
-
           padding: EdgeInsets.all(5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -38,8 +44,8 @@ class BillboardTop250ItemWidget extends StatelessWidget {
 
   Widget _buildMoviePoster() {
     return SizedBox(
-      width: 110,
-      height: 146,
+      width: contentWidth,
+      height: contentHeight - 25,
       child: CacheImageWidget(
         url: movieSubject.images.small,
         radius: 5,

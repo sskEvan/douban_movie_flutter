@@ -71,33 +71,43 @@ class BillboardState extends State<BillboardPage>
   bool get wantKeepAlive => true;
 
   Future<void> _fetchOtherBillboard() async {
-    WeeklyMovieEntity weeklyMovieEntity =
-        await DouBanMovieRepository.getWeeklyMovieEntity();
-    UsboxMovieEntity usboxMovieEntity =
-        await DouBanMovieRepository.getUsBoxMovieEntity();
-    NewMovieEntity newMovieEntity =
-        await DouBanMovieRepository.getNewMovieEntity();
+    try {
+      WeeklyMovieEntity weeklyMovieEntity =
+      await DouBanMovieRepository.getWeeklyMovieEntity();
+      UsboxMovieEntity usboxMovieEntity =
+      await DouBanMovieRepository.getUsBoxMovieEntity();
+      NewMovieEntity newMovieEntity =
+      await DouBanMovieRepository.getNewMovieEntity();
 
-    var weeklyMovieSubjects = <MovieSubject>[];
-    weeklyMovieEntity.subjects.forEach((it) {
-      weeklyMovieSubjects.add(it.subject);
-    });
-    List<MovieSubject> newMovieSubjects = newMovieEntity.subjects;
-    var usboxMovieSubjects = <MovieSubject>[];
-    usboxMovieEntity.subjects.forEach((it) {
-      usboxMovieSubjects.add(it.subject);
-    });
+      var weeklyMovieSubjects = <MovieSubject>[];
+      weeklyMovieEntity.subjects.forEach((it) {
+        weeklyMovieSubjects.add(it.subject);
+      });
+      List<MovieSubject> newMovieSubjects = newMovieEntity.subjects;
+      var usboxMovieSubjects = <MovieSubject>[];
+      usboxMovieEntity.subjects.forEach((it) {
+        usboxMovieSubjects.add(it.subject);
+      });
 
-    setState(() {
-      banners = [
-        BillboardBanner(
-            title: weeklyMovieEntity.title, movieSubjects: weeklyMovieSubjects, routerName: RouteName.billboardWeekly),
-        BillboardBanner(
-            title: usboxMovieEntity.title, movieSubjects: newMovieSubjects, routerName: RouteName.billboardUsBox),
-        BillboardBanner(
-            title: newMovieEntity.title, movieSubjects: usboxMovieSubjects, routerName: RouteName.billboardNewMovies),
-      ];
-    });
+      setState(() {
+        banners = [
+          BillboardBanner(
+              title: weeklyMovieEntity.title, movieSubjects: weeklyMovieSubjects, routerName: RouteName.billboardWeekly),
+          BillboardBanner(
+              title: usboxMovieEntity.title, movieSubjects: newMovieSubjects, routerName: RouteName.billboardUsBox),
+          BillboardBanner(
+              title: newMovieEntity.title, movieSubjects: usboxMovieSubjects, routerName: RouteName.billboardNewMovies),
+        ];
+      });
+    } catch (e, s) {
+      setState(() {
+        banners = [
+          BillboardBannerSkeleton(shimmer: false),
+          BillboardBannerSkeleton(shimmer: false),
+          BillboardBannerSkeleton(shimmer: false),
+        ];
+      });
+    }
   }
 
   Widget _buildTop250GridView(BuildContext context) {
@@ -115,17 +125,17 @@ class BillboardState extends State<BillboardPage>
                 BillboardTop250SkeletonItemWidget(index: index),
           );
         } else if (provider.isEmpty) {
-          return CommonEmptyWidget(onPressed: provider.initData);
+          return CommonEmptyWidget(onPressed: provider.initData());
         } else if (provider.isError) {
           return CommonErrorWidget(
               error: provider.viewStateError,
               onPressed: () {
-                provider.initData;
+                provider.initData();
                 setState(() {
                   banners = <Widget>[
-                    BillboardBannerSkeleton(),
-                    BillboardBannerSkeleton(),
-                    BillboardBannerSkeleton(),
+                    BillboardBannerSkeleton(shimmer: true),
+                    BillboardBannerSkeleton(shimmer: true),
+                    BillboardBannerSkeleton(shimmer: true),
                   ];
                 });
                 _fetchOtherBillboard();

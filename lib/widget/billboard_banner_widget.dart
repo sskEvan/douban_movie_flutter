@@ -114,8 +114,6 @@ class BillboardBannerSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     isDark = Theme.of(context).brightness == Brightness.dark;
-
-    final height = 190.0;
     if(shimmer) {
       return Shimmer.fromColors(
           period: Duration(milliseconds: 1200),
@@ -134,36 +132,13 @@ class BillboardBannerSkeleton extends StatelessWidget {
         children: <Widget>[
           Align(
             child: Container(
+              width: ScreenUtil.width,
+              height: 190,
               decoration: BoxDecoration(
-                color: Color(0xAAFDFDFD),
+                color: isDark ? Colors.grey[700] : Colors.grey[350],
                 borderRadius: BorderRadius.all(Radius.circular(5)),
               ),
             ),
-          ),
-          Align(
-            alignment: Alignment(-0.6, -0.2),
-            child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 30),
-              height: 14,
-              width: ScreenUtil.width,
-              decoration: SkeletonDecoration(isDark: isDark),
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: Container(
-                width: ScreenUtil.width,
-                height: 190 * 0.45,
-                child: Center(
-                  child: ListView.builder(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      physics: NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return _buildMovieInfoItemSkeleton(index);
-                      },
-                      itemCount: 3),
-                )),
           ),
         ],
       ),
