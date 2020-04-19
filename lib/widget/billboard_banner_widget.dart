@@ -1,11 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
-import 'package:douban_movie_flutter/widget/skeleton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:oktoast/oktoast.dart';
-import 'package:shimmer/shimmer.dart';
 
 class BillboardBanner extends StatelessWidget {
   final String title;
@@ -100,61 +97,6 @@ class BillboardBanner extends StatelessWidget {
           ],
         ),
         SizedBox(height: 5),
-      ],
-    );
-  }
-}
-
-class BillboardBannerSkeleton extends StatelessWidget {
-  var isDark;
-  final bool shimmer;
-
-  BillboardBannerSkeleton({this.shimmer});
-
-  @override
-  Widget build(BuildContext context) {
-    isDark = Theme.of(context).brightness == Brightness.dark;
-    if(shimmer) {
-      return Shimmer.fromColors(
-          period: Duration(milliseconds: 1200),
-          baseColor: isDark ? Colors.grey[700] : Colors.grey[350],
-          highlightColor: isDark ? Colors.grey[500] : Colors.grey[200],
-          child: _buildBillboardBannerSkeleton());
-    }else {
-      return _buildBillboardBannerSkeleton();
-    }
-  }
-
-  Widget _buildBillboardBannerSkeleton() {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 5.0),
-      child: Stack(
-        children: <Widget>[
-          Align(
-            child: Container(
-              width: ScreenUtil.width,
-              height: 190,
-              decoration: BoxDecoration(
-                color: isDark ? Colors.grey[700] : Colors.grey[350],
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildMovieInfoItemSkeleton(int index) {
-    return Column(
-      children: <Widget>[
-        Container(
-          width: ScreenUtil.width,
-          margin: EdgeInsets.symmetric(horizontal: 30),
-          height: 8,
-          decoration: SkeletonDecoration(isDark: isDark),
-        ),
-        SizedBox(height: 8),
       ],
     );
   }

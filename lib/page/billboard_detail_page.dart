@@ -70,7 +70,7 @@ class BillboardDetailState<T extends ViewStateRefreshListProvider>
               } else if (provider.isError) {
                 return CommonErrorWidget(
                     error: provider.viewStateError,
-                    onPressed: provider.initData());
+                    onPressed: provider.initData);
               }
 
               return SmartRefresher(

@@ -80,7 +80,7 @@ abstract class ViewStateRefreshListProvider<T> extends ViewStateListProvider<T> 
     }
   }
 
-  Future<List<T>> loadData({@required int pageSize : pageSize, @required int pageNum});
+  Future<List<T>> loadData({@required int pageSize, @required int pageNum});
 
   @override
   void dispose() {
