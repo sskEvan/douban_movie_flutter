@@ -15,6 +15,8 @@ import 'package:douban_movie_flutter/model/usbox_movie_entity.dart';
 import 'package:douban_movie_flutter/generated/json/usbox_movie_entity_helper.dart';
 import 'package:douban_movie_flutter/model/dio_error_entity.dart';
 import 'package:douban_movie_flutter/generated/json/dio_error_entity_helper.dart';
+import 'package:douban_movie_flutter/model/movie_detail_entity.dart';
+import 'package:douban_movie_flutter/generated/json/movie_detail_entity_helper.dart';
 
 class JsonConvert<T> {
 	T fromJson(Map<String, dynamic> json) {
@@ -36,12 +38,34 @@ class JsonConvert<T> {
 			return movieSubjectsDirectorFromJson(data as MovieSubjectsDirector, json) as T;			case MovieSubjectsDirectorsAvatars:
 			return movieSubjectsDirectorsAvatarsFromJson(data as MovieSubjectsDirectorsAvatars, json) as T;			case MovieSubjectsImages:
 			return movieSubjectsImagesFromJson(data as MovieSubjectsImages, json) as T;			case NewMovieEntity:
-			return newMovieEntityFromJson(data as NewMovieEntity, json) as T;				case WeeklyMovieEntity:
+			return newMovieEntityFromJson(data as NewMovieEntity, json) as T;			case WeeklyMovieEntity:
 			return weeklyMovieEntityFromJson(data as WeeklyMovieEntity, json) as T;			case WeeklyMovieSubject:
-			return weeklyMovieSubjectFromJson(data as WeeklyMovieSubject, json) as T;					case UsboxMovieEntity:
+			return weeklyMovieSubjectFromJson(data as WeeklyMovieSubject, json) as T;			case UsboxMovieEntity:
 			return usboxMovieEntityFromJson(data as UsboxMovieEntity, json) as T;			case UsboxMovieSubject:
-			return usboxMovieSubjectFromJson(data as UsboxMovieSubject, json) as T;				case DioErrorEntity:
-			return dioErrorEntityFromJson(data as DioErrorEntity, json) as T;    }
+			return usboxMovieSubjectFromJson(data as UsboxMovieSubject, json) as T;			case DioErrorEntity:
+			return dioErrorEntityFromJson(data as DioErrorEntity, json) as T;			case MovieDetailEntity:
+			return movieDetailEntityFromJson(data as MovieDetailEntity, json) as T;			case MovieDetailRating:
+			return movieDetailRatingFromJson(data as MovieDetailRating, json) as T;			case MovieDetailRatingDetails:
+			return movieDetailRatingDetailsFromJson(data as MovieDetailRatingDetails, json) as T;			case MovieDetailVideo:
+			return movieDetailVideoFromJson(data as MovieDetailVideo, json) as T;			case MovieDetailVideosSource:
+			return movieDetailVideosSourceFromJson(data as MovieDetailVideosSource, json) as T;			case MovieDetailImages:
+			return movieDetailImagesFromJson(data as MovieDetailImages, json) as T;			case MovieDetailPopularCommants:
+			return movieDetailPopularCommantsFromJson(data as MovieDetailPopularCommants, json) as T;			case MovieDetailPopularCommentsRating:
+			return movieDetailPopularCommentsRatingFromJson(data as MovieDetailPopularCommentsRating, json) as T;			case MovieDetailPopularCommentsAuthor:
+			return movieDetailPopularCommentsAuthorFromJson(data as MovieDetailPopularCommentsAuthor, json) as T;			case MovieDetailWriter:
+			return movieDetailWriterFromJson(data as MovieDetailWriter, json) as T;			case MovieDetailWritersAvatars:
+			return movieDetailWritersAvatarsFromJson(data as MovieDetailWritersAvatars, json) as T;			case MovieDetailTrailer:
+			return movieDetailTrailerFromJson(data as MovieDetailTrailer, json) as T;			case MovieDetailBlooper:
+			return movieDetailBlooperFromJson(data as MovieDetailBlooper, json) as T;			case MovieDetailCast:
+			return movieDetailCastFromJson(data as MovieDetailCast, json) as T;			case MovieDetailCastsAvatars:
+			return movieDetailCastsAvatarsFromJson(data as MovieDetailCastsAvatars, json) as T;			case MovieDetailPhoto:
+			return movieDetailPhotoFromJson(data as MovieDetailPhoto, json) as T;			case MovieDetailClip:
+			return movieDetailClipFromJson(data as MovieDetailClip, json) as T;			case MovieDetailDirector:
+			return movieDetailDirectorFromJson(data as MovieDetailDirector, json) as T;			case MovieDetailDirectorsAvatars:
+			return movieDetailDirectorsAvatarsFromJson(data as MovieDetailDirectorsAvatars, json) as T;			case MovieDetailPopularReview:
+			return movieDetailPopularReviewFromJson(data as MovieDetailPopularReview, json) as T;			case MovieDetailPopularReviewsRating:
+			return movieDetailPopularReviewsRatingFromJson(data as MovieDetailPopularReviewsRating, json) as T;			case MovieDetailPopularReviewsAuthor:
+			return movieDetailPopularReviewsAuthorFromJson(data as MovieDetailPopularReviewsAuthor, json) as T;    }
     return data as T;
   }
 
@@ -56,12 +80,34 @@ class JsonConvert<T> {
 			return movieSubjectsDirectorToJson(data as MovieSubjectsDirector);			case MovieSubjectsDirectorsAvatars:
 			return movieSubjectsDirectorsAvatarsToJson(data as MovieSubjectsDirectorsAvatars);			case MovieSubjectsImages:
 			return movieSubjectsImagesToJson(data as MovieSubjectsImages);			case NewMovieEntity:
-			return newMovieEntityToJson(data as NewMovieEntity);					case WeeklyMovieEntity:
+			return newMovieEntityToJson(data as NewMovieEntity);			case WeeklyMovieEntity:
 			return weeklyMovieEntityToJson(data as WeeklyMovieEntity);			case WeeklyMovieSubject:
-			return weeklyMovieSubjectToJson(data as WeeklyMovieSubject);				case UsboxMovieEntity:
+			return weeklyMovieSubjectToJson(data as WeeklyMovieSubject);			case UsboxMovieEntity:
 			return usboxMovieEntityToJson(data as UsboxMovieEntity);			case UsboxMovieSubject:
-			return usboxMovieSubjectToJson(data as UsboxMovieSubject);				case DioErrorEntity:
-			return dioErrorEntityToJson(data as DioErrorEntity);    }
+			return usboxMovieSubjectToJson(data as UsboxMovieSubject);			case DioErrorEntity:
+			return dioErrorEntityToJson(data as DioErrorEntity);			case MovieDetailEntity:
+			return movieDetailEntityToJson(data as MovieDetailEntity);			case MovieDetailRating:
+			return movieDetailRatingToJson(data as MovieDetailRating);			case MovieDetailRatingDetails:
+			return movieDetailRatingDetailsToJson(data as MovieDetailRatingDetails);			case MovieDetailVideo:
+			return movieDetailVideoToJson(data as MovieDetailVideo);			case MovieDetailVideosSource:
+			return movieDetailVideosSourceToJson(data as MovieDetailVideosSource);			case MovieDetailImages:
+			return movieDetailImagesToJson(data as MovieDetailImages);			case MovieDetailPopularCommants:
+			return movieDetailPopularCommantsToJson(data as MovieDetailPopularCommants);			case MovieDetailPopularCommentsRating:
+			return movieDetailPopularCommentsRatingToJson(data as MovieDetailPopularCommentsRating);			case MovieDetailPopularCommentsAuthor:
+			return movieDetailPopularCommentsAuthorToJson(data as MovieDetailPopularCommentsAuthor);			case MovieDetailWriter:
+			return movieDetailWriterToJson(data as MovieDetailWriter);			case MovieDetailWritersAvatars:
+			return movieDetailWritersAvatarsToJson(data as MovieDetailWritersAvatars);			case MovieDetailTrailer:
+			return movieDetailTrailerToJson(data as MovieDetailTrailer);			case MovieDetailBlooper:
+			return movieDetailBlooperToJson(data as MovieDetailBlooper);			case MovieDetailCast:
+			return movieDetailCastToJson(data as MovieDetailCast);			case MovieDetailCastsAvatars:
+			return movieDetailCastsAvatarsToJson(data as MovieDetailCastsAvatars);			case MovieDetailPhoto:
+			return movieDetailPhotoToJson(data as MovieDetailPhoto);			case MovieDetailClip:
+			return movieDetailClipToJson(data as MovieDetailClip);			case MovieDetailDirector:
+			return movieDetailDirectorToJson(data as MovieDetailDirector);			case MovieDetailDirectorsAvatars:
+			return movieDetailDirectorsAvatarsToJson(data as MovieDetailDirectorsAvatars);			case MovieDetailPopularReview:
+			return movieDetailPopularReviewToJson(data as MovieDetailPopularReview);			case MovieDetailPopularReviewsRating:
+			return movieDetailPopularReviewsRatingToJson(data as MovieDetailPopularReviewsRating);			case MovieDetailPopularReviewsAuthor:
+			return movieDetailPopularReviewsAuthorToJson(data as MovieDetailPopularReviewsAuthor);    }
     return data as T;
   }
   //Go back to a single instance by type
@@ -76,12 +122,34 @@ class JsonConvert<T> {
 			return MovieSubjectsDirector().fromJson(json);			case 'MovieSubjectsDirectorsAvatars':
 			return MovieSubjectsDirectorsAvatars().fromJson(json);			case 'MovieSubjectsImages':
 			return MovieSubjectsImages().fromJson(json);			case 'NewMovieEntity':
-			return NewMovieEntity().fromJson(json);					case 'WeeklyMovieEntity':
+			return NewMovieEntity().fromJson(json);			case 'WeeklyMovieEntity':
 			return WeeklyMovieEntity().fromJson(json);			case 'WeeklyMovieSubject':
-			return WeeklyMovieSubject().fromJson(json);					case 'UsboxMovieEntity':
+			return WeeklyMovieSubject().fromJson(json);			case 'UsboxMovieEntity':
 			return UsboxMovieEntity().fromJson(json);			case 'UsboxMovieSubject':
-			return UsboxMovieSubject().fromJson(json);				case 'DioErrorEntity':
-			return DioErrorEntity().fromJson(json);    }
+			return UsboxMovieSubject().fromJson(json);			case 'DioErrorEntity':
+			return DioErrorEntity().fromJson(json);			case 'MovieDetailEntity':
+			return MovieDetailEntity().fromJson(json);			case 'MovieDetailRating':
+			return MovieDetailRating().fromJson(json);			case 'MovieDetailRatingDetails':
+			return MovieDetailRatingDetails().fromJson(json);			case 'MovieDetailVideo':
+			return MovieDetailVideo().fromJson(json);			case 'MovieDetailVideosSource':
+			return MovieDetailVideosSource().fromJson(json);			case 'MovieDetailImages':
+			return MovieDetailImages().fromJson(json);			case 'MovieDetailPopularCommants':
+			return MovieDetailPopularCommants().fromJson(json);			case 'MovieDetailPopularCommentsRating':
+			return MovieDetailPopularCommentsRating().fromJson(json);			case 'MovieDetailPopularCommentsAuthor':
+			return MovieDetailPopularCommentsAuthor().fromJson(json);			case 'MovieDetailWriter':
+			return MovieDetailWriter().fromJson(json);			case 'MovieDetailWritersAvatars':
+			return MovieDetailWritersAvatars().fromJson(json);			case 'MovieDetailTrailer':
+			return MovieDetailTrailer().fromJson(json);			case 'MovieDetailBlooper':
+			return MovieDetailBlooper().fromJson(json);			case 'MovieDetailCast':
+			return MovieDetailCast().fromJson(json);			case 'MovieDetailCastsAvatars':
+			return MovieDetailCastsAvatars().fromJson(json);			case 'MovieDetailPhoto':
+			return MovieDetailPhoto().fromJson(json);			case 'MovieDetailClip':
+			return MovieDetailClip().fromJson(json);			case 'MovieDetailDirector':
+			return MovieDetailDirector().fromJson(json);			case 'MovieDetailDirectorsAvatars':
+			return MovieDetailDirectorsAvatars().fromJson(json);			case 'MovieDetailPopularReview':
+			return MovieDetailPopularReview().fromJson(json);			case 'MovieDetailPopularReviewsRating':
+			return MovieDetailPopularReviewsRating().fromJson(json);			case 'MovieDetailPopularReviewsAuthor':
+			return MovieDetailPopularReviewsAuthor().fromJson(json);    }
     return null;
   }
 
@@ -97,12 +165,34 @@ class JsonConvert<T> {
 			return List<MovieSubjectsDirector>();			case 'MovieSubjectsDirectorsAvatars':
 			return List<MovieSubjectsDirectorsAvatars>();			case 'MovieSubjectsImages':
 			return List<MovieSubjectsImages>();			case 'NewMovieEntity':
-			return List<NewMovieEntity>();					case 'WeeklyMovieEntity':
+			return List<NewMovieEntity>();			case 'WeeklyMovieEntity':
 			return List<WeeklyMovieEntity>();			case 'WeeklyMovieSubject':
 			return List<WeeklyMovieSubject>();			case 'UsboxMovieEntity':
 			return List<UsboxMovieEntity>();			case 'UsboxMovieSubject':
-			return List<UsboxMovieSubject>();					case 'DioErrorEntity':
-			return List<DioErrorEntity>();    }
+			return List<UsboxMovieSubject>();			case 'DioErrorEntity':
+			return List<DioErrorEntity>();			case 'MovieDetailEntity':
+			return List<MovieDetailEntity>();			case 'MovieDetailRating':
+			return List<MovieDetailRating>();			case 'MovieDetailRatingDetails':
+			return List<MovieDetailRatingDetails>();			case 'MovieDetailVideo':
+			return List<MovieDetailVideo>();			case 'MovieDetailVideosSource':
+			return List<MovieDetailVideosSource>();			case 'MovieDetailImages':
+			return List<MovieDetailImages>();			case 'MovieDetailPopularCommants':
+			return List<MovieDetailPopularCommants>();			case 'MovieDetailPopularCommentsRating':
+			return List<MovieDetailPopularCommentsRating>();			case 'MovieDetailPopularCommentsAuthor':
+			return List<MovieDetailPopularCommentsAuthor>();			case 'MovieDetailWriter':
+			return List<MovieDetailWriter>();			case 'MovieDetailWritersAvatars':
+			return List<MovieDetailWritersAvatars>();			case 'MovieDetailTrailer':
+			return List<MovieDetailTrailer>();			case 'MovieDetailBlooper':
+			return List<MovieDetailBlooper>();			case 'MovieDetailCast':
+			return List<MovieDetailCast>();			case 'MovieDetailCastsAvatars':
+			return List<MovieDetailCastsAvatars>();			case 'MovieDetailPhoto':
+			return List<MovieDetailPhoto>();			case 'MovieDetailClip':
+			return List<MovieDetailClip>();			case 'MovieDetailDirector':
+			return List<MovieDetailDirector>();			case 'MovieDetailDirectorsAvatars':
+			return List<MovieDetailDirectorsAvatars>();			case 'MovieDetailPopularReview':
+			return List<MovieDetailPopularReview>();			case 'MovieDetailPopularReviewsRating':
+			return List<MovieDetailPopularReviewsRating>();			case 'MovieDetailPopularReviewsAuthor':
+			return List<MovieDetailPopularReviewsAuthor>();    }
     return null;
   }
 

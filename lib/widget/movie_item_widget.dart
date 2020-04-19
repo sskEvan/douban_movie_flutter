@@ -2,6 +2,7 @@ import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/movie.dart';
 import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/service/resource_manager.dart';
+import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:douban_movie_flutter/widget/rating_widget.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class MovieItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
         onTap: () {
-          print('----------item click');
+          Navigator.of(context).pushNamed(RouteName.movieDetail, arguments: movieSubject.id);
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,5 +1,5 @@
-import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/model/new_movie_entity.dart';
+import 'package:douban_movie_flutter/model/movie_subject.dart';
 
 newMovieEntityFromJson(NewMovieEntity data, Map<String, dynamic> json) {
 	if (json['subjects'] != null) {

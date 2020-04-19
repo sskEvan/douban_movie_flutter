@@ -1,9 +1,11 @@
 
 
+import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/page/billboard_detail_page.dart';
 import 'package:douban_movie_flutter/page/billboard_page.dart';
 import 'package:douban_movie_flutter/page/index_page.dart';
 import 'package:douban_movie_flutter/page/mine_page.dart';
+import 'package:douban_movie_flutter/page/movie_detail_page.dart';
 import 'package:douban_movie_flutter/page/projection_page.dart';
 import 'package:douban_movie_flutter/page/splash.dart';
 import 'package:douban_movie_flutter/provider/billboard_new_movies_provider.dart';
@@ -20,6 +22,7 @@ class RouteName {
   static const String billboardNewMovies = 'billboardNewMovies';
   static const String billboardWeekly = 'billboardWeekly';
   static const String billboardUsBox = 'billboardUsBox';
+  static const String movieDetail = 'movieDetail';
 
 }
 
@@ -43,6 +46,10 @@ class Router {
         break;
       case RouteName.billboardUsBox:
         return NoAnimRouteBuilder(BillboardDetailPage<BillboardUsBoxMovieProvider>(actionType: RouteName.billboardUsBox));
+        break;
+      case RouteName.movieDetail:
+        String id = settings.arguments;
+        return NoAnimRouteBuilder(MovieDetailPage(id));
         break;
     }
   }

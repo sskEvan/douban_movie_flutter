@@ -11,9 +11,7 @@ class BillboardSkeleton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    isDark = Theme
-        .of(context)
-        .brightness == Brightness.dark;
+    isDark = Theme.of(context).brightness == Brightness.dark;
 
     banners = <Widget>[
       BillboardBannerSkeleton(isDark),
@@ -25,19 +23,20 @@ class BillboardSkeleton extends StatelessWidget {
         baseColor: isDark ? Colors.grey[700] : Colors.grey[350],
         highlightColor: isDark ? Colors.grey[500] : Colors.grey[200],
         child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               _buildSectionSkeleton(),
               _buildTop25OGridSkeleton(isDark),
               _buildSectionSkeleton(),
-              _buildOtherBillboardSkeleton(
-              )
-            ]
-        ));
+              _buildOtherBillboardSkeleton()
+            ]));
   }
 
   Widget _buildSectionSkeleton() {
     return Container(
-      height: 34,
+      height: 20,
+      width: 100,
+      margin: EdgeInsets.fromLTRB(15, 8, 5, 8),
       decoration: SkeletonDecoration(isDark: isDark),
     );
   }
@@ -115,20 +114,16 @@ class BillboardTop250SkeletonItemWidget extends StatelessWidget {
       decoration: SkeletonDecoration(isDark: isDark),
     );
   }
-
 }
 
 class BillboardBannerSkeleton extends StatelessWidget {
   var isDark;
 
-
   BillboardBannerSkeleton(this.isDark);
 
   @override
   Widget build(BuildContext context) {
-    isDark = Theme
-        .of(context)
-        .brightness == Brightness.dark;
+    isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 5.0),
       child: Stack(

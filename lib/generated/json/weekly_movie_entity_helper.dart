@@ -1,5 +1,5 @@
-import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/model/weekly_movie_entity.dart';
+import 'package:douban_movie_flutter/model/movie_subject.dart';
 
 weeklyMovieEntityFromJson(WeeklyMovieEntity data, Map<String, dynamic> json) {
 	if (json['subjects'] != null) {

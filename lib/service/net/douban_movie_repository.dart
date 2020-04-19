@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:douban_movie_flutter/model/movie.dart';
+import 'package:douban_movie_flutter/model/movie_detail_entity.dart';
 import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/model/new_movie_entity.dart';
 import 'package:douban_movie_flutter/model/usbox_movie_entity.dart';
@@ -89,5 +90,18 @@ class DouBanMovieRepository {
     Map movieMap = json.decode(resultData.data.toString());
     var movie = new NewMovieEntity().fromJson(movieMap);
     return movie.subjects;
+  }
+
+  static Future getMovieDetailEntity({String movieId}) async {
+    ResultData resultData = await HttpManager.getInstance()
+        .get('subject/${movieId}', queryParameters: null);
+    String tempResultData = resultData.data.toString().replaceAll('\"1\"', '\"i1\"')
+        .replaceAll('\"2\"', '\"i2\"')
+        .replaceAll('\"3\"', '\"i3\"')
+        .replaceAll('\"4\"', '\"i4\"')
+        .replaceAll('\"5\"', '\"i5\"');
+    Map movieMap = json.decode(tempResultData.toString());
+    var movieDetailEntity = new MovieDetailEntity().fromJson(movieMap);
+    return movieDetailEntity;
   }
 }
