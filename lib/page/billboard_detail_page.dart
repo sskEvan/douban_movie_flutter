@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/provider/billboard_new_movies_provider.dart';
 import 'package:douban_movie_flutter/provider/billboard_top250_provider.dart';
@@ -13,6 +14,7 @@ import 'package:douban_movie_flutter/widget/movie_item_widget.dart';
 import 'package:douban_movie_flutter/widget/view_state_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:palette_generator/palette_generator.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class BillboardDetailPage<T extends ViewStateRefreshListProvider>
@@ -32,6 +34,7 @@ class BillboardDetailState<T extends ViewStateRefreshListProvider>
   final actionType;
   var title;
   var provider;
+  var sliverAppBarColor;
 
   BillboardDetailState(this.actionType);
 
@@ -73,6 +76,8 @@ class BillboardDetailState<T extends ViewStateRefreshListProvider>
                     onPressed: provider.initData);
               }
 
+              fetchPageColor(context, provider.list[0].images.small);
+
               return SmartRefresher(
                   controller: provider.refreshController,
                   header: WaterDropHeader(),
@@ -101,13 +106,12 @@ class BillboardDetailState<T extends ViewStateRefreshListProvider>
                         pinned: true,
                         snap: false,
                         actions: <Widget>[
-                          Container (
+                          Container(
                             padding: EdgeInsets.symmetric(horizontal: 20),
-                            child: Icon(Icons.more_horiz, color: Colors.white)
-                            ,
+                            child: Icon(Icons.more_horiz, color: Colors.white),
                           )
                         ],
-
+                        backgroundColor: sliverAppBarColor,
                       ),
                       new SliverList(
                         delegate: new SliverChildBuilderDelegate(
@@ -122,6 +126,21 @@ class BillboardDetailState<T extends ViewStateRefreshListProvider>
                     ],
                   ));
             }));
+  }
+
+  void fetchPageColor(context, url) async {
+    PaletteGenerator paletteGenerator =
+        await PaletteGenerator.fromImageProvider(
+      CachedNetworkImageProvider(url),
+    );
+
+    setState(() {
+      if (paletteGenerator.darkVibrantColor != null) {
+        sliverAppBarColor = paletteGenerator.darkVibrantColor.color;
+      } else {
+        sliverAppBarColor = Theme.of(context).primaryColor;
+      }
+    });
   }
 
   @override

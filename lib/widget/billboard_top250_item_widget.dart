@@ -2,6 +2,7 @@ import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/movie.dart';
 import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/service/resource_manager.dart';
+import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:douban_movie_flutter/widget/rating_widget.dart';
@@ -27,7 +28,7 @@ class BillboardTop250ItemWidget extends StatelessWidget {
 
     return InkWell(
         onTap: () {
-          print('----------item click');
+          Navigator.pushNamed(context, RouteName.movieDetail, arguments: movieSubject.id);
         },
         child:  Container(
           padding: EdgeInsets.all(5),

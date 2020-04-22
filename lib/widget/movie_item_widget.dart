@@ -3,6 +3,7 @@ import 'package:douban_movie_flutter/model/movie.dart';
 import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
+import 'package:douban_movie_flutter/utils/string_util.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:douban_movie_flutter/widget/rating_widget.dart';
 import 'package:flutter/material.dart';
@@ -192,7 +193,7 @@ class MovieItemWidget extends StatelessWidget {
             ),
             SizedBox(height: 8),
             Text(
-              '${movieSubject.collectCount}${DouBanLocalizations.of(context).seen}',
+              '${StringUtil.friendlyCount(movieSubject.collectCount)}${DouBanLocalizations.of(context).seen}',
               style: TextStyle(color: Colors.black45, fontSize: 12),
             ),
           ],
@@ -213,7 +214,7 @@ class MovieItemWidget extends StatelessWidget {
             ),
             SizedBox(height: 8),
             Text(
-              '${movieSubject.collectCount}${DouBanLocalizations.of(context).want_to_see}',
+              '${StringUtil.friendlyCount(movieSubject.collectCount)}${DouBanLocalizations.of(context).want_to_see}',
               style: TextStyle(color: Colors.black45, fontSize: 12),
             ),
           ],
