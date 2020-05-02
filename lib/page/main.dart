@@ -30,37 +30,40 @@ main() async {
 class DouBanApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return OKToast(
-      child: MultiProvider(
-        providers: providers,
-        child: Consumer2<ThemeProvider, LocaleProvider>(
-            builder: (context, themeModel, localeModel, child) {
-          return RefreshConfiguration(
-              hideFooterWhenNotFull: true, //列表数据不满一页,不触发加载更多
-              child: MaterialApp(
-                theme: themeModel.themeData(),
-                darkTheme: themeModel.themeData(platformDarkMode: true),
-                locale: localeModel.locale,
-                debugShowCheckedModeBanner: false,
-                localizationsDelegates: [
-                  // 本地化的代理类
-                  DouBanLocalizations.delegate,
-                  //下拉刷新
-                  RefreshLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                ],
-                //这句必须加上,否则切换语言后不会自动刷新
-                supportedLocales: DouBanLocalizations.delegate.supportedLocales,
-                onGenerateRoute: Router.generateRoute,
-                initialRoute: RouteName.splash,
-              ));
-        }),
+    return MaterialApp(
+      showPerformanceOverlay: true, // 开启
+      home: OKToast(
+        child: MultiProvider(
+          providers: providers,
+          child: Consumer2<ThemeProvider, LocaleProvider>(
+              builder: (context, themeModel, localeModel, child) {
+                return RefreshConfiguration(
+                    hideFooterWhenNotFull: true, //列表数据不满一页,不触发加载更多
+                    child: MaterialApp(
+                      theme: themeModel.themeData(),
+                      darkTheme: themeModel.themeData(platformDarkMode: true),
+                      locale: localeModel.locale,
+                      debugShowCheckedModeBanner: false,
+                      localizationsDelegates: [
+                        // 本地化的代理类
+                        DouBanLocalizations.delegate,
+                        //下拉刷新
+                        RefreshLocalizations.delegate,
+                        GlobalCupertinoLocalizations.delegate,
+                        GlobalMaterialLocalizations.delegate,
+                        GlobalWidgetsLocalizations.delegate,
+                      ],
+                      //这句必须加上,否则切换语言后不会自动刷新
+                      supportedLocales: DouBanLocalizations.delegate.supportedLocales,
+                      onGenerateRoute: Router.generateRoute,
+                      initialRoute: RouteName.splash,
+                    ));
+              }),
+        ),
+        radius: 5,
+        textPadding: EdgeInsets.fromLTRB(15, 8, 15, 8),
+        dismissOtherOnShow: true,
       ),
-      radius: 5,
-      textPadding: EdgeInsets.fromLTRB(15, 8, 15, 8),
-      dismissOtherOnShow: true,
     );
   }
 }

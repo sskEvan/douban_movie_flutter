@@ -70,8 +70,8 @@ class MovieItemWidget extends StatelessWidget {
     return Offstage(
       offstage: showIndexNumber == false,
       child: Container(
-        margin: EdgeInsets.fromLTRB(14, 10, 0, 0),
-        padding: EdgeInsets.symmetric(vertical: 4, horizontal: 6),
+        margin: const EdgeInsets.fromLTRB(14, 10, 0, 0),
+        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 6),
         decoration: BoxDecoration(
           color: boxColor,
           borderRadius: BorderRadius.circular(4),
@@ -179,13 +179,13 @@ class MovieItemWidget extends StatelessWidget {
               child: AbsorbPointer(
                 absorbing: true,
                 child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 3, horizontal: 14),
+                  padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 14),
                   child: Text(
                     DouBanLocalizations.of(context).buy,
                     style: TextStyle(fontSize: 14, color: Colors.red),
                   ),
                   decoration: new BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                    borderRadius: BorderRadius.all(const Radius.circular(4.0)),
                     border: new Border.all(width: 1, color: Colors.redAccent),
                   ),
                 ),

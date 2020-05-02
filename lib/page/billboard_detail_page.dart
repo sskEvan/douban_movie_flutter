@@ -39,7 +39,9 @@ class BillboardDetailState<T extends ViewStateRefreshListProvider>
   BillboardDetailState(this.actionType);
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
+
     switch (actionType) {
       case RouteName.billboardTop250:
         provider = BillboardTop250Provider(context);
@@ -58,7 +60,11 @@ class BillboardDetailState<T extends ViewStateRefreshListProvider>
         title = '豆瓣电影北美票房榜';
         break;
     }
+  }
 
+  @override
+  Widget build(BuildContext context) {
+    debugPrint('BillboardDetailState---build done');
     return new Scaffold(
         body: ViewStateWidget<T>(
             provider: provider,
@@ -134,15 +140,19 @@ class BillboardDetailState<T extends ViewStateRefreshListProvider>
       CachedNetworkImageProvider(url),
     );
 
-    setState(() {
-      if (paletteGenerator.darkVibrantColor != null) {
+    if (paletteGenerator.darkVibrantColor != null && sliverAppBarColor != paletteGenerator.darkVibrantColor.color) {
+      setState(() {
         sliverAppBarColor = paletteGenerator.darkVibrantColor.color;
-      } else {
+      });
+    } else if(paletteGenerator.darkVibrantColor == null && sliverAppBarColor != Theme.of(context).primaryColor) {
+      setState(() {
         sliverAppBarColor = Theme.of(context).primaryColor;
-      }
-    });
+      });
+    }
+
   }
 
   @override
   bool get wantKeepAlive => true;
+
 }
