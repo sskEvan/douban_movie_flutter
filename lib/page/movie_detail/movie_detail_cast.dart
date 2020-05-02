@@ -16,8 +16,7 @@ class MovieDetailCastWidget extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 15),
       child: Column(
         children: <Widget>[
-          MovieDetailSection(
-              title: '演员表', actionText: '全部${movieDetailEntity.casts.length}'),
+          MovieDetailSection(title: '演员表'),
           SizedBox(height: 6),
           SingleChildScrollView(
               scrollDirection: Axis.horizontal,

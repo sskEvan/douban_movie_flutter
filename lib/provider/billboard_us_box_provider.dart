@@ -8,7 +8,7 @@ class BillboardUsBoxMovieProvider extends ViewStateRefreshListProvider {
   BillboardUsBoxMovieProvider(BuildContext context) : super(context);
 
   @override
-  Future<List> loadData({int pageSize, int pageNum}) async {
+  Future<List> loadData({Object arguments, int pageSize, int pageNum}) async {
     return await DouBanMovieRepository.getUsBoxMovieList(count: pageSize, start: pageSize * pageNum);
   }
 

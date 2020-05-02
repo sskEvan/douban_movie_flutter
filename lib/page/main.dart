@@ -31,7 +31,8 @@ class DouBanApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      showPerformanceOverlay: true, // 开启
+      //
+      // showPerformanceOverlay: true, // 开启
       home: OKToast(
         child: MultiProvider(
           providers: providers,

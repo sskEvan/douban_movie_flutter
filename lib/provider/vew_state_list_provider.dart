@@ -4,11 +4,13 @@ import 'package:flutter/src/widgets/framework.dart';
 abstract class ViewStateListProvider<T> extends ViewStateProvider {
   /// 页面数据
   List<T> list = [];
+  Object arguments;
 
   ViewStateListProvider(BuildContext context) : super(context);
 
   /// 第一次进入页面loading skeleton
-  initData() async {
+  initData({Object arguments}) async {
+    this.arguments = arguments;
     setBusy();
     await refresh(init: true);
   }
@@ -16,7 +18,7 @@ abstract class ViewStateListProvider<T> extends ViewStateProvider {
   // 下拉刷新
   refresh({bool init = false}) async {
     try {
-      List<T> data = await loadData();
+      List<T> data = await loadData(arguments: arguments);
       if (data.isEmpty) {
         list.clear();
         setEmpty();
@@ -33,7 +35,7 @@ abstract class ViewStateListProvider<T> extends ViewStateProvider {
   }
 
   // 加载数据
-  Future<List<T>> loadData();
+  Future<List<T>> loadData({Object arguments});
 
   onCompleted(List<T> data) {}
 }

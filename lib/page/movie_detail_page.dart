@@ -57,10 +57,8 @@ class MovieDetailState extends State<MovieDetailPage> {
                   error: provider.viewStateError,
                   onPressed: provider.initData(movieId));
             }
-
             movieDetailEntity = provider.movieDetailEntity;
             fetchPageColor(provider.movieDetailEntity.images.small);
-
             return Container(
               padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
               color: pageColor,
@@ -93,15 +91,17 @@ class MovieDetailState extends State<MovieDetailPage> {
       CachedNetworkImageProvider(url),
     );
 
-      if (paletteGenerator.darkVibrantColor != null && pageColor != paletteGenerator.darkVibrantColor.color) {
-        setState(() {
-          pageColor = paletteGenerator.darkVibrantColor.color;
-        });
-      } else if(paletteGenerator.darkVibrantColor == null && pageColor != Color(0xff35374c)) {
-        setState(() {
-          pageColor = Color(0xff35374c);
-        });
-      };
+    if (paletteGenerator.darkVibrantColor != null &&
+        pageColor != paletteGenerator.darkVibrantColor.color) {
+      setState(() {
+        pageColor = paletteGenerator.darkVibrantColor.color;
+      });
+    } else if (paletteGenerator.darkVibrantColor == null &&
+        pageColor != Color(0xff35374c)) {
+      setState(() {
+        pageColor = Color(0xff35374c);
+      });
+    }
+    ;
   }
 }
-

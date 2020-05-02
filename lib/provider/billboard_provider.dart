@@ -18,7 +18,7 @@ class BillboardProvider extends ViewStateRefreshListProvider {
   BillboardProvider(BuildContext context) : super(context);
 
   @override
-  Future<List> loadData({int pageSize, int pageNum}) async {
+  Future<List> loadData({Object arguments, int pageSize, int pageNum}) async {
     List<Future> futures = [];
     futures.add(DouBanMovieRepository.getTop250MovieList());
     futures.add(DouBanMovieRepository.getWeeklyMovieEntity());

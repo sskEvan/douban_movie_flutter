@@ -315,6 +315,11 @@ movieDetailRatingDetailsFromJson(MovieDetailRatingDetails data, Map<String, dyna
 
 Map<String, dynamic> movieDetailRatingDetailsToJson(MovieDetailRatingDetails entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
+	data['i1'] = entity.i1;
+	data['i3'] = entity.i3;
+	data['i2'] = entity.i2;
+	data['i5'] = entity.i5;
+	data['i4'] = entity.i4;
 	return data;
 }
 

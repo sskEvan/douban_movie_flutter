@@ -1,4 +1,5 @@
 import 'package:douban_movie_flutter/model/movie_detail_entity.dart';
+import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,7 +18,11 @@ class MovieDetailStills extends StatelessWidget {
     return Column(
       children: <Widget>[
         MovieDetailSection(
-            title: '剧照/预告片', actionText: '全部${movieDetailEntity.photosCount}'),
+            title: '剧照/预告片',
+            actionText: '全部',
+            onAction: () {
+              Navigator.of(context).pushNamed(RouteName.movieStills, arguments: [movieDetailEntity.id, movieDetailEntity.photosCount]);
+            }),
         SizedBox(height: 6),
         SingleChildScrollView(
             scrollDirection: Axis.horizontal,

@@ -9,7 +9,7 @@ class MovieListProvider extends ViewStateRefreshListProvider {
   MovieListProvider(BuildContext context, {this.isShowing}) : super(context);
 
   @override
-  Future<List> loadData({int pageSize, int pageNum}) async{
+  Future<List> loadData({Object arguments, int pageSize, int pageNum}) async {
     if(isShowing) {
       return await DouBanMovieRepository.getShowingMovieList(count: pageSize, start: pageSize * pageNum);
     }else {
