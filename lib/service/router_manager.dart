@@ -64,10 +64,10 @@ class Router {
         break;
       case RouteName.movieStillsDetail:
         List arguments = settings.arguments;
-        MovieStillsPhoto movieStillsPhoto = arguments[0];
+        List<MovieStillsPhoto> movieStillsPhotoList = arguments[0];
         int currentIndex = arguments[1];
         int totalPhotoCount = arguments[2];
-        return FadeRouteBuilder(StillsDetailPage(movieStillsPhoto, currentIndex, totalPhotoCount));
+        return FadeRouteBuilder(StillsDetailPage(movieStillsPhotoList, currentIndex, totalPhotoCount));
         break;
     }
   }

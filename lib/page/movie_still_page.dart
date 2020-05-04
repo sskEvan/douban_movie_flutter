@@ -76,7 +76,7 @@ class MovieStillState extends State<MovieStillPage> {
                         return InkWell(
                           onTap: () {
                             Navigator.of(context).pushNamed(RouteName.movieStillsDetail,
-                                arguments: [item, index, provider.movieStillsEntity.photos.length]);
+                                arguments: [provider.movieStillsEntity.photos, index, provider.movieStillsEntity.photos.length]);
                           },
                           child: Hero(
                             tag: 'hero' + item.id ,
