@@ -7,6 +7,7 @@ class GestureBox extends StatefulWidget {
   final double doubleTapScale;
   final Widget child;
   final VoidCallback onPressed;
+  final VoidCallback onLongPressed;
   final Duration duration;
 
   /// 通过最大缩放比例 [maxScale]、双击缩放比例 [doubleTapScale]、子部件 [child]、点击事件 [onPressed] 创建小部件
@@ -16,6 +17,7 @@ class GestureBox extends StatefulWidget {
     this.doubleTapScale = 2.0,
     @required this.child,
     this.onPressed,
+    this.onLongPressed,
     this.duration = const Duration(milliseconds: 200),
   })  : assert(maxScale >= 1.0),
         assert(doubleTapScale >= 1.0 && doubleTapScale <= maxScale),
@@ -68,6 +70,7 @@ class _GestureBoxState extends State<GestureBox> with TickerProviderStateMixin {
         onPointerUp: _onPointerUp,
         child: GestureDetector(
           onTap: widget.onPressed,
+          onLongPress: widget.onLongPressed,
           onDoubleTap: _onDoubleTap,
           onScaleStart: _onScaleStart,
           onScaleUpdate: _onScaleUpdate,

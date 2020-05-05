@@ -49,6 +49,10 @@ dependencies:
   carousel_slider: ^1.1.0
   flutter_swiper: ^1.1.4
   palette_generator: ^0.2.0
+  #图片保存到本地相册
+  image_gallery_saver: ^1.2.2
+  #权限申请
+  permission_handler: ^5.0.0+hotfix.3
 
 dev_dependencies:
   flutter_test:
