@@ -62,12 +62,12 @@ class ExpandableState extends State<ExpandableText> {
                     Text(expand ? '收起' : '展开',
                         style: TextStyle(
                             fontSize: style != null ? style.fontSize : 14,
-                            color: Color(0xAAFFFFFF))),
+                            color: style != null ? style.color.withAlpha(100) : Color(0xAAFFFFFF))),
                     Icon(
                         expand
                             ? Icons.keyboard_arrow_up
                             : Icons.keyboard_arrow_down,
-                        color: Color(0xAAFFFFFF),
+                        color: style != null ? style.color.withAlpha(100) : Color(0xAAFFFFFF),
                         size: style != null ? style.fontSize + 4 : 18)
                   ],
                 ),

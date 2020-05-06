@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:douban_movie_flutter/model/movie.dart';
+import 'package:douban_movie_flutter/model/movie_commend_entity.dart';
 import 'package:douban_movie_flutter/model/movie_detail_entity.dart';
 import 'package:douban_movie_flutter/model/movie_stills_entity.dart';
 import 'package:douban_movie_flutter/model/movie_subject.dart';
@@ -112,5 +113,13 @@ class DouBanMovieRepository {
     Map movieMap = json.decode(resultData.data.toString());
     var movie = new MovieStillsEntity().fromJson(movieMap);
     return movie;
+  }
+
+  static Future getMovieCommendList({String movieId, int start, int count}) async {
+    ResultData resultData = await HttpManager.getInstance()
+        .get('subject/${movieId}/comments', queryParameters: {"start": start, 'count': count});
+    Map movieMap = json.decode(resultData.data.toString());
+    var movieCommendEntity = new MovieCommendEntity().fromJson(movieMap);
+    return movieCommendEntity.comments;
   }
 }

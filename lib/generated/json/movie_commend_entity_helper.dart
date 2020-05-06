@@ -1,129 +1,108 @@
-import 'package:douban_movie_flutter/model/movie_stills_entity.dart';
+import 'package:douban_movie_flutter/model/movie_commend_entity.dart';
 
-movieStillsEntityFromJson(MovieStillsEntity data, Map<String, dynamic> json) {
+movieCommendEntityFromJson(MovieCommendEntity data, Map<String, dynamic> json) {
 	if (json['count'] != null) {
 		data.count = json['count']?.toInt();
 	}
-	if (json['photos'] != null) {
-		data.photos = new List<MovieStillsPhoto>();
-		(json['photos'] as List).forEach((v) {
-			data.photos.add(new MovieStillsPhoto().fromJson(v));
+	if (json['comments'] != null) {
+		data.comments = new List<MovieCommandCommants>();
+		(json['comments'] as List).forEach((v) {
+			data.comments.add(new MovieCommandCommants().fromJson(v));
 		});
-	}
-	if (json['total'] != null) {
-		data.total = json['total']?.toInt();
 	}
 	if (json['start'] != null) {
 		data.start = json['start']?.toInt();
 	}
+	if (json['total'] != null) {
+		data.total = json['total']?.toInt();
+	}
+	if (json['next_start'] != null) {
+		data.nextStart = json['next_start']?.toInt();
+	}
 	if (json['subject'] != null) {
-		data.subject = new MovieStillsSubject().fromJson(json['subject']);
+		data.subject = new MovieCommendSubject().fromJson(json['subject']);
 	}
 	return data;
 }
 
-Map<String, dynamic> movieStillsEntityToJson(MovieStillsEntity entity) {
+Map<String, dynamic> movieCommendEntityToJson(MovieCommendEntity entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	data['count'] = entity.count;
-	if (entity.photos != null) {
-		data['photos'] =  entity.photos.map((v) => v.toJson()).toList();
+	if (entity.comments != null) {
+		data['comments'] =  entity.comments.map((v) => v.toJson()).toList();
 	}
-	data['total'] = entity.total;
 	data['start'] = entity.start;
+	data['total'] = entity.total;
+	data['next_start'] = entity.nextStart;
 	if (entity.subject != null) {
 		data['subject'] = entity.subject.toJson();
 	}
 	return data;
 }
 
-movieStillsPhotoFromJson(MovieStillsPhoto data, Map<String, dynamic> json) {
-	if (json['photos_count'] != null) {
-		data.photosCount = json['photos_count']?.toInt();
+movieCommandCommantsFromJson(MovieCommandCommants data, Map<String, dynamic> json) {
+	if (json['rating'] != null) {
+		data.rating = new MovieCommendCommentsRating().fromJson(json['rating']);
 	}
-	if (json['thumb'] != null) {
-		data.thumb = json['thumb']?.toString();
-	}
-	if (json['icon'] != null) {
-		data.icon = json['icon']?.toString();
+	if (json['useful_count'] != null) {
+		data.usefulCount = json['useful_count']?.toInt();
 	}
 	if (json['author'] != null) {
-		data.author = new MovieStillsPhotosAuthor().fromJson(json['author']);
-	}
-	if (json['created_at'] != null) {
-		data.createdAt = json['created_at']?.toString();
-	}
-	if (json['album_id'] != null) {
-		data.albumId = json['album_id']?.toString();
-	}
-	if (json['cover'] != null) {
-		data.cover = json['cover']?.toString();
-	}
-	if (json['id'] != null) {
-		data.id = json['id']?.toString();
-	}
-	if (json['prev_photo'] != null) {
-		data.prevPhoto = json['prev_photo']?.toString();
-	}
-	if (json['album_url'] != null) {
-		data.albumUrl = json['album_url']?.toString();
-	}
-	if (json['comments_count'] != null) {
-		data.commentsCount = json['comments_count']?.toInt();
-	}
-	if (json['image'] != null) {
-		data.image = json['image']?.toString();
-	}
-	if (json['recs_count'] != null) {
-		data.recsCount = json['recs_count']?.toInt();
-	}
-	if (json['position'] != null) {
-		data.position = json['position']?.toInt();
-	}
-	if (json['alt'] != null) {
-		data.alt = json['alt']?.toString();
-	}
-	if (json['album_title'] != null) {
-		data.albumTitle = json['album_title']?.toString();
-	}
-	if (json['next_photo'] != null) {
-		data.nextPhoto = json['next_photo']?.toString();
+		data.author = new MovieCommendCommentsAuthor().fromJson(json['author']);
 	}
 	if (json['subject_id'] != null) {
 		data.subjectId = json['subject_id']?.toString();
 	}
-	if (json['desc'] != null) {
-		data.desc = json['desc']?.toString();
+	if (json['content'] != null) {
+		data.content = json['content']?.toString();
+	}
+	if (json['created_at'] != null) {
+		data.createdAt = json['created_at']?.toString();
+	}
+	if (json['id'] != null) {
+		data.id = json['id']?.toString();
 	}
 	return data;
 }
 
-Map<String, dynamic> movieStillsPhotoToJson(MovieStillsPhoto entity) {
+Map<String, dynamic> movieCommandCommantsToJson(MovieCommandCommants entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
-	data['photos_count'] = entity.photosCount;
-	data['thumb'] = entity.thumb;
-	data['icon'] = entity.icon;
+	if (entity.rating != null) {
+		data['rating'] = entity.rating.toJson();
+	}
+	data['useful_count'] = entity.usefulCount;
 	if (entity.author != null) {
 		data['author'] = entity.author.toJson();
 	}
-	data['created_at'] = entity.createdAt;
-	data['album_id'] = entity.albumId;
-	data['cover'] = entity.cover;
-	data['id'] = entity.id;
-	data['prev_photo'] = entity.prevPhoto;
-	data['album_url'] = entity.albumUrl;
-	data['comments_count'] = entity.commentsCount;
-	data['image'] = entity.image;
-	data['recs_count'] = entity.recsCount;
-	data['position'] = entity.position;
-	data['alt'] = entity.alt;
-	data['album_title'] = entity.albumTitle;
-	data['next_photo'] = entity.nextPhoto;
 	data['subject_id'] = entity.subjectId;
-	data['desc'] = entity.desc;
+	data['content'] = entity.content;
+	data['created_at'] = entity.createdAt;
+	data['id'] = entity.id;
 	return data;
 }
 
-movieStillsPhotosAuthorFromJson(MovieStillsPhotosAuthor data, Map<String, dynamic> json) {
+movieCommendCommentsRatingFromJson(MovieCommendCommentsRating data, Map<String, dynamic> json) {
+	if (json['max'] != null) {
+		data.max = json['max']?.toInt();
+	}
+	if (json['value'] != null) {
+		data.value = json['value']?.toDouble();
+	}
+	if (json['min'] != null) {
+		data.min = json['min']?.toInt();
+	}
+	return data;
+}
+
+Map<String, dynamic> movieCommendCommentsRatingToJson(MovieCommendCommentsRating entity) {
+	final Map<String, dynamic> data = new Map<String, dynamic>();
+	data['max'] = entity.max;
+	data['value'] = entity.value;
+	data['min'] = entity.min;
+	return data;
+}
+
+movieCommendCommentsAuthorFromJson(MovieCommendCommentsAuthor data, Map<String, dynamic> json) {
 	if (json['uid'] != null) {
 		data.uid = json['uid']?.toString();
 	}
@@ -145,7 +124,7 @@ movieStillsPhotosAuthorFromJson(MovieStillsPhotosAuthor data, Map<String, dynami
 	return data;
 }
 
-Map<String, dynamic> movieStillsPhotosAuthorToJson(MovieStillsPhotosAuthor entity) {
+Map<String, dynamic> movieCommendCommentsAuthorToJson(MovieCommendCommentsAuthor entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	data['uid'] = entity.uid;
 	data['avatar'] = entity.avatar;
@@ -156,9 +135,9 @@ Map<String, dynamic> movieStillsPhotosAuthorToJson(MovieStillsPhotosAuthor entit
 	return data;
 }
 
-movieStillsSubjectFromJson(MovieStillsSubject data, Map<String, dynamic> json) {
+movieCommendSubjectFromJson(MovieCommendSubject data, Map<String, dynamic> json) {
 	if (json['rating'] != null) {
-		data.rating = new MovieStillsSubjectRating().fromJson(json['rating']);
+		data.rating = new MovieCommendSubjectRating().fromJson(json['rating']);
 	}
 	if (json['genres'] != null) {
 		data.genres = json['genres']?.map((v) => v?.toString())?.toList()?.cast<String>();
@@ -167,9 +146,9 @@ movieStillsSubjectFromJson(MovieStillsSubject data, Map<String, dynamic> json) {
 		data.title = json['title']?.toString();
 	}
 	if (json['casts'] != null) {
-		data.casts = new List<MovieStillsSubjectCast>();
+		data.casts = new List<MovieCommandSubjectCasts>();
 		(json['casts'] as List).forEach((v) {
-			data.casts.add(new MovieStillsSubjectCast().fromJson(v));
+			data.casts.add(new MovieCommandSubjectCasts().fromJson(v));
 		});
 	}
 	if (json['durations'] != null) {
@@ -191,9 +170,9 @@ movieStillsSubjectFromJson(MovieStillsSubject data, Map<String, dynamic> json) {
 		data.subtype = json['subtype']?.toString();
 	}
 	if (json['directors'] != null) {
-		data.directors = new List<MovieStillsSubjectDirector>();
+		data.directors = new List<MovieCommandSubjectDirectors>();
 		(json['directors'] as List).forEach((v) {
-			data.directors.add(new MovieStillsSubjectDirector().fromJson(v));
+			data.directors.add(new MovieCommandSubjectDirectors().fromJson(v));
 		});
 	}
 	if (json['pubdates'] != null) {
@@ -203,7 +182,7 @@ movieStillsSubjectFromJson(MovieStillsSubject data, Map<String, dynamic> json) {
 		data.year = json['year']?.toString();
 	}
 	if (json['images'] != null) {
-		data.images = new MovieStillsSubjectImages().fromJson(json['images']);
+		data.images = new MovieCommendSubjectImages().fromJson(json['images']);
 	}
 	if (json['alt'] != null) {
 		data.alt = json['alt']?.toString();
@@ -214,7 +193,7 @@ movieStillsSubjectFromJson(MovieStillsSubject data, Map<String, dynamic> json) {
 	return data;
 }
 
-Map<String, dynamic> movieStillsSubjectToJson(MovieStillsSubject entity) {
+Map<String, dynamic> movieCommendSubjectToJson(MovieCommendSubject entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	if (entity.rating != null) {
 		data['rating'] = entity.rating.toJson();
@@ -243,7 +222,7 @@ Map<String, dynamic> movieStillsSubjectToJson(MovieStillsSubject entity) {
 	return data;
 }
 
-movieStillsSubjectRatingFromJson(MovieStillsSubjectRating data, Map<String, dynamic> json) {
+movieCommendSubjectRatingFromJson(MovieCommendSubjectRating data, Map<String, dynamic> json) {
 	if (json['max'] != null) {
 		data.max = json['max']?.toInt();
 	}
@@ -251,7 +230,7 @@ movieStillsSubjectRatingFromJson(MovieStillsSubjectRating data, Map<String, dyna
 		data.average = json['average']?.toDouble();
 	}
 	if (json['details'] != null) {
-		data.details = new MovieStillsSubjectRatingDetails().fromJson(json['details']);
+		data.details = new MovieCommendSubjectRatingDetails().fromJson(json['details']);
 	}
 	if (json['stars'] != null) {
 		data.stars = json['stars']?.toString();
@@ -262,7 +241,7 @@ movieStillsSubjectRatingFromJson(MovieStillsSubjectRating data, Map<String, dyna
 	return data;
 }
 
-Map<String, dynamic> movieStillsSubjectRatingToJson(MovieStillsSubjectRating entity) {
+Map<String, dynamic> movieCommendSubjectRatingToJson(MovieCommendSubjectRating entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	data['max'] = entity.max;
 	data['average'] = entity.average;
@@ -274,38 +253,18 @@ Map<String, dynamic> movieStillsSubjectRatingToJson(MovieStillsSubjectRating ent
 	return data;
 }
 
-movieStillsSubjectRatingDetailsFromJson(MovieStillsSubjectRatingDetails data, Map<String, dynamic> json) {
-	if (json['i1'] != null) {
-		data.i1 = json['i1']?.toDouble();
-	}
-	if (json['i3'] != null) {
-		data.i3 = json['i3']?.toDouble();
-	}
-	if (json['i2'] != null) {
-		data.i2 = json['i2']?.toDouble();
-	}
-	if (json['i5'] != null) {
-		data.i5 = json['i5']?.toDouble();
-	}
-	if (json['i4'] != null) {
-		data.i4 = json['i4']?.toDouble();
-	}
+movieCommendSubjectRatingDetailsFromJson(MovieCommendSubjectRatingDetails data, Map<String, dynamic> json) {
 	return data;
 }
 
-Map<String, dynamic> movieStillsSubjectRatingDetailsToJson(MovieStillsSubjectRatingDetails entity) {
+Map<String, dynamic> movieCommendSubjectRatingDetailsToJson(MovieCommendSubjectRatingDetails entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
-	data['i1'] = entity.i1;
-	data['i3'] = entity.i3;
-	data['i2'] = entity.i2;
-	data['i5'] = entity.i5;
-	data['i4'] = entity.i4;
 	return data;
 }
 
-movieStillsSubjectCastFromJson(MovieStillsSubjectCast data, Map<String, dynamic> json) {
+movieCommandSubjectCastsFromJson(MovieCommandSubjectCasts data, Map<String, dynamic> json) {
 	if (json['avatars'] != null) {
-		data.avatars = new MovieStillsSubjectCastsAvatars().fromJson(json['avatars']);
+		data.avatars = new MovieCommendSubjectCastsAvatars().fromJson(json['avatars']);
 	}
 	if (json['name_en'] != null) {
 		data.nameEn = json['name_en']?.toString();
@@ -322,7 +281,7 @@ movieStillsSubjectCastFromJson(MovieStillsSubjectCast data, Map<String, dynamic>
 	return data;
 }
 
-Map<String, dynamic> movieStillsSubjectCastToJson(MovieStillsSubjectCast entity) {
+Map<String, dynamic> movieCommandSubjectCastsToJson(MovieCommandSubjectCasts entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	if (entity.avatars != null) {
 		data['avatars'] = entity.avatars.toJson();
@@ -334,7 +293,7 @@ Map<String, dynamic> movieStillsSubjectCastToJson(MovieStillsSubjectCast entity)
 	return data;
 }
 
-movieStillsSubjectCastsAvatarsFromJson(MovieStillsSubjectCastsAvatars data, Map<String, dynamic> json) {
+movieCommendSubjectCastsAvatarsFromJson(MovieCommendSubjectCastsAvatars data, Map<String, dynamic> json) {
 	if (json['small'] != null) {
 		data.small = json['small']?.toString();
 	}
@@ -347,7 +306,7 @@ movieStillsSubjectCastsAvatarsFromJson(MovieStillsSubjectCastsAvatars data, Map<
 	return data;
 }
 
-Map<String, dynamic> movieStillsSubjectCastsAvatarsToJson(MovieStillsSubjectCastsAvatars entity) {
+Map<String, dynamic> movieCommendSubjectCastsAvatarsToJson(MovieCommendSubjectCastsAvatars entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	data['small'] = entity.small;
 	data['large'] = entity.large;
@@ -355,9 +314,9 @@ Map<String, dynamic> movieStillsSubjectCastsAvatarsToJson(MovieStillsSubjectCast
 	return data;
 }
 
-movieStillsSubjectDirectorFromJson(MovieStillsSubjectDirector data, Map<String, dynamic> json) {
+movieCommandSubjectDirectorsFromJson(MovieCommandSubjectDirectors data, Map<String, dynamic> json) {
 	if (json['avatars'] != null) {
-		data.avatars = new MovieStillsSubjectDirectorsAvatars().fromJson(json['avatars']);
+		data.avatars = new MovieCommendSubjectDirectorsAvatars().fromJson(json['avatars']);
 	}
 	if (json['name_en'] != null) {
 		data.nameEn = json['name_en']?.toString();
@@ -374,7 +333,7 @@ movieStillsSubjectDirectorFromJson(MovieStillsSubjectDirector data, Map<String, 
 	return data;
 }
 
-Map<String, dynamic> movieStillsSubjectDirectorToJson(MovieStillsSubjectDirector entity) {
+Map<String, dynamic> movieCommandSubjectDirectorsToJson(MovieCommandSubjectDirectors entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	if (entity.avatars != null) {
 		data['avatars'] = entity.avatars.toJson();
@@ -386,7 +345,7 @@ Map<String, dynamic> movieStillsSubjectDirectorToJson(MovieStillsSubjectDirector
 	return data;
 }
 
-movieStillsSubjectDirectorsAvatarsFromJson(MovieStillsSubjectDirectorsAvatars data, Map<String, dynamic> json) {
+movieCommendSubjectDirectorsAvatarsFromJson(MovieCommendSubjectDirectorsAvatars data, Map<String, dynamic> json) {
 	if (json['small'] != null) {
 		data.small = json['small']?.toString();
 	}
@@ -399,7 +358,7 @@ movieStillsSubjectDirectorsAvatarsFromJson(MovieStillsSubjectDirectorsAvatars da
 	return data;
 }
 
-Map<String, dynamic> movieStillsSubjectDirectorsAvatarsToJson(MovieStillsSubjectDirectorsAvatars entity) {
+Map<String, dynamic> movieCommendSubjectDirectorsAvatarsToJson(MovieCommendSubjectDirectorsAvatars entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	data['small'] = entity.small;
 	data['large'] = entity.large;
@@ -407,7 +366,7 @@ Map<String, dynamic> movieStillsSubjectDirectorsAvatarsToJson(MovieStillsSubject
 	return data;
 }
 
-movieStillsSubjectImagesFromJson(MovieStillsSubjectImages data, Map<String, dynamic> json) {
+movieCommendSubjectImagesFromJson(MovieCommendSubjectImages data, Map<String, dynamic> json) {
 	if (json['small'] != null) {
 		data.small = json['small']?.toString();
 	}
@@ -420,7 +379,7 @@ movieStillsSubjectImagesFromJson(MovieStillsSubjectImages data, Map<String, dyna
 	return data;
 }
 
-Map<String, dynamic> movieStillsSubjectImagesToJson(MovieStillsSubjectImages entity) {
+Map<String, dynamic> movieCommendSubjectImagesToJson(MovieCommendSubjectImages entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	data['small'] = entity.small;
 	data['large'] = entity.large;

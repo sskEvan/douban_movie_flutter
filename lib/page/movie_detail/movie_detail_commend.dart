@@ -1,4 +1,5 @@
 import 'package:douban_movie_flutter/model/movie_detail_entity.dart';
+import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:douban_movie_flutter/widget/expandable_text.dart';
 import 'package:douban_movie_flutter/widget/rating_widget.dart';
@@ -24,7 +25,11 @@ class MovieDetailCommend extends StatelessWidget {
       child: Column(
         children: <Widget>[
           MovieDetailSection(
-              title: '短评', actionText: '全部${movieDetailEntity.commentsCount}'),
+              title: '短评',
+              actionText: '全部${movieDetailEntity.commentsCount}',
+          onAction: () {
+                Navigator.of(context).pushNamed(RouteName.movieCommend, arguments: movieDetailEntity.id);
+          },),
           SizedBox(height: 6),
           Column(
             children: List.generate(
@@ -69,7 +74,7 @@ class MovieDetailCommend extends StatelessWidget {
                 ),
                 SizedBox(height: 2),
                 StaticRatingBar(
-                  rate: movieDetailEntity.rating.average / 2,
+                  rate: popularCommant.rating.value / 2,
                   size: 12,
                 ),
               ],

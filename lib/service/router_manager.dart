@@ -1,11 +1,13 @@
 
 
+import 'package:douban_movie_flutter/model/movie_detail_entity.dart';
 import 'package:douban_movie_flutter/model/movie_stills_entity.dart';
 import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/page/billboard_detail_page.dart';
 import 'package:douban_movie_flutter/page/billboard_page.dart';
 import 'package:douban_movie_flutter/page/index_page.dart';
 import 'package:douban_movie_flutter/page/mine_page.dart';
+import 'package:douban_movie_flutter/page/movie_commend_page.dart';
 import 'package:douban_movie_flutter/page/movie_detail_page.dart';
 import 'package:douban_movie_flutter/page/movie_still_page.dart';
 import 'package:douban_movie_flutter/page/projection_page.dart';
@@ -28,7 +30,7 @@ class RouteName {
   static const String movieDetail = 'movieDetail';
   static const String movieStills = 'movieStills';
   static const String movieStillsDetail = 'movieStillsDetail';
-
+  static const String movieCommend = 'movieCommend';
 }
 
 class Router {
@@ -60,14 +62,18 @@ class Router {
         List arguments = settings.arguments;
         String id = arguments[0];
         int totalPhotoCount = arguments[1];
-        return NoAnimRouteBuilder(MovieStillPage(id, totalPhotoCount));
+        return VerticalSlideRouteBuilder(MovieStillPage(id, totalPhotoCount));
         break;
       case RouteName.movieStillsDetail:
         List arguments = settings.arguments;
         List<MovieStillsPhoto> movieStillsPhotoList = arguments[0];
-        int currentIndex = arguments[1];
+        int currentIndex  = arguments[1];
         int totalPhotoCount = arguments[2];
         return FadeRouteBuilder(StillsDetailPage(movieStillsPhotoList, currentIndex, totalPhotoCount));
+        break;
+      case RouteName.movieCommend:
+        String movieId = settings.arguments;
+        return VerticalSlideRouteBuilder(MovieCommendPage(movieId));
         break;
     }
   }
