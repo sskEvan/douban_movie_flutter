@@ -7,6 +7,8 @@ import 'package:douban_movie_flutter/model/weekly_movie_entity.dart';
 import 'package:douban_movie_flutter/generated/json/weekly_movie_entity_helper.dart';
 import 'package:douban_movie_flutter/model/movie_commend_entity.dart';
 import 'package:douban_movie_flutter/generated/json/movie_commend_entity_helper.dart';
+import 'package:douban_movie_flutter/model/movie_reviews_entity.dart';
+import 'package:douban_movie_flutter/generated/json/movie_reviews_entity_helper.dart';
 import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/generated/json/movie_subject_helper.dart';
 import 'package:douban_movie_flutter/model/usbox_movie_entity.dart';
@@ -46,7 +48,19 @@ class JsonConvert<T> {
 			return movieCommendSubjectCastsAvatarsFromJson(data as MovieCommendSubjectCastsAvatars, json) as T;			case MovieCommandSubjectDirectors:
 			return movieCommandSubjectDirectorsFromJson(data as MovieCommandSubjectDirectors, json) as T;			case MovieCommendSubjectDirectorsAvatars:
 			return movieCommendSubjectDirectorsAvatarsFromJson(data as MovieCommendSubjectDirectorsAvatars, json) as T;			case MovieCommendSubjectImages:
-			return movieCommendSubjectImagesFromJson(data as MovieCommendSubjectImages, json) as T;			case MovieSubject:
+			return movieCommendSubjectImagesFromJson(data as MovieCommendSubjectImages, json) as T;			case MovieReviewsEntity:
+			return movieReviewsEntityFromJson(data as MovieReviewsEntity, json) as T;			case MovieReviewsReview:
+			return movieReviewsReviewFromJson(data as MovieReviewsReview, json) as T;			case MovieReviewsReviewsRating:
+			return movieReviewsReviewsRatingFromJson(data as MovieReviewsReviewsRating, json) as T;			case MovieReviewsReviewsAuthor:
+			return movieReviewsReviewsAuthorFromJson(data as MovieReviewsReviewsAuthor, json) as T;			case MovieReviewsSubject:
+			return movieReviewsSubjectFromJson(data as MovieReviewsSubject, json) as T;			case MovieReviewsSubjectRating:
+			return movieReviewsSubjectRatingFromJson(data as MovieReviewsSubjectRating, json) as T;			case MovieReviewsSubjectRatingDetails:
+			return movieReviewsSubjectRatingDetailsFromJson(data as MovieReviewsSubjectRatingDetails, json) as T;			case MovieReviewsSubjectCast:
+			return movieReviewsSubjectCastFromJson(data as MovieReviewsSubjectCast, json) as T;			case MovieReviewsSubjectCastsAvatars:
+			return movieReviewsSubjectCastsAvatarsFromJson(data as MovieReviewsSubjectCastsAvatars, json) as T;			case MovieReviewsSubjectDirector:
+			return movieReviewsSubjectDirectorFromJson(data as MovieReviewsSubjectDirector, json) as T;			case MovieReviewsSubjectDirectorsAvatars:
+			return movieReviewsSubjectDirectorsAvatarsFromJson(data as MovieReviewsSubjectDirectorsAvatars, json) as T;			case MovieReviewsSubjectImages:
+			return movieReviewsSubjectImagesFromJson(data as MovieReviewsSubjectImages, json) as T;			case MovieSubject:
 			return movieSubjectFromJson(data as MovieSubject, json) as T;			case MovieSubjectsRating:
 			return movieSubjectsRatingFromJson(data as MovieSubjectsRating, json) as T;			case MovieSubjectsRatingDetails:
 			return movieSubjectsRatingDetailsFromJson(data as MovieSubjectsRatingDetails, json) as T;			case MovieSubjectsCast:
@@ -111,7 +125,19 @@ class JsonConvert<T> {
 			return movieCommendSubjectCastsAvatarsToJson(data as MovieCommendSubjectCastsAvatars);			case MovieCommandSubjectDirectors:
 			return movieCommandSubjectDirectorsToJson(data as MovieCommandSubjectDirectors);			case MovieCommendSubjectDirectorsAvatars:
 			return movieCommendSubjectDirectorsAvatarsToJson(data as MovieCommendSubjectDirectorsAvatars);			case MovieCommendSubjectImages:
-			return movieCommendSubjectImagesToJson(data as MovieCommendSubjectImages);			case MovieSubject:
+			return movieCommendSubjectImagesToJson(data as MovieCommendSubjectImages);			case MovieReviewsEntity:
+			return movieReviewsEntityToJson(data as MovieReviewsEntity);			case MovieReviewsReview:
+			return movieReviewsReviewToJson(data as MovieReviewsReview);			case MovieReviewsReviewsRating:
+			return movieReviewsReviewsRatingToJson(data as MovieReviewsReviewsRating);			case MovieReviewsReviewsAuthor:
+			return movieReviewsReviewsAuthorToJson(data as MovieReviewsReviewsAuthor);			case MovieReviewsSubject:
+			return movieReviewsSubjectToJson(data as MovieReviewsSubject);			case MovieReviewsSubjectRating:
+			return movieReviewsSubjectRatingToJson(data as MovieReviewsSubjectRating);			case MovieReviewsSubjectRatingDetails:
+			return movieReviewsSubjectRatingDetailsToJson(data as MovieReviewsSubjectRatingDetails);			case MovieReviewsSubjectCast:
+			return movieReviewsSubjectCastToJson(data as MovieReviewsSubjectCast);			case MovieReviewsSubjectCastsAvatars:
+			return movieReviewsSubjectCastsAvatarsToJson(data as MovieReviewsSubjectCastsAvatars);			case MovieReviewsSubjectDirector:
+			return movieReviewsSubjectDirectorToJson(data as MovieReviewsSubjectDirector);			case MovieReviewsSubjectDirectorsAvatars:
+			return movieReviewsSubjectDirectorsAvatarsToJson(data as MovieReviewsSubjectDirectorsAvatars);			case MovieReviewsSubjectImages:
+			return movieReviewsSubjectImagesToJson(data as MovieReviewsSubjectImages);			case MovieSubject:
 			return movieSubjectToJson(data as MovieSubject);			case MovieSubjectsRating:
 			return movieSubjectsRatingToJson(data as MovieSubjectsRating);			case MovieSubjectsRatingDetails:
 			return movieSubjectsRatingDetailsToJson(data as MovieSubjectsRatingDetails);			case MovieSubjectsCast:
@@ -176,7 +202,19 @@ class JsonConvert<T> {
 			return MovieCommendSubjectCastsAvatars().fromJson(json);			case 'MovieCommandSubjectDirectors':
 			return MovieCommandSubjectDirectors().fromJson(json);			case 'MovieCommendSubjectDirectorsAvatars':
 			return MovieCommendSubjectDirectorsAvatars().fromJson(json);			case 'MovieCommendSubjectImages':
-			return MovieCommendSubjectImages().fromJson(json);			case 'MovieSubject':
+			return MovieCommendSubjectImages().fromJson(json);			case 'MovieReviewsEntity':
+			return MovieReviewsEntity().fromJson(json);			case 'MovieReviewsReview':
+			return MovieReviewsReview().fromJson(json);			case 'MovieReviewsReviewsRating':
+			return MovieReviewsReviewsRating().fromJson(json);			case 'MovieReviewsReviewsAuthor':
+			return MovieReviewsReviewsAuthor().fromJson(json);			case 'MovieReviewsSubject':
+			return MovieReviewsSubject().fromJson(json);			case 'MovieReviewsSubjectRating':
+			return MovieReviewsSubjectRating().fromJson(json);			case 'MovieReviewsSubjectRatingDetails':
+			return MovieReviewsSubjectRatingDetails().fromJson(json);			case 'MovieReviewsSubjectCast':
+			return MovieReviewsSubjectCast().fromJson(json);			case 'MovieReviewsSubjectCastsAvatars':
+			return MovieReviewsSubjectCastsAvatars().fromJson(json);			case 'MovieReviewsSubjectDirector':
+			return MovieReviewsSubjectDirector().fromJson(json);			case 'MovieReviewsSubjectDirectorsAvatars':
+			return MovieReviewsSubjectDirectorsAvatars().fromJson(json);			case 'MovieReviewsSubjectImages':
+			return MovieReviewsSubjectImages().fromJson(json);			case 'MovieSubject':
 			return MovieSubject().fromJson(json);			case 'MovieSubjectsRating':
 			return MovieSubjectsRating().fromJson(json);			case 'MovieSubjectsRatingDetails':
 			return MovieSubjectsRatingDetails().fromJson(json);			case 'MovieSubjectsCast':
@@ -242,7 +280,19 @@ class JsonConvert<T> {
 			return List<MovieCommendSubjectCastsAvatars>();			case 'MovieCommandSubjectDirectors':
 			return List<MovieCommandSubjectDirectors>();			case 'MovieCommendSubjectDirectorsAvatars':
 			return List<MovieCommendSubjectDirectorsAvatars>();			case 'MovieCommendSubjectImages':
-			return List<MovieCommendSubjectImages>();			case 'MovieSubject':
+			return List<MovieCommendSubjectImages>();			case 'MovieReviewsEntity':
+			return List<MovieReviewsEntity>();			case 'MovieReviewsReview':
+			return List<MovieReviewsReview>();			case 'MovieReviewsReviewsRating':
+			return List<MovieReviewsReviewsRating>();			case 'MovieReviewsReviewsAuthor':
+			return List<MovieReviewsReviewsAuthor>();			case 'MovieReviewsSubject':
+			return List<MovieReviewsSubject>();			case 'MovieReviewsSubjectRating':
+			return List<MovieReviewsSubjectRating>();			case 'MovieReviewsSubjectRatingDetails':
+			return List<MovieReviewsSubjectRatingDetails>();			case 'MovieReviewsSubjectCast':
+			return List<MovieReviewsSubjectCast>();			case 'MovieReviewsSubjectCastsAvatars':
+			return List<MovieReviewsSubjectCastsAvatars>();			case 'MovieReviewsSubjectDirector':
+			return List<MovieReviewsSubjectDirector>();			case 'MovieReviewsSubjectDirectorsAvatars':
+			return List<MovieReviewsSubjectDirectorsAvatars>();			case 'MovieReviewsSubjectImages':
+			return List<MovieReviewsSubjectImages>();			case 'MovieSubject':
 			return List<MovieSubject>();			case 'MovieSubjectsRating':
 			return List<MovieSubjectsRating>();			case 'MovieSubjectsRatingDetails':
 			return List<MovieSubjectsRatingDetails>();			case 'MovieSubjectsCast':

@@ -119,10 +119,10 @@ class MovieDetailState extends State<MovieDetailPage> {
                   key: dragContainerKey,
                   drawer: Container(
                     child: OverscrollNotificationWidget(
-                      child: MovieReviewsWidget(),
+                      child: MovieReviewsWidget(movieDetailEntity.id),
                     ),
                     decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 243, 244, 248),
+                        color: const Color(0xFFFAFAFA),
                         borderRadius: BorderRadius.only(
                             topLeft: const Radius.circular(10.0),
                             topRight: const Radius.circular(10.0))),
