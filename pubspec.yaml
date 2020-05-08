@@ -54,6 +54,9 @@ dependencies:
   #权限申请
   permission_handler: ^5.0.0+hotfix.3
 
+  sticky_headers: "^0.1.8"
+  flutter_sticky_header: "^0.4.2"
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

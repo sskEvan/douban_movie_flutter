@@ -21,8 +21,8 @@ class MovieDetailRatingWidget extends StatelessWidget {
         movieDetailEntity.rating.details.i5;
 
     return Container(
-        padding: EdgeInsets.all(10),
-        margin: EdgeInsets.symmetric(vertical: 10),
+        padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
+        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         width: ScreenUtil.width,
         height: 132,
         decoration: BoxDecoration(

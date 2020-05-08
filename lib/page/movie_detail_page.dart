@@ -1,6 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:date_format/date_format.dart';
 import 'package:douban_movie_flutter/model/movie_detail_entity.dart';
 import 'package:douban_movie_flutter/provider/movie_detail_provider.dart';
+import 'package:douban_movie_flutter/utils/screen_util.dart';
+import 'package:douban_movie_flutter/widget/bottom_drag_widget.dart';
 import 'package:douban_movie_flutter/widget/common_empty_widget.dart';
 import 'package:douban_movie_flutter/widget/common_error_widget.dart';
 import 'package:douban_movie_flutter/widget/movie_detail_skeleton.dart';
@@ -16,6 +19,7 @@ import 'movie_detail/movie_detail_plot.dart';
 import 'movie_detail/movie_detail_rating.dart';
 import 'movie_detail/movie_detail_stills.dart';
 import 'movie_detail/movie_detail_tag.dart';
+import 'movie_detail/movie_reviews.dart';
 
 class MovieDetailPage extends StatefulWidget {
   final String movieId;
@@ -32,16 +36,33 @@ class MovieDetailState extends State<MovieDetailPage> {
   final String movieId;
   Color pageColor = Colors.white;
   MovieDetailEntity movieDetailEntity;
+  ScrollController scrollController;
+  GlobalKey<DragContainerState> dragContainerKey = GlobalKey();
 
   MovieDetailState(this.movieId);
 
   @override
+  void initState() {
+    super.initState();
+    scrollController = ScrollController();
+    scrollController.addListener(() {
+      if(scrollController.offset == scrollController.position.maxScrollExtent) {
+        dragContainerKey.currentState.openDrawer();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: AppBar(
-          backgroundColor: pageColor,
-          title: Text('电影'),
-        ),
+
+    return Scaffold(
+        backgroundColor: pageColor,
         body: ViewStateWidget<MovieDetailProvider>(
           provider: MovieDetailProvider(context),
           onProviderReady: (provider) async {
@@ -59,27 +80,55 @@ class MovieDetailState extends State<MovieDetailPage> {
             }
             movieDetailEntity = provider.movieDetailEntity;
             fetchPageColor(provider.movieDetailEntity.images.small);
-            return Container(
-              padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
-              color: pageColor,
-              child: Column(
-                children: <Widget>[
-                  Expanded(
-                    child: ListView(
-                      physics: BouncingScrollPhysics(),
-                      children: <Widget>[
-                        MovieDetailHeader(movieDetailEntity),
-                        MovieDetailRatingWidget(movieDetailEntity),
-                        MovieDetailTag(movieDetailEntity),
-                        MovieDetailPlot(movieDetailEntity),
-                        MovieDetailCastWidget(movieDetailEntity),
-                        MovieDetailStills(movieDetailEntity),
-                        MovieDetailCommend(movieDetailEntity)
-                      ],
-                    ),
-                  )
+
+            return BottomDragWidget(
+              body: CustomScrollView(
+                controller: scrollController,
+                physics: ClampingScrollPhysics(),
+                slivers: <Widget>[
+                  SliverAppBar(
+                    title: Text('电影'),
+                    centerTitle: true,
+                    pinned: true,
+                    backgroundColor: pageColor,
+                  ),
+                  SliverToBoxAdapter(
+                    child: MovieDetailHeader(movieDetailEntity),
+                  ),
+                  SliverToBoxAdapter(
+                    child: MovieDetailRatingWidget(movieDetailEntity),
+                  ),
+                  SliverToBoxAdapter(
+                    child: MovieDetailTag(movieDetailEntity),
+                  ),
+                  SliverToBoxAdapter(
+                    child: MovieDetailPlot(movieDetailEntity),
+                  ),
+                  SliverToBoxAdapter(
+                    child: MovieDetailCastWidget(movieDetailEntity),
+                  ),
+                  SliverToBoxAdapter(
+                    child: MovieDetailStills(movieDetailEntity),
+                  ),
+                  SliverToBoxAdapter(
+                    child: MovieDetailCommend(movieDetailEntity),
+                  ),
                 ],
               ),
+              dragContainer: DragContainer(
+                  key: dragContainerKey,
+                  drawer: Container(
+                    child: OverscrollNotificationWidget(
+                      child: MovieReviewsWidget(),
+                    ),
+                    decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 243, 244, 248),
+                        borderRadius: BorderRadius.only(
+                            topLeft: const Radius.circular(10.0),
+                            topRight: const Radius.circular(10.0))),
+                  ),
+                  defaultShowHeight: kToolbarHeight,
+                  height: ScreenUtil.height - ScreenUtil.navigationBarHeight),
             );
           },
         ));

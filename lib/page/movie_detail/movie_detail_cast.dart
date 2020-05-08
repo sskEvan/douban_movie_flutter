@@ -13,7 +13,8 @@ class MovieDetailCastWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 15),
+      padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
+      margin: EdgeInsets.symmetric(vertical: 20),
       child: Column(
         children: <Widget>[
           MovieDetailSection(title: '演员表'),

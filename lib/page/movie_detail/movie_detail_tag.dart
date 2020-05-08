@@ -11,6 +11,7 @@ class MovieDetailTag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
       margin: EdgeInsets.fromLTRB(0, 5, 0, 12),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,

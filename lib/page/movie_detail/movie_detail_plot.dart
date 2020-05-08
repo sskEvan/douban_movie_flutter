@@ -10,22 +10,25 @@ class MovieDetailPlot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          '简介',
-          style: TextStyle(
-              color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
-        ),
-        SizedBox(height: 6),
-        ExpandableText(
-          text: movieDetailEntity.summary,
-          maxLines: 3,
-          style: TextStyle(color: Colors.white, fontSize: 14),
-          expand: false,
-        ),
-      ],
+    return Container(
+      padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            '简介',
+            style: TextStyle(
+                color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height: 6),
+          ExpandableText(
+            text: movieDetailEntity.summary,
+            maxLines: 3,
+            style: TextStyle(color: Colors.white, fontSize: 14),
+            expand: false,
+          ),
+        ],
+      ) ,
     );
   }
 }

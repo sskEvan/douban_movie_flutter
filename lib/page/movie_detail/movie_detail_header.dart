@@ -12,14 +12,17 @@ class MovieDetailHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.max,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        _buildHanderPoster(),
-        SizedBox(width: 10),
-        _buildHeaderInfo(context),
-      ],
+    return Container(
+      padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          _buildHanderPoster(),
+          SizedBox(width: 10),
+          _buildHeaderInfo(context),
+        ],
+      ),
     );
   }
 
