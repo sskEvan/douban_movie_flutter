@@ -17,7 +17,6 @@ class MovieDetailSkeleton extends StatelessWidget {
       highlightColor: isDark ? Colors.grey[500] : Colors.grey[200],
       child: Container(
           padding: EdgeInsets.only(left: 15, right: 15, bottom: 15),
-          margin: EdgeInsets.only(top: ScreenUtil.navigationBarHeight),
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[

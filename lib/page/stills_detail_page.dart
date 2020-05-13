@@ -105,11 +105,11 @@ class StillsDetailState extends State<StillsDetailPage>
                     kToolbarHeight -
                     ScreenUtil.navigationBarHeight,
                 child: PageView(
-                  onPageChanged: (int index) {
-                    setState(() {
-                      currentIndex = index;
-                    });
-                  },
+//                  onPageChanged: (int index) {
+//                    setState(() {
+//                      currentIndex = index;
+//                    });
+//                  },
                   physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   controller: _controller,

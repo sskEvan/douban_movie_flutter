@@ -253,6 +253,13 @@ class DragContainerState extends State<DragContainer>
     dragToggleController.forward();
     debugPrint('closeDrawer anim start');
   }
+
+  void setOffsetDistance(double offset) {
+    debugPrint("---------------------_handleDragUpdate");
+    offsetDistance = offsetDistance + offset;
+    setState(() {});
+  }
+
 }
 
 typedef FlingListener = void Function(bool isFling);

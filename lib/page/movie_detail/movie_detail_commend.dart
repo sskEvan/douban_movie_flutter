@@ -17,7 +17,7 @@ class MovieDetailCommend extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       //margin: EdgeInsets.symmetric(vertical: 30, horizontal: 15),
-      margin: EdgeInsets.fromLTRB(15, 30, 15, kToolbarHeight + 30),
+      margin: EdgeInsets.fromLTRB(15, 30, 15, 30),
       padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
       decoration: BoxDecoration(
         color: Color(0x33FFFFFF),
