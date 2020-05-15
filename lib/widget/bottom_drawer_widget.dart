@@ -166,7 +166,6 @@ class BottomDrawerState extends State<BottomDrawer>
               child: Stack(
                 children: <Widget>[
                   Listener(
-
                       onPointerMove: (PointerMoveEvent event) {
                         if(event.delta.dy < 0) {  //上滑,并且drawer张开一半
                           if(!showDrawerTranslateLayer) {

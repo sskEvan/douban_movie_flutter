@@ -24,31 +24,24 @@ class BottomDrawerDemoPageState3 extends State<BottomDrawerDemoPage3> {
   bool offstageTopTitle = true;
   double drawerOffset = 0.0;
   ScrollPhysics scrollPhysics;
+  double maxScrollOffset = 0.0;
+  double scrollOffset = 0.0;
 
   @override
   void initState() {
     super.initState();
+    debugPrint("!!!!!!!!!!!!!!!!!!!!!initState done");
     scrollController = ScrollController();
     scrollPhysics = ClampingScrollPhysics();
-
-//    scrollController.addListener(() {
-//      debugPrint(
-   //       'offset:${scrollController.positions.elementAt(0).pixels}');
-//      if (scrollController.positions.elementAt(0).pixels >=
-//          scrollController.positions.elementAt(0).maxScrollExtent +
-//              drawerOffset) {
-//        //scrollController.jumpTo(scrollController.positions.elementAt(0).maxScrollExtent + drawerOffset);
-//        if (!(scrollPhysics is NeverScrollableScrollPhysics)) {
-//          scrollPhysics = NeverScrollableScrollPhysics();
-//          setState(() {});
-//        }
-//      } else {
-//        if (scrollPhysics is NeverScrollableScrollPhysics) {
-//          scrollPhysics = ClampingScrollPhysics();
-//          setState(() {});
-//        }
-//      }
- //   });
+    scrollController.addListener(() {
+      if(scrollController.positions.elementAt(0).maxScrollExtent > maxScrollOffset) {
+        maxScrollOffset = scrollController.positions.elementAt(0).maxScrollExtent;
+      }
+      if(maxScrollOffset != 0) {
+        scrollOffset = scrollController.positions.elementAt(0).pixels;
+      }
+      debugPrint("scrollOffset:${scrollOffset},maxOffset:${maxScrollOffset},系统offset：${scrollController.positions.elementAt(0).pixels}");
+    });
   }
 
   @override
@@ -73,31 +66,33 @@ class BottomDrawerDemoPageState3 extends State<BottomDrawerDemoPage3> {
                       .getTransformTo(null)
                       .getTranslation()
                       .y;
-                  if(notification.dragDetails != null) {
+                  if (notification.dragDetails != null) {
 //                    debugPrint("dy=${notification.dragDetails.delta.dy}"
 //                        ",offset=${scrollController.positions.elementAt(0).pixels},"
 //                        "临界值=${scrollController.positions.elementAt(0).maxScrollExtent + drawerOffset}"
 //                        "screenHeight=${ScreenUtil.height}");
 
                     if (scrollController.positions.elementAt(0).pixels >=
-                        scrollController.positions.elementAt(0).maxScrollExtent + drawerOffset
-                        && notification.dragDetails.delta.dy < 0) {  //向上滑
+                            scrollController.positions
+                                    .elementAt(0)
+                                    .maxScrollExtent +
+                                drawerOffset &&
+                        notification.dragDetails.delta.dy < 0) {
+                      //向上滑
                       //scrollController.jumpTo(scrollController.positions.elementAt(0).maxScrollExtent + drawerOffset);
-                      debugPrint("禁止滑动");
+                      //debugPrint("禁止滑动");
                       if (!(scrollPhysics is NeverScrollableScrollPhysics)) {
-                        scrollPhysics = NeverScrollableScrollPhysics();
-                        setState(() {});
+//                        scrollPhysics = NeverScrollableScrollPhysics();
+//                        setState(() {});
                       }
                     } else {
                       if (scrollPhysics is NeverScrollableScrollPhysics) {
-                        debugPrint("恢复滑动");
-                        scrollPhysics = ClampingScrollPhysics();
-                        setState(() {});
+                        //debugPrint("恢复滑动");
+//                        scrollPhysics = ClampingScrollPhysics();
+//                        setState(() {});
                       }
                     }
-
                   }
-
 
                   if (listViewGlobalPositionY <=
                       ScreenUtil.navigationBarHeight + 50) {
@@ -253,6 +248,32 @@ class BottomDrawerDemoPageState3 extends State<BottomDrawerDemoPage3> {
             onPressed: () {
               showToast("上移评论列表");
               drawerOffset -= 40;
+              setState(() {});
+            },
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 140),
+          child: RaisedButton(
+            child: Text('禁止滑动'),
+            onPressed: () {
+              showToast("禁止滑动");
+              scrollPhysics = NeverScrollableScrollPhysics();
+              setState(() {});
+            },
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 200),
+          child: RaisedButton(
+            child: Text('恢复滑动'),
+            onPressed: () {
+              debugPrint(
+                  ",系统offset=${scrollController.positions.elementAt(0).pixels},"
+                  "系统maxOffset=${scrollController.positions.elementAt(0).maxScrollExtent}"
+                      ",自己offset=${scrollOffset},自己maxOffset=${maxScrollOffset}");
+              showToast("恢复滑动");
+              scrollPhysics = ClampingScrollPhysics();
               setState(() {});
             },
           ),
