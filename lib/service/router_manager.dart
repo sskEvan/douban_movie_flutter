@@ -9,6 +9,7 @@ import 'package:douban_movie_flutter/page/billboard_page.dart';
 import 'package:douban_movie_flutter/page/bottom_drawer_demo_page.dart';
 import 'package:douban_movie_flutter/page/bottom_drawer_demo_page2.dart';
 import 'package:douban_movie_flutter/page/bottom_drawer_demo_page3.dart';
+import 'package:douban_movie_flutter/page/bottom_drawer_demo_page4.dart';
 import 'package:douban_movie_flutter/page/index_page.dart';
 import 'package:douban_movie_flutter/page/mine_page.dart';
 import 'package:douban_movie_flutter/page/movie_commend_page.dart';
@@ -63,7 +64,7 @@ class Router {
       case RouteName.movieDetail:
         String id = settings.arguments;
         //eturn NoAnimRouteBuilder(MovieDetailPage(id));
-        return NoAnimRouteBuilder(BottomDrawerDemoPage3());
+        return NoAnimRouteBuilder(BottomDrawerDemoPage4());
         break;
       case RouteName.movieStills:
         List arguments = settings.arguments;
