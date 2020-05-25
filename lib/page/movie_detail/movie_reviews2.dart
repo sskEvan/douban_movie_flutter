@@ -15,21 +15,23 @@ import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class MovieReviewsWidget extends StatefulWidget {
+class MovieReviewsWidget2 extends StatefulWidget {
   var movieId;
+  ScrollController scrollController;
 
-  MovieReviewsWidget(this.movieId);
+  MovieReviewsWidget2(this.movieId, this.scrollController);
 
   @override
   State<StatefulWidget> createState() {
-    return MovieReviewsState(movieId);
+    return MovieReviewsState2(movieId, scrollController);
   }
 }
 
-class MovieReviewsState extends State<MovieReviewsWidget> {
+class MovieReviewsState2 extends State<MovieReviewsWidget2> {
   var movieId;
+  ScrollController scrollController;
 
-  MovieReviewsState(this.movieId);
+  MovieReviewsState2(this.movieId, this.scrollController);
 
   @override
   Widget build(BuildContext context) {
@@ -55,22 +57,20 @@ class MovieReviewsState extends State<MovieReviewsWidget> {
   }
 
   Widget _buildReviewsContent(MovieReviewsProvider provider) {
-    return Container(
-        color: Colors.white,
-        child: RepaintBoundary(
-            child: SmartRefresher(
+    return SmartRefresher(
           controller: provider.refreshController,
           footer: ClassicFooter(),
           enablePullDown: false,
           onLoading: provider.loadMore,
           enablePullUp: true,
           child: ListView.builder(
-              addRepaintBoundaries: true,
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
               itemCount: provider.list.length,
               itemBuilder: (BuildContext context, int index) {
                 return _buildCommendItem(context, provider.list[index]);
               }),
-        )));
+        );
   }
 
   Widget _buildCommendItem(

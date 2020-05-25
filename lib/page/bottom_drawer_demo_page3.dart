@@ -17,9 +17,6 @@ class BottomDrawerDemoPage3 extends StatefulWidget {
 class BottomDrawerDemoPageState3 extends State<BottomDrawerDemoPage3>
     with TickerProviderStateMixin {
   ScrollController scrollController;
-
-  List<int> positions;
-  int memoryPosition;
   final GlobalKey listViewKey = GlobalKey();
   bool offstageBottomTitle = false;
   bool offstageTopTitle = true;
@@ -101,20 +98,6 @@ class BottomDrawerDemoPageState3 extends State<BottomDrawerDemoPage3>
             itemCount: 30,
             itemBuilder: (context, index) {
               //根据positions==null来判断是否已经初始化
-              if (positions != null) {
-                //已经初始化过的话 滑动自行调整头和尾
-                if (index > positions.last) {
-                  positions.removeAt(0);
-                  positions.add(index);
-                } else if (index < positions.first) {
-                  positions.removeLast();
-                  positions.insert(0, index);
-                }
-              } else {
-                //记录初始化了多少个Item
-                memoryPosition = index;
-              }
-
               if (index < 29) {
                 return Container(
                   padding: EdgeInsets.all(15),

@@ -18,15 +18,14 @@ class BottomDrawerDemoPage4 extends StatefulWidget {
 class BottomDrawerDemoPageState4 extends State<BottomDrawerDemoPage4>
     with TickerProviderStateMixin {
   ScrollController bodyScrollController;
-  ScrollController drawerScrollController;
-
-  final GlobalKey containerKey = GlobalKey();
-  double containerGlobalPositionY;
+  ScrollController drawScrollController;
+  final GlobalKey bodyFooterKey = GlobalKey();
+  double bodyFooterPositionYInScreen;
   double drawerOffset = 0.0;
   double initDrawerOffset = 0.0;
   AnimationController offsetAnimalController;
   Animation<double> offsetAnimation;
-  double containerVisiblePosition = 0.0;
+  double bodyFooterVisibleThreshold = 0.0;
   double bodyScrollOffset = 0.0;
   double bodyScrollDy = 0.0;
   double drawerScrollOffset = 0.0;
@@ -43,7 +42,7 @@ class BottomDrawerDemoPageState4 extends State<BottomDrawerDemoPage4>
     bodyScrollController = ScrollController();
     initDrawerOffset =
         drawerOffset = ScreenUtil.height - ScreenUtil.navigationBarHeight - 50;
-    containerVisiblePosition = ScreenUtil.height - 50;
+    bodyFooterVisibleThreshold = ScreenUtil.height - 50;
     containHeight = initDrawerOffset + 50;
 //    debugPrint(
 //        "!!!!!!!!!!!!!!!!!!!!!initState done,initDrawerOffset=${initDrawerOffset},navigationBarHeight=${ScreenUtil.navigationBarHeight}");
@@ -52,18 +51,18 @@ class BottomDrawerDemoPageState4 extends State<BottomDrawerDemoPage4>
       debugPrint(
           "scrollDy:${bodyScrollDy},bodyScrollOffset=${bodyScrollController.offset}"
               ",drawerOffset=${drawerOffset},initDrawerOffset=${initDrawerOffset}");
-      if (containerKey.currentContext != null &&
-          containerKey.currentContext.findRenderObject() != null) {
-        containerGlobalPositionY = containerKey.currentContext
+      if (bodyFooterKey.currentContext != null &&
+          bodyFooterKey.currentContext.findRenderObject() != null) {
+        bodyFooterPositionYInScreen = bodyFooterKey.currentContext
             .findRenderObject()
             .getTransformTo(null)
             .getTranslation()
             .y;
 
-        if (containerVisiblePosition - containerGlobalPositionY > 0 && !isDrawerMoving) {
-          containerGlobalPositionY -= bodyScrollDy;
+        if (bodyFooterVisibleThreshold - bodyFooterPositionYInScreen > 0 && !isDrawerMoving) {
+          bodyFooterPositionYInScreen -= bodyScrollDy;
           //container显示在屏幕
-          updateDrawerOffset(containerGlobalPositionY - ScreenUtil.navigationBarHeight);
+          updateDrawerOffset(bodyFooterPositionYInScreen - ScreenUtil.navigationBarHeight);
           setState(() {});
         } else {
           if (drawerOffset != initDrawerOffset && !isDrawerMoving) {
@@ -76,24 +75,12 @@ class BottomDrawerDemoPageState4 extends State<BottomDrawerDemoPage4>
       }
     });
 
-    drawerScrollController = ScrollController();
-    drawerScrollController.addListener(() {
-//      drawerScrollDy = drawerScrollController.offset - drawerOffset;
-//        drawerOffset -= drawerScrollDy;
-//        if (drawerOffset < 0) {
-//          drawerOffset = 0;
-//        }
-//        if (drawerOffset > initDrawerOffset) {
-//          drawerOffset = initDrawerOffset;
-//        }
-//        double newBodyScrollOffset = bodyScrollController.offset + drawerScrollDy;
-//        bodyScrollController.jumpTo(newBodyScrollOffset);
-//
-//        debugPrint('onBodyScroll:dy=${drawerScrollDy}，drawerOffset=${drawerOffset}'
-//            ',newBodyScrollOffset=${newBodyScrollOffset},');
-//        setState(() {});
-//      drawerOffset = drawerScrollController.offset;
+    drawScrollController = new ScrollController();
+    drawScrollController.addListener(() {
+      drawerScrollOffset = drawScrollController.offset;
+      debugPrint("^^^^^^^^^^^^^drawerScrollOffset:${drawScrollController.offset}");
     });
+
   }
 
   void updateDrawerOffset(double offset) {
@@ -141,7 +128,7 @@ class BottomDrawerDemoPageState4 extends State<BottomDrawerDemoPage4>
                 );
               } else {
                 return Container(
-                  key: containerKey,
+                  key: bodyFooterKey,
                   height: containHeight,
                 );
               }
@@ -154,12 +141,12 @@ class BottomDrawerDemoPageState4 extends State<BottomDrawerDemoPage4>
 
             },
             onPointerMove: (event) {
-              isDrawerMoving = true;
               if (event.delta.dy != 0 && drawerOffset <= initDrawerOffset) {
+                isDrawerMoving = true;
                 double newDrawerOffset = drawerOffset + event.delta.dy;
                 updateDrawerOffset(newDrawerOffset);
 
-                if(containerVisiblePosition - containerGlobalPositionY > 0) {
+                if(bodyFooterVisibleThreshold - bodyFooterPositionYInScreen > 0) {
                   tempBodyScrollOffset = tempBodyScrollOffset - event.delta.dy;
                   debugPrint('onPointerMove:dy=${event.delta.dy}，drawerOffset=${drawerOffset}'
                       ',tempBodyScrollOffset=${tempBodyScrollOffset},');
@@ -172,8 +159,8 @@ class BottomDrawerDemoPageState4 extends State<BottomDrawerDemoPage4>
             onPointerUp: (event) {
               isDrawerMoving = false;
               debugPrint(
-                  "onPointerUp----containerGlobalPositionY=${containerGlobalPositionY}");
-              if (containerGlobalPositionY > containerVisiblePosition) {
+                  "onPointerUp----containerGlobalPositionY=${bodyFooterPositionYInScreen}");
+              if (bodyFooterPositionYInScreen > bodyFooterVisibleThreshold) {
                 double start = drawerOffset;
                 double end = 0;
                 if (drawerOffset >= initDrawerOffset / 2) {
@@ -216,8 +203,8 @@ class BottomDrawerDemoPageState4 extends State<BottomDrawerDemoPage4>
                       ),
                       Expanded(
                         child: ListView.builder(
+                            controller: drawScrollController,
                             shrinkWrap: true,
-                            controller: drawerScrollController,
                             itemCount: 30,
                             itemBuilder: (context, index) {
                               return Container(
