@@ -10,7 +10,6 @@ import 'package:douban_movie_flutter/widget/rating_widget.dart';
 import 'package:douban_movie_flutter/widget/view_state_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:oktoast/oktoast.dart';
 import 'package:palette_generator/palette_generator.dart';
 
 import 'movie_detail/movie_detail_cast.dart';
@@ -42,7 +41,6 @@ class MovieDetailState extends State<MovieDetailPage> {
   MovieDetailEntity movieDetailEntity;
   ScrollController bodyScrollController;
 
-
   MovieDetailState(this.movieId);
 
   @override
@@ -52,7 +50,6 @@ class MovieDetailState extends State<MovieDetailPage> {
     offstageTitle = false;
     bodyScrollController = ScrollController();
     bodyScrollController.addListener(() {
-
       if (bodyScrollController.offset > 150) {
         if (offstageAutorInfo) {
           offstageAutorInfo = false;
@@ -71,7 +68,6 @@ class MovieDetailState extends State<MovieDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    //debugPrint("!!!!!!!!!!!!!!!MovieDetailPage build done ");
 
     return Scaffold(
         appBar: AppBar(
@@ -110,9 +106,7 @@ class MovieDetailState extends State<MovieDetailPage> {
           child: Text(
             '电影',
             style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.bold),
+                color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
         Offstage(
@@ -126,7 +120,9 @@ class MovieDetailState extends State<MovieDetailPage> {
                     width: 27,
                     height: 35,
                     child: CacheImageWidget(
-                      url: movieDetailEntity != null ? movieDetailEntity.images.small : '',
+                      url: movieDetailEntity != null
+                          ? movieDetailEntity.images.small
+                          : '',
                       radius: 2,
                     ),
                   ),
@@ -145,7 +141,9 @@ class MovieDetailState extends State<MovieDetailPage> {
                         height: 5,
                       ),
                       StaticRatingBar(
-                        rate: movieDetailEntity != null ? movieDetailEntity.rating.average / 2 : 0,
+                        rate: movieDetailEntity != null
+                            ? movieDetailEntity.rating.average / 2
+                            : 0,
                         size: 12,
                       ),
                     ],
@@ -195,22 +193,14 @@ class BottomDrawerWidget extends StatefulWidget {
 class BottomDrawerState extends State<BottomDrawerWidget>
     with TickerProviderStateMixin {
   MovieDetailEntity movieDetailEntity;
-  final GlobalKey bodyFooterKey = GlobalKey();
-  double bodyFooterPositionYInScreen;
   double drawerOffset;
   double lastDrawerOffset;
   double initDrawerOffset;
   AnimationController offsetAnimalController;
   Animation<double> offsetAnimation;
-  double bodyFooterVisibleThreshold = 0.0;
   double bodyScrollOffset = 0.0;
-  double bodyScrollDy = 0.0;
   double drawerScrollOffset = 0.0;
-  double drawerScrollDy = 0.0;
-  double bodyFooterHeight;
-  bool drawerObsorting = false;
   bool isDrawerMoving = false;
-  double tempBodyScrollOffset;
   ScrollController bodyScrollController;
 
   BottomDrawerState(this.movieDetailEntity, this.bodyScrollController);
@@ -222,38 +212,7 @@ class BottomDrawerState extends State<BottomDrawerWidget>
         vsync: this, duration: const Duration(milliseconds: 200));
     initDrawerOffset = drawerOffset = lastDrawerOffset =
         ScreenUtil.height - ScreenUtil.navigationBarHeight - kToolbarHeight;
-    bodyFooterVisibleThreshold = ScreenUtil.height - kToolbarHeight;
-    bodyFooterHeight = initDrawerOffset + kToolbarHeight;
-    bodyScrollController.addListener(() {
-      bodyScrollDy = bodyScrollController.offset - bodyScrollOffset;
-      if (bodyFooterKey.currentContext != null &&
-          bodyFooterKey.currentContext.findRenderObject() != null) {
-        bodyFooterPositionYInScreen = bodyFooterKey.currentContext
-            .findRenderObject()
-            .getTransformTo(null)
-            .getTranslation()
-            .y;
-
-//        debugPrint(
-//            "scrollDy:${bodyScrollDy},bodyScrollOffset=${bodyScrollController.offset}"
-//                ",drawerOffset=${drawerOffset},initDrawerOffset=${initDrawerOffset}"
-//                ",bodyFooterVisibleThreshold=${bodyFooterVisibleThreshold}"
-//                ",bodyFooterPositionYInScreen=${bodyFooterPositionYInScreen}");
-
-        if (bodyFooterVisibleThreshold - bodyFooterPositionYInScreen > 0 &&
-            !isDrawerMoving) {
-          bodyFooterPositionYInScreen -= bodyScrollDy;
-          //container显示在屏幕
-          updateDrawerOffset(
-              bodyFooterPositionYInScreen - ScreenUtil.navigationBarHeight);
-        } else {
-          if (drawerOffset != initDrawerOffset && !isDrawerMoving) {
-            updateDrawerOffset(initDrawerOffset);
-          }
-        }
-        bodyScrollOffset = bodyScrollController.offset;
-      }
-    });
+    bodyScrollController.addListener(() {});
   }
 
   void updateDrawerOffset(double offset) {
@@ -272,19 +231,6 @@ class BottomDrawerState extends State<BottomDrawerWidget>
       lastDrawerOffset = drawerOffset;
       needRefreshUi = true;
     }
-    if (drawerOffset == 0) {
-      if (drawerObsorting) {
-        debugPrint("-------------------------恢复滑动");
-        drawerObsorting = false;
-        needRefreshUi = true;
-      }
-    } else {
-      if (!drawerObsorting) {
-        debugPrint("--------------------------拦截");
-        drawerObsorting = true;
-        needRefreshUi = true;
-      }
-    }
 
     if (needRefreshUi) {
       debugPrint("---------drawerOffset:${drawerOffset}");
@@ -295,7 +241,6 @@ class BottomDrawerState extends State<BottomDrawerWidget>
 
   @override
   Widget build(BuildContext context) {
-    //debugPrint("!!!!!!!BottomDrawerState build done ");
 
     return Stack(children: <Widget>[
       _buildBody(),
@@ -310,47 +255,17 @@ class BottomDrawerState extends State<BottomDrawerWidget>
   }
 
   Widget _buildBody() {
-    return ListView(
-      cacheExtent: 3000,
-      controller: bodyScrollController,
-      children: <Widget>[
-        MovieDetailHeader(movieDetailEntity),
-        MovieDetailRatingWidget(movieDetailEntity),
-        MovieDetailTag(movieDetailEntity),
-        MovieDetailPlot(movieDetailEntity),
-        MovieDetailCastWidget(movieDetailEntity),
-        MovieDetailStills(movieDetailEntity),
-        MovieDetailCommend(movieDetailEntity),
-        Container(
-          key: bodyFooterKey,
-          height: bodyFooterHeight,
-        )
-      ],
-    );
-  }
+    return Listener(
+//        onPointerMove: (event) {
+//          if(!isDrawerMoving && drawerOffset < initDrawerOffset) {
+//            double newDrawerOffset =
+//                drawerOffset + event.delta.dy;
+//            updateDrawerOffset(newDrawerOffset);
+//          }
+//        },
 
-  Widget _buildDrawer() {
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: Listener(
-        onPointerDown: (event) {
-          tempBodyScrollOffset = bodyScrollController.offset;
-        },
-        onPointerMove: (event) {
-          isDrawerMoving = true;
-          if (event.delta.dy != 0 && drawerOffset <= initDrawerOffset) {
-            double newDrawerOffset = drawerOffset + event.delta.dy;
-            updateDrawerOffset(newDrawerOffset);
-
-            if (bodyFooterVisibleThreshold - bodyFooterPositionYInScreen > 0) {
-              tempBodyScrollOffset = tempBodyScrollOffset - event.delta.dy;
-              bodyScrollController.jumpTo(tempBodyScrollOffset);
-            }
-          }
-        },
         onPointerUp: (event) {
-          isDrawerMoving = false;
-          if (bodyFooterPositionYInScreen > bodyFooterVisibleThreshold) {
+          if(!isDrawerMoving && drawerOffset < initDrawerOffset) {
             double start = drawerOffset;
             double end = 0;
             if (drawerOffset >= initDrawerOffset / 2) {
@@ -363,9 +278,6 @@ class BottomDrawerState extends State<BottomDrawerWidget>
             //debugPrint('--------start:${start},end:${end}');
             offsetAnimation = Tween(begin: start, end: end).animate(curve)
               ..addListener(() {
-//                drawerOffset = offsetAnimation.value;
-//                //debugPrint('--------drawerOffset:${drawerOffset}');
-//                setState(() {});
                 updateDrawerOffset(offsetAnimation.value);
               });
 
@@ -373,11 +285,68 @@ class BottomDrawerState extends State<BottomDrawerWidget>
             offsetAnimalController.forward();
           }
         },
+        child: NotificationListener<OverscrollNotification>(
+            onNotification: (OverscrollNotification notification) {
+              //body到达边界,并且向上滑动
+              if (notification.dragDetails != null) {
+                debugPrint(
+                    "------------notification.dragDetails:${notification.dragDetails.delta.dy}");
+                if (notification.dragDetails.delta.dy < 0) {
+                  double newDrawerOffset =
+                      drawerOffset + notification.dragDetails.delta.dy;
+                  updateDrawerOffset(newDrawerOffset);
+                }
+              }
+              return false;
+            },
+            child: ListView(
+              controller: bodyScrollController,
+              children: <Widget>[
+                MovieDetailHeader(movieDetailEntity),
+                MovieDetailRatingWidget(movieDetailEntity),
+                MovieDetailTag(movieDetailEntity),
+                MovieDetailPlot(movieDetailEntity),
+                MovieDetailCastWidget(movieDetailEntity),
+                MovieDetailStills(movieDetailEntity),
+                MovieDetailCommend(movieDetailEntity),
+              ],
+            )));
+  }
+
+  Widget _buildDrawer() {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Listener(
+        onPointerMove: (event) {
+          isDrawerMoving = true;
+          if (drawerScrollOffset == 0 && event.delta.dy != 0 && drawerOffset <= initDrawerOffset) {
+            double newDrawerOffset = drawerOffset + event.delta.dy;
+            updateDrawerOffset(newDrawerOffset);
+          }
+        },
+        onPointerUp: (event) {
+          isDrawerMoving = false;
+          double start = drawerOffset;
+          double end = 0;
+          if (drawerOffset >= initDrawerOffset / 2) {
+            //drawer张开高度小于一半
+            end = initDrawerOffset;
+          }
+          offsetAnimalController.reset();
+          final CurvedAnimation curve = CurvedAnimation(
+              parent: offsetAnimalController, curve: Curves.easeOut);
+          //debugPrint('--------start:${start},end:${end}');
+          offsetAnimation = Tween(begin: start, end: end).animate(curve)
+            ..addListener(() {
+              updateDrawerOffset(offsetAnimation.value);
+            });
+
+          ///自己滚动
+          offsetAnimalController.forward();
+        },
         child: Transform.translate(
           offset: Offset(0.0, drawerOffset),
-          child: AbsorbPointer(
-              absorbing: drawerObsorting,
-              child: Column(
+          child: Column(
                 children: <Widget>[
                   Container(
                       width: ScreenUtil.width,
@@ -412,12 +381,14 @@ class BottomDrawerState extends State<BottomDrawerWidget>
                         ],
                       )),
                   Expanded(
-                    child: MovieReviewsWidget(movieDetailEntity.id),
+                    child: MovieReviewsWidget(movieDetailEntity.id, (offset) {
+                      debugPrint('drawerScrollOffset=${drawerScrollOffset}');
+                      drawerScrollOffset = offset;
+                    }),
                   )
                 ],
               )),
         ),
-      ),
     );
   }
 }

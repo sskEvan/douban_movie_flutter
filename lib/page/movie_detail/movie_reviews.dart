@@ -17,19 +17,32 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class MovieReviewsWidget extends StatefulWidget {
   var movieId;
+  DrawerScrollListener scrollListener;
 
-  MovieReviewsWidget(this.movieId);
+  MovieReviewsWidget(this.movieId, this.scrollListener);
 
   @override
   State<StatefulWidget> createState() {
-    return MovieReviewsState(movieId);
+    return MovieReviewsState(movieId, scrollListener);
   }
 }
 
 class MovieReviewsState extends State<MovieReviewsWidget> {
   var movieId;
+  DrawerScrollListener scrollListener;
+  ScrollController scrollController;
+  MovieReviewsState(this.movieId, this.scrollListener);
 
-  MovieReviewsState(this.movieId);
+  @override
+  void initState() {
+    super.initState();
+    scrollController = new ScrollController();
+    scrollController.addListener(() {
+      if(scrollListener != null) {
+        scrollListener(scrollController.offset);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +78,7 @@ class MovieReviewsState extends State<MovieReviewsWidget> {
           onLoading: provider.loadMore,
           enablePullUp: true,
           child: ListView.builder(
+              controller: scrollController,
               addRepaintBoundaries: true,
               itemCount: provider.list.length,
               itemBuilder: (BuildContext context, int index) {
@@ -176,3 +190,6 @@ class MovieReviewsState extends State<MovieReviewsWidget> {
     );
   }
 }
+
+typedef DrawerScrollListener = void Function(double offset);
+
