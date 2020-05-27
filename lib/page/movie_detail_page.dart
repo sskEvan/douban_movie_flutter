@@ -202,6 +202,7 @@ class BottomDrawerState extends State<BottomDrawerWidget>
   double drawerScrollOffset = 0.0;
   bool isDrawerMoving = false;
   ScrollController bodyScrollController;
+  bool isDownInDrawerHeader = false;
 
   BottomDrawerState(this.movieDetailEntity, this.bodyScrollController);
 
@@ -317,15 +318,20 @@ class BottomDrawerState extends State<BottomDrawerWidget>
     return Align(
       alignment: Alignment.bottomCenter,
       child: Listener(
+        onPointerDown: (event) {
+          isDownInDrawerHeader = event.localPosition.dy <= (drawerOffset + kToolbarHeight);
+          debugPrint("onPointerDown isDownInDrawerHeader:${isDownInDrawerHeader},localPosition.dy:${event.localPosition.dy},drawerOffset=${drawerOffset}");
+        },
         onPointerMove: (event) {
           isDrawerMoving = true;
-          if (drawerScrollOffset == 0 && event.delta.dy != 0 && drawerOffset <= initDrawerOffset) {
+          if (isDownInDrawerHeader || (drawerScrollOffset == 0 && event.delta.dy != 0 && drawerOffset <= initDrawerOffset)) {
             double newDrawerOffset = drawerOffset + event.delta.dy;
             updateDrawerOffset(newDrawerOffset);
           }
         },
         onPointerUp: (event) {
           isDrawerMoving = false;
+          isDownInDrawerHeader = false;
           double start = drawerOffset;
           double end = 0;
           if (drawerOffset >= initDrawerOffset / 2) {

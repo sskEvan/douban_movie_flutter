@@ -17,6 +17,7 @@ import 'package:douban_movie_flutter/page/movie_detail/movie_review_detail.dart'
 import 'package:douban_movie_flutter/page/movie_detail_page.dart';
 import 'package:douban_movie_flutter/page/movie_detail_page2.dart';
 import 'package:douban_movie_flutter/page/movie_still_page.dart';
+import 'package:douban_movie_flutter/page/movie_trailer_page.dart';
 import 'package:douban_movie_flutter/page/projection_page.dart';
 import 'package:douban_movie_flutter/page/splash.dart';
 import 'package:douban_movie_flutter/page/stills_detail_page.dart';
@@ -39,6 +40,8 @@ class RouteName {
   static const String movieStillsDetail = 'movieStillsDetail';
   static const String movieCommend = 'movieCommend';
   static const String movieReviewDetail = 'movieReviewDetail';
+  static const String movieTrailersPage = 'movieTrailersPage';
+
 }
 
 class Router {
@@ -87,6 +90,10 @@ class Router {
       case RouteName.movieReviewDetail:
         MovieReviewsReview movieReviewsReview = settings.arguments;
         return VerticalSlideRouteBuilder(MovieReviewDetailPage(movieReviewsReview));
+        break;
+      case RouteName.movieTrailersPage:
+        MovieDetailTrailer movieDetailTrailer = settings.arguments;
+        return VerticalSlideRouteBuilder(MovieTrailerPage(movieDetailTrailer));
         break;
     }
   }

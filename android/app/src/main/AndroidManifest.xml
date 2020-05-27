@@ -15,8 +15,9 @@
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="douban_movie_flutter"
-        android:icon="@mipmap/ic_launcher">
-        <activity
+        android:icon="@mipmap/ic_launcher"
+        android:networkSecurityConfig="@xml/network_security_config">
+    <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
