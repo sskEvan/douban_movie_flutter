@@ -68,7 +68,6 @@ class MovieDetailState extends State<MovieDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         appBar: AppBar(
           title: buildTitleBar(),
@@ -242,11 +241,19 @@ class BottomDrawerState extends State<BottomDrawerWidget>
 
   @override
   Widget build(BuildContext context) {
-
-    return Stack(children: <Widget>[
-      _buildBody(),
-      _buildDrawer(),
-    ]);
+    return new WillPopScope(
+      child: Stack(children: <Widget>[
+        _buildBody(),
+        _buildDrawer(),
+      ]),
+      onWillPop: () async {
+        if (drawerOffset == 0) {
+          doDrawAnim(0.0, initDrawerOffset);
+          return false;
+        }
+        return true;
+      },
+    );
   }
 
   @override
@@ -266,24 +273,15 @@ class BottomDrawerState extends State<BottomDrawerWidget>
 //        },
 
         onPointerUp: (event) {
-          if(!isDrawerMoving && drawerOffset < initDrawerOffset) {
+          if (!isDrawerMoving && drawerOffset < initDrawerOffset) {
+            debugPrint("onPointerUp...drawerOffset=${initDrawerOffset}");
             double start = drawerOffset;
-            double end = 0;
+            double end = 0.0;
             if (drawerOffset >= initDrawerOffset / 2) {
               //drawer张开高度小于一半
               end = initDrawerOffset;
             }
-            offsetAnimalController.reset();
-            final CurvedAnimation curve = CurvedAnimation(
-                parent: offsetAnimalController, curve: Curves.easeOut);
-            //debugPrint('--------start:${start},end:${end}');
-            offsetAnimation = Tween(begin: start, end: end).animate(curve)
-              ..addListener(() {
-                updateDrawerOffset(offsetAnimation.value);
-              });
-
-            ///自己滚动
-            offsetAnimalController.forward();
+            doDrawAnim(start, end);
           }
         },
         child: NotificationListener<OverscrollNotification>(
@@ -314,17 +312,35 @@ class BottomDrawerState extends State<BottomDrawerWidget>
             )));
   }
 
+  void doDrawAnim(double start, double end) {
+    offsetAnimalController.reset();
+    final CurvedAnimation curve = CurvedAnimation(
+        parent: offsetAnimalController, curve: Curves.easeOut);
+    offsetAnimation = Tween(begin: start, end: end).animate(curve)
+      ..addListener(() {
+        updateDrawerOffset(offsetAnimation.value);
+      });
+
+    ///自己滚动
+    offsetAnimalController.forward();
+  }
+
   Widget _buildDrawer() {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Listener(
         onPointerDown: (event) {
-          isDownInDrawerHeader = event.localPosition.dy <= (drawerOffset + kToolbarHeight);
-          debugPrint("onPointerDown isDownInDrawerHeader:${isDownInDrawerHeader},localPosition.dy:${event.localPosition.dy},drawerOffset=${drawerOffset}");
+          isDownInDrawerHeader =
+              event.localPosition.dy <= (drawerOffset + kToolbarHeight);
+          debugPrint(
+              "onPointerDown isDownInDrawerHeader:${isDownInDrawerHeader},localPosition.dy:${event.localPosition.dy},drawerOffset=${drawerOffset}");
         },
         onPointerMove: (event) {
           isDrawerMoving = true;
-          if (isDownInDrawerHeader || (drawerScrollOffset == 0 && event.delta.dy != 0 && drawerOffset <= initDrawerOffset)) {
+          if (isDownInDrawerHeader ||
+              (drawerScrollOffset == 0 &&
+                  event.delta.dy != 0 &&
+                  drawerOffset <= initDrawerOffset)) {
             double newDrawerOffset = drawerOffset + event.delta.dy;
             updateDrawerOffset(newDrawerOffset);
           }
@@ -338,63 +354,65 @@ class BottomDrawerState extends State<BottomDrawerWidget>
             //drawer张开高度小于一半
             end = initDrawerOffset;
           }
-          offsetAnimalController.reset();
-          final CurvedAnimation curve = CurvedAnimation(
-              parent: offsetAnimalController, curve: Curves.easeOut);
-          //debugPrint('--------start:${start},end:${end}');
-          offsetAnimation = Tween(begin: start, end: end).animate(curve)
-            ..addListener(() {
-              updateDrawerOffset(offsetAnimation.value);
-            });
-
-          ///自己滚动
-          offsetAnimalController.forward();
+          doDrawAnim(start, end);
+//          offsetAnimalController.reset();
+//          final CurvedAnimation curve = CurvedAnimation(
+//              parent: offsetAnimalController, curve: Curves.easeOut);
+//          debugPrint('--------start:${start},end:${end}');
+//          offsetAnimation = Tween(begin: start, end: end).animate(curve)
+//            ..addListener(() {
+//              debugPrint('--------offsetAnimation.value:${offsetAnimation.value}');
+//              updateDrawerOffset(offsetAnimation.value);
+//            });
+//
+//          ///自己滚动
+//          offsetAnimalController.forward();
         },
         child: Transform.translate(
-          offset: Offset(0.0, drawerOffset),
-          child: Column(
-                children: <Widget>[
-                  Container(
-                      width: ScreenUtil.width,
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFFAFAFA),
-                        borderRadius: BorderRadius.only(
-                            topLeft: const Radius.circular(10.0),
-                            topRight: const Radius.circular(10.0)),
-                      ),
-                      height: kToolbarHeight,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          Container(
-                            width: 50,
-                            height: 6,
-                            decoration: BoxDecoration(
-                              color: Colors.black26,
-                              borderRadius: BorderRadius.circular(3),
-                            ),
+            offset: Offset(0.0, drawerOffset),
+            child: Column(
+              children: <Widget>[
+                Container(
+                    width: ScreenUtil.width,
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFFAFAFA),
+                      borderRadius: BorderRadius.only(
+                          topLeft: const Radius.circular(10.0),
+                          topRight: const Radius.circular(10.0)),
+                    ),
+                    height: kToolbarHeight,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Container(
+                          width: 50,
+                          height: 6,
+                          decoration: BoxDecoration(
+                            color: Colors.black26,
+                            borderRadius: BorderRadius.circular(3),
                           ),
-                          GestureDetector(
-                            behavior: HitTestBehavior.translucent,
-                            child: Text(
-                              '影评',
-                              style: TextStyle(
-                                  color: Colors.black45, fontSize: 16),
-                            ),
+                        ),
+                        GestureDetector(
+                          behavior: HitTestBehavior.translucent,
+                          child: Text(
+                            '影评',
+                            style:
+                                TextStyle(color: Colors.black45, fontSize: 16),
                           ),
-                          //Divider(height: 14, color: Color(0x66cccccc)),
-                        ],
-                      )),
-                  Expanded(
-                    child: MovieReviewsWidget(movieDetailEntity.id, (offset) {
-                      debugPrint('drawerScrollOffset=${drawerScrollOffset}');
-                      drawerScrollOffset = offset;
-                    }),
-                  )
-                ],
-              )),
-        ),
+                        ),
+                        //Divider(height: 14, color: Color(0x66cccccc)),
+                      ],
+                    )),
+                Expanded(
+                  child: MovieReviewsWidget(movieDetailEntity.id, (offset) {
+                    debugPrint('drawerScrollOffset=${drawerScrollOffset}');
+                    drawerScrollOffset = offset;
+                  }),
+                )
+              ],
+            )),
+      ),
     );
   }
 }
