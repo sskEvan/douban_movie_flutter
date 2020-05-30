@@ -8,14 +8,13 @@ class CommonEmptyWidget extends StatelessWidget {
   final VoidCallback onPressed;
   final String message;
 
-  CommonEmptyWidget(
-      {Key key, this.onPressed, this.message})
-      : super(key: key);
+  CommonEmptyWidget({Key key, this.onPressed, this.message}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 40),
+      color: Colors.white,
+      padding: EdgeInsets.symmetric(vertical: 40),
       child: Align(
         alignment: Alignment(0.0, -0.3),
         child: Column(
@@ -38,9 +37,8 @@ class CommonEmptyWidget extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                 child: Text(
                   DouBanLocalizations.of(context).refresh,
-                  style: TextStyle(
-                      fontSize: 16
-                  ),),
+                  style: TextStyle(fontSize: 16),
+                ),
                 onPressed: onPressed,
                 textColor: Theme.of(context).primaryColor,
                 borderSide: BorderSide(

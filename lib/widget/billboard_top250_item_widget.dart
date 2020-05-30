@@ -1,5 +1,6 @@
 import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/movie.dart';
+import 'package:douban_movie_flutter/model/movie_item_vo.dart';
 import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
@@ -13,13 +14,13 @@ import 'dotted_line_widget.dart';
 import 'skeleton.dart';
 
 class BillboardTop250ItemWidget extends StatelessWidget {
-  final MovieSubject movieSubject;
+  final MovieItemVo movieItemVo;
 
   var contentWidth;
   var contentHeight;
 
-  BillboardTop250ItemWidget({this.movieSubject})
-      : super(key: ValueKey(movieSubject.id));
+  BillboardTop250ItemWidget({this.movieItemVo})
+      : super(key: ValueKey(movieItemVo.id));
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class BillboardTop250ItemWidget extends StatelessWidget {
 
     return InkWell(
         onTap: () {
-          Navigator.pushNamed(context, RouteName.movieDetail, arguments: movieSubject.id);
+          Navigator.pushNamed(context, RouteName.movieDetail, arguments: movieItemVo.id);
         },
         child:  Container(
           padding: EdgeInsets.all(5),
@@ -48,7 +49,7 @@ class BillboardTop250ItemWidget extends StatelessWidget {
       width: contentWidth,
       height: contentHeight - 25,
       child: CacheImageWidget(
-        url: movieSubject.images.small,
+        url: movieItemVo.images.small,
         radius: 5,
       ),
     );
@@ -56,7 +57,7 @@ class BillboardTop250ItemWidget extends StatelessWidget {
 
   Widget _buildMovieTitle() {
     return Text(
-      movieSubject.title,
+      movieItemVo.title,
       style: TextStyle(
           color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),
       overflow: TextOverflow.ellipsis,
@@ -65,16 +66,16 @@ class BillboardTop250ItemWidget extends StatelessWidget {
   }
 
   Widget _buildMovieScore(BuildContext context) {
-    if (movieSubject.rating.average > 0) {
+    if (movieItemVo.rating.average > 0) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           StaticRatingBar(
-            rate: movieSubject.rating.average / 2,
+            rate: movieItemVo.rating.average / 2,
             size: 13,
           ),
           SizedBox(width: 5),
-          Text('${movieSubject.rating.average}',
+          Text('${movieItemVo.rating.average}',
               style: TextStyle(color: Colors.black45, fontSize: 13))
         ],
       );

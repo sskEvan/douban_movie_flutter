@@ -1,3 +1,4 @@
+import 'package:douban_movie_flutter/model/movie_photo_detail_vo.dart';
 import 'package:douban_movie_flutter/model/movie_stills_entity.dart';
 import 'package:douban_movie_flutter/provider/movie_stills_provider.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
@@ -19,15 +20,13 @@ class MovieStillPage extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return MovieStillState(movieId, totalPhotoCount);
+    return MovieStillState();
   }
 }
 
 class MovieStillState extends State<MovieStillPage> {
-  String movieId;
-  int totalPhotoCount;
 
-  MovieStillState(this.movieId, this.totalPhotoCount);
+  MovieStillState();
 
   @override
   Widget build(BuildContext context) {
@@ -49,34 +48,34 @@ class MovieStillState extends State<MovieStillPage> {
             body: ViewStateWidget<MovieStillsProvider>(
               provider: MovieStillsProvider(context),
               onProviderReady: (provider) async {
-                await provider.initData([movieId, totalPhotoCount]);
+                await provider.initData([widget.movieId, widget.totalPhotoCount]);
               },
               builder: (context, MovieStillsProvider provider, child) {
                 if (provider.isBusy) {
                   return CommonLoadingWidget();
                 } else if (provider.isEmpty) {
                   return CommonEmptyWidget(
-                      onPressed: provider.initData([movieId, totalPhotoCount]));
+                      onPressed: provider.initData([widget.movieId, widget.totalPhotoCount]));
                 } else if (provider.isError) {
                   return CommonErrorWidget(
                       error: provider.viewStateError,
-                      onPressed: provider.initData([movieId, totalPhotoCount]));
+                      onPressed: provider.initData([widget.movieId, widget.totalPhotoCount]));
                 }
 
                 return GridView.builder(
                       physics: BouncingScrollPhysics(),
-                      itemCount: provider.movieStillsEntity.photos.length,
+                      itemCount: provider.moviePhotoDetailListVo.photos.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 3, //横轴三个子widget
                           childAspectRatio: 1,
                           mainAxisSpacing: 3,
                           crossAxisSpacing: 3),
                       itemBuilder: (context, index) {
-                        MovieStillsPhoto item = provider.movieStillsEntity.photos[index];
+                        PhotoDetailInfo item = provider.moviePhotoDetailListVo.photos[index];
                         return InkWell(
                           onTap: () {
                             Navigator.of(context).pushNamed(RouteName.movieStillsDetail,
-                                arguments: [provider.movieStillsEntity.photos, index, provider.movieStillsEntity.photos.length]);
+                                arguments: [provider.moviePhotoDetailListVo.photos, index, provider.moviePhotoDetailListVo.photos.length]);
                           },
                           child: Hero(
                             tag: 'hero' + item.id ,

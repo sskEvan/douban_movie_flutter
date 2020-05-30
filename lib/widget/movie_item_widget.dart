@@ -1,5 +1,8 @@
 import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/movie.dart';
+import 'package:douban_movie_flutter/model/movie_cast_vo.dart';
+import 'package:douban_movie_flutter/model/movie_director_vo.dart';
+import 'package:douban_movie_flutter/model/movie_item_vo.dart';
 import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
@@ -13,7 +16,7 @@ import 'dotted_line_widget.dart';
 import 'skeleton.dart';
 
 class MovieItemWidget extends StatelessWidget {
-  final MovieSubject movieSubject;
+  final MovieItemVo movieItemVo;
   final bool isShowing;
   final bool showIndexNumber;
   final int index;
@@ -24,14 +27,14 @@ class MovieItemWidget extends StatelessWidget {
       this.showIndexNumber,
       this.index,
       this.showMovieSynopsis,
-      this.movieSubject})
-      : super(key: ValueKey(movieSubject.id));
+      this.movieItemVo})
+      : super(key: ValueKey(movieItemVo.id));
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
         onTap: () {
-          Navigator.of(context).pushNamed(RouteName.movieDetail, arguments: movieSubject.id);
+          Navigator.of(context).pushNamed(RouteName.movieDetail, arguments: movieItemVo.id);
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,7 +90,7 @@ class MovieItemWidget extends StatelessWidget {
       width: 90,
       height: 120,
       child: CacheImageWidget(
-        url: movieSubject.images.small,
+        url: movieItemVo.images.small,
         radius: 5,
       ),
     );
@@ -122,7 +125,7 @@ class MovieItemWidget extends StatelessWidget {
 
   Widget _buildMovieTitle() {
     return Text(
-      movieSubject.title,
+      movieItemVo.title,
       style: TextStyle(
           color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
       overflow: TextOverflow.ellipsis,
@@ -131,15 +134,15 @@ class MovieItemWidget extends StatelessWidget {
   }
 
   Widget _buildMovieScore(BuildContext context) {
-    if (movieSubject.rating.average > 0) {
+    if (movieItemVo.rating.average > 0) {
       return Row(
         children: <Widget>[
           StaticRatingBar(
-            rate: movieSubject.rating.average / 2,
+            rate: movieItemVo.rating.average / 2,
             size: 13,
           ),
           SizedBox(width: 5),
-          Text('${movieSubject.rating.average}',
+          Text('${movieItemVo.rating.average}',
               style: TextStyle(color: Colors.black45, fontSize: 13))
         ],
       );
@@ -151,8 +154,8 @@ class MovieItemWidget extends StatelessWidget {
 
   Widget _buildMovieTag() {
     return Text(
-      '${movieSubject.year} / ${_genres2String(movieSubject.genres)} /${_durings2String(movieSubject.durations)} '
-      '/${_directors2String(movieSubject.directors)} /${_cases2String(movieSubject.casts)}',
+      '${movieItemVo.year} / ${_genres2String(movieItemVo.genres)} /${_durings2String(movieItemVo.durations)} '
+      '/${_directors2String(movieItemVo.directors)} /${_cases2String(movieItemVo.casts)}',
       style: TextStyle(color: Colors.black45, fontSize: 13),
       overflow: TextOverflow.ellipsis,
       maxLines: 4,
@@ -170,9 +173,8 @@ class MovieItemWidget extends StatelessWidget {
             InkWell(
               splashColor: Colors.redAccent,
               onTap: () {
-                print('------------------------点击购票');
                 showToast(
-                  '购票:${movieSubject.title}',
+                  '购票:${movieItemVo.title}',
                   context: context,
                 );
               },
@@ -193,7 +195,7 @@ class MovieItemWidget extends StatelessWidget {
             ),
             SizedBox(height: 8),
             Text(
-              '${StringUtil.friendlyCount(movieSubject.collectCount)}${DouBanLocalizations.of(context).seen}',
+              '${StringUtil.friendlyCount(movieItemVo.collectCount)}${DouBanLocalizations.of(context).seen}',
               style: TextStyle(color: Colors.black45, fontSize: 12),
             ),
           ],
@@ -214,7 +216,7 @@ class MovieItemWidget extends StatelessWidget {
             ),
             SizedBox(height: 8),
             Text(
-              '${StringUtil.friendlyCount(movieSubject.collectCount)}${DouBanLocalizations.of(context).want_to_see}',
+              '${StringUtil.friendlyCount(movieItemVo.collectCount)}${DouBanLocalizations.of(context).want_to_see}',
               style: TextStyle(color: Colors.black45, fontSize: 12),
             ),
           ],
@@ -231,7 +233,7 @@ class MovieItemWidget extends StatelessWidget {
     return sb.toString();
   }
 
-  String _cases2String(List<MovieSubjectsCast> casts) {
+  String _cases2String(List<CastVo> casts) {
     StringBuffer sb = new StringBuffer();
     casts.forEach((it) {
       sb.write(' ${it.name} ');
@@ -239,7 +241,7 @@ class MovieItemWidget extends StatelessWidget {
     return sb.toString();
   }
 
-  String _directors2String(List<MovieSubjectsDirector> directors) {
+  String _directors2String(List<DirectorVo> directors) {
     StringBuffer sb = new StringBuffer();
     directors.forEach((it) {
       sb.write(' ${it.name} ');

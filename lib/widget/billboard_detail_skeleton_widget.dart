@@ -1,7 +1,7 @@
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
-import 'movie_skeleton_item_widget.dart';
+import 'skeleton/movie_item_skeleton.dart';
 import 'skeleton.dart';
 
 class BillboardDetailSkeletonWidget extends StatelessWidget {
@@ -36,7 +36,7 @@ class BillboardDetailSkeletonWidget extends StatelessWidget {
                 Column(
                   children:  List.generate(6, (index) {
                     return Container(
-                      child: MovieSkeletonItemWidget(showIndexNumber: true),
+                      child: MovieItemSkeleton(showIndexNumber: true),
                     );
                   }),
                 ),

@@ -1,3 +1,4 @@
+import 'package:douban_movie_flutter/model/movie_photo_detail_vo.dart';
 import 'package:douban_movie_flutter/model/movie_stills_entity.dart';
 import 'package:douban_movie_flutter/provider/view_state_common_provider.dart';
 import 'package:douban_movie_flutter/provider/view_state_refresh_list_provider.dart';
@@ -6,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 
 class MovieStillsProvider extends ViewStateCommonProvider {
 
-  MovieStillsEntity movieStillsEntity;
+  MoviePhotoDetailListVo moviePhotoDetailListVo;
 
   MovieStillsProvider(BuildContext context) : super(context);
 
@@ -15,8 +16,8 @@ class MovieStillsProvider extends ViewStateCommonProvider {
     List arg = arguments;
     String movieId = arg[0];
     int totalPhotoCount = arg[1];
-    movieStillsEntity =  await DouBanMovieRepository.getMovieStillsList(movieId: movieId, count: totalPhotoCount, start: 0);
-    return movieStillsEntity;
+    moviePhotoDetailListVo =  await DouBanMovieRepository.getMoviePhotoDetailListVo(movieId: movieId, count: totalPhotoCount, start: 0);
+    return moviePhotoDetailListVo;
   }
 
 }

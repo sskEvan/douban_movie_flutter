@@ -1,7 +1,11 @@
+import 'package:douban_movie_flutter/model/movie_item_vo.dart';
 import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/model/new_movie_entity.dart';
+import 'package:douban_movie_flutter/model/new_movie_vo.dart';
 import 'package:douban_movie_flutter/model/usbox_movie_entity.dart';
+import 'package:douban_movie_flutter/model/usbox_movie_vo.dart';
 import 'package:douban_movie_flutter/model/weekly_movie_entity.dart';
+import 'package:douban_movie_flutter/model/weekly_movie_vo.dart';
 import 'package:douban_movie_flutter/provider/view_state_refresh_list_provider.dart';
 import 'package:douban_movie_flutter/service/net/douban_movie_repository.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
@@ -9,7 +13,7 @@ import 'package:flutter/src/widgets/framework.dart';
 
 class BillboardProvider extends ViewStateRefreshListProvider {
 
-  List<MovieSubject> top250MovieSubjects;
+  List<MovieItemVo> top250MovieItemVos;
 
   BillboardBannerEntity weeklyBannerEntity;
   BillboardBannerEntity newMovieBannerEntity;
@@ -20,40 +24,39 @@ class BillboardProvider extends ViewStateRefreshListProvider {
   @override
   Future<List> loadData({Object arguments, int pageSize, int pageNum}) async {
     List<Future> futures = [];
-    futures.add(DouBanMovieRepository.getTop250MovieList());
-    futures.add(DouBanMovieRepository.getWeeklyMovieEntity());
-    futures.add(DouBanMovieRepository.getNewMovieEntity());
-    futures.add(DouBanMovieRepository.getUsBoxMovieEntity());
+    futures.add(DouBanMovieRepository.getTop250MovieItemList());
+    futures.add(DouBanMovieRepository.getWeeklyMovieVo());
+    futures.add(DouBanMovieRepository.getNewMovieVo());
+    futures.add(DouBanMovieRepository.getUsBoxMovieVo());
 
     var result = await Future.wait(futures);
-    top250MovieSubjects = result[0];
-    WeeklyMovieEntity weeklyMovieEntity = result[1];
-    NewMovieEntity newMovieEntity = result[2];
-    UsboxMovieEntity usboxMovieEntity = result[3];
+    top250MovieItemVos = result[0];
+    WeeklyMovieVo weeklyMovieVo = result[1];
+    NewMovieVo newMovieVo = result[2];
+    UsBoxMovieVo usboxMovieVo = result[3];
 
-    var weeklyMovieSubjects = <MovieSubject>[];
-    weeklyMovieEntity.subjects.forEach((it) {
-      weeklyMovieSubjects.add(it.subject);
+    var weeklyMovieItemVos = <MovieItemVo>[];
+    weeklyMovieVo.weeklyMovieItems.forEach((it) {
+      weeklyMovieItemVos.add(it.movieItemVo);
     });
-    List<MovieSubject> newMovieSubjects = newMovieEntity.subjects;
-    var usboxMovieSubjects = <MovieSubject>[];
-    usboxMovieEntity.subjects.forEach((it) {
-      usboxMovieSubjects.add(it.subject);
+    var usboxMovieItemVos = <MovieItemVo>[];
+    usboxMovieVo.usboxMovieItems.forEach((it) {
+      usboxMovieItemVos.add(it.movieItemVo);
     });
 
     weeklyBannerEntity = BillboardBannerEntity(
-        title: weeklyMovieEntity.title,
-        movieSubjects: weeklyMovieSubjects,
+        title: weeklyMovieVo.title,
+        movieItemVos: weeklyMovieItemVos,
         routerName: RouteName.billboardWeekly);
 
     newMovieBannerEntity = BillboardBannerEntity(
-        title: usboxMovieEntity.title,
-        movieSubjects: newMovieSubjects,
+        title: usboxMovieVo.title,
+        movieItemVos: newMovieVo.movieItems,
         routerName: RouteName.billboardUsBox);
 
     usboxBannerEntity = BillboardBannerEntity(
-        title: newMovieEntity.title,
-        movieSubjects: usboxMovieSubjects,
+        title: newMovieVo.title,
+        movieItemVos: usboxMovieItemVos,
         routerName: RouteName.billboardNewMovies);
 
     return result[0];
@@ -63,8 +66,8 @@ class BillboardProvider extends ViewStateRefreshListProvider {
 
 class BillboardBannerEntity {
   final String title;
-  final List<MovieSubject> movieSubjects;
+  final List<MovieItemVo> movieItemVos;
   final String routerName;
 
-  BillboardBannerEntity({this.title, this.movieSubjects, this.routerName});
+  BillboardBannerEntity({this.title, this.movieItemVos, this.routerName});
 }

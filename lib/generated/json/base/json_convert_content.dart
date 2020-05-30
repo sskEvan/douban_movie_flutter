@@ -83,8 +83,8 @@ class JsonConvert<T> {
 			return movieStillsSubjectDirectorsAvatarsFromJson(data as MovieStillsSubjectDirectorsAvatars, json) as T;			case MovieStillsSubjectImages:
 			return movieStillsSubjectImagesFromJson(data as MovieStillsSubjectImages, json) as T;			case NewMovieEntity:
 			return newMovieEntityFromJson(data as NewMovieEntity, json) as T;			case DioErrorEntity:
-			return dioErrorEntityFromJson(data as DioErrorEntity, json) as T;			case MovieDetailEntity:
-			return movieDetailEntityFromJson(data as MovieDetailEntity, json) as T;			case MovieDetailRating:
+			return dioErrorEntityFromJson(data as DioErrorEntity, json) as T;			case MovieDetailVo:
+			return movieDetailEntityFromJson(data as MovieDetailVo, json) as T;			case MovieDetailRating:
 			return movieDetailRatingFromJson(data as MovieDetailRating, json) as T;			case MovieDetailRatingDetails:
 			return movieDetailRatingDetailsFromJson(data as MovieDetailRatingDetails, json) as T;			case MovieDetailVideo:
 			return movieDetailVideoFromJson(data as MovieDetailVideo, json) as T;			case MovieDetailVideosSource:
@@ -160,8 +160,8 @@ class JsonConvert<T> {
 			return movieStillsSubjectDirectorsAvatarsToJson(data as MovieStillsSubjectDirectorsAvatars);			case MovieStillsSubjectImages:
 			return movieStillsSubjectImagesToJson(data as MovieStillsSubjectImages);			case NewMovieEntity:
 			return newMovieEntityToJson(data as NewMovieEntity);			case DioErrorEntity:
-			return dioErrorEntityToJson(data as DioErrorEntity);			case MovieDetailEntity:
-			return movieDetailEntityToJson(data as MovieDetailEntity);			case MovieDetailRating:
+			return dioErrorEntityToJson(data as DioErrorEntity);			case MovieDetailVo:
+			return movieDetailEntityToJson(data as MovieDetailVo);			case MovieDetailRating:
 			return movieDetailRatingToJson(data as MovieDetailRating);			case MovieDetailRatingDetails:
 			return movieDetailRatingDetailsToJson(data as MovieDetailRatingDetails);			case MovieDetailVideo:
 			return movieDetailVideoToJson(data as MovieDetailVideo);			case MovieDetailVideosSource:
@@ -238,7 +238,7 @@ class JsonConvert<T> {
 			return MovieStillsSubjectImages().fromJson(json);			case 'NewMovieEntity':
 			return NewMovieEntity().fromJson(json);			case 'DioErrorEntity':
 			return DioErrorEntity().fromJson(json);			case 'MovieDetailEntity':
-			return MovieDetailEntity().fromJson(json);			case 'MovieDetailRating':
+			return MovieDetailVo().fromJson(json);			case 'MovieDetailRating':
 			return MovieDetailRating().fromJson(json);			case 'MovieDetailRatingDetails':
 			return MovieDetailRatingDetails().fromJson(json);			case 'MovieDetailVideo':
 			return MovieDetailVideo().fromJson(json);			case 'MovieDetailVideosSource':
@@ -316,7 +316,7 @@ class JsonConvert<T> {
 			return List<MovieStillsSubjectImages>();			case 'NewMovieEntity':
 			return List<NewMovieEntity>();			case 'DioErrorEntity':
 			return List<DioErrorEntity>();			case 'MovieDetailEntity':
-			return List<MovieDetailEntity>();			case 'MovieDetailRating':
+			return List<MovieDetailVo>();			case 'MovieDetailRating':
 			return List<MovieDetailRating>();			case 'MovieDetailRatingDetails':
 			return List<MovieDetailRatingDetails>();			case 'MovieDetailVideo':
 			return List<MovieDetailVideo>();			case 'MovieDetailVideosSource':

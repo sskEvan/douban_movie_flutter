@@ -9,7 +9,7 @@ class BillboardWeeklyMovieProvider extends ViewStateRefreshListProvider {
 
   @override
   Future<List> loadData({Object arguments, int pageSize, int pageNum}) async {
-    return await DouBanMovieRepository.getWeeklyMovieList(count: pageSize, start: pageSize * pageNum);
+    return await DouBanMovieRepository.getWeeklyMovieItemList(count: pageSize, start: pageSize * pageNum);
   }
 
 

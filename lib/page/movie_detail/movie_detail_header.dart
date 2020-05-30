@@ -1,4 +1,6 @@
-import 'package:douban_movie_flutter/model/movie_detail_entity.dart';
+import 'package:douban_movie_flutter/model/movie_cast_vo.dart';
+import 'package:douban_movie_flutter/model/movie_detail_vo.dart';
+import 'package:douban_movie_flutter/model/movie_director_vo.dart';
 import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,9 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 
 class MovieDetailHeader extends StatelessWidget {
-  MovieDetailEntity movieDetailEntity;
+  MovieDetailVo movieDetailVo;
 
-  MovieDetailHeader(this.movieDetailEntity);
+  MovieDetailHeader(this.movieDetailVo);
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +36,14 @@ class MovieDetailHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Text(
-            movieDetailEntity.title,
+            movieDetailVo.title,
             style: TextStyle(
                 color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
           ),
           Text(
-            movieDetailEntity.originalTitle,
+            movieDetailVo.originalTitle,
             style: TextStyle(
                 color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
             overflow: TextOverflow.ellipsis,
@@ -49,8 +51,8 @@ class MovieDetailHeader extends StatelessWidget {
           ),
           SizedBox(height: 5),
           Text(
-            '${movieDetailEntity.year} / ${_genres2String(movieDetailEntity.genres)} /${_durings2String(movieDetailEntity.durations)} '
-                '/${_directors2String(movieDetailEntity.directors)} /${_cases2String(movieDetailEntity.casts)}',
+            '${movieDetailVo.year} / ${_genres2String(movieDetailVo.genres)} /${_durings2String(movieDetailVo.durations)} '
+                '/${_directors2String(movieDetailVo.directors)} /${_cases2String(movieDetailVo.casts)}',
             style: TextStyle(color: Colors.white, fontSize: 13),
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
@@ -106,7 +108,7 @@ class MovieDetailHeader extends StatelessWidget {
       width: 100,
       height: 130,
       child: CacheImageWidget(
-        url: movieDetailEntity.images.small,
+        url: movieDetailVo.images.small,
         radius: 5,
       ),
     );
@@ -120,7 +122,7 @@ class MovieDetailHeader extends StatelessWidget {
     return sb.toString();
   }
 
-  String _cases2String(List<MovieDetailCast> casts) {
+  String _cases2String(List<CastVo> casts) {
     StringBuffer sb = new StringBuffer();
     casts.forEach((it) {
       sb.write(' ${it.name} ');
@@ -128,7 +130,7 @@ class MovieDetailHeader extends StatelessWidget {
     return sb.toString();
   }
 
-  String _directors2String(List<MovieDetailDirector> directors) {
+  String _directors2String(List<DirectorVo> directors) {
     StringBuffer sb = new StringBuffer();
     directors.forEach((it) {
       sb.write(' ${it.name} ');

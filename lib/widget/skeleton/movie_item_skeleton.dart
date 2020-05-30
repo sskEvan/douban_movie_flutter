@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'skeleton.dart';
+import '../skeleton.dart';
 
-class MovieSkeletonItemWidget extends StatelessWidget {
+class MovieItemSkeleton extends StatelessWidget {
   var isDark;
   final bool showIndexNumber;
 
-  MovieSkeletonItemWidget({this.showIndexNumber});
+  MovieItemSkeleton({this.showIndexNumber});
 
   @override
   Widget build(BuildContext context) {

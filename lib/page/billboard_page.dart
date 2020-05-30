@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:douban_movie_flutter/i10n/localization_intl.dart';
+import 'package:douban_movie_flutter/model/movie_item_vo.dart';
 import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/provider/billboard_provider.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
@@ -57,18 +58,18 @@ class BillboardState extends State<BillboardPage>
                       Navigator.of(context).pushNamed(RouteName.billboardTop250);
                     },
                   ),
-                  _buildTop250GridView(context, provider.top250MovieSubjects),
+                  _buildTop250GridView(context, provider.top250MovieItemVos),
                   BillboardSection(
                       title: DouBanLocalizations.of(context).other_billboard),
                   _buildOtherBillboardBaners(context, <Widget>[
                     BillboardBanner(title: provider.weeklyBannerEntity.title,
-                        movieSubjects: provider.weeklyBannerEntity.movieSubjects,
+                        movieItemVos: provider.weeklyBannerEntity.movieItemVos,
                         routerName: provider.weeklyBannerEntity.routerName),
                     BillboardBanner(title: provider.newMovieBannerEntity.title,
-                        movieSubjects: provider.newMovieBannerEntity.movieSubjects,
+                        movieItemVos: provider.newMovieBannerEntity.movieItemVos,
                         routerName: provider.newMovieBannerEntity.routerName),
                     BillboardBanner(title: provider.usboxBannerEntity.title,
-                        movieSubjects: provider.usboxBannerEntity.movieSubjects,
+                        movieItemVos: provider.usboxBannerEntity.movieItemVos,
                         routerName: provider.usboxBannerEntity.routerName),
                   ])
                 ],
@@ -93,8 +94,8 @@ class BillboardState extends State<BillboardPage>
             childAspectRatio: 0.65,
           ),
           itemBuilder: (context, index) {
-            MovieSubject item = data[index];
-            return BillboardTop250ItemWidget(movieSubject: item);
+            MovieItemVo item = data[index];
+            return BillboardTop250ItemWidget(movieItemVo: item);
           }),
     );
   }

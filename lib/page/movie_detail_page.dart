@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:douban_movie_flutter/model/movie_detail_entity.dart';
+import 'package:douban_movie_flutter/model/movie_detail_vo.dart';
 import 'package:douban_movie_flutter/provider/movie_detail_provider.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
@@ -38,7 +38,7 @@ bool offstageTitle;
 class MovieDetailState extends State<MovieDetailPage> {
   final String movieId;
   Color pageColor = Colors.white;
-  MovieDetailEntity movieDetailEntity;
+  MovieDetailVo movieDetailVo;
   ScrollController bodyScrollController;
 
   MovieDetailState(this.movieId);
@@ -74,12 +74,12 @@ class MovieDetailState extends State<MovieDetailPage> {
           backgroundColor: pageColor,
         ),
         backgroundColor: pageColor,
-        body: ViewStateWidget<MovieDetailProvider>(
-          provider: MovieDetailProvider(context),
+        body: ViewStateWidget<MovieDetailVoProvider>(
+          provider: MovieDetailVoProvider(context),
           onProviderReady: (provider) async {
             await provider.initData(movieId);
           },
-          builder: (context, MovieDetailProvider provider, child) {
+          builder: (context, MovieDetailVoProvider provider, child) {
             if (provider.isBusy) {
               return MovieDetailSkeleton();
             } else if (provider.isEmpty) {
@@ -89,10 +89,10 @@ class MovieDetailState extends State<MovieDetailPage> {
                   error: provider.viewStateError,
                   onPressed: provider.initData(movieId));
             }
-            movieDetailEntity = provider.movieDetailEntity;
-            fetchPageColor(provider.movieDetailEntity.images.small);
+            movieDetailVo = provider.movieDetailVo;
+            fetchPageColor(provider.movieDetailVo.images.small);
 
-            return BottomDrawerWidget(movieDetailEntity, bodyScrollController);
+            return BottomDrawerWidget(movieDetailVo, bodyScrollController);
           },
         ));
   }
@@ -119,8 +119,8 @@ class MovieDetailState extends State<MovieDetailPage> {
                     width: 27,
                     height: 35,
                     child: CacheImageWidget(
-                      url: movieDetailEntity != null
-                          ? movieDetailEntity.images.small
+                      url: movieDetailVo != null
+                          ? movieDetailVo.images.small
                           : '',
                       radius: 2,
                     ),
@@ -130,7 +130,7 @@ class MovieDetailState extends State<MovieDetailPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        '${movieDetailEntity != null ? movieDetailEntity.title : ''}',
+                        '${movieDetailVo != null ? movieDetailVo.title : ''}',
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 14,
@@ -140,8 +140,8 @@ class MovieDetailState extends State<MovieDetailPage> {
                         height: 5,
                       ),
                       StaticRatingBar(
-                        rate: movieDetailEntity != null
-                            ? movieDetailEntity.rating.average / 2
+                        rate: movieDetailVo != null
+                            ? movieDetailVo.rating.average / 2
                             : 0,
                         size: 12,
                       ),
@@ -178,20 +178,19 @@ class MovieDetailState extends State<MovieDetailPage> {
 }
 
 class BottomDrawerWidget extends StatefulWidget {
-  MovieDetailEntity movieDetailEntity;
+  MovieDetailVo movieDetailVo;
   ScrollController bodyScrollController;
 
-  BottomDrawerWidget(this.movieDetailEntity, this.bodyScrollController);
+  BottomDrawerWidget(this.movieDetailVo, this.bodyScrollController);
 
   @override
   State<StatefulWidget> createState() {
-    return BottomDrawerState(movieDetailEntity, bodyScrollController);
+    return BottomDrawerState();
   }
 }
 
 class BottomDrawerState extends State<BottomDrawerWidget>
     with TickerProviderStateMixin {
-  MovieDetailEntity movieDetailEntity;
   double drawerOffset;
   double lastDrawerOffset;
   double initDrawerOffset;
@@ -200,10 +199,9 @@ class BottomDrawerState extends State<BottomDrawerWidget>
   double bodyScrollOffset = 0.0;
   double drawerScrollOffset = 0.0;
   bool isDrawerMoving = false;
-  ScrollController bodyScrollController;
   bool isDownInDrawerHeader = false;
 
-  BottomDrawerState(this.movieDetailEntity, this.bodyScrollController);
+  BottomDrawerState();
 
   @override
   void initState() {
@@ -212,7 +210,7 @@ class BottomDrawerState extends State<BottomDrawerWidget>
         vsync: this, duration: const Duration(milliseconds: 200));
     initDrawerOffset = drawerOffset = lastDrawerOffset =
         ScreenUtil.height - ScreenUtil.navigationBarHeight - kToolbarHeight;
-    bodyScrollController.addListener(() {});
+    widget.bodyScrollController.addListener(() {});
   }
 
   void updateDrawerOffset(double offset) {
@@ -248,7 +246,7 @@ class BottomDrawerState extends State<BottomDrawerWidget>
       ]),
       onWillPop: () async {
         if (drawerOffset == 0) {
-          doDrawAnim(0.0, initDrawerOffset);
+          doDrawerAnim(0.0, initDrawerOffset);
           return false;
         }
         return true;
@@ -258,20 +256,12 @@ class BottomDrawerState extends State<BottomDrawerWidget>
 
   @override
   void dispose() {
-    bodyScrollController.dispose();
+    widget.bodyScrollController.dispose();
     super.dispose();
   }
 
   Widget _buildBody() {
     return Listener(
-//        onPointerMove: (event) {
-//          if(!isDrawerMoving && drawerOffset < initDrawerOffset) {
-//            double newDrawerOffset =
-//                drawerOffset + event.delta.dy;
-//            updateDrawerOffset(newDrawerOffset);
-//          }
-//        },
-
         onPointerUp: (event) {
           if (!isDrawerMoving && drawerOffset < initDrawerOffset) {
             debugPrint("onPointerUp...drawerOffset=${initDrawerOffset}");
@@ -281,7 +271,7 @@ class BottomDrawerState extends State<BottomDrawerWidget>
               //drawer张开高度小于一半
               end = initDrawerOffset;
             }
-            doDrawAnim(start, end);
+            doDrawerAnim(start, end);
           }
         },
         child: NotificationListener<OverscrollNotification>(
@@ -299,20 +289,20 @@ class BottomDrawerState extends State<BottomDrawerWidget>
               return false;
             },
             child: ListView(
-              controller: bodyScrollController,
+              controller: widget.bodyScrollController,
               children: <Widget>[
-                MovieDetailHeader(movieDetailEntity),
-                MovieDetailRatingWidget(movieDetailEntity),
-                MovieDetailTag(movieDetailEntity),
-                MovieDetailPlot(movieDetailEntity),
-                MovieDetailCastWidget(movieDetailEntity),
-                MovieDetailStills(movieDetailEntity),
-                MovieDetailCommend(movieDetailEntity),
+                MovieDetailHeader(widget.movieDetailVo),
+                MovieDetailRatingWidget(widget.movieDetailVo),
+                MovieDetailTag(widget.movieDetailVo),
+                MovieDetailPlot(widget.movieDetailVo),
+                MovieDetailCastWidget(widget.movieDetailVo),
+                MovieDetailStills(widget.movieDetailVo),
+                MovieDetailCommend(widget.movieDetailVo),
               ],
             )));
   }
 
-  void doDrawAnim(double start, double end) {
+  void doDrawerAnim(double start, double end) {
     offsetAnimalController.reset();
     final CurvedAnimation curve = CurvedAnimation(
         parent: offsetAnimalController, curve: Curves.easeOut);
@@ -354,19 +344,7 @@ class BottomDrawerState extends State<BottomDrawerWidget>
             //drawer张开高度小于一半
             end = initDrawerOffset;
           }
-          doDrawAnim(start, end);
-//          offsetAnimalController.reset();
-//          final CurvedAnimation curve = CurvedAnimation(
-//              parent: offsetAnimalController, curve: Curves.easeOut);
-//          debugPrint('--------start:${start},end:${end}');
-//          offsetAnimation = Tween(begin: start, end: end).animate(curve)
-//            ..addListener(() {
-//              debugPrint('--------offsetAnimation.value:${offsetAnimation.value}');
-//              updateDrawerOffset(offsetAnimation.value);
-//            });
-//
-//          ///自己滚动
-//          offsetAnimalController.forward();
+          doDrawerAnim(start, end);
         },
         child: Transform.translate(
             offset: Offset(0.0, drawerOffset),
@@ -405,7 +383,7 @@ class BottomDrawerState extends State<BottomDrawerWidget>
                       ],
                     )),
                 Expanded(
-                  child: MovieReviewsWidget(movieDetailEntity.id, (offset) {
+                  child: MovieReviewsWidget(widget.movieDetailVo.id , (offset) {
                     debugPrint('drawerScrollOffset=${drawerScrollOffset}');
                     drawerScrollOffset = offset;
                   }),

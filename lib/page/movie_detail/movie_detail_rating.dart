@@ -1,4 +1,4 @@
-import 'package:douban_movie_flutter/model/movie_detail_entity.dart';
+import 'package:douban_movie_flutter/model/movie_detail_vo.dart';
 import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/utils/string_util.dart';
@@ -7,18 +7,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MovieDetailRatingWidget extends StatelessWidget {
-  MovieDetailEntity movieDetailEntity;
+  MovieDetailVo movieDetailVo;
   var totalRatingCount;
 
-  MovieDetailRatingWidget(this.movieDetailEntity);
+  MovieDetailRatingWidget(this.movieDetailVo);
 
   @override
   Widget build(BuildContext context) {
-    totalRatingCount = movieDetailEntity.rating.details.i1 +
-        movieDetailEntity.rating.details.i2 +
-        movieDetailEntity.rating.details.i3 +
-        movieDetailEntity.rating.details.i4 +
-        movieDetailEntity.rating.details.i5;
+    totalRatingCount = movieDetailVo.rating.details.i1 +
+        movieDetailVo.rating.details.i2 +
+        movieDetailVo.rating.details.i3 +
+        movieDetailVo.rating.details.i4 +
+        movieDetailVo.rating.details.i5;
 
     return Container(
         padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
@@ -45,7 +45,7 @@ class MovieDetailRatingWidget extends StatelessWidget {
                 Column(
                   children: <Widget>[
                     Text(
-                      '${movieDetailEntity.rating.average}',
+                      '${movieDetailVo.rating.average}',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 34,
@@ -53,7 +53,7 @@ class MovieDetailRatingWidget extends StatelessWidget {
                     ),
                     SizedBox(height: 5),
                     StaticRatingBar(
-                      rate: movieDetailEntity.rating.average / 2,
+                      rate: movieDetailVo.rating.average / 2,
                       size: 15,
                     ),
                   ],
@@ -80,8 +80,7 @@ class MovieDetailRatingWidget extends StatelessWidget {
                             width: 150,
                             height: 8,
                             child: LinearProgressIndicator(
-                              value: movieDetailEntity.rating.details.i5 /
-                                  totalRatingCount,
+                              value: totalRatingCount > 0 ? movieDetailVo.rating.details.i5 / totalRatingCount : 0,
                               backgroundColor: Color(0xAAFFFFFF),
                               valueColor: AlwaysStoppedAnimation<Color>(
                                   Color(0xFFD7B018)),
@@ -109,8 +108,7 @@ class MovieDetailRatingWidget extends StatelessWidget {
                             width: 150,
                             height: 8,
                             child: LinearProgressIndicator(
-                              value: movieDetailEntity.rating.details.i4 /
-                                  totalRatingCount,
+                              value: totalRatingCount > 0 ? movieDetailVo.rating.details.i4 / totalRatingCount : 0,
                               backgroundColor: Color(0xAAFFFFFF),
                               valueColor: AlwaysStoppedAnimation<Color>(
                                   Color(0xFFD7B018)),
@@ -136,8 +134,7 @@ class MovieDetailRatingWidget extends StatelessWidget {
                             width: 150,
                             height: 8,
                             child: LinearProgressIndicator(
-                              value: movieDetailEntity.rating.details.i3 /
-                                  totalRatingCount,
+                              value: totalRatingCount > 0 ? movieDetailVo.rating.details.i3 / totalRatingCount : 0,
                               backgroundColor: Color(0xAAFFFFFF),
                               valueColor: AlwaysStoppedAnimation<Color>(
                                   Color(0xFFD7B018)),
@@ -161,8 +158,7 @@ class MovieDetailRatingWidget extends StatelessWidget {
                             width: 150,
                             height: 8,
                             child: LinearProgressIndicator(
-                              value: movieDetailEntity.rating.details.i2 /
-                                  totalRatingCount,
+                              value: totalRatingCount > 0 ? movieDetailVo.rating.details.i2 / totalRatingCount : 0,
                               backgroundColor: Color(0xAAFFFFFF),
                               valueColor: AlwaysStoppedAnimation<Color>(
                                   Color(0xFFD7B018)),
@@ -184,8 +180,7 @@ class MovieDetailRatingWidget extends StatelessWidget {
                             width: 150,
                             height: 8,
                             child: LinearProgressIndicator(
-                              value: movieDetailEntity.rating.details.i1 /
-                                  totalRatingCount,
+                              value: totalRatingCount > 0 ? movieDetailVo.rating.details.i1 / totalRatingCount : 0,
                               backgroundColor: Color(0xAAFFFFFF),
                               valueColor: AlwaysStoppedAnimation<Color>(
                                   Color(0xFFD7B018)),
@@ -205,12 +200,12 @@ class MovieDetailRatingWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Text(
-                  '${StringUtil.friendlyCount(movieDetailEntity.wishCount)}想看',
+                  '${StringUtil.friendlyCount(movieDetailVo.wishCount)}想看',
                   style: TextStyle(color: Colors.white, fontSize: 12),
                 ),
                 SizedBox(width: 15),
                 Text(
-                  '${StringUtil.friendlyCount(movieDetailEntity.collectCount)}收藏',
+                  '${StringUtil.friendlyCount(movieDetailVo.collectCount)}收藏',
                   style: TextStyle(color: Colors.white, fontSize: 12),
                 ),
               ],

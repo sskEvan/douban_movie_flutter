@@ -1,4 +1,4 @@
-import 'package:douban_movie_flutter/model/movie_detail_entity.dart';
+import 'package:douban_movie_flutter/model/movie_detail_vo.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
@@ -8,22 +8,22 @@ import 'package:flutter/material.dart';
 import 'movie_detail_section.dart';
 
 class MovieDetailStills extends StatelessWidget {
-  MovieDetailEntity movieDetailEntity;
+  MovieDetailVo movieDetailVo;
 
-  MovieDetailStills(this.movieDetailEntity);
+  MovieDetailStills(this.movieDetailVo);
 
   @override
   Widget build(BuildContext context) {
     var itemWidth = (ScreenUtil.width - 60) / 4;
     var itemHeight = itemWidth * 4 / 3;
     var showTrailersItem = false;
-    if (movieDetailEntity.trailers != null &&
-        movieDetailEntity.trailers.length > 0) {
+    if (movieDetailVo.trailers != null &&
+        movieDetailVo.trailers.length > 0) {
       showTrailersItem = true;
     }
-    var maxTrailersItemsCount = movieDetailEntity.trailers.length > 3
+    var maxTrailersItemsCount = movieDetailVo.trailers.length > 3
         ? 3
-        : movieDetailEntity.trailers.length;
+        : movieDetailVo.trailers.length;
     return Container(
       padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
       child: Column(
@@ -34,8 +34,8 @@ class MovieDetailStills extends StatelessWidget {
               onAction: () {
                 Navigator.of(context).pushNamed(RouteName.movieStills,
                     arguments: [
-                      movieDetailEntity.id,
-                      movieDetailEntity.photosCount
+                      movieDetailVo.id,
+                      movieDetailVo.photosCount
                     ]);
               }),
           SizedBox(height: 6),
@@ -43,16 +43,16 @@ class MovieDetailStills extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: List.generate(
-                    movieDetailEntity.photosCount >= 10
+                    movieDetailVo.photosCount >= 10
                         ? 10
-                        : movieDetailEntity.photosCount, (index) {
+                        : movieDetailVo.photosCount, (index) {
                   if (showTrailersItem) {
                     if (index < maxTrailersItemsCount) {
                       return InkWell(
                         onTap: () {
                           Navigator.of(context).pushNamed(
                               RouteName.movieTrailersPage,
-                              arguments: movieDetailEntity.trailers[index]);
+                              arguments: movieDetailVo.trailers[index]);
                         },
                         child: Row(
                           children: <Widget>[
@@ -63,7 +63,7 @@ class MovieDetailStills extends StatelessWidget {
                                   alignment: Alignment.center,
                                   children: <Widget>[
                                     CacheImageWidget(
-                                      url: movieDetailEntity
+                                      url: movieDetailVo
                                           .trailers[index].medium,
                                       radius: 5,
                                     ),
@@ -87,8 +87,8 @@ class MovieDetailStills extends StatelessWidget {
                             width: itemWidth,
                             height: itemHeight,
                             child: CacheImageWidget(
-                              url: movieDetailEntity
-                                  .photos[index - maxTrailersItemsCount].cover,
+                              url: movieDetailVo
+                                  .photoes[index - maxTrailersItemsCount].cover,
                               radius: 5,
                             ),
                           ),
@@ -105,7 +105,7 @@ class MovieDetailStills extends StatelessWidget {
                           width: itemWidth,
                           height: itemHeight,
                           child: CacheImageWidget(
-                            url: movieDetailEntity.photos[index].cover,
+                            url: movieDetailVo.photoes[index].cover,
                             radius: 5,
                           ),
                         ),

@@ -1,6 +1,6 @@
 import 'package:douban_movie_flutter/model/movie_detail_entity.dart';
 
-movieDetailEntityFromJson(MovieDetailEntity data, Map<String, dynamic> json) {
+movieDetailEntityFromJson(MovieDetailVo data, Map<String, dynamic> json) {
 	if (json['rating'] != null) {
 		data.rating = new MovieDetailRating().fromJson(json['rating']);
 	}
@@ -184,7 +184,7 @@ movieDetailEntityFromJson(MovieDetailEntity data, Map<String, dynamic> json) {
 	return data;
 }
 
-Map<String, dynamic> movieDetailEntityToJson(MovieDetailEntity entity) {
+Map<String, dynamic> movieDetailEntityToJson(MovieDetailVo entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	if (entity.rating != null) {
 		data['rating'] = entity.rating.toJson();

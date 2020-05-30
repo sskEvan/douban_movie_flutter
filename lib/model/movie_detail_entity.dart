@@ -1,7 +1,7 @@
 import 'package:douban_movie_flutter/generated/json/base/json_convert_content.dart';
 import 'package:douban_movie_flutter/generated/json/base/json_filed.dart';
 
-class MovieDetailEntity with JsonConvert<MovieDetailEntity> {
+class MovieDetailVo with JsonConvert<MovieDetailVo> {
   MovieDetailRating rating;
   @JSONField(name: "reviews_count")
   int reviewsCount;

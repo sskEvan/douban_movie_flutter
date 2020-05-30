@@ -1,12 +1,12 @@
-import 'package:douban_movie_flutter/model/movie_detail_entity.dart';
+import 'package:douban_movie_flutter/model/movie_detail_vo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 
 class MovieDetailTag extends StatelessWidget {
-  MovieDetailEntity movieDetailEntity;
+  MovieDetailVo movieDetailVo;
 
-  MovieDetailTag(this.movieDetailEntity);
+  MovieDetailTag(this.movieDetailVo);
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +23,8 @@ class MovieDetailTag extends StatelessWidget {
             ),
             SizedBox(width: 10),
             Row(
-              children: List.generate(movieDetailEntity.tags.length, (index) {
-                return _buildTagWidget(context, movieDetailEntity.tags[index]);
+              children: List.generate(movieDetailVo.tags.length, (index) {
+                return _buildTagWidget(context, movieDetailVo.tags[index]);
               }),
             )
           ],

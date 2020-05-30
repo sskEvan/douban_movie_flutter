@@ -9,7 +9,7 @@ class BillboardTop250Provider extends ViewStateRefreshListProvider {
 
   @override
   Future<List> loadData({Object arguments, int pageSize, int pageNum}) async {
-    return await DouBanMovieRepository.getTop250MovieList(count: pageSize, start: pageSize * pageNum);
+    return await DouBanMovieRepository.getTop250MovieItemList(count: pageSize, start: pageSize * pageNum);
   }
 
 

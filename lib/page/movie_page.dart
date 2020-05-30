@@ -1,12 +1,8 @@
-import 'package:douban_movie_flutter/model/movie.dart';
-import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/provider/movie_list_provider.dart';
-import 'package:douban_movie_flutter/provider/view_state_refresh_list_provider.dart';
-import 'package:douban_movie_flutter/service/net/douban_movie_repository.dart';
 import 'package:douban_movie_flutter/widget/common_empty_widget.dart';
 import 'package:douban_movie_flutter/widget/common_error_widget.dart';
 import 'package:douban_movie_flutter/widget/movie_item_widget.dart';
-import 'package:douban_movie_flutter/widget/movie_skeleton_item_widget.dart';
+import 'package:douban_movie_flutter/widget/skeleton/movie_item_skeleton.dart';
 import 'package:douban_movie_flutter/widget/skeleton.dart';
 import 'package:douban_movie_flutter/widget/view_state_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -19,26 +15,24 @@ class MoviePage extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return MovieState(isShowing);
+    return MovieState();
   }
 }
 
 class MovieState extends State<MoviePage> with AutomaticKeepAliveClientMixin {
-  final bool isShowing;
-
-  MovieState(this.isShowing);
-
   @override
   Widget build(BuildContext context) {
-    return ViewStateWidget<MovieListProvider>(
-        provider: MovieListProvider(context, isShowing: isShowing),
+    return ViewStateWidget<MovieItemListProvider>(
+        provider: MovieItemListProvider(context, isShowing: widget.isShowing),
         onProviderReady: (provider) async {
           await provider.initData();
         },
-        builder: (context, MovieListProvider provider, child) {
+        builder: (context, MovieItemListProvider provider, child) {
           if (provider.isBusy) {
             return SkeletonList(
-              builder: (context, index) => MovieSkeletonItemWidget(showIndexNumber: false,),
+              builder: (context, index) => MovieItemSkeleton(
+                showIndexNumber: false,
+              ),
             );
           } else if (provider.isEmpty) {
             return CommonEmptyWidget(onPressed: provider.initData);
@@ -56,8 +50,11 @@ class MovieState extends State<MoviePage> with AutomaticKeepAliveClientMixin {
             child: ListView.builder(
                 itemCount: provider.list.length,
                 itemBuilder: (context, index) {
-                  MovieSubject item = provider.list[index];
-                  return MovieItemWidget(isShowing: isShowing, showIndexNumber: false, index: index, movieSubject: item);
+                  return MovieItemWidget(
+                      isShowing: widget.isShowing,
+                      showIndexNumber: false,
+                      index: index,
+                      movieItemVo: provider.list[index]);
                 }),
           );
         });

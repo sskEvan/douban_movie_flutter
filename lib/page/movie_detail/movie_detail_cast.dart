@@ -1,4 +1,5 @@
-import 'package:douban_movie_flutter/model/movie_detail_entity.dart';
+import 'package:douban_movie_flutter/model/movie_cast_vo.dart';
+import 'package:douban_movie_flutter/model/movie_detail_vo.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,9 +7,9 @@ import 'package:flutter/cupertino.dart';
 import 'movie_detail_section.dart';
 
 class MovieDetailCastWidget extends StatelessWidget {
-  final MovieDetailEntity movieDetailEntity;
+  final MovieDetailVo movieDetailVo;
 
-  MovieDetailCastWidget(this.movieDetailEntity);
+  MovieDetailCastWidget(this.movieDetailVo);
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +25,10 @@ class MovieDetailCastWidget extends StatelessWidget {
               physics: NeverScrollableScrollPhysics(),
               child: Row(
                 children: List.generate(
-                    movieDetailEntity.casts.length >= 4
+                    movieDetailVo.casts.length >= 4
                         ? 4
-                        : movieDetailEntity.casts.length, (index) {
-                  return _buildCastImageItem(movieDetailEntity.casts[index]);
+                        : movieDetailVo.casts.length, (index) {
+                  return _buildCastImageItem(movieDetailVo.casts[index]);
                 }),
               ))
         ],
@@ -35,7 +36,7 @@ class MovieDetailCastWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildCastImageItem(MovieDetailCast movieDetailCast) {
+  Widget _buildCastImageItem(CastVo castVo) {
     var itemWidth = (ScreenUtil.width - 60) / 4;
     var itemHeight = itemWidth * 4 / 3;
 
@@ -47,7 +48,7 @@ class MovieDetailCastWidget extends StatelessWidget {
               width: itemWidth,
               height: itemHeight,
               child: CacheImageWidget(
-                url: movieDetailCast.avatars.small,
+                url: castVo.avatars.small,
                 radius: 5,
               ),
             ),
@@ -55,7 +56,7 @@ class MovieDetailCastWidget extends StatelessWidget {
             SizedBox(
               width: itemWidth,
               child: Text(
-                movieDetailCast.name,
+                castVo.name,
                 style: TextStyle(
                   color: Color(0xAAFFFFFF),
                   fontSize: 14,

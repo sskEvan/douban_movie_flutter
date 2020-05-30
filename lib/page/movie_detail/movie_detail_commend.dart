@@ -1,4 +1,5 @@
-import 'package:douban_movie_flutter/model/movie_detail_entity.dart';
+import 'package:douban_movie_flutter/model/movie_detail_vo.dart';
+import 'package:douban_movie_flutter/model/movie_popular_comment_vo.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:douban_movie_flutter/widget/expandable_text.dart';
@@ -9,9 +10,9 @@ import 'package:flutter/material.dart';
 import 'movie_detail_section.dart';
 
 class MovieDetailCommend extends StatelessWidget {
-  final MovieDetailEntity movieDetailEntity;
+  final MovieDetailVo movieDetailVo;
 
-  MovieDetailCommend(this.movieDetailEntity);
+  MovieDetailCommend(this.movieDetailVo);
 
   @override
   Widget build(BuildContext context) {
@@ -27,18 +28,18 @@ class MovieDetailCommend extends StatelessWidget {
         children: <Widget>[
           MovieDetailSection(
               title: '短评',
-              actionText: '全部${movieDetailEntity.commentsCount}',
+              actionText: '全部${movieDetailVo.commentsCount}',
           onAction: () {
-                Navigator.of(context).pushNamed(RouteName.movieCommend, arguments: movieDetailEntity.id);
+                Navigator.of(context).pushNamed(RouteName.movieCommend, arguments: movieDetailVo.id);
           },),
           SizedBox(height: 6),
           Column(
             children: List.generate(
-                movieDetailEntity.commentsCount >= 4
+                movieDetailVo.commentsCount >= 4
                     ? 4
-                    : movieDetailEntity.commentsCount, (index) {
+                    : movieDetailVo.commentsCount, (index) {
               return _buildCommendItem(
-                  movieDetailEntity.popularComments[index]);
+                  movieDetailVo.popularComments[index]);
             }),
           )
         ],
@@ -46,7 +47,7 @@ class MovieDetailCommend extends StatelessWidget {
     );
   }
 
-  Widget _buildCommendItem(MovieDetailPopularCommants popularCommant) {
+  Widget _buildCommendItem(PopularCommentVo popularCommentVo) {
     return Column(
       children: <Widget>[
         SizedBox(
@@ -58,7 +59,7 @@ class MovieDetailCommend extends StatelessWidget {
               width: 30,
               height: 30,
               child: CacheImageWidget(
-                url: popularCommant.author.avatar,
+                url: popularCommentVo.author.avatar,
                 radius: 15,
               ),
             ),
@@ -67,7 +68,7 @@ class MovieDetailCommend extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  popularCommant.author.name,
+                  popularCommentVo.author.name,
                   style: TextStyle(
                       fontSize: 14,
                       color: Colors.white,
@@ -75,7 +76,7 @@ class MovieDetailCommend extends StatelessWidget {
                 ),
                 SizedBox(height: 2),
                 StaticRatingBar(
-                  rate: popularCommant.rating.value / 2,
+                  rate: popularCommentVo.rating.value / 2,
                   size: 12,
                 ),
               ],
@@ -86,7 +87,7 @@ class MovieDetailCommend extends StatelessWidget {
           height: 10,
         ),
         ExpandableText(
-          text: popularCommant.content,
+          text: popularCommentVo.content,
           maxLines: 4,
           style: TextStyle(fontSize: 14, color: Colors.white),
         ),
@@ -104,7 +105,7 @@ class MovieDetailCommend extends StatelessWidget {
               width: 5,
             ),
             Text(
-              '${popularCommant.usefulCount}',
+              '${popularCommentVo.usefulCount}',
               style: TextStyle(fontSize: 12, color: Color(0xAAFFFFFF)),
             )
           ],

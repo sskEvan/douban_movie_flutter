@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:douban_movie_flutter/model/movie_item_vo.dart';
 import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/provider/billboard_new_movies_provider.dart';
 import 'package:douban_movie_flutter/provider/billboard_top250_provider.dart';
@@ -103,7 +104,7 @@ class BillboardDetailState<T extends ViewStateRefreshListProvider>
                           centerTitle: true,
                           collapseMode: CollapseMode.pin,
                           background: CacheImageWidget(
-                              url: (provider.list[0] as MovieSubject)
+                              url: (provider.list[0] as MovieItemVo)
                                   .images
                                   .large),
                         ),
@@ -125,7 +126,7 @@ class BillboardDetailState<T extends ViewStateRefreshListProvider>
                               isShowing: false,
                               showIndexNumber: true,
                               index: index,
-                              movieSubject: provider.list[index]),
+                              movieItemVo: provider.list[index]),
                           childCount: provider.list.length,
                         ),
                       ),

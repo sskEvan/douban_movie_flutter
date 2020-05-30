@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:douban_movie_flutter/model/movie_item_vo.dart';
 import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,10 +7,10 @@ import 'package:flutter/material.dart';
 
 class BillboardBanner extends StatelessWidget {
   final String title;
-  final List<MovieSubject> movieSubjects;
+  final List<MovieItemVo> movieItemVos;
   final String routerName;
 
-  BillboardBanner({this.title, this.movieSubjects, this.routerName});
+  BillboardBanner({this.title, this.movieItemVos, this.routerName});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class BillboardBanner extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: CachedNetworkImageProvider(
-                        movieSubjects[0].images.medium),
+                        movieItemVos[0].images.medium),
                     fit: BoxFit.cover,
                   ),
                   borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -63,7 +64,7 @@ class BillboardBanner extends StatelessWidget {
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
-                          return _buildMovieInfoItem(index, movieSubjects[index]);
+                          return _buildMovieInfoItem(index, movieItemVos[index]);
                         },
                         itemCount: 3),
                   )),
@@ -74,13 +75,13 @@ class BillboardBanner extends StatelessWidget {
     );
   }
 
-  Widget _buildMovieInfoItem(int index, MovieSubject movieSubject) {
+  Widget _buildMovieInfoItem(int index, MovieItemVo movieItemVo) {
     return Column(
       children: <Widget>[
         Row(
           children: <Widget>[
             Text(
-              '${index + 1}. ${movieSubject.title}',
+              '${index + 1}. ${movieItemVo.title}',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 14,
@@ -88,7 +89,7 @@ class BillboardBanner extends StatelessWidget {
             ),
             SizedBox(width: 15),
             Text(
-              '${movieSubject.rating.average}',
+              '${movieItemVo.rating.average}',
               style: TextStyle(
                 color: Color(0xFFD7B018),
                 fontSize: 14,

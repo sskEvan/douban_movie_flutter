@@ -129,7 +129,7 @@ class CountDownWidget extends AnimatedWidget {
       : super(key: key, listenable: animation) {
     this.animation.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        forwardHomePage(context);
+        _forwardIndexPage(context);
       }
     });
   }
@@ -140,7 +140,7 @@ class CountDownWidget extends AnimatedWidget {
 
     return InkWell(
       onTap: () {
-        forwardHomePage(context);
+        _forwardIndexPage(context);
       },
       child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
@@ -150,8 +150,9 @@ class CountDownWidget extends AnimatedWidget {
           )),
     );
   }
-}
 
-void forwardHomePage(context) {
-  Navigator.of(context).pushReplacementNamed(RouteName.index);
+  void _forwardIndexPage(context) {
+    Navigator.of(context).pushReplacementNamed(RouteName.index);
+  }
+
 }

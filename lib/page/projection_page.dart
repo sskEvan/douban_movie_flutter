@@ -12,19 +12,13 @@ class ProjectionPage extends StatefulWidget {
 class ProjectionState extends State<ProjectionPage>
     with TickerProviderStateMixin {
   var _tabs;
-
   var _tabController;
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     _tabs = [Tab(text: DouBanLocalizations.of(context).showing_projection),
       Tab(text: DouBanLocalizations.of(context).upcoming_projection)];
+
     _tabController = TabController(length: 2, vsync: this);
 
     return new Scaffold(
@@ -58,6 +52,12 @@ class ProjectionState extends State<ProjectionPage>
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 
 }

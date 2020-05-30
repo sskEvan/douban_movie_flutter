@@ -1,12 +1,12 @@
-import 'package:douban_movie_flutter/model/movie_detail_entity.dart';
+import 'package:douban_movie_flutter/model/movie_detail_vo.dart';
 import 'package:douban_movie_flutter/widget/expandable_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MovieDetailPlot extends StatelessWidget {
-  final MovieDetailEntity movieDetailEntity;
+  final MovieDetailVo movieDetailVo;
 
-  MovieDetailPlot(this.movieDetailEntity);
+  MovieDetailPlot(this.movieDetailVo);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class MovieDetailPlot extends StatelessWidget {
           ),
           SizedBox(height: 6),
           ExpandableText(
-            text: movieDetailEntity.summary,
+            text: movieDetailVo.summary,
             maxLines: 3,
             style: TextStyle(color: Colors.white, fontSize: 14),
             expand: false,

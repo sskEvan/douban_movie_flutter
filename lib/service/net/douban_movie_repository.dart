@@ -2,117 +2,117 @@ import 'dart:convert';
 
 import 'package:douban_movie_flutter/model/movie.dart';
 import 'package:douban_movie_flutter/model/movie_commend_entity.dart';
-import 'package:douban_movie_flutter/model/movie_detail_entity.dart';
+import 'package:douban_movie_flutter/model/movie_detail_vo.dart';
+import 'package:douban_movie_flutter/model/movie_item_vo.dart';
+import 'package:douban_movie_flutter/model/movie_photo_detail_vo.dart';
 import 'package:douban_movie_flutter/model/movie_reviews_entity.dart';
 import 'package:douban_movie_flutter/model/movie_stills_entity.dart';
 import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/model/new_movie_entity.dart';
+import 'package:douban_movie_flutter/model/new_movie_vo.dart';
+import 'package:douban_movie_flutter/model/showing_movie_vo.dart';
+import 'package:douban_movie_flutter/model/top250_movie_vo.dart';
+import 'package:douban_movie_flutter/model/upcoming_movie_vo.dart';
 import 'package:douban_movie_flutter/model/usbox_movie_entity.dart';
+import 'package:douban_movie_flutter/model/usbox_movie_vo.dart';
 import 'package:douban_movie_flutter/model/weekly_movie_entity.dart';
+import 'package:douban_movie_flutter/model/weekly_movie_item_vo.dart';
+import 'package:douban_movie_flutter/model/weekly_movie_vo.dart';
 import 'package:douban_movie_flutter/service/net/result_data.dart';
 
 import 'http_manager.dart';
 
 class DouBanMovieRepository {
-  static Future getShowingMovieList({int start, int count}) async {
+  static Future getShowingMovieItemList({int start, int count}) async {
     ResultData resultData = await HttpManager.getInstance()
         .get('in_theaters', queryParameters: {"start": start, 'count': count});
     Map movieMap = json.decode(resultData.data.toString());
-    var movie = new Movie().fromJson(movieMap);
-    return movie.subjects;
+    var showingMovieVo = ShowingMovieVo.fromJson(movieMap);
+    return showingMovieVo.movieItems;
   }
 
-  static Future getUpcomingMovieList({int start, int count}) async {
+  static Future getUpcomingMovieItemList({int start, int count}) async {
     ResultData resultData = await HttpManager.getInstance()
         .get('coming_soon', queryParameters: {"start": start, 'count': count});
     Map movieMap = json.decode(resultData.data.toString());
-    var movie = new Movie().fromJson(movieMap);
-    return movie.subjects;
+    var upcomingMovieVo = UpcomingMovieVo.fromJson(movieMap);
+    return upcomingMovieVo.movieItems;
   }
 
-  static Future getTop250MovieList({int start, int count}) async {
+  static Future getTop250MovieItemList({int start, int count}) async {
     ResultData resultData = await HttpManager.getInstance()
         .get('top250', queryParameters: {"start": start, 'count': count});
     Map movieMap = json.decode(resultData.data.toString());
-    var movie = new Movie().fromJson(movieMap);
-    return movie.subjects;
+    var top250MovieVo = Top250MovieVo.fromJson(movieMap);
+    return top250MovieVo.movieItems;
   }
 
-  static Future getWeeklyMovieEntity({int start, int count}) async {
+  static Future getWeeklyMovieVo({int start, int count}) async {
     ResultData resultData = await HttpManager.getInstance()
         .get('weekly', queryParameters: {"start": start, 'count': count});
     Map movieMap = json.decode(resultData.data.toString());
-    var movie = new WeeklyMovieEntity().fromJson(movieMap);
-//    return movie.subjects;
-    return movie;
+    return WeeklyMovieVo.fromJson(movieMap);
   }
 
-  static Future getUsBoxMovieEntity({int start, int count}) async {
+  static Future getUsBoxMovieVo({int start, int count}) async {
     ResultData resultData = await HttpManager.getInstance()
         .get('us_box', queryParameters: {"start": start, 'count': count});
     Map movieMap = json.decode(resultData.data.toString());
-    var movie = new UsboxMovieEntity().fromJson(movieMap);
-    return movie;
+    return UsBoxMovieVo.fromJson(movieMap);
   }
 
-  static Future getNewMovieEntity({int start, int count}) async {
+  static Future getNewMovieVo({int start, int count}) async {
     ResultData resultData = await HttpManager.getInstance()
         .get('new_movies', queryParameters: {"start": start, 'count': count});
     Map movieMap = json.decode(resultData.data.toString());
-    var movie = new NewMovieEntity().fromJson(movieMap);
-    return movie;
+    return NewMovieVo.fromJson(movieMap);
   }
 
-  static Future getWeeklyMovieList({int start, int count}) async {
+  static Future getWeeklyMovieItemList({int start, int count}) async {
     ResultData resultData = await HttpManager.getInstance()
         .get('weekly', queryParameters: {"start": start, 'count': count});
     Map movieMap = json.decode(resultData.data.toString());
-    var weeklyMovieEntity = new WeeklyMovieEntity().fromJson(movieMap);
-    var weeklyMovieSubjects = <MovieSubject>[];
-    weeklyMovieEntity.subjects.forEach((it) {
-      weeklyMovieSubjects.add(it.subject);
+    var weeklyMovieVo = WeeklyMovieVo.fromJson(movieMap);
+    var weeklyMovieItemVos = <MovieItemVo>[];
+    weeklyMovieVo.weeklyMovieItems.forEach((it) {
+      weeklyMovieItemVos.add(it.movieItemVo);
     });
-    return weeklyMovieSubjects;
+    return weeklyMovieItemVos;
   }
 
   static Future getUsBoxMovieList({int start, int count}) async {
     ResultData resultData = await HttpManager.getInstance()
         .get('us_box', queryParameters: {"start": start, 'count': count});
     Map movieMap = json.decode(resultData.data.toString());
-    var usboxMovieEntity = new UsboxMovieEntity().fromJson(movieMap);
-    var usboxMovieSubjects = <MovieSubject>[];
-    usboxMovieEntity.subjects.forEach((it) {
-      usboxMovieSubjects.add(it.subject);
+    var usboxMovieVo = UsBoxMovieVo.fromJson(movieMap);
+    var usboxMovieItemVos = <MovieItemVo>[];
+    usboxMovieVo.usboxMovieItems.forEach((it) {
+      usboxMovieItemVos.add(it.movieItemVo);
     });
-    return usboxMovieSubjects;
+    return usboxMovieItemVos;
   }
 
   static Future getNewMovieList({int start, int count}) async {
     ResultData resultData = await HttpManager.getInstance()
         .get('new_movies', queryParameters: {"start": start, 'count': count});
     Map movieMap = json.decode(resultData.data.toString());
-    var movie = new NewMovieEntity().fromJson(movieMap);
-    return movie.subjects;
+    var movie = NewMovieVo.fromJson(movieMap);
+    return movie.movieItems;
   }
 
-  static Future getMovieDetailEntity({String movieId}) async {
+  static Future getMovieDetailVo({String movieId}) async {
     ResultData resultData = await HttpManager.getInstance()
         .get('subject/${movieId}', queryParameters: null);
-    String tempResultData = resultData.data.toString().replaceAll('\"1\"', '\"i1\"')
-        .replaceAll('\"2\"', '\"i2\"')
-        .replaceAll('\"3\"', '\"i3\"')
-        .replaceAll('\"4\"', '\"i4\"')
-        .replaceAll('\"5\"', '\"i5\"');
-    Map movieMap = json.decode(tempResultData.toString());
-    var movieDetailEntity = new MovieDetailEntity().fromJson(movieMap);
-    return movieDetailEntity;
+    Map movieMap = json.decode(resultData.data.toString());
+    var movieDetailVo = MovieDetailVo.fromJson(movieMap);
+    return movieDetailVo;
   }
 
-  static Future getMovieStillsList({String movieId, int start, int count}) async {
+  static Future getMoviePhotoDetailListVo({String movieId, int start, int count}) async {
     ResultData resultData = await HttpManager.getInstance()
         .get('subject/${movieId}/photos', queryParameters: {"start": start, 'count': count});
     Map movieMap = json.decode(resultData.data.toString());
-    var movie = new MovieStillsEntity().fromJson(movieMap);
+    var movie = MoviePhotoDetailListVo.fromJson(movieMap);
     return movie;
   }
 
