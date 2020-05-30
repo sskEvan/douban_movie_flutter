@@ -2,15 +2,15 @@ import 'package:douban_movie_flutter/model/usbox_movie_item_vo.dart';
 
 import 'movie_item_vo.dart';
 
-class UsBoxMovieVo {
+class UsBoxMovieListVo {
   String title;
   String date;
   List<UsBoxMovieItemVo> usboxMovieItems;
 
 
-  UsBoxMovieVo(this.title, this.usboxMovieItems);
+  UsBoxMovieListVo(this.title, this.usboxMovieItems);
 
-  UsBoxMovieVo.fromJson(Map<String, dynamic> json) {
+  UsBoxMovieListVo.fromJson(Map<String, dynamic> json) {
     title = json['title'];
     date = json['date'];
     List<UsBoxMovieItemVo> usboxMovieItemData = [];

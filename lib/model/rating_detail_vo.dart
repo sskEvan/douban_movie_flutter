@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 
-class RatingVo {
+class RatingDetailVo {
   int max;
   double average;
   Details details;
   String stars;
   int min;
 
-  RatingVo({this.max, this.average, this.details, this.stars, this.min});
+  RatingDetailVo({this.max, this.average, this.details, this.stars, this.min});
 
-  RatingVo.fromJson(Map<String, dynamic> json) {
+  RatingDetailVo.fromJson(Map<String, dynamic> json) {
     if(json != null) {
       max = json['max'];
       var tempAverage = json['average'];

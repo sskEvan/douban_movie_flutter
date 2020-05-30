@@ -1,9 +1,7 @@
 import 'package:douban_movie_flutter/i10n/localization_intl.dart';
-import 'package:douban_movie_flutter/model/movie.dart';
-import 'package:douban_movie_flutter/model/movie_cast_vo.dart';
-import 'package:douban_movie_flutter/model/movie_director_vo.dart';
+import 'package:douban_movie_flutter/model/cast_vo.dart';
+import 'package:douban_movie_flutter/model/director_vo.dart';
 import 'package:douban_movie_flutter/model/movie_item_vo.dart';
-import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/utils/string_util.dart';

@@ -1,16 +1,16 @@
-import 'package:douban_movie_flutter/model/movie_clip_vo.dart';
-import 'package:douban_movie_flutter/model/movie_image_vo.dart';
+import 'package:douban_movie_flutter/model/clip_vo.dart';
+import 'package:douban_movie_flutter/model/image_vo.dart';
 
-import 'movie_blooper_vo.dart';
-import 'movie_cast_vo.dart';
-import 'movie_director_vo.dart';
-import 'movie_photo_vo.dart';
-import 'movie_popular_comment_vo.dart';
-import 'movie_popular_reviews_vo.dart';
-import 'movie_rating_vo.dart';
-import 'movie_trailer_vo.dart';
-import 'movie_video_vo.dart';
-import 'movie_writer_vo.dart';
+import 'blooper_vo.dart';
+import 'cast_vo.dart';
+import 'director_vo.dart';
+import 'photo_vo.dart';
+import 'popular_comment_vo.dart';
+import 'popular_reviews_vo.dart';
+import 'rating_detail_vo.dart';
+import 'trailer_vo.dart';
+import 'video_vo.dart';
+import 'writer_vo.dart';
 
 class MovieDetailVo {
   int reviewsCount;
@@ -49,7 +49,7 @@ class MovieDetailVo {
   String subtype;
   int commentsCount;
   int ratingsCount;
-  RatingVo rating;
+  RatingDetailVo rating;
   ImageVo images;
   List<String> aka;
   List<BlooperVo> bloopers;
@@ -152,7 +152,7 @@ class MovieDetailVo {
     commentsCount = json['comments_count'];
     ratingsCount = json['ratings_count'];
     aka = json['aka'].cast<String>();
-    rating = RatingVo.fromJson(json['rating']);
+    rating = RatingDetailVo.fromJson(json['rating']);
     images = ImageVo.fromJson(json['images']);
 
     List<BlooperVo> blooperData = [];

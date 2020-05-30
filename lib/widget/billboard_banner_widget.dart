@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:douban_movie_flutter/model/movie_item_vo.dart';
-import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

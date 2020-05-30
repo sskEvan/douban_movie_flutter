@@ -1,4 +1,3 @@
-import 'package:douban_movie_flutter/model/movie_detail_entity.dart';
 import 'package:douban_movie_flutter/provider/view_state_common_provider.dart';
 import 'package:douban_movie_flutter/provider/view_state_refresh_list_provider.dart';
 import 'package:douban_movie_flutter/service/net/douban_movie_repository.dart';
@@ -10,7 +9,7 @@ class MovieCommendProvider extends ViewStateRefreshListProvider {
   @override
   Future<List> loadData({Object arguments, int pageSize, int pageNum}) async {
     String movieId = arguments;
-    return await DouBanMovieRepository.getMovieCommendList(
+    return await DouBanMovieRepository.getMovieCommendListVo(
         movieId: movieId, count: pageSize, start: pageSize * pageNum);
   }
 }

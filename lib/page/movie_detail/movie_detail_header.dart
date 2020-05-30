@@ -1,6 +1,6 @@
-import 'package:douban_movie_flutter/model/movie_cast_vo.dart';
+import 'package:douban_movie_flutter/model/cast_vo.dart';
 import 'package:douban_movie_flutter/model/movie_detail_vo.dart';
-import 'package:douban_movie_flutter/model/movie_director_vo.dart';
+import 'package:douban_movie_flutter/model/director_vo.dart';
 import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:flutter/cupertino.dart';

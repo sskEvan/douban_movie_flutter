@@ -1,4 +1,4 @@
-import 'package:douban_movie_flutter/model/movie_cast_vo.dart';
+import 'package:douban_movie_flutter/model/cast_vo.dart';
 import 'package:douban_movie_flutter/model/movie_detail_vo.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';

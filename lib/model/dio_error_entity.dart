@@ -1,7 +1,15 @@
-import 'package:douban_movie_flutter/generated/json/base/json_convert_content.dart';
 
-class DioErrorEntity with JsonConvert<DioErrorEntity> {
+class DioErrorVo {
 	String msg;
 	int code;
 	String request;
+
+	DioErrorVo(this.msg, this.code, this.request);
+
+	DioErrorVo.fromJson(Map<String, dynamic> json) {
+		msg = json['msg'];
+		code = json['code'];
+		request = json['request'];
+	}
+	
 }

@@ -1,7 +1,7 @@
-import 'movie_cast_vo.dart';
-import 'movie_director_vo.dart';
-import 'movie_image_vo.dart';
-import 'movie_rating_vo.dart';
+import 'cast_vo.dart';
+import 'director_vo.dart';
+import 'image_vo.dart';
+import 'rating_detail_vo.dart';
 
 class MovieItemVo {
   List<String> genres;
@@ -16,7 +16,7 @@ class MovieItemVo {
   String year;
   String alt;
   String id;
-  RatingVo rating;
+  RatingDetailVo rating;
   ImageVo images;
   List<CastVo> casts;
   List<DirectorVo> directors;
@@ -58,7 +58,7 @@ class MovieItemVo {
     year = json['year'];
     alt = json['alt'];
     id = json['id'];
-    rating = RatingVo.fromJson(json['rating']);
+    rating = RatingDetailVo.fromJson(json['rating']);
     images = ImageVo.fromJson(json['images']);
 
     if(json['casts'] != null) {

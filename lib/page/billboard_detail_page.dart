@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:douban_movie_flutter/model/movie_item_vo.dart';
-import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/provider/billboard_new_movies_provider.dart';
 import 'package:douban_movie_flutter/provider/billboard_top250_provider.dart';
 import 'package:douban_movie_flutter/provider/billboard_us_box_provider.dart';

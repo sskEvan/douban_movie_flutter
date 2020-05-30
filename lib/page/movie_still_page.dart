@@ -1,5 +1,4 @@
-import 'package:douban_movie_flutter/model/movie_photo_detail_vo.dart';
-import 'package:douban_movie_flutter/model/movie_stills_entity.dart';
+import 'package:douban_movie_flutter/model/photo_detail_list_vo.dart';
 import 'package:douban_movie_flutter/provider/movie_stills_provider.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';

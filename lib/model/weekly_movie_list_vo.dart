@@ -2,14 +2,14 @@ import 'package:douban_movie_flutter/model/weekly_movie_item_vo.dart';
 
 import 'movie_item_vo.dart';
 
-class WeeklyMovieVo {
+class WeeklyMovieListVo {
   String title;
   List<WeeklyMovieItemVo> weeklyMovieItems;
 
 
-  WeeklyMovieVo(this.title, this.weeklyMovieItems);
+  WeeklyMovieListVo(this.title, this.weeklyMovieItems);
 
-  WeeklyMovieVo.fromJson(Map<String, dynamic> json) {
+  WeeklyMovieListVo.fromJson(Map<String, dynamic> json) {
     title = json['title'];
 
     List<WeeklyMovieItemVo> weeklyMovieItemData = [];

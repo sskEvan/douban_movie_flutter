@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/movie_item_vo.dart';
-import 'package:douban_movie_flutter/model/movie_subject.dart';
 import 'package:douban_movie_flutter/provider/billboard_provider.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';

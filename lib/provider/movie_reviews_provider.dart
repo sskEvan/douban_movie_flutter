@@ -10,7 +10,7 @@ class MovieReviewsProvider extends ViewStateRefreshListProvider {
   @override
   Future<List> loadData({Object arguments, int pageSize, int pageNum}) async {
     String movieId = arguments;
-    return await DouBanMovieRepository.getMovieReviewList(movieId : movieId, count: pageSize, start: pageSize * pageNum);
+    return await DouBanMovieRepository.getMovieReviewsListVo(movieId : movieId, count: pageSize, start: pageSize * pageNum);
   }
 
 }

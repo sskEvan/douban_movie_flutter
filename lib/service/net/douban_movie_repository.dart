@@ -1,23 +1,17 @@
 import 'dart:convert';
 
-import 'package:douban_movie_flutter/model/movie.dart';
-import 'package:douban_movie_flutter/model/movie_commend_entity.dart';
+import 'package:douban_movie_flutter/model/comment_list_vo.dart';
 import 'package:douban_movie_flutter/model/movie_detail_vo.dart';
 import 'package:douban_movie_flutter/model/movie_item_vo.dart';
-import 'package:douban_movie_flutter/model/movie_photo_detail_vo.dart';
-import 'package:douban_movie_flutter/model/movie_reviews_entity.dart';
-import 'package:douban_movie_flutter/model/movie_stills_entity.dart';
-import 'package:douban_movie_flutter/model/movie_subject.dart';
-import 'package:douban_movie_flutter/model/new_movie_entity.dart';
+import 'package:douban_movie_flutter/model/photo_detail_list_vo.dart';
 import 'package:douban_movie_flutter/model/new_movie_vo.dart';
-import 'package:douban_movie_flutter/model/showing_movie_vo.dart';
-import 'package:douban_movie_flutter/model/top250_movie_vo.dart';
-import 'package:douban_movie_flutter/model/upcoming_movie_vo.dart';
-import 'package:douban_movie_flutter/model/usbox_movie_entity.dart';
-import 'package:douban_movie_flutter/model/usbox_movie_vo.dart';
-import 'package:douban_movie_flutter/model/weekly_movie_entity.dart';
+import 'package:douban_movie_flutter/model/reviews_list_vo.dart';
+import 'package:douban_movie_flutter/model/showing_movie_list_vo.dart';
+import 'package:douban_movie_flutter/model/top250_movie_list_vo.dart';
+import 'package:douban_movie_flutter/model/upcoming_movie_list_vo.dart';
+import 'package:douban_movie_flutter/model/usbox_movie_list_vo.dart';
 import 'package:douban_movie_flutter/model/weekly_movie_item_vo.dart';
-import 'package:douban_movie_flutter/model/weekly_movie_vo.dart';
+import 'package:douban_movie_flutter/model/weekly_movie_list_vo.dart';
 import 'package:douban_movie_flutter/service/net/result_data.dart';
 
 import 'http_manager.dart';
@@ -27,7 +21,7 @@ class DouBanMovieRepository {
     ResultData resultData = await HttpManager.getInstance()
         .get('in_theaters', queryParameters: {"start": start, 'count': count});
     Map movieMap = json.decode(resultData.data.toString());
-    var showingMovieVo = ShowingMovieVo.fromJson(movieMap);
+    var showingMovieVo = ShowingMovieListVo.fromJson(movieMap);
     return showingMovieVo.movieItems;
   }
 
@@ -35,7 +29,7 @@ class DouBanMovieRepository {
     ResultData resultData = await HttpManager.getInstance()
         .get('coming_soon', queryParameters: {"start": start, 'count': count});
     Map movieMap = json.decode(resultData.data.toString());
-    var upcomingMovieVo = UpcomingMovieVo.fromJson(movieMap);
+    var upcomingMovieVo = UpcomingMovieListVo.fromJson(movieMap);
     return upcomingMovieVo.movieItems;
   }
 
@@ -43,7 +37,7 @@ class DouBanMovieRepository {
     ResultData resultData = await HttpManager.getInstance()
         .get('top250', queryParameters: {"start": start, 'count': count});
     Map movieMap = json.decode(resultData.data.toString());
-    var top250MovieVo = Top250MovieVo.fromJson(movieMap);
+    var top250MovieVo = Top250MovieListVo.fromJson(movieMap);
     return top250MovieVo.movieItems;
   }
 
@@ -51,14 +45,14 @@ class DouBanMovieRepository {
     ResultData resultData = await HttpManager.getInstance()
         .get('weekly', queryParameters: {"start": start, 'count': count});
     Map movieMap = json.decode(resultData.data.toString());
-    return WeeklyMovieVo.fromJson(movieMap);
+    return WeeklyMovieListVo.fromJson(movieMap);
   }
 
   static Future getUsBoxMovieVo({int start, int count}) async {
     ResultData resultData = await HttpManager.getInstance()
         .get('us_box', queryParameters: {"start": start, 'count': count});
     Map movieMap = json.decode(resultData.data.toString());
-    return UsBoxMovieVo.fromJson(movieMap);
+    return UsBoxMovieListVo.fromJson(movieMap);
   }
 
   static Future getNewMovieVo({int start, int count}) async {
@@ -72,7 +66,7 @@ class DouBanMovieRepository {
     ResultData resultData = await HttpManager.getInstance()
         .get('weekly', queryParameters: {"start": start, 'count': count});
     Map movieMap = json.decode(resultData.data.toString());
-    var weeklyMovieVo = WeeklyMovieVo.fromJson(movieMap);
+    var weeklyMovieVo = WeeklyMovieListVo.fromJson(movieMap);
     var weeklyMovieItemVos = <MovieItemVo>[];
     weeklyMovieVo.weeklyMovieItems.forEach((it) {
       weeklyMovieItemVos.add(it.movieItemVo);
@@ -84,7 +78,7 @@ class DouBanMovieRepository {
     ResultData resultData = await HttpManager.getInstance()
         .get('us_box', queryParameters: {"start": start, 'count': count});
     Map movieMap = json.decode(resultData.data.toString());
-    var usboxMovieVo = UsBoxMovieVo.fromJson(movieMap);
+    var usboxMovieVo = UsBoxMovieListVo.fromJson(movieMap);
     var usboxMovieItemVos = <MovieItemVo>[];
     usboxMovieVo.usboxMovieItems.forEach((it) {
       usboxMovieItemVos.add(it.movieItemVo);
@@ -112,24 +106,24 @@ class DouBanMovieRepository {
     ResultData resultData = await HttpManager.getInstance()
         .get('subject/${movieId}/photos', queryParameters: {"start": start, 'count': count});
     Map movieMap = json.decode(resultData.data.toString());
-    var movie = MoviePhotoDetailListVo.fromJson(movieMap);
+    var movie = PhotoDetailListVo.fromJson(movieMap);
     return movie;
   }
 
-  static Future getMovieCommendList({String movieId, int start, int count}) async {
+  static Future getMovieCommendListVo({String movieId, int start, int count}) async {
     ResultData resultData = await HttpManager.getInstance()
         .get('subject/${movieId}/comments', queryParameters: {"start": start, 'count': count});
     Map movieMap = json.decode(resultData.data.toString());
-    var movieCommendEntity = new MovieCommendEntity().fromJson(movieMap);
-    return movieCommendEntity.comments;
+    var movieCommendVo = CommentListVo.fromJson(movieMap);
+    return movieCommendVo.comments;
   }
 
 
-  static Future getMovieReviewList({String movieId, int start, int count}) async {
+  static Future getMovieReviewsListVo({String movieId, int start, int count}) async {
     ResultData resultData = await HttpManager.getInstance()
         .get('subject/${movieId}/reviews', queryParameters: {"start": start, 'count': count});
     Map movieMap = json.decode(resultData.data.toString());
-    var movieReviewsEntity = new MovieReviewsEntity().fromJson(movieMap);
-    return movieReviewsEntity.reviews;
+    var movieReviewsVo = ReviewsListVo.fromJson(movieMap);
+    return movieReviewsVo.reviews;
   }
 }

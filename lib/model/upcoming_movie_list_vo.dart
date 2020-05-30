@@ -1,6 +1,6 @@
 import 'movie_item_vo.dart';
 
-class UpcomingMovieVo {
+class UpcomingMovieListVo {
   int count;
   int start;
   int total;
@@ -8,9 +8,9 @@ class UpcomingMovieVo {
   List<MovieItemVo> movieItems;
 
 
-  UpcomingMovieVo(this.count, this.start, this.total, this.title, this.movieItems);
+  UpcomingMovieListVo(this.count, this.start, this.total, this.title, this.movieItems);
 
-  UpcomingMovieVo.fromJson(Map<String, dynamic> json) {
+  UpcomingMovieListVo.fromJson(Map<String, dynamic> json) {
     count = json['count'];
     start = json['start'];
     total = json['total'];

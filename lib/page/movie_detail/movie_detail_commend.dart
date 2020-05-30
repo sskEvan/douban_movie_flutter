@@ -1,5 +1,5 @@
 import 'package:douban_movie_flutter/model/movie_detail_vo.dart';
-import 'package:douban_movie_flutter/model/movie_popular_comment_vo.dart';
+import 'package:douban_movie_flutter/model/popular_comment_vo.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:douban_movie_flutter/widget/expandable_text.dart';

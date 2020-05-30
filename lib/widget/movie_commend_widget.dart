@@ -1,4 +1,4 @@
-import 'package:douban_movie_flutter/model/movie_commend_entity.dart';
+import 'package:douban_movie_flutter/model/comment_vo.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/rating_widget.dart';
 import 'package:douban_movie_flutter/widget/skeleton.dart';
@@ -9,9 +9,9 @@ import 'cache_image_widget.dart';
 import 'expandable_text.dart';
 
 class MovieCommendItemWidget extends StatelessWidget {
-  final MovieCommandCommants commandCommants;
+  final CommentVo commentVo;
 
-  MovieCommendItemWidget(this.commandCommants);
+  MovieCommendItemWidget(this.commentVo);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class MovieCommendItemWidget extends StatelessWidget {
               width: 30,
               height: 30,
               child: CacheImageWidget(
-                url: commandCommants.author.avatar,
+                url: commentVo.author.avatar,
                 radius: 15,
               ),
             ),
@@ -35,7 +35,7 @@ class MovieCommendItemWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  commandCommants.author.name,
+                  commentVo.author.name,
                   style: TextStyle(
                       fontSize: 14,
                       color: Colors.black87,
@@ -43,7 +43,7 @@ class MovieCommendItemWidget extends StatelessWidget {
                 ),
                 SizedBox(height: 2),
                 StaticRatingBar(
-                  rate: commandCommants.rating.value / 2,
+                  rate: commentVo.rating.value / 2,
                   size: 12,
                 ),
               ],
@@ -54,7 +54,7 @@ class MovieCommendItemWidget extends StatelessWidget {
           height: 10,
         ),
         ExpandableText(
-          text: commandCommants.content,
+          text: commentVo.content,
           maxLines: 4,
           style: TextStyle(fontSize: 14, color: Colors.black54),
         ),
@@ -72,7 +72,7 @@ class MovieCommendItemWidget extends StatelessWidget {
               width: 5,
             ),
             Text(
-              '${commandCommants.usefulCount}',
+              '${commentVo.usefulCount}',
               style: TextStyle(
                 fontSize: 12,
                 color: Colors.black26,

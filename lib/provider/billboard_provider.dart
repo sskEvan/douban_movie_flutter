@@ -1,11 +1,7 @@
 import 'package:douban_movie_flutter/model/movie_item_vo.dart';
-import 'package:douban_movie_flutter/model/movie_subject.dart';
-import 'package:douban_movie_flutter/model/new_movie_entity.dart';
 import 'package:douban_movie_flutter/model/new_movie_vo.dart';
-import 'package:douban_movie_flutter/model/usbox_movie_entity.dart';
-import 'package:douban_movie_flutter/model/usbox_movie_vo.dart';
-import 'package:douban_movie_flutter/model/weekly_movie_entity.dart';
-import 'package:douban_movie_flutter/model/weekly_movie_vo.dart';
+import 'package:douban_movie_flutter/model/usbox_movie_list_vo.dart';
+import 'package:douban_movie_flutter/model/weekly_movie_list_vo.dart';
 import 'package:douban_movie_flutter/provider/view_state_refresh_list_provider.dart';
 import 'package:douban_movie_flutter/service/net/douban_movie_repository.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
@@ -31,9 +27,9 @@ class BillboardProvider extends ViewStateRefreshListProvider {
 
     var result = await Future.wait(futures);
     top250MovieItemVos = result[0];
-    WeeklyMovieVo weeklyMovieVo = result[1];
+    WeeklyMovieListVo weeklyMovieVo = result[1];
     NewMovieVo newMovieVo = result[2];
-    UsBoxMovieVo usboxMovieVo = result[3];
+    UsBoxMovieListVo usboxMovieVo = result[3];
 
     var weeklyMovieItemVos = <MovieItemVo>[];
     weeklyMovieVo.weeklyMovieItems.forEach((it) {

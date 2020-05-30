@@ -1,5 +1,5 @@
 import 'package:chewie/chewie.dart';
-import 'package:douban_movie_flutter/model/movie_detail_entity.dart';
+import 'package:douban_movie_flutter/model/trailer_vo.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,35 +7,34 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class MovieTrailerPage extends StatefulWidget {
-  MovieDetailTrailer movieDetailTrailer;
+  TrailerVo trailerVo;
 
-  MovieTrailerPage(this.movieDetailTrailer);
+  MovieTrailerPage(this.trailerVo);
 
   @override
   State<StatefulWidget> createState() {
-    return MovieTrailerState(movieDetailTrailer);
+    return MovieTrailerState();
   }
 }
 
 class MovieTrailerState extends State<MovieTrailerPage> {
-  MovieDetailTrailer movieDetailTrailer;
   VideoPlayerController videoPlayerController;
   ChewieController chewieController;
 
-  MovieTrailerState(this.movieDetailTrailer);
+  MovieTrailerState();
 
   @override
   void initState() {
     super.initState();
     //配置视频地址
     videoPlayerController =
-        VideoPlayerController.network(movieDetailTrailer.resourceUrl);
+        VideoPlayerController.network(widget.trailerVo.resourceUrl);
     chewieController = ChewieController(
       placeholder: SizedBox(
         width: ScreenUtil.width,
         height: ScreenUtil.width * 2 / 3,
         child: CacheImageWidget(
-          url: movieDetailTrailer.medium,
+          url: widget.trailerVo.medium,
         ),
       ),
       videoPlayerController: videoPlayerController,
@@ -50,7 +49,7 @@ class MovieTrailerState extends State<MovieTrailerPage> {
       appBar: AppBar(
           backgroundColor: Colors.black,
           title: Text(
-            '${movieDetailTrailer.title}',
+            '${widget.trailerVo.title}',
             style: TextStyle(color: Colors.white),
           )),
       body: Container(

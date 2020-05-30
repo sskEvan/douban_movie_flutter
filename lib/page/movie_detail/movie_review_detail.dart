@@ -1,4 +1,4 @@
-import 'package:douban_movie_flutter/model/movie_reviews_entity.dart';
+import 'package:douban_movie_flutter/model/reviews_vo.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,24 +6,23 @@ import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 
 class MovieReviewDetailPage extends StatefulWidget {
-  MovieReviewsReview movieReviewsReview;
+  ReviewsVo reviewsVo;
 
-  MovieReviewDetailPage(this.movieReviewsReview);
+  MovieReviewDetailPage(this.reviewsVo);
 
   @override
   State<StatefulWidget> createState() {
-    return MovieReviewDetailState(movieReviewsReview);
+    return MovieReviewDetailState();
   }
 }
 
 class MovieReviewDetailState extends State<MovieReviewDetailPage> {
-  MovieReviewsReview movieReviewsReview;
   ScrollController scrollController;
   int offsetLimit;
   bool offstageAutorInfo;
   bool offstageTitle;
 
-  MovieReviewDetailState(this.movieReviewsReview);
+  MovieReviewDetailState();
 
   @override
   void initState() {
@@ -80,13 +79,13 @@ class MovieReviewDetailState extends State<MovieReviewDetailPage> {
                           width: 30,
                           height: 30,
                           child: CacheImageWidget(
-                            url: movieReviewsReview.author.avatar,
+                            url: widget.reviewsVo.author.avatar,
                             radius: 16,
                           ),
                         ),
                         SizedBox(width: 10),
                         Text(
-                          movieReviewsReview.author.name,
+                          widget.reviewsVo.author.name,
                           style: TextStyle(
                               color: Colors.black87,
                               fontSize: 18,
@@ -111,7 +110,7 @@ class MovieReviewDetailState extends State<MovieReviewDetailPage> {
                         ),
                         color: Colors.green,
                         onPressed: () {
-                          showToast("关注${movieReviewsReview.author.name}",
+                          showToast("关注${widget.reviewsVo.author.name}",
                               context: context);
                         },
                         shape: RoundedRectangleBorder(
@@ -135,7 +134,7 @@ class MovieReviewDetailState extends State<MovieReviewDetailPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                movieReviewsReview.title,
+                widget.reviewsVo.title,
                 style: TextStyle(
                     color: Colors.black87,
                     fontSize: 20,
@@ -148,7 +147,7 @@ class MovieReviewDetailState extends State<MovieReviewDetailPage> {
                     width: 40,
                     height: 40,
                     child: CacheImageWidget(
-                      url: movieReviewsReview.author.avatar,
+                      url: widget.reviewsVo.author.avatar,
                       radius: 20,
                     ),
                   ),
@@ -159,14 +158,14 @@ class MovieReviewDetailState extends State<MovieReviewDetailPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        '${movieReviewsReview.author.name} 的影评',
+                        '${widget.reviewsVo.author.name} 的影评',
                         style: TextStyle(color: Colors.black45, fontSize: 13),
                       ),
                       SizedBox(
                         height: 5,
                       ),
                       Text(
-                        '${movieReviewsReview.createdAt}',
+                        '${widget.reviewsVo.createdAt}',
                         style: TextStyle(color: Colors.black45, fontSize: 13),
                       ),
                     ],
@@ -175,7 +174,7 @@ class MovieReviewDetailState extends State<MovieReviewDetailPage> {
               ),
               SizedBox(height: 20),
               Text(
-                movieReviewsReview.content,
+                widget.reviewsVo.content,
                 style: TextStyle(color: Colors.black54, fontSize: 16),
               )
             ],

@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
-import 'package:douban_movie_flutter/model/movie_stills_entity.dart';
+import 'package:douban_movie_flutter/model/photo_detail_list_vo.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:douban_movie_flutter/widget/gesture_box.dart';
@@ -12,25 +12,21 @@ import 'package:oktoast/oktoast.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class StillsDetailPage extends StatefulWidget {
-  List<MovieStillsPhoto> movieStillsPhotoList;
+  List<PhotoDetailInfo> photoDetailList;
   int currentIndex;
   int totalPhotoCount;
 
   StillsDetailPage(
-      this.movieStillsPhotoList, this.currentIndex, this.totalPhotoCount);
+      this.photoDetailList, this.currentIndex, this.totalPhotoCount);
 
   @override
   State<StatefulWidget> createState() {
-    return StillsDetailState(
-        movieStillsPhotoList, currentIndex, totalPhotoCount);
+    return StillsDetailState();
   }
 }
 
 class StillsDetailState extends State<StillsDetailPage>
     with SingleTickerProviderStateMixin {
-  List<MovieStillsPhoto> movieStillsPhotoList;
-  int currentIndex;
-  int totalPhotoCount;
   PageController _controller = new PageController();
   Widget appBar;
   Animation<Offset> appBarPosition;
@@ -38,8 +34,7 @@ class StillsDetailState extends State<StillsDetailPage>
   AnimationController animController;
   var onlyShowStills = false;
 
-  StillsDetailState(
-      this.movieStillsPhotoList, this.currentIndex, this.totalPhotoCount);
+  StillsDetailState();
 
   @override
   void initState() {
@@ -78,7 +73,7 @@ class StillsDetailState extends State<StillsDetailPage>
                 ),
               ),
               Text(
-                '${currentIndex + 1} / ${totalPhotoCount}',
+                '${widget.currentIndex + 1} / ${widget.totalPhotoCount}',
                 style: TextStyle(color: Colors.white),
               ),
             ],
@@ -89,7 +84,7 @@ class StillsDetailState extends State<StillsDetailPage>
     );
 
     _controller = new PageController(
-      initialPage: currentIndex,
+      initialPage: widget.currentIndex,
     );
     return Scaffold(
         //appBar: appBar,
@@ -113,7 +108,7 @@ class StillsDetailState extends State<StillsDetailPage>
                   physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   controller: _controller,
-                  children: movieStillsPhotoList
+                  children: widget.photoDetailList
                       .map((item) => _buildStillsWidget(item))
                       .toList(),
                 ),
@@ -127,7 +122,7 @@ class StillsDetailState extends State<StillsDetailPage>
     super.dispose();
   }
 
-  Widget _buildStillsWidget(MovieStillsPhoto item) {
+  Widget _buildStillsWidget(PhotoDetailInfo item) {
     return Center(
       child: Hero(
           tag: 'hero' + item.id, //唯一标记，前后两个路由页Hero的tag必须相同
@@ -243,7 +238,7 @@ class StillsDetailState extends State<StillsDetailPage>
       return;
     }
 
-    var response = await Dio().get(movieStillsPhotoList[currentIndex].image,
+    var response = await Dio().get(widget.photoDetailList[widget.currentIndex].image,
         options: Options(responseType: ResponseType.bytes));
     final result =
         await ImageGallerySaver.saveImage(Uint8List.fromList(response.data));

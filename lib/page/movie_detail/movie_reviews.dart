@@ -1,4 +1,4 @@
-import 'package:douban_movie_flutter/model/movie_reviews_entity.dart';
+import 'package:douban_movie_flutter/model/reviews_vo.dart';
 import 'package:douban_movie_flutter/provider/movie_reviews_provider.dart';
 import 'package:douban_movie_flutter/service/provider_manager.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
@@ -88,7 +88,7 @@ class MovieReviewsState extends State<MovieReviewsWidget> {
   }
 
   Widget _buildCommendItem(
-      BuildContext context, MovieReviewsReview movieReviewsReview) {
+      BuildContext context, ReviewsVo reviewsVo) {
     return Column(
       children: <Widget>[
         Material(
@@ -96,7 +96,7 @@ class MovieReviewsState extends State<MovieReviewsWidget> {
           child: InkWell(
             onTap: () {
               Navigator.of(context).pushNamed(RouteName.movieReviewDetail,
-                  arguments: movieReviewsReview);
+                  arguments: reviewsVo);
             },
             child: Container(
               padding: EdgeInsets.all(14),
@@ -109,7 +109,7 @@ class MovieReviewsState extends State<MovieReviewsWidget> {
                         width: 24,
                         height: 24,
                         child: CacheImageWidget(
-                          url: movieReviewsReview.author.avatar,
+                          url: reviewsVo.author.avatar,
                           radius: 12,
                         ),
                       ),
@@ -118,7 +118,7 @@ class MovieReviewsState extends State<MovieReviewsWidget> {
                         children: <Widget>[
                           SizedBox(width: 8),
                           Text(
-                            movieReviewsReview.author.name,
+                            reviewsVo.author.name,
                             style:
                                 TextStyle(fontSize: 13, color: Colors.black87),
                           ),
@@ -132,7 +132,7 @@ class MovieReviewsState extends State<MovieReviewsWidget> {
                           Padding(
                             padding: EdgeInsets.only(top: 3),
                             child: StaticRatingBar(
-                              rate: movieReviewsReview.rating.value / 2,
+                              rate: reviewsVo.rating.value / 2,
                               size: 12,
                             ),
                           )
@@ -146,7 +146,7 @@ class MovieReviewsState extends State<MovieReviewsWidget> {
                   SizedBox(
                     width: ScreenUtil.width,
                     child: Text(
-                      movieReviewsReview.title,
+                      reviewsVo.title,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       style: TextStyle(
@@ -157,7 +157,7 @@ class MovieReviewsState extends State<MovieReviewsWidget> {
                   ),
                   SizedBox(height: 8),
                   Text(
-                    movieReviewsReview.summary,
+                    reviewsVo.summary,
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -171,11 +171,11 @@ class MovieReviewsState extends State<MovieReviewsWidget> {
                   Row(
                     children: <Widget>[
                       Text(
-                        '${movieReviewsReview.usefulCount}有用 · ',
+                        '${reviewsVo.usefulCount}有用 · ',
                         style: TextStyle(fontSize: 12, color: Colors.black45),
                       ),
                       Text(
-                        '${movieReviewsReview.commentsCount}回复 · ',
+                        '${reviewsVo.commentsCount}回复 · ',
                         style: TextStyle(fontSize: 12, color: Colors.black45),
                       )
                     ],
