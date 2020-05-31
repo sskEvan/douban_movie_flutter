@@ -1,12 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+/**
+ * 榜单标题栏组件
+ */
 class BillboardSection extends StatelessWidget {
   final String title;
   String action;
   VoidCallback onTap;
 
-  BillboardSection({this.title, this.action, this.onTap});
+  BillboardSection({this.title, this.action, this.onTap, Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

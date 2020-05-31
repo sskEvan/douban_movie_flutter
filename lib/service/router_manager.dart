@@ -4,13 +4,13 @@ import 'package:douban_movie_flutter/model/reviews_vo.dart';
 import 'package:douban_movie_flutter/model/trailer_vo.dart';
 import 'package:douban_movie_flutter/page/billboard_detail_page.dart';
 import 'package:douban_movie_flutter/page/index_page.dart';
-import 'package:douban_movie_flutter/page/movie_commend_page.dart';
-import 'package:douban_movie_flutter/page/movie_detail/movie_review_detail.dart';
-import 'package:douban_movie_flutter/page/movie_detail_page.dart';
-import 'package:douban_movie_flutter/page/movie_still_page.dart';
-import 'package:douban_movie_flutter/page/movie_trailer_page.dart';
-import 'package:douban_movie_flutter/page/splash.dart';
-import 'package:douban_movie_flutter/page/stills_detail_page.dart';
+import 'package:douban_movie_flutter/page/movie_detail/movie_commend_list_page.dart';
+import 'package:douban_movie_flutter/page/movie_detail/movie_review_detail_page.dart';
+import 'package:douban_movie_flutter/page/movie_detail/movie_detail_page.dart';
+import 'package:douban_movie_flutter/page/movie_detail/movie_stills_list_page.dart';
+import 'package:douban_movie_flutter/page/movie_detail/movie_trailer_page.dart';
+import 'package:douban_movie_flutter/page/splash_page.dart';
+import 'package:douban_movie_flutter/page/movie_detail/movie_stills_detail_page.dart';
 import 'package:douban_movie_flutter/provider/billboard_new_movies_provider.dart';
 import 'package:douban_movie_flutter/provider/billboard_top250_provider.dart';
 import 'package:douban_movie_flutter/provider/billboard_us_box_provider.dart';
@@ -64,18 +64,18 @@ class Router {
         List arguments = settings.arguments;
         String id = arguments[0];
         int totalPhotoCount = arguments[1];
-        return VerticalSlideRouteBuilder(MovieStillPage(id, totalPhotoCount));
+        return VerticalSlideRouteBuilder(MovieStillsListPage(id, totalPhotoCount));
         break;
       case RouteName.movieStillsDetail:
         List arguments = settings.arguments;
         List<PhotoDetailInfo> photoList = arguments[0];
         int currentIndex  = arguments[1];
         int totalPhotoCount = arguments[2];
-        return FadeRouteBuilder(StillsDetailPage(photoList, currentIndex, totalPhotoCount));
+        return FadeRouteBuilder(MovieStillsDetailPage(photoList, currentIndex, totalPhotoCount));
         break;
       case RouteName.movieCommend:
         String movieId = settings.arguments;
-        return VerticalSlideRouteBuilder(MovieCommendPage(movieId));
+        return VerticalSlideRouteBuilder(MovieCommendListPage(movieId));
         break;
       case RouteName.movieReviewDetail:
         ReviewsVo reviewsVo = settings.arguments;

@@ -5,22 +5,25 @@ import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:douban_movie_flutter/widget/common_empty_widget.dart';
 import 'package:douban_movie_flutter/widget/common_error_widget.dart';
-import 'package:douban_movie_flutter/widget/movie_detail_skeleton.dart';
+import 'package:douban_movie_flutter/widget/skeleton/movie_detail_skeleton.dart';
 import 'package:douban_movie_flutter/widget/rating_widget.dart';
 import 'package:douban_movie_flutter/widget/view_state_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:palette_generator/palette_generator.dart';
 
-import 'movie_detail/movie_detail_cast.dart';
-import 'movie_detail/movie_detail_commend.dart';
-import 'movie_detail/movie_detail_header.dart';
-import 'movie_detail/movie_detail_plot.dart';
-import 'movie_detail/movie_detail_rating.dart';
-import 'movie_detail/movie_detail_stills.dart';
-import 'movie_detail/movie_detail_tag.dart';
-import 'movie_detail/movie_reviews.dart';
+import '../../widget/movie_detail_cast_list_widget.dart';
+import '../../widget/movie_detail_popular_commend_widget.dart';
+import '../../widget/movie_detail_header.dart';
+import '../../widget/movie_detail_plot_widget.dart';
+import '../../widget/movie_detail_rating_widget.dart';
+import '../../widget/movie_detail_stills_widget.dart';
+import '../../widget/movie_detail_tag_widget.dart';
+import 'movie_reviews_list_page.dart';
 
+/**
+ * 电影详情页
+ */
 class MovieDetailPage extends StatefulWidget {
   final String movieId;
 
@@ -231,7 +234,7 @@ class BottomDrawerState extends State<BottomDrawerWidget>
     }
 
     if (needRefreshUi) {
-      debugPrint("---------drawerOffset:${drawerOffset}");
+      //debugPrint("---------drawerOffset:${drawerOffset}");
       setState(() {});
     }
     ;
@@ -264,7 +267,6 @@ class BottomDrawerState extends State<BottomDrawerWidget>
     return Listener(
         onPointerUp: (event) {
           if (!isDrawerMoving && drawerOffset < initDrawerOffset) {
-            debugPrint("onPointerUp...drawerOffset=${initDrawerOffset}");
             double start = drawerOffset;
             double end = 0.0;
             if (drawerOffset >= initDrawerOffset / 2) {
@@ -294,10 +296,10 @@ class BottomDrawerState extends State<BottomDrawerWidget>
                 MovieDetailHeader(widget.movieDetailVo),
                 MovieDetailRatingWidget(widget.movieDetailVo),
                 MovieDetailTag(widget.movieDetailVo),
-                MovieDetailPlot(widget.movieDetailVo),
-                MovieDetailCastWidget(widget.movieDetailVo),
-                MovieDetailStills(widget.movieDetailVo),
-                MovieDetailCommend(widget.movieDetailVo),
+                MovieDetailPlotWidget(widget.movieDetailVo),
+                MovieDetailCastListWidget(widget.movieDetailVo),
+                MovieDetailStillsWidget(widget.movieDetailVo),
+                MovieDetailPopularCommendWidget(widget.movieDetailVo),
               ],
             )));
   }
@@ -336,6 +338,7 @@ class BottomDrawerState extends State<BottomDrawerWidget>
           }
         },
         onPointerUp: (event) {
+          debugPrint("onPointerUp...dy=${event.delta.dy}");
           isDrawerMoving = false;
           isDownInDrawerHeader = false;
           double start = drawerOffset;
@@ -383,7 +386,7 @@ class BottomDrawerState extends State<BottomDrawerWidget>
                       ],
                     )),
                 Expanded(
-                  child: MovieReviewsWidget(widget.movieDetailVo.id , (offset) {
+                  child: MovieReviewsListPage(widget.movieDetailVo.id , (offset) {
                     debugPrint('drawerScrollOffset=${drawerScrollOffset}');
                     drawerScrollOffset = offset;
                   }),

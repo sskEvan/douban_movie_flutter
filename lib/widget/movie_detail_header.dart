@@ -7,10 +7,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 
+/**
+ * 电影详情页头部组件
+ */
 class MovieDetailHeader extends StatelessWidget {
   MovieDetailVo movieDetailVo;
 
-  MovieDetailHeader(this.movieDetailVo);
+  MovieDetailHeader(this.movieDetailVo,
+      {Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -3,10 +3,15 @@ import 'package:douban_movie_flutter/widget/expandable_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MovieDetailPlot extends StatelessWidget {
+/**
+ * 电影详情页剧情简介组件
+ */
+class MovieDetailPlotWidget extends StatelessWidget {
   final MovieDetailVo movieDetailVo;
 
-  MovieDetailPlot(this.movieDetailVo);
+  MovieDetailPlotWidget(this.movieDetailVo,
+      {Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

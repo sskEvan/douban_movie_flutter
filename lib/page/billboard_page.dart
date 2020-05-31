@@ -5,7 +5,7 @@ import 'package:douban_movie_flutter/provider/billboard_provider.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/billboard_banner_widget.dart';
-import 'package:douban_movie_flutter/widget/billboard_skeleton.dart';
+import 'package:douban_movie_flutter/widget/skeleton/billboard_skeleton.dart';
 import 'package:douban_movie_flutter/widget/billboard_top250_item_widget.dart';
 import 'package:douban_movie_flutter/widget/billboard_section_widget.dart';
 import 'package:douban_movie_flutter/widget/common_empty_widget.dart';
@@ -15,16 +15,22 @@ import 'package:douban_movie_flutter/widget/view_state_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+/**
+ * 首页榜单页
+ */
 class BillboardPage extends StatefulWidget {
+
   @override
   State<BillboardPage> createState() {
-    return BillboardState();
+    return _BillboardState();
   }
+
+  BillboardPage({Key key}) : super(key: key);
 }
 
-class BillboardState extends State<BillboardPage>
+class _BillboardState extends State<BillboardPage>
     with AutomaticKeepAliveClientMixin {
-  var banners;
+  var _banners;
 
   @override
   Widget build(BuildContext context) {
@@ -61,13 +67,13 @@ class BillboardState extends State<BillboardPage>
                   BillboardSection(
                       title: DouBanLocalizations.of(context).other_billboard),
                   _buildOtherBillboardBaners(context, <Widget>[
-                    BillboardBanner(title: provider.weeklyBannerEntity.title,
+                    BillboardBannerWidget(title: provider.weeklyBannerEntity.title,
                         movieItemVos: provider.weeklyBannerEntity.movieItemVos,
                         routerName: provider.weeklyBannerEntity.routerName),
-                    BillboardBanner(title: provider.newMovieBannerEntity.title,
+                    BillboardBannerWidget(title: provider.newMovieBannerEntity.title,
                         movieItemVos: provider.newMovieBannerEntity.movieItemVos,
                         routerName: provider.newMovieBannerEntity.routerName),
-                    BillboardBanner(title: provider.usboxBannerEntity.title,
+                    BillboardBannerWidget(title: provider.usboxBannerEntity.title,
                         movieItemVos: provider.usboxBannerEntity.movieItemVos,
                         routerName: provider.usboxBannerEntity.routerName),
                   ])

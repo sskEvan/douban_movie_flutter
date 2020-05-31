@@ -4,6 +4,9 @@ import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+/**
+ * 通用加载空数据组件
+ */
 class CommonEmptyWidget extends StatelessWidget {
   final VoidCallback onPressed;
   final String message;

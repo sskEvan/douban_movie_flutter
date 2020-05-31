@@ -4,13 +4,18 @@ import 'package:date_format/date_format.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+/**
+ * 可伸缩文本组件
+ */
 class ExpandableText extends StatefulWidget {
   final String text;
   final int maxLines;
   final TextStyle style;
   bool expand;
 
-  ExpandableText({this.text, this.maxLines, this.style, this.expand: false});
+  ExpandableText(
+      {this.text, this.maxLines, this.style, this.expand: false, Key key})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -62,12 +67,16 @@ class ExpandableState extends State<ExpandableText> {
                     Text(expand ? '收起' : '展开',
                         style: TextStyle(
                             fontSize: style != null ? style.fontSize : 14,
-                            color: style != null ? style.color.withAlpha(100) : Color(0xAAFFFFFF))),
+                            color: style != null
+                                ? style.color.withAlpha(100)
+                                : Color(0xAAFFFFFF))),
                     Icon(
                         expand
                             ? Icons.keyboard_arrow_up
                             : Icons.keyboard_arrow_down,
-                        color: style != null ? style.color.withAlpha(100) : Color(0xAAFFFFFF),
+                        color: style != null
+                            ? style.color.withAlpha(100)
+                            : Color(0xAAFFFFFF),
                         size: style != null ? style.fontSize + 4 : 18)
                   ],
                 ),

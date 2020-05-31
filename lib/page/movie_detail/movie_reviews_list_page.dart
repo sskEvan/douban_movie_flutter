@@ -1,9 +1,7 @@
 import 'package:douban_movie_flutter/model/reviews_vo.dart';
-import 'package:douban_movie_flutter/provider/movie_reviews_provider.dart';
-import 'package:douban_movie_flutter/service/provider_manager.dart';
+import 'package:douban_movie_flutter/provider/movie_reviews_list_provider.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
-import 'package:douban_movie_flutter/widget/bottom_drag_widget.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:douban_movie_flutter/widget/common_empty_widget.dart';
 import 'package:douban_movie_flutter/widget/common_error_widget.dart';
@@ -12,49 +10,54 @@ import 'package:douban_movie_flutter/widget/rating_widget.dart';
 import 'package:douban_movie_flutter/widget/view_state_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:oktoast/oktoast.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class MovieReviewsWidget extends StatefulWidget {
+/**
+ * 影评列表页
+ */
+class MovieReviewsListPage extends StatefulWidget {
   var movieId;
   DrawerScrollListener scrollListener;
 
-  MovieReviewsWidget(this.movieId, this.scrollListener);
+  MovieReviewsListPage(this.movieId, this.scrollListener,
+      {Key key})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return MovieReviewsState(movieId, scrollListener);
+    return _MovieReviewsListState();
   }
 }
 
-class MovieReviewsState extends State<MovieReviewsWidget> {
-  var movieId;
-  DrawerScrollListener scrollListener;
-  ScrollController scrollController;
-  MovieReviewsState(this.movieId, this.scrollListener);
+class _MovieReviewsListState extends State<MovieReviewsListPage> {
+  ScrollController _scrollController;
+  _MovieReviewsListState();
 
   @override
   void initState() {
     super.initState();
-    scrollController = new ScrollController();
-    scrollController.addListener(() {
-      if(scrollListener != null) {
-        scrollListener(scrollController.offset);
+    _scrollController = new ScrollController();
+    _scrollController.addListener(() {
+      if(widget.scrollListener != null) {
+        widget.scrollListener(_scrollController.offset);
       }
     });
   }
 
   @override
-  Widget build(BuildContext context) {
-    //debugPrint("!!!!MovieReviewsWidget build done ");
+  void dispose() {
+    _scrollController?.dispose();
+    super.dispose();
+  }
 
-    return ViewStateWidget<MovieReviewsProvider>(
-        provider: MovieReviewsProvider(context),
+  @override
+  Widget build(BuildContext context) {
+    return ViewStateWidget<MovieReviewsListProvider>(
+        provider: MovieReviewsListProvider(context),
         onProviderReady: (provider) async {
-          //debugPrint("!!!!MovieReviewsWidget onProviderReady ..........................");
-          await provider.initData(arguments: movieId);
+          await provider.initData(arguments: widget.movieId);
         },
-        builder: (context, MovieReviewsProvider provider, child) {
+        builder: (context, MovieReviewsListProvider provider, child) {
           if (provider.isBusy) {
             return CommonLoadingWidget();
           } else if (provider.isEmpty) {
@@ -67,7 +70,7 @@ class MovieReviewsState extends State<MovieReviewsWidget> {
         });
   }
 
-  Widget _buildReviewsContent(MovieReviewsProvider provider) {
+  Widget _buildReviewsContent(MovieReviewsListProvider provider) {
     return Container(
         color: Colors.white,
         child: RepaintBoundary(
@@ -78,7 +81,7 @@ class MovieReviewsState extends State<MovieReviewsWidget> {
           onLoading: provider.loadMore,
           enablePullUp: true,
           child: ListView.builder(
-              controller: scrollController,
+              controller: _scrollController,
               addRepaintBoundaries: true,
               itemCount: provider.list.length,
               itemBuilder: (BuildContext context, int index) {

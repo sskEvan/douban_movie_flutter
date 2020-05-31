@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../skeleton.dart';
+import 'skeleton.dart';
 
+/**
+ * 电梯列表骨架组件
+ */
 class MovieItemSkeleton extends StatelessWidget {
   var isDark;
   final bool showIndexNumber;
 
-  MovieItemSkeleton({this.showIndexNumber});
+  MovieItemSkeleton({this.showIndexNumber,Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

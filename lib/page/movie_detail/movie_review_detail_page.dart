@@ -5,47 +5,58 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 
+/**
+ * 电影影评详情页
+ */
 class MovieReviewDetailPage extends StatefulWidget {
   ReviewsVo reviewsVo;
 
-  MovieReviewDetailPage(this.reviewsVo);
+  MovieReviewDetailPage(this.reviewsVo,
+      {Key key})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return MovieReviewDetailState();
+    return _MovieReviewDetailState();
   }
 }
 
-class MovieReviewDetailState extends State<MovieReviewDetailPage> {
-  ScrollController scrollController;
-  int offsetLimit;
-  bool offstageAutorInfo;
-  bool offstageTitle;
+class _MovieReviewDetailState extends State<MovieReviewDetailPage> {
+  ScrollController _scrollController;
+  int _offsetLimit;
+  bool _offstageAutorInfo;
+  bool _offstageTitle;
 
-  MovieReviewDetailState();
+  _MovieReviewDetailState();
 
   @override
   void initState() {
     super.initState();
-    offsetLimit = 110;
-    offstageAutorInfo = true;
-    offstageTitle = false;
-    scrollController = new ScrollController();
-    scrollController.addListener(() {
-      if (scrollController.offset > offsetLimit) {
-        if (offstageAutorInfo) {
-          offstageAutorInfo = false;
-          offstageTitle = true;
+    _offsetLimit = 110;
+    _offstageAutorInfo = true;
+    _offstageTitle = false;
+    _scrollController = new ScrollController();
+    _scrollController.addListener(() {
+      if (_scrollController.offset > _offsetLimit) {
+        if (_offstageAutorInfo) {
+          _offstageAutorInfo = false;
+          _offstageTitle = true;
           setState(() {});
         }
       } else {
-        if (!offstageAutorInfo) {
-          offstageAutorInfo = true;
-          offstageTitle = false;
+        if (!_offstageAutorInfo) {
+          _offstageAutorInfo = true;
+          _offstageTitle = false;
           setState(() {});
         }
       }
     });
+  }
+
+  @override
+  void dispose() {
+    _scrollController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -59,7 +70,7 @@ class MovieReviewDetailState extends State<MovieReviewDetailPage> {
           title: Stack(
             children: <Widget>[
               Offstage(
-                offstage: offstageTitle,
+                offstage: _offstageTitle,
                 child: Text(
                   '影评详情',
                   style: TextStyle(
@@ -69,7 +80,7 @@ class MovieReviewDetailState extends State<MovieReviewDetailPage> {
                 ),
               ),
               Offstage(
-                offstage: offstageAutorInfo,
+                offstage: _offstageAutorInfo,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -127,7 +138,7 @@ class MovieReviewDetailState extends State<MovieReviewDetailPage> {
         color: Colors.white,
         height: ScreenUtil.height,
         child: SingleChildScrollView(
-          controller: scrollController,
+          controller: _scrollController,
           padding: EdgeInsets.all(20),
           physics: BouncingScrollPhysics(),
           child: Column(

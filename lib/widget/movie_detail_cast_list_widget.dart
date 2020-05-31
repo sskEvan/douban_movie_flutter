@@ -4,12 +4,17 @@ import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'movie_detail_section.dart';
+import 'movie_detail_section_widget.dart';
 
-class MovieDetailCastWidget extends StatelessWidget {
+/**
+ * 电影详情页演员列表组件
+ */
+class MovieDetailCastListWidget extends StatelessWidget {
   final MovieDetailVo movieDetailVo;
 
-  MovieDetailCastWidget(this.movieDetailVo);
+  MovieDetailCastListWidget(this.movieDetailVo,
+      {Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +23,7 @@ class MovieDetailCastWidget extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 20),
       child: Column(
         children: <Widget>[
-          MovieDetailSection(title: '演员表'),
+          MovieDetailSectionWidget(title: '演员表'),
           SizedBox(height: 6),
           SingleChildScrollView(
               scrollDirection: Axis.horizontal,

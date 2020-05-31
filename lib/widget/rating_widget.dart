@@ -6,6 +6,9 @@ const int kNumberOfStarts = 5;
 const double kSpacing = 3.0;
 const double kSize = 50.0;
 
+/**
+ * 评分组件
+ */
 class StaticRatingBar extends StatelessWidget {
   /// number of stars
   final int count;
@@ -21,6 +24,7 @@ class StaticRatingBar extends StatelessWidget {
   final Color colorDark;
 
   StaticRatingBar({
+    Key key,
     double rate,
     Color colorLight,
     Color colorDark,
@@ -29,7 +33,8 @@ class StaticRatingBar extends StatelessWidget {
   })  : rate = rate ?? kMaxRate,
         count = count ?? kNumberOfStarts,
         colorDark = colorDark ?? new Color(0xffd5d5d5),
-        colorLight = colorLight ?? new Color(0xFFD7B018);
+        colorLight = colorLight ?? new Color(0xFFD7B018),
+        super(key: key);
 
   Widget buildStar() {
     return new SizedBox(
@@ -86,8 +91,6 @@ class _RatingBarClipper extends CustomClipper<Rect> {
     return width != oldClipper.width;
   }
 }
-
-
 
 class _PainterStars extends CustomPainter {
   final double size;

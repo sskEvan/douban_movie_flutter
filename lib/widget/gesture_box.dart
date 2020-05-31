@@ -1,7 +1,9 @@
 
 import 'package:flutter/cupertino.dart';
 
-/// 可缩放/平移的盒子小部件
+/**
+ * 可缩放/平移的盒子组件
+ */
 class GestureBox extends StatefulWidget {
   final double maxScale;
   final double doubleTapScale;

@@ -1,13 +1,16 @@
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
-import 'skeleton/movie_item_skeleton.dart';
+import 'movie_item_skeleton.dart';
 import 'skeleton.dart';
 
-class BillboardDetailSkeletonWidget extends StatelessWidget {
+/**
+ * 榜单详情页骨架组件
+ */
+class BillboardDetailSkeleton extends StatelessWidget {
   var isDark;
 
-  BillboardDetailSkeletonWidget();
+  BillboardDetailSkeleton({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

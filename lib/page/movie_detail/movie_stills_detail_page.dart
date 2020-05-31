@@ -11,55 +11,59 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-class StillsDetailPage extends StatefulWidget {
+/**
+ * 电影剧照详情页
+ */
+class MovieStillsDetailPage extends StatefulWidget {
   List<PhotoDetailInfo> photoDetailList;
   int currentIndex;
   int totalPhotoCount;
 
-  StillsDetailPage(
-      this.photoDetailList, this.currentIndex, this.totalPhotoCount);
+  MovieStillsDetailPage(
+      this.photoDetailList, this.currentIndex, this.totalPhotoCount,
+      {Key key})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return StillsDetailState();
+    return _MovieStillsDetailState();
   }
 }
 
-class StillsDetailState extends State<StillsDetailPage>
+class _MovieStillsDetailState extends State<MovieStillsDetailPage>
     with SingleTickerProviderStateMixin {
-  PageController _controller = new PageController();
-  Widget appBar;
-  Animation<Offset> appBarPosition;
-  Animation<Offset> bottomBarPosition;
-  AnimationController animController;
-  var onlyShowStills = false;
+  PageController _pageController = new PageController();
+  Widget _appBar;
+  Animation<Offset> _appBarPosition;
+  AnimationController _animController;
+  var _onlyShowStills = false;
 
-  StillsDetailState();
+  _MovieStillsDetailState();
 
   @override
   void initState() {
     super.initState();
-    animController = AnimationController(
+    _animController = AnimationController(
         duration: const Duration(milliseconds: 200), vsync: this);
-    appBarPosition =
-        Tween(begin: Offset.zero, end: Offset(0, -2)).animate(animController);
-    animController.addListener(() {
-      debugPrint('animController listener ${appBarPosition.value}');
+    _appBarPosition =
+        Tween(begin: Offset.zero, end: Offset(0, -2)).animate(_animController);
+    _animController.addListener(() {
+      debugPrint('animController listener ${_appBarPosition.value}');
     });
-    animController.addStatusListener((status) {
+    _animController.addStatusListener((status) {
       print("animController StatusListener status====$status");
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    appBar = SafeArea(
+    _appBar = SafeArea(
       child: Container(
         color: Colors.black,
         height: kToolbarHeight,
         width: ScreenUtil.width,
         child: SlideTransition(
-          position: appBarPosition,
+          position: _appBarPosition,
           child: Stack(
             alignment: Alignment.center,
             children: <Widget>[
@@ -83,7 +87,7 @@ class StillsDetailState extends State<StillsDetailPage>
       ),
     );
 
-    _controller = new PageController(
+    _pageController = new PageController(
       initialPage: widget.currentIndex,
     );
     return Scaffold(
@@ -93,7 +97,7 @@ class StillsDetailState extends State<StillsDetailPage>
             width: ScreenUtil.width,
             height: ScreenUtil.height,
             child: Column(children: <Widget>[
-              appBar,
+              _appBar,
               Container(
                 width: ScreenUtil.width,
                 height: ScreenUtil.height -
@@ -107,7 +111,7 @@ class StillsDetailState extends State<StillsDetailPage>
 //                  },
                   physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
-                  controller: _controller,
+                  controller: _pageController,
                   children: widget.photoDetailList
                       .map((item) => _buildStillsWidget(item))
                       .toList(),
@@ -118,7 +122,8 @@ class StillsDetailState extends State<StillsDetailPage>
 
   @override
   void dispose() {
-    animController?.dispose();
+    _pageController?.dispose();
+    _animController?.dispose();
     super.dispose();
   }
 
@@ -145,12 +150,12 @@ class StillsDetailState extends State<StillsDetailPage>
   }
 
   _handleClickStills(BuildContext context) {
-    if (onlyShowStills) {
-      animController.reverse();
+    if (_onlyShowStills) {
+      _animController.reverse();
     } else {
-      animController.forward();
+      _animController.forward();
     }
-    onlyShowStills = !onlyShowStills;
+    _onlyShowStills = !_onlyShowStills;
   }
 
   _handleLongPressStills(BuildContext context) {
@@ -191,14 +196,14 @@ class StillsDetailState extends State<StillsDetailPage>
   }
 
   _saveStills() async {
-    requestPermission().then((bool) {
+    _requestPermission().then((bool) {
       if (bool) {
         _savenNetworkImage();
       }
     });
   }
 
-  Future<bool> requestPermission() async {
+  Future<bool> _requestPermission() async {
     var status = await Permission.storage.status;
     if (status.isUndetermined) {
       Map<Permission, PermissionStatus> statuses = await [
@@ -238,7 +243,8 @@ class StillsDetailState extends State<StillsDetailPage>
       return;
     }
 
-    var response = await Dio().get(widget.photoDetailList[widget.currentIndex].image,
+    var response = await Dio().get(
+        widget.photoDetailList[widget.currentIndex].image,
         options: Options(responseType: ResponseType.bytes));
     final result =
         await ImageGallerySaver.saveImage(Uint8List.fromList(response.data));

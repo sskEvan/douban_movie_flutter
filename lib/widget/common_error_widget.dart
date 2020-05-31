@@ -4,6 +4,9 @@ import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+/**
+ * 通用加载错误组件
+ */
 class CommonErrorWidget extends StatelessWidget {
   final VoidCallback onPressed;
   String message;

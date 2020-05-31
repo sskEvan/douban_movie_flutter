@@ -7,12 +7,17 @@ import 'package:douban_movie_flutter/widget/rating_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'movie_detail_section.dart';
+import 'movie_detail_section_widget.dart';
 
-class MovieDetailCommend extends StatelessWidget {
+/**
+ * 电影详情页热门短评组件
+ */
+class MovieDetailPopularCommendWidget extends StatelessWidget {
   final MovieDetailVo movieDetailVo;
 
-  MovieDetailCommend(this.movieDetailVo);
+  MovieDetailPopularCommendWidget(this.movieDetailVo,
+      {Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +31,7 @@ class MovieDetailCommend extends StatelessWidget {
       ),
       child: Column(
         children: <Widget>[
-          MovieDetailSection(
+          MovieDetailSectionWidget(
               title: '短评',
               actionText: '全部${movieDetailVo.commentsCount}',
           onAction: () {

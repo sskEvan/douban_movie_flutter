@@ -6,30 +6,34 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
+/**
+ * 电影预告片页面
+ */
 class MovieTrailerPage extends StatefulWidget {
   TrailerVo trailerVo;
 
-  MovieTrailerPage(this.trailerVo);
+  MovieTrailerPage(this.trailerVo, {Key key})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return MovieTrailerState();
+    return _MovieTrailerState();
   }
 }
 
-class MovieTrailerState extends State<MovieTrailerPage> {
-  VideoPlayerController videoPlayerController;
-  ChewieController chewieController;
+class _MovieTrailerState extends State<MovieTrailerPage> {
+  VideoPlayerController _videoPlayerController;
+  ChewieController _chewieController;
 
-  MovieTrailerState();
+  _MovieTrailerState();
 
   @override
   void initState() {
     super.initState();
     //配置视频地址
-    videoPlayerController =
+    _videoPlayerController =
         VideoPlayerController.network(widget.trailerVo.resourceUrl);
-    chewieController = ChewieController(
+    _chewieController = ChewieController(
       placeholder: SizedBox(
         width: ScreenUtil.width,
         height: ScreenUtil.width * 2 / 3,
@@ -37,7 +41,7 @@ class MovieTrailerState extends State<MovieTrailerPage> {
           url: widget.trailerVo.medium,
         ),
       ),
-      videoPlayerController: videoPlayerController,
+      videoPlayerController: _videoPlayerController,
       aspectRatio: 3 / 2, //宽高比
       autoPlay: true, //自动播放
     );
@@ -57,7 +61,7 @@ class MovieTrailerState extends State<MovieTrailerPage> {
           color: Colors.black,
           height: ScreenUtil.height,
           child:  Chewie(
-              controller: chewieController,
+              controller: _chewieController,
             ),
           ),
     );
@@ -69,8 +73,8 @@ class MovieTrailerState extends State<MovieTrailerPage> {
      * 当页面销毁的时候，将视频播放器也销毁
      * 否则，当页面销毁后会继续播放视频！
      */
-    videoPlayerController.dispose();
-    chewieController.dispose();
+    _videoPlayerController?.dispose();
+    _chewieController?.dispose();
     super.dispose();
   }
 }

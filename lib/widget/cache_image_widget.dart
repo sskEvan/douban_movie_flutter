@@ -4,6 +4,9 @@ import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/widget/common_loading_widget.dart';
 import 'package:flutter/cupertino.dart';
 
+/**
+ * 图片加载组件
+ */
 class CacheImageWidget extends StatelessWidget {
   final String url;
   final BoxFit fit;

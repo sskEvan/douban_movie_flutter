@@ -5,11 +5,10 @@ import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:douban_movie_flutter/widget/rating_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:oktoast/oktoast.dart';
 
-import 'dotted_line_widget.dart';
-import 'skeleton.dart';
-
+/**
+ * 豆瓣热门250item组件
+ */
 class BillboardTop250ItemWidget extends StatelessWidget {
   final MovieItemVo movieItemVo;
 

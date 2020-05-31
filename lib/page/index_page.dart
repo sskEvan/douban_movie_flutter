@@ -4,6 +4,9 @@ import 'package:douban_movie_flutter/page/mine_page.dart';
 import 'package:douban_movie_flutter/page/projection_page.dart';
 import 'package:flutter/material.dart';
 
+/**
+ * 首页索引页
+ */
 List<Widget> pages = [
   ProjectionPage(),
   BillboardPage(),
@@ -11,13 +14,17 @@ List<Widget> pages = [
 ];
 
 class IndexPage extends StatefulWidget {
+
+  IndexPage({Key key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
-    return IndexState();
+    return _IndexState();
   }
+
 }
 
-class IndexState extends State<IndexPage> {
+class _IndexState extends State<IndexPage> {
   DateTime _lastPressedTime;
   var _pageController = PageController();
   int _selectedIndex = 0;

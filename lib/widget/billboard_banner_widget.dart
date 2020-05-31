@@ -4,12 +4,16 @@ import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class BillboardBanner extends StatelessWidget {
+/**
+ * 榜单banner组件
+ */
+class BillboardBannerWidget extends StatelessWidget {
   final String title;
   final List<MovieItemVo> movieItemVos;
   final String routerName;
 
-  BillboardBanner({this.title, this.movieItemVos, this.routerName});
+  BillboardBannerWidget({this.title, this.movieItemVos, this.routerName, Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +67,8 @@ class BillboardBanner extends StatelessWidget {
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
-                          return _buildMovieInfoItem(index, movieItemVos[index]);
+                          return _buildMovieInfoItem(
+                              index, movieItemVos[index]);
                         },
                         itemCount: 3),
                   )),

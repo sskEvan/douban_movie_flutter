@@ -3,8 +3,8 @@ import 'package:douban_movie_flutter/provider/view_state_refresh_list_provider.d
 import 'package:douban_movie_flutter/service/net/douban_movie_repository.dart';
 import 'package:flutter/cupertino.dart';
 
-class MovieCommendProvider extends ViewStateRefreshListProvider {
-  MovieCommendProvider(BuildContext context) : super(context);
+class MovieCommendListProvider extends ViewStateRefreshListProvider {
+  MovieCommendListProvider(BuildContext context) : super(context);
 
   @override
   Future<List> loadData({Object arguments, int pageSize, int pageNum}) async {

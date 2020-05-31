@@ -1,15 +1,22 @@
 import 'package:douban_movie_flutter/i10n/localization_intl.dart';
-import 'package:douban_movie_flutter/page/movie_page.dart';
+import 'package:douban_movie_flutter/page/movie_list_page.dart';
 import 'package:douban_movie_flutter/widget/search_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+/**
+ * 首页电影页
+ */
 class ProjectionPage extends StatefulWidget {
+
+  ProjectionPage({Key key}) : super(key: key);
+
   @override
-  State<ProjectionPage> createState() => ProjectionState();
+  State<ProjectionPage> createState() => _ProjectionState();
+
 }
 
-class ProjectionState extends State<ProjectionPage>
+class _ProjectionState extends State<ProjectionPage>
     with TickerProviderStateMixin {
   var _tabs;
   var _tabController;
@@ -44,8 +51,8 @@ class ProjectionState extends State<ProjectionPage>
             child: TabBarView(
               controller: _tabController,
               children: <Widget>[
-                MoviePage(isShowing: true),
-                MoviePage(isShowing: false)
+                MovieListPage(isShowing: true),
+                MovieListPage(isShowing: false)
               ],
             ),
           )

@@ -6,7 +6,7 @@ import 'package:douban_movie_flutter/provider/billboard_us_box_provider.dart';
 import 'package:douban_movie_flutter/provider/billboard_weekly_movie_provider.dart';
 import 'package:douban_movie_flutter/provider/view_state_refresh_list_provider.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
-import 'package:douban_movie_flutter/widget/billboard_detail_skeleton_widget.dart';
+import 'package:douban_movie_flutter/widget/skeleton/billboard_detail_skeleton.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:douban_movie_flutter/widget/common_empty_widget.dart';
 import 'package:douban_movie_flutter/widget/common_error_widget.dart';
@@ -17,47 +17,49 @@ import 'package:flutter/material.dart';
 import 'package:palette_generator/palette_generator.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+/**
+ * 榜单详情页
+ */
 class BillboardDetailPage<T extends ViewStateRefreshListProvider>
     extends StatefulWidget {
   final actionType;
 
-  BillboardDetailPage({this.actionType});
+  BillboardDetailPage({this.actionType, Key key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return BillboardDetailState<T>(actionType);
+    return _BillboardDetailState<T>();
   }
 }
 
-class BillboardDetailState<T extends ViewStateRefreshListProvider>
+class _BillboardDetailState<T extends ViewStateRefreshListProvider>
     extends State<BillboardDetailPage> with AutomaticKeepAliveClientMixin {
-  final actionType;
-  var title;
-  var provider;
-  var sliverAppBarColor;
+  var _title;
+  var _provider;
+  var _sliverAppBarColor;
 
-  BillboardDetailState(this.actionType);
+  _BillboardDetailState();
 
   @override
   void initState() {
     super.initState();
 
-    switch (actionType) {
+    switch (widget.actionType) {
       case RouteName.billboardTop250:
-        provider = BillboardTop250Provider(context);
-        title = '豆瓣电影TOP250';
+        _provider = BillboardTop250Provider(context);
+        _title = '豆瓣电影TOP250';
         break;
       case RouteName.billboardWeekly:
-        provider = BillboardWeeklyMovieProvider(context);
-        title = '豆瓣电影本周口碑榜';
+        _provider = BillboardWeeklyMovieProvider(context);
+        _title = '豆瓣电影本周口碑榜';
         break;
       case RouteName.billboardNewMovies:
-        provider = BillboardNewMoviesProvider(context);
-        title = '豆瓣电影新片榜';
+        _provider = BillboardNewMoviesProvider(context);
+        _title = '豆瓣电影新片榜';
         break;
       case RouteName.billboardUsBox:
-        provider = BillboardUsBoxMovieProvider(context);
-        title = '豆瓣电影北美票房榜';
+        _provider = BillboardUsBoxMovieProvider(context);
+        _title = '豆瓣电影北美票房榜';
         break;
     }
   }
@@ -67,13 +69,13 @@ class BillboardDetailState<T extends ViewStateRefreshListProvider>
     debugPrint('BillboardDetailState---build done');
     return new Scaffold(
         body: ViewStateWidget<T>(
-            provider: provider,
+            provider: _provider,
             onProviderReady: (provider) async {
               await provider.initData();
             },
             builder: (context, T provider, child) {
               if (provider.isBusy) {
-                return BillboardDetailSkeletonWidget();
+                return BillboardDetailSkeleton();
               } else if (provider.isEmpty) {
                 return CommonEmptyWidget(onPressed: provider.initData);
               } else if (provider.isError) {
@@ -82,7 +84,7 @@ class BillboardDetailState<T extends ViewStateRefreshListProvider>
                     onPressed: provider.initData);
               }
 
-              fetchPageColor(context, provider.list[0].images.small);
+              _fetchPageColor(context, provider.list[0].images.small);
 
               return SmartRefresher(
                   controller: provider.refreshController,
@@ -98,7 +100,7 @@ class BillboardDetailState<T extends ViewStateRefreshListProvider>
                         centerTitle: false,
                         flexibleSpace: new FlexibleSpaceBar(
                           title: new Text(
-                            title,
+                            _title,
                           ),
                           centerTitle: true,
                           collapseMode: CollapseMode.pin,
@@ -117,7 +119,7 @@ class BillboardDetailState<T extends ViewStateRefreshListProvider>
                             child: Icon(Icons.more_horiz, color: Colors.white),
                           )
                         ],
-                        backgroundColor: sliverAppBarColor,
+                        backgroundColor: _sliverAppBarColor,
                       ),
                       new SliverList(
                         delegate: new SliverChildBuilderDelegate(
@@ -134,19 +136,19 @@ class BillboardDetailState<T extends ViewStateRefreshListProvider>
             }));
   }
 
-  void fetchPageColor(context, url) async {
+  void _fetchPageColor(context, url) async {
     PaletteGenerator paletteGenerator =
         await PaletteGenerator.fromImageProvider(
       CachedNetworkImageProvider(url),
     );
 
-    if (paletteGenerator.darkVibrantColor != null && sliverAppBarColor != paletteGenerator.darkVibrantColor.color) {
+    if (paletteGenerator.darkVibrantColor != null && _sliverAppBarColor != paletteGenerator.darkVibrantColor.color) {
       setState(() {
-        sliverAppBarColor = paletteGenerator.darkVibrantColor.color;
+        _sliverAppBarColor = paletteGenerator.darkVibrantColor.color;
       });
-    } else if(paletteGenerator.darkVibrantColor == null && sliverAppBarColor != Theme.of(context).primaryColor) {
+    } else if(paletteGenerator.darkVibrantColor == null && _sliverAppBarColor != Theme.of(context).primaryColor) {
       setState(() {
-        sliverAppBarColor = Theme.of(context).primaryColor;
+        _sliverAppBarColor = Theme.of(context).primaryColor;
       });
     }
 

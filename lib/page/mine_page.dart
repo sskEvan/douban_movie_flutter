@@ -2,6 +2,9 @@ import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:flutter/material.dart';
 
 
+/**
+ * 我的页面
+ */
 class MinePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {

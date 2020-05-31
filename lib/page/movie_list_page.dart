@@ -3,23 +3,26 @@ import 'package:douban_movie_flutter/widget/common_empty_widget.dart';
 import 'package:douban_movie_flutter/widget/common_error_widget.dart';
 import 'package:douban_movie_flutter/widget/movie_item_widget.dart';
 import 'package:douban_movie_flutter/widget/skeleton/movie_item_skeleton.dart';
-import 'package:douban_movie_flutter/widget/skeleton.dart';
+import 'package:douban_movie_flutter/widget/skeleton/skeleton.dart';
 import 'package:douban_movie_flutter/widget/view_state_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class MoviePage extends StatefulWidget {
+/**
+ * 电影列表页面
+ */
+class MovieListPage extends StatefulWidget {
   final bool isShowing;
 
-  MoviePage({this.isShowing});
+  MovieListPage({this.isShowing, Key key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return MovieState();
+    return _MovieListState();
   }
 }
 
-class MovieState extends State<MoviePage> with AutomaticKeepAliveClientMixin {
+class _MovieListState extends State<MovieListPage> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     return ViewStateWidget<MovieItemListProvider>(

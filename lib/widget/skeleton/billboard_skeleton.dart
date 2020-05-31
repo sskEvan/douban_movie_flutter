@@ -1,13 +1,18 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
-import 'package:douban_movie_flutter/widget/skeleton.dart';
+import 'package:douban_movie_flutter/widget/skeleton/skeleton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
+/**
+ * 首页榜单页面组件
+ */
 class BillboardSkeleton extends StatelessWidget {
   var isDark;
   var banners;
+
+  BillboardSkeleton({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

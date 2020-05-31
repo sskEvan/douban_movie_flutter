@@ -1,5 +1,5 @@
 import 'package:douban_movie_flutter/model/photo_detail_list_vo.dart';
-import 'package:douban_movie_flutter/provider/movie_stills_provider.dart';
+import 'package:douban_movie_flutter/provider/movie_stills_list_provider.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:douban_movie_flutter/widget/common_empty_widget.dart';
@@ -11,21 +11,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class MovieStillPage extends StatefulWidget {
+/**
+ * 电影剧照列表页
+ */
+class MovieStillsListPage extends StatefulWidget {
   String movieId;
   int totalPhotoCount;
 
-  MovieStillPage(this.movieId, this.totalPhotoCount);
+  MovieStillsListPage(this.movieId, this.totalPhotoCount,
+      {Key key})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return MovieStillState();
+    return _MovieStillsListState();
   }
 }
 
-class MovieStillState extends State<MovieStillPage> {
+class _MovieStillsListState extends State<MovieStillsListPage> {
 
-  MovieStillState();
+  _MovieStillsListState();
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +49,12 @@ class MovieStillState extends State<MovieStillPage> {
                 },
               ),
             ),
-            body: ViewStateWidget<MovieStillsProvider>(
-              provider: MovieStillsProvider(context),
+            body: ViewStateWidget<MovieStillsListProvider>(
+              provider: MovieStillsListProvider(context),
               onProviderReady: (provider) async {
                 await provider.initData([widget.movieId, widget.totalPhotoCount]);
               },
-              builder: (context, MovieStillsProvider provider, child) {
+              builder: (context, MovieStillsListProvider provider, child) {
                 if (provider.isBusy) {
                   return CommonLoadingWidget();
                 } else if (provider.isEmpty) {

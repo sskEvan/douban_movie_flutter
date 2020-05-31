@@ -5,12 +5,17 @@ import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'movie_detail_section.dart';
+import 'movie_detail_section_widget.dart';
 
-class MovieDetailStills extends StatelessWidget {
+/**
+ * 电影详情页面剧照组件
+ */
+class MovieDetailStillsWidget extends StatelessWidget {
   MovieDetailVo movieDetailVo;
 
-  MovieDetailStills(this.movieDetailVo);
+  MovieDetailStillsWidget(this.movieDetailVo,
+      {Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +33,7 @@ class MovieDetailStills extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
       child: Column(
         children: <Widget>[
-          MovieDetailSection(
+          MovieDetailSectionWidget(
               title: '剧照/预告片',
               actionText: '全部',
               onAction: () {

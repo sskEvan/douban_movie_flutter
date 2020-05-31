@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 
 import 'dotted_line_widget.dart';
-import 'skeleton.dart';
 
 class MovieItemWidget extends StatelessWidget {
   final MovieItemVo movieItemVo;

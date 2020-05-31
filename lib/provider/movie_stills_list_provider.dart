@@ -4,11 +4,11 @@ import 'package:douban_movie_flutter/provider/view_state_refresh_list_provider.d
 import 'package:douban_movie_flutter/service/net/douban_movie_repository.dart';
 import 'package:flutter/cupertino.dart';
 
-class MovieStillsProvider extends ViewStateCommonProvider {
+class MovieStillsListProvider extends ViewStateCommonProvider {
 
   PhotoDetailListVo moviePhotoDetailListVo;
 
-  MovieStillsProvider(BuildContext context) : super(context);
+  MovieStillsListProvider(BuildContext context) : super(context);
 
   @override
   Future loadData(Object arguments) async {

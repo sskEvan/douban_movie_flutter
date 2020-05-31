@@ -1,7 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+/**
+ * 通用正在加载数据组件
+ */
 class CommonLoadingWidget extends StatelessWidget {
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -12,4 +17,6 @@ class CommonLoadingWidget extends StatelessWidget {
           valueColor: AlwaysStoppedAnimation<Color>(Color(0xAACCCCCC))),
     );
   }
+
+  CommonLoadingWidget({Key key}) : super(key : key);
 }

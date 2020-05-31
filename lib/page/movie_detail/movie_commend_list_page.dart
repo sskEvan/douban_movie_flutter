@@ -1,29 +1,34 @@
-import 'package:douban_movie_flutter/provider/movie_commend_provider.dart';
+import 'package:douban_movie_flutter/provider/movie_commend_list_provider.dart';
 import 'package:douban_movie_flutter/widget/common_empty_widget.dart';
 import 'package:douban_movie_flutter/widget/common_error_widget.dart';
 import 'package:douban_movie_flutter/widget/common_loading_widget.dart';
 import 'package:douban_movie_flutter/widget/movie_commend_widget.dart';
-import 'package:douban_movie_flutter/widget/skeleton.dart';
+import 'package:douban_movie_flutter/widget/skeleton/movie_commend_Item_skeleton.dart';
+import 'package:douban_movie_flutter/widget/skeleton/skeleton.dart';
 import 'package:douban_movie_flutter/widget/view_state_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class MovieCommendPage extends StatefulWidget {
+/**
+ * 电影短评列表页
+ */
+class MovieCommendListPage extends StatefulWidget {
   final String movieId;
 
-  MovieCommendPage(this.movieId);
+  MovieCommendListPage(this.movieId,
+      {Key key})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return MovieCommendState(movieId);
+    return _MovieCommendState();
   }
 }
 
-class MovieCommendState extends State<MovieCommendPage> {
-  final String movieId;
+class _MovieCommendState extends State<MovieCommendListPage> {
 
-  MovieCommendState(this.movieId);
+  _MovieCommendState();
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +41,12 @@ class MovieCommendState extends State<MovieCommendPage> {
             style: TextStyle(color: Colors.black87),
           ),
         ),
-        body: ViewStateWidget<MovieCommendProvider>(
-            provider: MovieCommendProvider(context),
+        body: ViewStateWidget<MovieCommendListProvider>(
+            provider: MovieCommendListProvider(context),
             onProviderReady: (provider) async {
-              await provider.initData(arguments: movieId);
+              await provider.initData(arguments: widget.movieId);
             },
-            builder: (context, MovieCommendProvider provider, child) {
+            builder: (context, MovieCommendListProvider provider, child) {
               if (provider.isBusy) {
                 return SkeletonList(
                   padding: EdgeInsets.symmetric(horizontal: 20),
@@ -49,11 +54,11 @@ class MovieCommendState extends State<MovieCommendPage> {
                 );
               } else if (provider.isEmpty) {
                 return CommonEmptyWidget(
-                    onPressed: provider.initData(arguments: movieId));
+                    onPressed: provider.initData(arguments: widget.movieId));
               } else if (provider.isError) {
                 return CommonErrorWidget(
                     error: provider.viewStateError,
-                    onPressed: provider.initData(arguments: movieId));
+                    onPressed: provider.initData(arguments: widget.movieId));
               }
               return Container(
                   color: Colors.white,

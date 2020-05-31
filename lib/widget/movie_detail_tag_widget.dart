@@ -3,10 +3,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 
+/**
+ * 电影详情标签组件
+ */
 class MovieDetailTag extends StatelessWidget {
   MovieDetailVo movieDetailVo;
 
-  MovieDetailTag(this.movieDetailVo);
+  MovieDetailTag(this.movieDetailVo,
+      {Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -118,43 +118,5 @@ class SkeletonGrid extends StatelessWidget {
                 }),
           )),
     );
-
-//    return SingleChildScrollView(
-//        physics: NeverScrollableScrollPhysics(),
-//        child: Shimmer.fromColors(
-//            period: Duration(milliseconds: 1200),
-//            baseColor: isDark ? Colors.grey[700] : Colors.grey[350],
-//            highlightColor: isDark ? Colors.grey[500] : Colors.grey[200],
-//            child: Flexible(
-//                child: Padding(
-//              padding: padding,
-//              child: GridView.builder(
-//                  shrinkWrap: true,
-//                  itemCount: length,
-//                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//                    crossAxisCount: crossAxisCount, //横轴三个子widget
-//                    childAspectRatio: childAspectRatio,
-//                  ),
-//                  itemBuilder: (context, index) {
-//                    return builder(context, index);
-//                  }),
-//            ))));
-//
-//
-//    return Flexible(
-//        child: Padding(
-//          padding: padding,
-//          child: GridView.builder(
-//              shrinkWrap: true,
-//              itemCount: length,
-//              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//                crossAxisCount: crossAxisCount, //横轴三个子widget
-//                childAspectRatio: childAspectRatio,
-//              ),
-//              itemBuilder: (context, index) {
-//                return builder(context, index);
-//              }),
-//        )
-//    );
   }
 }

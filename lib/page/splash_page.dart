@@ -1,4 +1,3 @@
-import 'package:douban_movie_flutter/page/index_page.dart';
 import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
@@ -6,18 +5,22 @@ import 'package:douban_movie_flutter/utils/date_util.dart';
 import 'package:flutter/material.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 
 import '../provider/locale_provider.dart';
 
+/**
+ * 闪屏页
+ */
 class SplashPage extends StatefulWidget {
+  SplashPage({Key key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
-    return SplashState();
+    return _SplashState();
   }
 }
 
-class SplashState extends State<SplashPage> with TickerProviderStateMixin {
+class _SplashState extends State<SplashPage> with TickerProviderStateMixin {
   AnimationController _countDownController;
 
   @override
@@ -32,17 +35,24 @@ class SplashState extends State<SplashPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     var date = '';
     LocaleProvider localeModel = LocaleProvider();
-    if(localeModel.locale != null && localeModel.locale.countryCode == "US") {
+    if (localeModel.locale != null && localeModel.locale.countryCode == "US") {
       date = formatDate(DateTime.now(), [yyyy, '-', mm, '-', dd, ',    ', DD]);
-    }else {
-      date = formatDate(DateTime.now(), [yyyy, '年', mm, '月', dd, '日, ',]) + DataUtil.getWeekDay();
+    } else {
+      date = formatDate(DateTime.now(), [
+            yyyy,
+            '年',
+            mm,
+            '月',
+            dd,
+            '日, ',
+          ]) +
+          DataUtil.getWeekDay();
     }
 
-
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.dark,  //闪屏页面底色是白色,将状态栏字体设置成黑色
-      child: Scaffold(
-        body: Stack(
+        value: SystemUiOverlayStyle.dark, //闪屏页面底色是白色,将状态栏字体设置成黑色
+        child: Scaffold(
+            body: Stack(
           children: <Widget>[
             Align(
               alignment: Alignment(0.0, -0.05),
@@ -145,7 +155,8 @@ class CountDownWidget extends AnimatedWidget {
       child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
           child: Text(
-            (value == 0 ? '' : '$value | ') + DouBanLocalizations.of(context).skip,
+            (value == 0 ? '' : '$value | ') +
+                DouBanLocalizations.of(context).skip,
             style: TextStyle(color: Colors.white),
           )),
     );
@@ -154,5 +165,4 @@ class CountDownWidget extends AnimatedWidget {
   void _forwardIndexPage(context) {
     Navigator.of(context).pushReplacementNamed(RouteName.index);
   }
-
 }

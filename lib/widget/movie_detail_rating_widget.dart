@@ -6,11 +6,16 @@ import 'package:douban_movie_flutter/widget/rating_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+/**
+ * 电影详情页评分组件
+ */
 class MovieDetailRatingWidget extends StatelessWidget {
   MovieDetailVo movieDetailVo;
   var totalRatingCount;
 
-  MovieDetailRatingWidget(this.movieDetailVo);
+  MovieDetailRatingWidget(this.movieDetailVo,
+      {Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
