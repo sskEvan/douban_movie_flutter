@@ -249,7 +249,7 @@ class BottomDrawerState extends State<BottomDrawerWidget>
       ]),
       onWillPop: () async {
         if (drawerOffset == 0) {
-          doDrawerAnim(0.0, initDrawerOffset);
+          _doDrawerOffsetAnim(0.0, initDrawerOffset);
           return false;
         }
         return true;
@@ -273,7 +273,7 @@ class BottomDrawerState extends State<BottomDrawerWidget>
               //drawer张开高度小于一半
               end = initDrawerOffset;
             }
-            doDrawerAnim(start, end);
+            _doDrawerOffsetAnim(start, end);
           }
         },
         child: NotificationListener<OverscrollNotification>(
@@ -297,14 +297,14 @@ class BottomDrawerState extends State<BottomDrawerWidget>
                 MovieDetailRatingWidget(widget.movieDetailVo),
                 MovieDetailTag(widget.movieDetailVo),
                 MovieDetailPlotWidget(widget.movieDetailVo),
-                MovieDetailCastListWidget(widget.movieDetailVo),
+                MovieDetailStaffListWidget(widget.movieDetailVo),
                 MovieDetailStillsWidget(widget.movieDetailVo),
                 MovieDetailPopularCommendWidget(widget.movieDetailVo),
               ],
             )));
   }
 
-  void doDrawerAnim(double start, double end) {
+  void _doDrawerOffsetAnim(double start, double end) {
     offsetAnimalController.reset();
     final CurvedAnimation curve = CurvedAnimation(
         parent: offsetAnimalController, curve: Curves.easeOut);
@@ -347,7 +347,7 @@ class BottomDrawerState extends State<BottomDrawerWidget>
             //drawer张开高度小于一半
             end = initDrawerOffset;
           }
-          doDrawerAnim(start, end);
+          _doDrawerOffsetAnim(start, end);
         },
         child: Transform.translate(
             offset: Offset(0.0, drawerOffset),

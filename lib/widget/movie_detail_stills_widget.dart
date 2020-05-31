@@ -45,6 +45,7 @@ class MovieDetailStillsWidget extends StatelessWidget {
               }),
           SizedBox(height: 6),
           SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: List.generate(

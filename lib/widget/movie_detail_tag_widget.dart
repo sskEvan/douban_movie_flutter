@@ -19,6 +19,7 @@ class MovieDetailTag extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
       margin: EdgeInsets.fromLTRB(0, 5, 0, 12),
       child: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
         child: Row(
           children: <Widget>[
