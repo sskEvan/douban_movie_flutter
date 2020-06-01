@@ -25,9 +25,10 @@ class BillboardTop250ItemWidget extends StatelessWidget {
 
     return InkWell(
         onTap: () {
-          Navigator.pushNamed(context, RouteName.movieDetail, arguments: movieItemVo.id);
+          Navigator.pushNamed(context, RouteName.movieDetail,
+              arguments: movieItemVo.id);
         },
-        child:  Container(
+        child: Container(
           padding: EdgeInsets.all(5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -52,13 +53,16 @@ class BillboardTop250ItemWidget extends StatelessWidget {
   }
 
   Widget _buildMovieTitle() {
-    return Text(
-      movieItemVo.title,
-      style: TextStyle(
-          color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),
-      overflow: TextOverflow.ellipsis,
-      maxLines: 1,
-    );
+    return SizedBox(
+        width: contentWidth,
+        child: Text(
+          movieItemVo.title,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
+        ));
   }
 
   Widget _buildMovieScore(BuildContext context) {
@@ -80,5 +84,4 @@ class BillboardTop250ItemWidget extends StatelessWidget {
           style: TextStyle(color: Colors.black45, fontSize: 13));
     }
   }
-
 }

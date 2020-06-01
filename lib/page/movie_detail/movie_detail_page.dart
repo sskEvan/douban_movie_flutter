@@ -12,7 +12,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:palette_generator/palette_generator.dart';
 
-import '../../widget/movie_detail_cast_list_widget.dart';
+import '../../widget/movie_detail_staff_list_widget.dart';
 import '../../widget/movie_detail_popular_commend_widget.dart';
 import '../../widget/movie_detail_header.dart';
 import '../../widget/movie_detail_plot_widget.dart';

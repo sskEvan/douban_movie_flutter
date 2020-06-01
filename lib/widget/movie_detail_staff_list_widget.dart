@@ -2,6 +2,7 @@ import 'package:douban_movie_flutter/model/cast_vo.dart';
 import 'package:douban_movie_flutter/model/director_vo.dart';
 import 'package:douban_movie_flutter/model/movie_detail_vo.dart';
 import 'package:douban_movie_flutter/model/writer_vo.dart';
+import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -44,21 +45,24 @@ class MovieDetailStaffListWidget extends StatelessWidget {
                   if (_directorList.length > 0 &&
                       index < _directorList.length) {
                     return _buildStaffItem(
+                        context: context,
                         id: _directorList[index].id,
                         avatars: _directorList[index].avatars.small,
-                        name: _directorList[index].nameEn,
+                        name: _directorList[index].name,
                         post: '导演');
                   } else if (_writerList.length > 0 &&
                       index < _directorList.length + _writerList.length) {
                     return _buildStaffItem(
+                        context: context,
                         id: _writerList[index - _directorList.length].id,
                         avatars: _writerList[index - _directorList.length]
                             .avatars
                             .small,
-                        name: _writerList[index - _directorList.length].nameEn,
+                        name: _writerList[index - _directorList.length].name,
                         post: '编剧');
                   } else {
                     return _buildStaffItem(
+                        context: context,
                         id: _castList[index -
                                 _directorList.length -
                                 _writerList.length]
@@ -71,7 +75,7 @@ class MovieDetailStaffListWidget extends StatelessWidget {
                         name: _castList[index -
                                 _directorList.length -
                                 _writerList.length]
-                            .nameEn);
+                            .name);
                   }
 
                   return _buildStaffItem();
@@ -82,42 +86,52 @@ class MovieDetailStaffListWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildStaffItem({String id, String avatars, String name, String post}) {
+  Widget _buildStaffItem(
+      {BuildContext context,
+      String id,
+      String avatars,
+      String name,
+      String post}) {
     var itemWidth = (ScreenUtil.width - 60) / 4;
     var itemHeight = itemWidth * 4 / 3;
 
-    return Row(
-      children: <Widget>[
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return InkWell(
+        onTap: () {
+          Navigator.of(context)
+              .pushNamed(RouteName.staffDetailPage, arguments: id);
+        },
+        child: Row(
           children: <Widget>[
-            SizedBox(
-              width: itemWidth,
-              height: itemHeight,
-              child: CacheImageWidget(
-                url: avatars,
-                radius: 5,
-              ),
-            ),
-            SizedBox(height: 4),
-            SizedBox(
-              width: itemWidth,
-              child: Text(
-                post == null ? name : '[$post]$name',
-                style: TextStyle(
-                  color: Color(0xAAFFFFFF),
-                  fontSize: 12,
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(
+                  width: itemWidth,
+                  height: itemHeight,
+                  child: CacheImageWidget(
+                    url: avatars,
+                    radius: 5,
+                  ),
                 ),
-                textAlign: TextAlign.center,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-            )
+                SizedBox(height: 4),
+                SizedBox(
+                  width: itemWidth,
+                  child: Text(
+                    post == null ? name : '[$post]$name',
+                    style: TextStyle(
+                      color: Color(0xAAFFFFFF),
+                      fontSize: 12,
+                    ),
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                )
+              ],
+            ),
+            SizedBox(width: 10),
           ],
-        ),
-        SizedBox(width: 10),
-      ],
-    );
+        ));
   }
 }

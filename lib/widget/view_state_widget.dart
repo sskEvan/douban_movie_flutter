@@ -22,7 +22,8 @@ class ViewStateWidget<T extends ChangeNotifier> extends StatefulWidget {
   State<StatefulWidget> createState() => _ViewStateWidgetState<T>();
 }
 
-class _ViewStateWidgetState<T extends ChangeNotifier> extends State<ViewStateWidget<T>> {
+class _ViewStateWidgetState<T extends ChangeNotifier>
+    extends State<ViewStateWidget<T>> {
   T model;
 
   @override
@@ -40,21 +41,19 @@ class _ViewStateWidgetState<T extends ChangeNotifier> extends State<ViewStateWid
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<T>
-        .value(
-      value: model,
-    child: Consumer<T>(
-      builder: widget.builder,
-      child: widget.child,
-    ));
+    return ChangeNotifierProvider<T>.value(
+        value: model,
+        child: Consumer<T>(
+          builder: widget.builder,
+          child: widget.child,
+        ));
   }
-
 }
 
 class ViewStateWidget2<A extends ChangeNotifier, B extends ChangeNotifier>
     extends StatefulWidget {
   final Widget Function(BuildContext context, A model1, B model2, Widget child)
-  builder;
+      builder;
   final A provider1;
   final B provider2;
   final Widget child;
@@ -109,7 +108,6 @@ class _ViewStateWidgetState2<A extends ChangeNotifier, B extends ChangeNotifier>
         ));
   }
 }
-
 
 /// 加载中
 class ViewStateBusyWidget extends StatelessWidget {

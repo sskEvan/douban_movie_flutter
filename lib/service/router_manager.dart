@@ -9,6 +9,7 @@ import 'package:douban_movie_flutter/page/movie_detail/movie_review_detail_page.
 import 'package:douban_movie_flutter/page/movie_detail/movie_detail_page.dart';
 import 'package:douban_movie_flutter/page/movie_detail/movie_stills_list_page.dart';
 import 'package:douban_movie_flutter/page/movie_detail/movie_trailer_page.dart';
+import 'package:douban_movie_flutter/page/movie_detail/staff_detail_page.dart';
 import 'package:douban_movie_flutter/page/splash_page.dart';
 import 'package:douban_movie_flutter/page/movie_detail/movie_stills_detail_page.dart';
 import 'package:douban_movie_flutter/provider/billboard_new_movies_provider.dart';
@@ -31,6 +32,8 @@ class RouteName {
   static const String movieCommend = 'movieCommend';
   static const String movieReviewDetail = 'movieReviewDetail';
   static const String movieTrailersPage = 'movieTrailersPage';
+  static const String staffDetailPage = 'staffDetailPage';
+
 
 }
 
@@ -58,7 +61,6 @@ class Router {
       case RouteName.movieDetail:
         String id = settings.arguments;
         return NoAnimRouteBuilder(MovieDetailPage(id));
-        //return NoAnimRouteBuilder(BottomDrawerDemoPage());
         break;
       case RouteName.movieStills:
         List arguments = settings.arguments;
@@ -84,6 +86,10 @@ class Router {
       case RouteName.movieTrailersPage:
         TrailerVo trailerVo = settings.arguments;
         return VerticalSlideRouteBuilder(MovieTrailerPage(trailerVo));
+        break;
+      case RouteName.staffDetailPage:
+        String id = settings.arguments;
+        return VerticalSlideRouteBuilder(StaffDetailPage(id));
         break;
     }
   }
