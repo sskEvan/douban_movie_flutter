@@ -52,6 +52,12 @@ class _MovieTrailerState extends State<MovieTrailerPage> {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.black,
+          leading: IconButton(
+            icon: Icon(Icons.close, color: Colors.white),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
           title: Text(
             '${widget.trailerVo.title}',
             style: TextStyle(color: Colors.white),

@@ -35,7 +35,12 @@ class _MovieCommendState extends State<MovieCommendListPage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          iconTheme: IconThemeData(color: Colors.black87),
+          leading: IconButton(
+            icon: Icon(Icons.close, color: Colors.black87),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
           title: Text(
             '短评',
             style: TextStyle(color: Colors.black87),

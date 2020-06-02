@@ -1,5 +1,5 @@
 import 'package:douban_movie_flutter/model/photo_detail_list_vo.dart';
-import 'package:douban_movie_flutter/provider/movie_stills_list_provider.dart';
+import 'package:douban_movie_flutter/provider/photo_list_provider.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:douban_movie_flutter/widget/common_empty_widget.dart';
@@ -14,23 +14,23 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 /**
  * 电影剧照列表页
  */
-class MovieStillsListPage extends StatefulWidget {
-  String movieId;
+class PhotoListPage extends StatefulWidget {
+  String action;
   int totalPhotoCount;
 
-  MovieStillsListPage(this.movieId, this.totalPhotoCount,
+  PhotoListPage(this.action, this.totalPhotoCount,
       {Key key})
       : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return _MovieStillsListState();
+    return _PhotoListState();
   }
 }
 
-class _MovieStillsListState extends State<MovieStillsListPage> {
+class _PhotoListState extends State<PhotoListPage> {
 
-  _MovieStillsListState();
+  _PhotoListState();
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class _MovieStillsListState extends State<MovieStillsListPage> {
               backgroundColor: Colors.white,
               brightness: Brightness.light,
               title: Text(
-                '全部剧照',
+                '全部照片',
                 style: TextStyle(color: Colors.black87),
               ),
               leading: IconButton(
@@ -49,21 +49,21 @@ class _MovieStillsListState extends State<MovieStillsListPage> {
                 },
               ),
             ),
-            body: ViewStateWidget<MovieStillsListProvider>(
-              provider: MovieStillsListProvider(context),
+            body: ViewStateWidget<PhotoListProvider>(
+              provider: PhotoListProvider(context),
               onProviderReady: (provider) async {
-                await provider.initData([widget.movieId, widget.totalPhotoCount]);
+                await provider.initData([widget.action, widget.totalPhotoCount]);
               },
-              builder: (context, MovieStillsListProvider provider, child) {
+              builder: (context, PhotoListProvider provider, child) {
                 if (provider.isBusy) {
                   return CommonLoadingWidget();
                 } else if (provider.isEmpty) {
                   return CommonEmptyWidget(
-                      onPressed: provider.initData([widget.movieId, widget.totalPhotoCount]));
+                      onPressed: provider.initData([widget.action, widget.totalPhotoCount]));
                 } else if (provider.isError) {
                   return CommonErrorWidget(
                       error: provider.viewStateError,
-                      onPressed: provider.initData([widget.movieId, widget.totalPhotoCount]));
+                      onPressed: provider.initData([widget.action, widget.totalPhotoCount]));
                 }
 
                 return GridView.builder(
@@ -78,8 +78,8 @@ class _MovieStillsListState extends State<MovieStillsListPage> {
                         PhotoDetailInfo item = provider.moviePhotoDetailListVo.photos[index];
                         return InkWell(
                           onTap: () {
-                            Navigator.of(context).pushNamed(RouteName.movieStillsDetail,
-                                arguments: [provider.moviePhotoDetailListVo.photos, index, provider.moviePhotoDetailListVo.photos.length]);
+                            Navigator.of(context).pushNamed(RouteName.photoDetailPage,
+                                arguments: [provider.moviePhotoDetailListVo.photos, index]);
                           },
                           child: Hero(
                             tag: 'hero' + item.id ,

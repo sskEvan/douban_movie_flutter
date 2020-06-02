@@ -35,7 +35,7 @@ class MovieDetailPopularCommendWidget extends StatelessWidget {
               title: '短评',
               actionText: '全部${movieDetailVo.commentsCount}',
           onAction: () {
-                Navigator.of(context).pushNamed(RouteName.movieCommend, arguments: movieDetailVo.id);
+                Navigator.of(context).pushNamed(RouteName.movieCommendPage, arguments: movieDetailVo.id);
           },),
           SizedBox(height: 6),
           Column(

@@ -1,5 +1,6 @@
 import 'package:douban_movie_flutter/model/movie_item_vo.dart';
 import 'package:douban_movie_flutter/model/photo_vo.dart';
+import 'package:douban_movie_flutter/model/work_vo.dart';
 
 import 'avatars_vo.dart';
 
@@ -20,7 +21,7 @@ class StaffDetailVo {
   String constellation;
   String id;
   List<PhotoVo> photos;
-  List<StaffDetailWorkVo> works;
+  List<WorkVo> works;
 
   StaffDetailVo(
       {this.website,
@@ -65,25 +66,12 @@ class StaffDetailVo {
       });
     }
     if (json['works'] != null) {
-      works = new List<StaffDetailWorkVo>();
+      works = new List<WorkVo>();
       json['works'].forEach((v) {
-        works.add(new StaffDetailWorkVo.fromJson(v));
+        works.add(new WorkVo.fromJson(v));
       });
     }
   }
 }
 
 
-class StaffDetailWorkVo {
-  List<String> roles;
-  MovieItemVo movieItemVo;
-
-  StaffDetailWorkVo({this.roles, this.movieItemVo});
-
-  StaffDetailWorkVo.fromJson(Map<String, dynamic> json) {
-    roles = json['roles'].cast<String>();
-    movieItemVo =
-    json['subject'] != null ? new MovieItemVo.fromJson(json['subject']) : null;
-  }
-
-}

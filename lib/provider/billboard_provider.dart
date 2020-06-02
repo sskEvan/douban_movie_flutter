@@ -43,17 +43,17 @@ class BillboardProvider extends ViewStateRefreshListProvider {
     weeklyBannerEntity = BillboardBannerEntity(
         title: weeklyMovieVo.title,
         movieItemVos: weeklyMovieItemVos,
-        routerName: RouteName.billboardWeekly);
+        routerName: RouteName.billboardWeeklyPage);
 
     newMovieBannerEntity = BillboardBannerEntity(
         title: usboxMovieVo.title,
         movieItemVos: newMovieVo.movieItems,
-        routerName: RouteName.billboardUsBox);
+        routerName: RouteName.billboardUsBoxPage);
 
     usboxBannerEntity = BillboardBannerEntity(
         title: newMovieVo.title,
         movieItemVos: usboxMovieItemVos,
-        routerName: RouteName.billboardNewMovies);
+        routerName: RouteName.billboardNewMoviesPage);
 
     return result[0];
   }

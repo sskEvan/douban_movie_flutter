@@ -13,7 +13,9 @@ class PhotoDetailListVo {
 
   PhotoDetailListVo.fromJson(Map<String, dynamic> json) {
     count = json['count'];
-    movieItemVo = MovieItemVo.fromJson(json['subject']);
+    if(json['subject'] != null) {
+      movieItemVo = MovieItemVo.fromJson(json['subject']);
+    }
     if (json['photos'] != null) {
       photos = new List<PhotoDetailInfo>();
       json['photos'].forEach((v) {

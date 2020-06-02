@@ -98,7 +98,7 @@ class _MovieReviewsListState extends State<MovieReviewsListPage> {
           color: Colors.white,
           child: InkWell(
             onTap: () {
-              Navigator.of(context).pushNamed(RouteName.movieReviewDetail,
+              Navigator.of(context).pushNamed(RouteName.movieReviewDetailPage,
                   arguments: reviewsVo);
             },
             child: Container(

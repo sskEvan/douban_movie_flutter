@@ -56,7 +56,7 @@ class DouBanApp extends StatelessWidget {
                       //这句必须加上,否则切换语言后不会自动刷新
                       supportedLocales: DouBanLocalizations.delegate.supportedLocales,
                       onGenerateRoute: Router.generateRoute,
-                      initialRoute: RouteName.splash,
+                      initialRoute: RouteName.splashPage,
                     ));
               }),
         ),

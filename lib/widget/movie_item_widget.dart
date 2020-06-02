@@ -31,7 +31,7 @@ class MovieItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
         onTap: () {
-          Navigator.of(context).pushNamed(RouteName.movieDetail, arguments: movieItemVo.id);
+          Navigator.of(context).pushNamed(RouteName.movieDetailPage, arguments: movieItemVo.id);
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

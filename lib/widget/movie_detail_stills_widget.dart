@@ -32,14 +32,15 @@ class MovieDetailStillsWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           MovieDetailSectionWidget(
               title: '剧照/预告片',
               actionText: '全部',
               onAction: () {
-                Navigator.of(context).pushNamed(RouteName.movieStills,
+                Navigator.of(context).pushNamed(RouteName.photoListPage,
                     arguments: [
-                      movieDetailVo.id,
+                      'subject/${movieDetailVo.id}/photos',
                       movieDetailVo.photosCount
                     ]);
               }),

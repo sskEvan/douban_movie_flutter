@@ -25,10 +25,8 @@ class MovieDetailVo {
   int photosCount;
   String pubdate;
   String title;
-  Null doCount;
   bool hasVideo;
   String shareUrl;
-  Null seasonsCount;
   List<String> languages;
   String scheduleUrl;
   List<String> pubdates;
@@ -37,12 +35,9 @@ class MovieDetailVo {
   bool hasSchedule;
   List<String> durations;
   List<String> genres;
-  Null collection;
-  Null episodesCount;
   List<String> trailerUrls;
   bool hasTicket;
   List<String> clipUrls;
-  Null currentSeason;
   List<String> countries;
   String mainlandPubdate;
   String summary;
@@ -76,10 +71,8 @@ class MovieDetailVo {
       this.photosCount,
       this.pubdate,
       this.title,
-      this.doCount,
       this.hasVideo,
       this.shareUrl,
-      this.seasonsCount,
       this.languages,
       this.scheduleUrl,
       this.pubdates,
@@ -88,12 +81,9 @@ class MovieDetailVo {
       this.hasSchedule,
       this.durations,
       this.genres,
-      this.collection,
-      this.episodesCount,
       this.trailerUrls,
       this.hasTicket,
       this.clipUrls,
-      this.currentSeason,
       this.countries,
       this.mainlandPubdate,
       this.summary,
@@ -127,10 +117,8 @@ class MovieDetailVo {
     photosCount = json['photos_count'];
     pubdate = json['pubdate'];
     title = json['title'];
-    doCount = json['do_count'];
     hasVideo = json['has_video'];
     shareUrl = json['share_url'];
-    seasonsCount = json['seasons_count'];
     languages = json['languages'].cast<String>();
     scheduleUrl = json['schedule_url'];
     pubdates = json['pubdates'].cast<String>();
@@ -139,12 +127,9 @@ class MovieDetailVo {
     hasSchedule = json['has_schedule'];
     durations = json['durations'].cast<String>();
     genres = json['genres'].cast<String>();
-    collection = json['collection'];
-    episodesCount = json['episodes_count'];
     trailerUrls = json['trailer_urls'].cast<String>();
     hasTicket = json['has_ticket'];
     clipUrls = json['clip_urls'].cast<String>();
-    currentSeason = json['current_season'];
     countries = json['countries'].cast<String>();
     mainlandPubdate = json['mainland_pubdate'];
     summary = json['summary'];

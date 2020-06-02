@@ -63,7 +63,12 @@ class _MovieReviewDetailState extends State<MovieReviewDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.black87),
+          leading: IconButton(
+            icon: Icon(Icons.close, color: Colors.black87),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
           backgroundColor: Colors.white,
           brightness: Brightness.light,
           elevation: 1,

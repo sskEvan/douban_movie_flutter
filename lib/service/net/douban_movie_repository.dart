@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:douban_movie_flutter/model/celebrity_works_vo.dart';
 import 'package:douban_movie_flutter/model/comment_list_vo.dart';
 import 'package:douban_movie_flutter/model/movie_detail_vo.dart';
 import 'package:douban_movie_flutter/model/movie_item_vo.dart';
@@ -103,9 +104,9 @@ class DouBanMovieRepository {
     return movieDetailVo;
   }
 
-  static Future getMoviePhotoDetailListVo({String movieId, int start, int count}) async {
+  static Future getPhotoDetailListVo(String action, {int start, int count}) async {
     ResultData resultData = await HttpManager.getInstance()
-        .get('subject/${movieId}/photos', queryParameters: {"start": start, 'count': count});
+        .get('${action}', queryParameters: {"start": start, 'count': count});
     Map map = json.decode(resultData.data.toString());
     var movie = PhotoDetailListVo.fromJson(map);
     return movie;
@@ -134,6 +135,14 @@ class DouBanMovieRepository {
     Map map = json.decode(resultData.data.toString());
     var staffDetailVo = StaffDetailVo.fromJson(map);
     return staffDetailVo;
+  }
+
+  static Future getCelebrityWorksVo({String id, int start, int count}) async {
+    ResultData resultData = await HttpManager.getInstance()
+        .get('celebrity/${id}/works', queryParameters: {"start": start, 'count': count});
+    Map map = json.decode(resultData.data.toString());
+    var celebrityWorksVo = CelebrityWorksVo.fromJson(map);
+    return celebrityWorksVo;
   }
 
 }

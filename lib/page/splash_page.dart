@@ -163,6 +163,6 @@ class CountDownWidget extends AnimatedWidget {
   }
 
   void _forwardIndexPage(context) {
-    Navigator.of(context).pushReplacementNamed(RouteName.index);
+    Navigator.of(context).pushReplacementNamed(RouteName.indexPage);
   }
 }

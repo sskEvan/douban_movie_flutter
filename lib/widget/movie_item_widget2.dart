@@ -9,13 +9,13 @@ import 'package:flutter/material.dart';
 /**
  * 豆瓣热门250item组件
  */
-class BillboardTop250ItemWidget extends StatelessWidget {
+class MovieItemWidget2 extends StatelessWidget {
   final MovieItemVo movieItemVo;
 
   var contentWidth;
   var contentHeight;
 
-  BillboardTop250ItemWidget({this.movieItemVo})
+  MovieItemWidget2({this.movieItemVo})
       : super(key: ValueKey(movieItemVo.id));
 
   @override
@@ -25,7 +25,7 @@ class BillboardTop250ItemWidget extends StatelessWidget {
 
     return InkWell(
         onTap: () {
-          Navigator.pushNamed(context, RouteName.movieDetail,
+          Navigator.pushNamed(context, RouteName.movieDetailPage,
               arguments: movieItemVo.id);
         },
         child: Container(

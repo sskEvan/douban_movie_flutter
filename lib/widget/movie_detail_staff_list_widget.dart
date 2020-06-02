@@ -31,9 +31,10 @@ class MovieDetailStaffListWidget extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
       margin: EdgeInsets.symmetric(vertical: 20),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           MovieDetailSectionWidget(title: '职员表'),
-          SizedBox(height: 6),
+          SizedBox(height: 10),
           SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               physics: BouncingScrollPhysics(),
@@ -47,7 +48,7 @@ class MovieDetailStaffListWidget extends StatelessWidget {
                     return _buildStaffItem(
                         context: context,
                         id: _directorList[index].id,
-                        avatars: _directorList[index].avatars.small,
+                        avatars: _directorList[index].avatars?.small,
                         name: _directorList[index].name,
                         post: '导演');
                   } else if (_writerList.length > 0 &&
@@ -57,7 +58,7 @@ class MovieDetailStaffListWidget extends StatelessWidget {
                         id: _writerList[index - _directorList.length].id,
                         avatars: _writerList[index - _directorList.length]
                             .avatars
-                            .small,
+                            ?.small,
                         name: _writerList[index - _directorList.length].name,
                         post: '编剧');
                   } else {
@@ -71,7 +72,7 @@ class MovieDetailStaffListWidget extends StatelessWidget {
                                 _directorList.length -
                                 _writerList.length]
                             .avatars
-                            .small,
+                            ?.small,
                         name: _castList[index -
                                 _directorList.length -
                                 _writerList.length]

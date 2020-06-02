@@ -6,8 +6,8 @@ import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/billboard_banner_widget.dart';
 import 'package:douban_movie_flutter/widget/skeleton/billboard_skeleton.dart';
-import 'package:douban_movie_flutter/widget/billboard_top250_item_widget.dart';
-import 'package:douban_movie_flutter/widget/billboard_section_widget.dart';
+import 'package:douban_movie_flutter/widget/movie_item_widget2.dart';
+import 'package:douban_movie_flutter/widget/common_section_widget.dart';
 import 'package:douban_movie_flutter/widget/common_empty_widget.dart';
 import 'package:douban_movie_flutter/widget/common_error_widget.dart';
 import 'package:douban_movie_flutter/widget/search_widget.dart';
@@ -19,7 +19,6 @@ import 'package:flutter/material.dart';
  * 首页榜单页
  */
 class BillboardPage extends StatefulWidget {
-
   @override
   State<BillboardPage> createState() {
     return _BillboardState();
@@ -50,30 +49,57 @@ class _BillboardState extends State<BillboardPage>
               return CommonEmptyWidget(onPressed: provider.initData);
             } else if (provider.isError) {
               return CommonErrorWidget(
-                  error: provider.viewStateError,
-                  onPressed:provider.initData);
+                  error: provider.viewStateError, onPressed: provider.initData);
             }
             return SingleChildScrollView(
               child: Column(
                 children: <Widget>[
-                  BillboardSection(
+                  CommonSection(
                     title: DouBanLocalizations.of(context).top_250,
                     action: DouBanLocalizations.of(context).all,
+                    backgroundColor: Color(0xFFF7F7F7),
+                    padding: EdgeInsets.fromLTRB(15, 8, 5, 8),
+                    titleStyle: TextStyle(
+                        color: Colors.black87,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                    actionStyle: TextStyle(
+                      color: Colors.black87,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
                     onTap: () {
-                      Navigator.of(context).pushNamed(RouteName.billboardTop250);
+                      Navigator.of(context)
+                          .pushNamed(RouteName.billboardTop250Page);
                     },
                   ),
                   _buildTop250GridView(context, provider.top250MovieItemVos),
-                  BillboardSection(
-                      title: DouBanLocalizations.of(context).other_billboard),
+                  CommonSection(
+                    title: DouBanLocalizations.of(context).other_billboard,
+                    backgroundColor: Color(0xFFF7F7F7),
+                    padding: EdgeInsets.fromLTRB(15, 8, 5, 8),
+                    titleStyle: TextStyle(
+                        color: Colors.black87,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                    actionStyle: TextStyle(
+                      color: Colors.black87,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
                   _buildOtherBillboardBaners(context, <Widget>[
-                    BillboardBannerWidget(title: provider.weeklyBannerEntity.title,
+                    BillboardBannerWidget(
+                        title: provider.weeklyBannerEntity.title,
                         movieItemVos: provider.weeklyBannerEntity.movieItemVos,
                         routerName: provider.weeklyBannerEntity.routerName),
-                    BillboardBannerWidget(title: provider.newMovieBannerEntity.title,
-                        movieItemVos: provider.newMovieBannerEntity.movieItemVos,
+                    BillboardBannerWidget(
+                        title: provider.newMovieBannerEntity.title,
+                        movieItemVos:
+                            provider.newMovieBannerEntity.movieItemVos,
                         routerName: provider.newMovieBannerEntity.routerName),
-                    BillboardBannerWidget(title: provider.usboxBannerEntity.title,
+                    BillboardBannerWidget(
+                        title: provider.usboxBannerEntity.title,
                         movieItemVos: provider.usboxBannerEntity.movieItemVos,
                         routerName: provider.usboxBannerEntity.routerName),
                   ])
@@ -100,7 +126,7 @@ class _BillboardState extends State<BillboardPage>
           ),
           itemBuilder: (context, index) {
             MovieItemVo item = data[index];
-            return BillboardTop250ItemWidget(movieItemVo: item);
+            return MovieItemWidget2(movieItemVo: item);
           }),
     );
   }

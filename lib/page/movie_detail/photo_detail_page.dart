@@ -14,23 +14,22 @@ import 'package:permission_handler/permission_handler.dart';
 /**
  * 电影剧照详情页
  */
-class MovieStillsDetailPage extends StatefulWidget {
+class PhotoDetailPage extends StatefulWidget {
   List<PhotoDetailInfo> photoDetailList;
   int currentIndex;
-  int totalPhotoCount;
 
-  MovieStillsDetailPage(
-      this.photoDetailList, this.currentIndex, this.totalPhotoCount,
+  PhotoDetailPage(
+      this.photoDetailList, this.currentIndex,
       {Key key})
       : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return _MovieStillsDetailState();
+    return _PhotoDetailState();
   }
 }
 
-class _MovieStillsDetailState extends State<MovieStillsDetailPage>
+class _PhotoDetailState extends State<PhotoDetailPage>
     with SingleTickerProviderStateMixin {
   PageController _pageController = new PageController();
   Widget _appBar;
@@ -38,7 +37,7 @@ class _MovieStillsDetailState extends State<MovieStillsDetailPage>
   AnimationController _animController;
   var _onlyShowStills = false;
 
-  _MovieStillsDetailState();
+  _PhotoDetailState();
 
   @override
   void initState() {
@@ -77,7 +76,7 @@ class _MovieStillsDetailState extends State<MovieStillsDetailPage>
                 ),
               ),
               Text(
-                '${widget.currentIndex + 1} / ${widget.totalPhotoCount}',
+                '${widget.currentIndex + 1} / ${widget.photoDetailList.length}',
                 style: TextStyle(color: Colors.white),
               ),
             ],
@@ -104,11 +103,11 @@ class _MovieStillsDetailState extends State<MovieStillsDetailPage>
                     kToolbarHeight -
                     ScreenUtil.navigationBarHeight,
                 child: PageView(
-//                  onPageChanged: (int index) {
-//                    setState(() {
-//                      currentIndex = index;
-//                    });
-//                  },
+                  onPageChanged: (int index) {
+                    setState(() {
+                      widget.currentIndex = index;
+                    });
+                  },
                   physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   controller: _pageController,

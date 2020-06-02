@@ -45,19 +45,19 @@ class _BillboardDetailState<T extends ViewStateRefreshListProvider>
     super.initState();
 
     switch (widget.actionType) {
-      case RouteName.billboardTop250:
+      case RouteName.billboardTop250Page:
         _provider = BillboardTop250Provider(context);
         _title = '豆瓣电影TOP250';
         break;
-      case RouteName.billboardWeekly:
+      case RouteName.billboardWeeklyPage:
         _provider = BillboardWeeklyMovieProvider(context);
         _title = '豆瓣电影本周口碑榜';
         break;
-      case RouteName.billboardNewMovies:
+      case RouteName.billboardNewMoviesPage:
         _provider = BillboardNewMoviesProvider(context);
         _title = '豆瓣电影新片榜';
         break;
-      case RouteName.billboardUsBox:
+      case RouteName.billboardUsBoxPage:
         _provider = BillboardUsBoxMovieProvider(context);
         _title = '豆瓣电影北美票房榜';
         break;

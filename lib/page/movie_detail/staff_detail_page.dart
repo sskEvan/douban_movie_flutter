@@ -1,9 +1,10 @@
 import 'package:douban_movie_flutter/model/movie_item_vo.dart';
 import 'package:douban_movie_flutter/model/staff_detail_vo.dart';
 import 'package:douban_movie_flutter/provider/staff_detail_provider.dart';
+import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
-import 'package:douban_movie_flutter/widget/billboard_section_widget.dart';
-import 'package:douban_movie_flutter/widget/billboard_top250_item_widget.dart';
+import 'package:douban_movie_flutter/widget/common_section_widget.dart';
+import 'package:douban_movie_flutter/widget/movie_item_widget2.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:douban_movie_flutter/widget/common_empty_widget.dart';
 import 'package:douban_movie_flutter/widget/common_error_widget.dart';
@@ -37,7 +38,12 @@ class _StaffDetailState extends State<StaffDetailPage> {
             style: TextStyle(color: Colors.black87),
           ),
           backgroundColor: Colors.white,
-          iconTheme: IconThemeData(color: Colors.black87),
+          leading: IconButton(
+            icon: Icon(Icons.close, color: Colors.black87),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
         ),
         body: ViewStateWidget<StaffDetailProvider>(
           provider: StaffDetailProvider(context),
@@ -69,14 +75,14 @@ class _StaffDetailState extends State<StaffDetailPage> {
             children: <Widget>[
               _buildHeader(),
               _buildIntronduce(),
-              SizedBox(height: 10),
+              SizedBox(height: 15),
               Offstage(
                 offstage: _staffDetailVo.works == null ||
                     _staffDetailVo.works.length == 0,
-                child: _buildSection(
-                  title: '影视',
-                  action: '全部',
-                ),
+                child: _buildSection(title: '影视', action: '全部', onTap: () {
+                  Navigator.of(context).pushNamed(RouteName.celebrityWorksPage,
+                      arguments: _staffDetailVo.id);
+                }),
               ),
               Offstage(
                 offstage: _staffDetailVo.works == null ||
@@ -87,14 +93,18 @@ class _StaffDetailState extends State<StaffDetailPage> {
               Offstage(
                   offstage: _staffDetailVo.works == null ||
                       _staffDetailVo.works.length == 0,
-                  child: SizedBox(height: 10)),
+                  child: SizedBox(height: 15)),
               Offstage(
                   offstage: _staffDetailVo.photos == null ||
                       _staffDetailVo.photos.length == 0,
-                  child: _buildSection(
-                    title: '相册',
-                    action: '全部',
-                  )),
+                  child:
+                      _buildSection(title: '相册', action: '全部', onTap: () {
+                        Navigator.of(context).pushNamed(RouteName.photoListPage,
+                            arguments: [
+                              'celebrity/${_staffDetailVo.id}/photos',
+                              1000
+                            ]);
+                      })),
               SizedBox(height: 10),
               _buildPhotoes(),
               SizedBox(height: 30),
@@ -231,38 +241,17 @@ class _StaffDetailState extends State<StaffDetailPage> {
     return sb.toString().substring(0, sb.length - 3);
   }
 
-  Widget _buildSection({String title, String action}) {
-    return Row(
-      children: <Widget>[
-        Expanded(
-          child: Text(
-            title,
-            style: TextStyle(
-                color: Colors.black87,
-                fontSize: 18,
-                fontWeight: FontWeight.bold),
-          ),
-        ),
-        InkWell(
-          child: Row(
-            children: <Widget>[
-              Text(
-                action ?? '',
-                style: TextStyle(
-                  color: Colors.black45,
-                  fontSize: 15,
-                ),
-              ),
-              SizedBox(width: 5),
-              Icon(
-                Icons.arrow_forward_ios,
-                size: 12,
-                color: Colors.black45,
-              )
-            ],
-          ),
-        )
-      ],
+  Widget _buildSection({String title, String action, VoidCallback onTap}) {
+    return CommonSection(
+      title: title,
+      action: action,
+      titleStyle: TextStyle(
+          color: Colors.black87, fontSize: 18, fontWeight: FontWeight.bold),
+      actionStyle: TextStyle(
+        color: Colors.black45,
+        fontSize: 15,
+      ),
+      onTap: onTap,
     );
   }
 
@@ -277,7 +266,7 @@ class _StaffDetailState extends State<StaffDetailPage> {
           child: Row(
             children: List.generate(_staffDetailVo.works.length, (index) {
               MovieItemVo item = _staffDetailVo.works[index].movieItemVo;
-              return BillboardTop250ItemWidget(movieItemVo: item);
+              return MovieItemWidget2(movieItemVo: item);
             }),
           ),
         ),
