@@ -107,13 +107,11 @@ class MovieDetailStaffListWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(
+                CacheImageWidget(
+                  url: avatars,
+                  radius: 5,
                   width: itemWidth,
                   height: itemHeight,
-                  child: CacheImageWidget(
-                    url: avatars,
-                    radius: 5,
-                  ),
                 ),
                 SizedBox(height: 4),
                 SizedBox(

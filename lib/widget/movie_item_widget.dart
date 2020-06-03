@@ -31,7 +31,8 @@ class MovieItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
         onTap: () {
-          Navigator.of(context).pushNamed(RouteName.movieDetailPage, arguments: movieItemVo.id);
+          Navigator.of(context)
+              .pushNamed(RouteName.movieDetailPage, arguments: movieItemVo.id);
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,13 +84,11 @@ class MovieItemWidget extends StatelessWidget {
   }
 
   Widget _buildMoviePoster() {
-    return SizedBox(
+    return CacheImageWidget(
+      url: movieItemVo.images.small,
+      radius: 5,
       width: 90,
       height: 120,
-      child: CacheImageWidget(
-        url: movieItemVo.images.small,
-        radius: 5,
-      ),
     );
   }
 
@@ -178,7 +177,8 @@ class MovieItemWidget extends StatelessWidget {
               child: AbsorbPointer(
                 absorbing: true,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 14),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 3, horizontal: 14),
                   child: Text(
                     DouBanLocalizations.of(context).buy,
                     style: TextStyle(fontSize: 14, color: Colors.red),

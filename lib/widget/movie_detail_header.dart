@@ -13,9 +13,7 @@ import 'package:oktoast/oktoast.dart';
 class MovieDetailHeader extends StatelessWidget {
   MovieDetailVo movieDetailVo;
 
-  MovieDetailHeader(this.movieDetailVo,
-      {Key key})
-      : super(key: key);
+  MovieDetailHeader(this.movieDetailVo, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +55,7 @@ class MovieDetailHeader extends StatelessWidget {
           SizedBox(height: 5),
           Text(
             '${movieDetailVo.year} / ${_genres2String(movieDetailVo.genres)} /${_durings2String(movieDetailVo.durations)} '
-                '/${_directors2String(movieDetailVo.directors)} /${_cases2String(movieDetailVo.casts)}',
+            '/${_directors2String(movieDetailVo.directors)} /${_cases2String(movieDetailVo.casts)}',
             style: TextStyle(color: Colors.white, fontSize: 13),
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
@@ -109,14 +107,8 @@ class MovieDetailHeader extends StatelessWidget {
   }
 
   Widget _buildHanderPoster() {
-    return SizedBox(
-      width: 100,
-      height: 130,
-      child: CacheImageWidget(
-        url: movieDetailVo.images.small,
-        radius: 5,
-      ),
-    );
+    return CacheImageWidget(
+        url: movieDetailVo.images.small, radius: 5, width: 100, height: 130);
   }
 
   String _genres2String(List genres) {

@@ -60,14 +60,12 @@ class MovieDetailPopularCommendWidget extends StatelessWidget {
         ),
         Row(
           children: <Widget>[
-            SizedBox(
-              width: 30,
-              height: 30,
-              child: CacheImageWidget(
+            CacheImageWidget(
                 url: popularCommentVo.author.avatar,
                 radius: 15,
+                  width: 30,
+                  height: 30
               ),
-            ),
             SizedBox(width: 10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

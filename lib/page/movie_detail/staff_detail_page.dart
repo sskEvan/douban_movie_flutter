@@ -79,10 +79,14 @@ class _StaffDetailState extends State<StaffDetailPage> {
               Offstage(
                 offstage: _staffDetailVo.works == null ||
                     _staffDetailVo.works.length == 0,
-                child: _buildSection(title: '影视', action: '全部', onTap: () {
-                  Navigator.of(context).pushNamed(RouteName.celebrityWorksPage,
-                      arguments: _staffDetailVo.id);
-                }),
+                child: _buildSection(
+                    title: '影视',
+                    action: '全部',
+                    onTap: () {
+                      Navigator.of(context).pushNamed(
+                          RouteName.celebrityWorksPage,
+                          arguments: _staffDetailVo.id);
+                    }),
               ),
               Offstage(
                 offstage: _staffDetailVo.works == null ||
@@ -97,8 +101,10 @@ class _StaffDetailState extends State<StaffDetailPage> {
               Offstage(
                   offstage: _staffDetailVo.photos == null ||
                       _staffDetailVo.photos.length == 0,
-                  child:
-                      _buildSection(title: '相册', action: '全部', onTap: () {
+                  child: _buildSection(
+                      title: '相册',
+                      action: '全部',
+                      onTap: () {
                         Navigator.of(context).pushNamed(RouteName.photoListPage,
                             arguments: [
                               'celebrity/${_staffDetailVo.id}/photos',
@@ -119,13 +125,11 @@ class _StaffDetailState extends State<StaffDetailPage> {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          SizedBox(
+          CacheImageWidget(
+            url: _staffDetailVo.avatars.medium,
+            radius: 5,
             width: 100,
             height: 130,
-            child: CacheImageWidget(
-              url: _staffDetailVo.avatars.medium,
-              radius: 5,
-            ),
           ),
           SizedBox(width: 10),
           Expanded(

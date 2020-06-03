@@ -34,12 +34,10 @@ class _MovieTrailerState extends State<MovieTrailerPage> {
     _videoPlayerController =
         VideoPlayerController.network(widget.trailerVo.resourceUrl);
     _chewieController = ChewieController(
-      placeholder: SizedBox(
-        width: ScreenUtil.width,
-        height: ScreenUtil.width * 2 / 3,
-        child: CacheImageWidget(
+      placeholder: CacheImageWidget(
           url: widget.trailerVo.medium,
-        ),
+          width: ScreenUtil.width,
+          height: ScreenUtil.width * 2 / 3,
       ),
       videoPlayerController: _videoPlayerController,
       aspectRatio: 3 / 2, //宽高比

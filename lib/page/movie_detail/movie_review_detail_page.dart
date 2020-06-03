@@ -11,9 +11,7 @@ import 'package:oktoast/oktoast.dart';
 class MovieReviewDetailPage extends StatefulWidget {
   ReviewsVo reviewsVo;
 
-  MovieReviewDetailPage(this.reviewsVo,
-      {Key key})
-      : super(key: key);
+  MovieReviewDetailPage(this.reviewsVo, {Key key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -91,13 +89,11 @@ class _MovieReviewDetailState extends State<MovieReviewDetailPage> {
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        SizedBox(
+                        CacheImageWidget(
+                          url: widget.reviewsVo.author.avatar,
+                          radius: 15,
                           width: 30,
                           height: 30,
-                          child: CacheImageWidget(
-                            url: widget.reviewsVo.author.avatar,
-                            radius: 16,
-                          ),
                         ),
                         SizedBox(width: 10),
                         Text(
@@ -121,8 +117,7 @@ class _MovieReviewDetailState extends State<MovieReviewDetailPage> {
                         ),
                         label: Text(
                           "关注",
-                          style: TextStyle(color: Colors.white,
-                              fontSize: 14),
+                          style: TextStyle(color: Colors.white, fontSize: 14),
                         ),
                         color: Colors.green,
                         onPressed: () {
@@ -159,13 +154,11 @@ class _MovieReviewDetailState extends State<MovieReviewDetailPage> {
               SizedBox(height: 16),
               Row(
                 children: <Widget>[
-                  SizedBox(
+                  CacheImageWidget(
+                    url: widget.reviewsVo.author.avatar,
+                    radius: 20,
                     width: 40,
                     height: 40,
-                    child: CacheImageWidget(
-                      url: widget.reviewsVo.author.avatar,
-                      radius: 20,
-                    ),
                   ),
                   SizedBox(
                     width: 10,

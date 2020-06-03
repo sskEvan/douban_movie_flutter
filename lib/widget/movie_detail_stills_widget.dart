@@ -13,22 +13,18 @@ import 'movie_detail_section_widget.dart';
 class MovieDetailStillsWidget extends StatelessWidget {
   MovieDetailVo movieDetailVo;
 
-  MovieDetailStillsWidget(this.movieDetailVo,
-      {Key key})
-      : super(key: key);
+  MovieDetailStillsWidget(this.movieDetailVo, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var itemWidth = (ScreenUtil.width - 60) / 4;
     var itemHeight = itemWidth * 4 / 3;
     var showTrailersItem = false;
-    if (movieDetailVo.trailers != null &&
-        movieDetailVo.trailers.length > 0) {
+    if (movieDetailVo.trailers != null && movieDetailVo.trailers.length > 0) {
       showTrailersItem = true;
     }
-    var maxTrailersItemsCount = movieDetailVo.trailers.length > 3
-        ? 3
-        : movieDetailVo.trailers.length;
+    var maxTrailersItemsCount =
+        movieDetailVo.trailers.length > 3 ? 3 : movieDetailVo.trailers.length;
     return Container(
       padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
       child: Column(
@@ -70,10 +66,11 @@ class MovieDetailStillsWidget extends StatelessWidget {
                                   alignment: Alignment.center,
                                   children: <Widget>[
                                     CacheImageWidget(
-                                      url: movieDetailVo
-                                          .trailers[index].medium,
-                                      radius: 5,
-                                    ),
+                                        url: movieDetailVo
+                                            .trailers[index].medium,
+                                        radius: 5,
+                                        width: itemWidth * 2 + 10,
+                                        height: itemHeight),
                                     Icon(
                                       Icons.play_circle_outline,
                                       size: 40,
@@ -90,14 +87,12 @@ class MovieDetailStillsWidget extends StatelessWidget {
                     } else {
                       return Row(
                         children: <Widget>[
-                          SizedBox(
+                          CacheImageWidget(
+                            url: movieDetailVo
+                                .photoes[index - maxTrailersItemsCount].cover,
+                            radius: 5,
                             width: itemWidth,
                             height: itemHeight,
-                            child: CacheImageWidget(
-                              url: movieDetailVo
-                                  .photoes[index - maxTrailersItemsCount].cover,
-                              radius: 5,
-                            ),
                           ),
                           SizedBox(
                             width: 10,
@@ -108,13 +103,11 @@ class MovieDetailStillsWidget extends StatelessWidget {
                   } else {
                     return Row(
                       children: <Widget>[
-                        SizedBox(
+                        CacheImageWidget(
+                          url: movieDetailVo.photoes[index].cover,
+                          radius: 5,
                           width: itemWidth,
                           height: itemHeight,
-                          child: CacheImageWidget(
-                            url: movieDetailVo.photoes[index].cover,
-                            radius: 5,
-                          ),
                         ),
                         SizedBox(
                           width: 10,

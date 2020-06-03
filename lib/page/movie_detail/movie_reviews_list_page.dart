@@ -19,8 +19,7 @@ class MovieReviewsListPage extends StatefulWidget {
   var movieId;
   DrawerScrollListener scrollListener;
 
-  MovieReviewsListPage(this.movieId, this.scrollListener,
-      {Key key})
+  MovieReviewsListPage(this.movieId, this.scrollListener, {Key key})
       : super(key: key);
 
   @override
@@ -31,6 +30,7 @@ class MovieReviewsListPage extends StatefulWidget {
 
 class _MovieReviewsListState extends State<MovieReviewsListPage> {
   ScrollController _scrollController;
+
   _MovieReviewsListState();
 
   @override
@@ -38,7 +38,7 @@ class _MovieReviewsListState extends State<MovieReviewsListPage> {
     super.initState();
     _scrollController = new ScrollController();
     _scrollController.addListener(() {
-      if(widget.scrollListener != null) {
+      if (widget.scrollListener != null) {
         widget.scrollListener(_scrollController.offset);
       }
     });
@@ -90,8 +90,7 @@ class _MovieReviewsListState extends State<MovieReviewsListPage> {
         )));
   }
 
-  Widget _buildCommendItem(
-      BuildContext context, ReviewsVo reviewsVo) {
+  Widget _buildCommendItem(BuildContext context, ReviewsVo reviewsVo) {
     return Column(
       children: <Widget>[
         Material(
@@ -108,13 +107,11 @@ class _MovieReviewsListState extends State<MovieReviewsListPage> {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      SizedBox(
+                      CacheImageWidget(
+                        url: reviewsVo.author.avatar,
+                        radius: 12,
                         width: 24,
                         height: 24,
-                        child: CacheImageWidget(
-                          url: reviewsVo.author.avatar,
-                          radius: 12,
-                        ),
                       ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -195,4 +192,3 @@ class _MovieReviewsListState extends State<MovieReviewsListPage> {
 }
 
 typedef DrawerScrollListener = void Function(double offset);
-

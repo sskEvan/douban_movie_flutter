@@ -118,16 +118,13 @@ class MovieDetailState extends State<MovieDetailPage> {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  SizedBox(
-                    width: 27,
-                    height: 35,
-                    child: CacheImageWidget(
+                  CacheImageWidget(
                       url: movieDetailVo != null
                           ? movieDetailVo.images.small
                           : '',
                       radius: 2,
-                    ),
-                  ),
+                      width: 27,
+                      height: 35),
                   SizedBox(width: 10),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -306,8 +303,8 @@ class BottomDrawerState extends State<BottomDrawerWidget>
 
   void _doDrawerOffsetAnim(double start, double end) {
     offsetAnimalController.reset();
-    final CurvedAnimation curve = CurvedAnimation(
-        parent: offsetAnimalController, curve: Curves.easeOut);
+    final CurvedAnimation curve =
+        CurvedAnimation(parent: offsetAnimalController, curve: Curves.easeOut);
     offsetAnimation = Tween(begin: start, end: end).animate(curve)
       ..addListener(() {
         updateDrawerOffset(offsetAnimation.value);
@@ -386,7 +383,8 @@ class BottomDrawerState extends State<BottomDrawerWidget>
                       ],
                     )),
                 Expanded(
-                  child: MovieReviewsListPage(widget.movieDetailVo.id , (offset) {
+                  child:
+                      MovieReviewsListPage(widget.movieDetailVo.id, (offset) {
                     debugPrint('drawerScrollOffset=${drawerScrollOffset}');
                     drawerScrollOffset = offset;
                   }),

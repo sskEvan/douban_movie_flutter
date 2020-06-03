@@ -15,8 +15,7 @@ class MovieItemWidget2 extends StatelessWidget {
   var contentWidth;
   var contentHeight;
 
-  MovieItemWidget2({this.movieItemVo})
-      : super(key: ValueKey(movieItemVo.id));
+  MovieItemWidget2({this.movieItemVo}) : super(key: ValueKey(movieItemVo.id));
 
   @override
   Widget build(BuildContext context) {
@@ -42,13 +41,11 @@ class MovieItemWidget2 extends StatelessWidget {
   }
 
   Widget _buildMoviePoster() {
-    return SizedBox(
+    return CacheImageWidget(
+      url: movieItemVo.images.small,
+      radius: 5,
       width: contentWidth,
       height: contentHeight - 25,
-      child: CacheImageWidget(
-        url: movieItemVo.images.small,
-        radius: 5,
-      ),
     );
   }
 
