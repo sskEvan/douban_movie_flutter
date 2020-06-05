@@ -1,3 +1,4 @@
+import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/cast_vo.dart';
 import 'package:douban_movie_flutter/model/movie_detail_vo.dart';
 import 'package:douban_movie_flutter/model/director_vo.dart';
@@ -72,10 +73,10 @@ class MovieDetailHeader extends StatelessWidget {
                       height: 20,
                     ),
                     label: Text(
-                      "想看",
+                      DouBanLocalizations.of(context).want_to_see,
                     ),
                     onPressed: () {
-                      showToast("想看", context: context);
+                      showToast(DouBanLocalizations.of(context).want_to_see, context: context);
                     },
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5))),
@@ -90,12 +91,12 @@ class MovieDetailHeader extends StatelessWidget {
                     height: 20,
                   ),
                   label: Text(
-                    "看过",
+                    DouBanLocalizations.of(context).seen,
                   ),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5)),
                   onPressed: () {
-                    showToast("看过", context: context);
+                    showToast(DouBanLocalizations.of(context).seen, context: context);
                   },
                 ),
               )

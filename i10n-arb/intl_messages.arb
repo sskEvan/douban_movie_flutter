@@ -1,128 +1,422 @@
 {
-  "@@last_modified": "2020-04-14T20:10:59.919175",
+  "@@last_modified": "2020-06-05T18:08:10.646922",
   "splash_meet": "Nice to meet you",
   "@splash_meet": {
     "description": "splash_meet",
     "type": "text",
     "placeholders": {}
   },
-  "skip": "skip",
+  "skip": "Skip",
   "@skip": {
     "description": "skip",
     "type": "text",
     "placeholders": {}
   },
-  "projection": "projection",
+  "projection": "Projection",
   "@projection": {
     "description": "projection",
     "type": "text",
     "placeholders": {}
   },
-  "billboard": "billboard",
+  "billboard": "Billboard",
   "@billboard": {
     "description": "billboard",
     "type": "text",
     "placeholders": {}
   },
-  "mine": "mine",
+  "mine": "Mine",
   "@mine": {
     "description": "mine",
     "type": "text",
     "placeholders": {}
   },
-  "showing_projection": "showing projection",
+  "showing_projection": "Showing Projection",
   "@showing_projection": {
     "description": "showing_projection",
     "type": "text",
     "placeholders": {}
   },
-  "upcoming_projection": "upcoming projection",
+  "upcoming_projection": "Upcoming Projection",
   "@upcoming_projection": {
     "description": "upcoming_projection",
     "type": "text",
     "placeholders": {}
   },
-  "network_poor_tip": "network poor,please check the network connection",
+  "network_poor_tip": "Network poor,please check the network connection",
   "@network_poor_tip": {
     "description": "network_poor_tip",
     "type": "text",
     "placeholders": {}
   },
-  "load_data_failed_tip": "load data falied, please refresh",
+  "load_data_failed_tip": "Load data falied, please refresh",
   "@load_data_failed_tip": {
     "description": "load_data_failed_tip",
     "type": "text",
     "placeholders": {}
   },
-  "error_code": "error code",
+  "error_code": "Error code",
   "@error_code": {
     "description": "error_code",
     "type": "text",
     "placeholders": {}
   },
-  "empty_data_tip": "empty data,please refresh",
+  "empty_data_tip": "Empty data,please refresh",
   "@empty_data_tip": {
     "description": "empty_data_tip",
     "type": "text",
     "placeholders": {}
   },
-  "refresh": "refresh",
+  "refresh": "Refresh",
   "@refresh": {
     "description": "refresh",
     "type": "text",
     "placeholders": {}
   },
-  "buy": "buy",
+  "buy": "Buy",
   "@buy": {
     "description": "buy",
     "type": "text",
     "placeholders": {}
   },
-  "seen": "seen",
+  "seen": "Seen",
   "@seen": {
     "description": "seen",
     "type": "text",
     "placeholders": {}
   },
-  "cancel": "cancel",
+  "cancel": "Cancel",
   "@cancel": {
-    "description": "cancel",
+    "description": "Cancel",
     "type": "text",
     "placeholders": {}
   },
-  "search_content_hint": "please input search content",
+  "search_content_hint": "Please input search content",
   "@search_content_hint": {
     "description": "search_content_hint",
     "type": "text",
     "placeholders": {}
   },
-  "want_to_see": " want",
+  "want_to_see": " Want",
   "@want_to_see": {
     "description": "want_to_see",
     "type": "text",
     "placeholders": {}
   },
-  "no_scare": "no scare",
+  "no_scare": "No Scare",
   "@no_scare": {
     "description": "no_scare",
     "type": "text",
     "placeholders": {}
   },
-  "top_250": "TOP250",
+  "top_250": "Top250",
   "@top_250": {
     "description": "top_250",
     "type": "text",
     "placeholders": {}
   },
-  "all": "all",
+  "all": "All",
   "@all": {
     "description": "all",
     "type": "text",
     "placeholders": {}
   },
-  "other_billboard": "other billboard",
+  "other_billboard": "Other Billboard",
   "@other_billboard": {
     "description": "other_billboard",
+    "type": "text",
+    "placeholders": {}
+  },
+  "comment": "Comment",
+  "@comment": {
+    "description": "comment",
+    "type": "text",
+    "placeholders": {}
+  },
+  "reviews": "Reviews",
+  "@reviews": {
+    "description": "reviews",
+    "type": "text",
+    "placeholders": {}
+  },
+  "reviews_detail": "Reviews Detail",
+  "@reviews_detail": {
+    "description": "reviews",
+    "type": "text",
+    "placeholders": {}
+  },
+  "somebody_reviews": "'s reviews",
+  "@somebody_reviews": {
+    "description": "somebody_reviews",
+    "type": "text",
+    "placeholders": {}
+  },
+  "movie": "Movie",
+  "@movie": {
+    "description": "movie",
+    "type": "text",
+    "placeholders": {}
+  },
+  "all_movie": "All Movie",
+  "@all_movie": {
+    "description": "all_movie",
+    "type": "text",
+    "placeholders": {}
+  },
+  "follow": "Follow",
+  "@follow": {
+    "description": "follow",
+    "type": "text",
+    "placeholders": {}
+  },
+  "useful": "Useful",
+  "@useful": {
+    "description": "useful",
+    "type": "text",
+    "placeholders": {}
+  },
+  "reply": "Reply",
+  "@reply": {
+    "description": "reply",
+    "type": "text",
+    "placeholders": {}
+  },
+  "save": "Save",
+  "@save": {
+    "description": "save",
+    "type": "text",
+    "placeholders": {}
+  },
+  "save_success": "Save success",
+  "@save_success": {
+    "description": "save_success",
+    "type": "text",
+    "placeholders": {}
+  },
+  "save_failed": "Save failed",
+  "@save_failed": {
+    "description": "save_failed",
+    "type": "text",
+    "placeholders": {}
+  },
+  "go_to_open": "Go to open",
+  "@go_to_open": {
+    "description": "go_to_open",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tip": "Tip",
+  "@tip": {
+    "description": "tip",
+    "type": "text",
+    "placeholders": {}
+  },
+  "no_storage_permission_tip": "You currently do not have permission to store files locally",
+  "@no_storage_permission_tip": {
+    "description": "no_storage_permission_tip",
+    "type": "text",
+    "placeholders": {}
+  },
+  "photo": "Photo",
+  "@photo": {
+    "description": "photo",
+    "type": "text",
+    "placeholders": {}
+  },
+  "all_photo": "All Photo",
+  "@all_photo": {
+    "description": "all_photo",
+    "type": "text",
+    "placeholders": {}
+  },
+  "staff_info": "Staff Information",
+  "@staff_info": {
+    "description": "staff_info",
+    "type": "text",
+    "placeholders": {}
+  },
+  "birthday": "Birthday",
+  "@birthday": {
+    "description": "birthday",
+    "type": "text",
+    "placeholders": {}
+  },
+  "sex": "Sex",
+  "@sex": {
+    "description": "sex",
+    "type": "text",
+    "placeholders": {}
+  },
+  "more_english_name": "More English Name",
+  "@more_english_name": {
+    "description": "more_english_name",
+    "type": "text",
+    "placeholders": {}
+  },
+  "more_chinese_name": "More Chinese Name",
+  "@more_chinese_name": {
+    "description": "more_chinese_name",
+    "type": "text",
+    "placeholders": {}
+  },
+  "summary": "Summary",
+  "@summary": {
+    "description": "summary",
+    "type": "text",
+    "placeholders": {}
+  },
+  "none": "None",
+  "@none": {
+    "description": "none",
+    "type": "text",
+    "placeholders": {}
+  },
+  "douban_movie_top250": "Douban Movie Top250",
+  "@douban_movie_top250": {
+    "description": "douban_movie_top250",
+    "type": "text",
+    "placeholders": {}
+  },
+  "douban_movie_word_of_mouth": "Douban Movie Word Of Mouth",
+  "@douban_movie_word_of_mouth": {
+    "description": "douban_movie_word_of_mouth",
+    "type": "text",
+    "placeholders": {}
+  },
+  "douban_movie_new_movie_list": "Douban New movie list",
+  "@douban_movie_new_movie_list": {
+    "description": "douban_movie_new_movie_list",
+    "type": "text",
+    "placeholders": {}
+  },
+  "douban_movie_us_box_office": "Douban Movie Us Box Office",
+  "@douban_movie_us_box_office": {
+    "description": "douban_movie_us_box_office",
+    "type": "text",
+    "placeholders": {}
+  },
+  "search_content_no_empty": "Search content no empty",
+  "@search_content_no_empty": {
+    "description": "search_content_no_empty",
+    "type": "text",
+    "placeholders": {}
+  },
+  "recently_search": "Recently Search",
+  "@recently_search": {
+    "description": "recently_search",
+    "type": "text",
+    "placeholders": {}
+  },
+  "search_error_tip": "Search error!",
+  "@search_error_tip": {
+    "description": "search_error_tip",
+    "type": "text",
+    "placeholders": {}
+  },
+  "collect": "Collect",
+  "@collect": {
+    "description": "collect",
+    "type": "text",
+    "placeholders": {}
+  },
+  "douban_score": "Douban Score",
+  "@douban_score": {
+    "description": "douban_score",
+    "type": "text",
+    "placeholders": {}
+  },
+  "staff_list": "Staff List",
+  "@staff_list": {
+    "description": "staff_list",
+    "type": "text",
+    "placeholders": {}
+  },
+  "director": "Director",
+  "@director": {
+    "description": "director",
+    "type": "text",
+    "placeholders": {}
+  },
+  "writer": "Writer",
+  "@writer": {
+    "description": "writer",
+    "type": "text",
+    "placeholders": {}
+  },
+  "stills_and_trailers": "Stills & Trailers",
+  "@stills_and_trailers": {
+    "description": "stills_and_trailers",
+    "type": "text",
+    "placeholders": {}
+  },
+  "channel": "Channel",
+  "@channel": {
+    "description": "channel",
+    "type": "text",
+    "placeholders": {}
+  },
+  "pack_up": "Pack Up",
+  "@pack_up": {
+    "description": "pack_up",
+    "type": "text",
+    "placeholders": {}
+  },
+  "open": "open",
+  "@open": {
+    "description": "Open",
+    "type": "text",
+    "placeholders": {}
+  },
+  "multilingual": "Multilingual",
+  "@multilingual": {
+    "description": "multilingual",
+    "type": "text",
+    "placeholders": {}
+  },
+  "night_mode": "Night Mode",
+  "@night_mode": {
+    "description": "night_mode",
+    "type": "text",
+    "placeholders": {}
+  },
+  "day_mode": "Day Mode",
+  "@day_mode": {
+    "description": "day_mode",
+    "type": "text",
+    "placeholders": {}
+  },
+  "theme_color": "Theme Color",
+  "@theme_color": {
+    "description": "theme_color",
+    "type": "text",
+    "placeholders": {}
+  },
+  "about": "About",
+  "@about": {
+    "description": "about",
+    "type": "text",
+    "placeholders": {}
+  },
+  "check_update": "Check Update",
+  "@check_update": {
+    "description": "check_update",
+    "type": "text",
+    "placeholders": {}
+  },
+  "follow_system": "Follow System",
+  "@follow_system": {
+    "description": "follow_system",
+    "type": "text",
+    "placeholders": {}
+  },
+  "chinese": "Chinese",
+  "@chinese": {
+    "description": "chinese",
+    "type": "text",
+    "placeholders": {}
+  },
+  "english": "English",
+  "@english": {
+    "description": "english",
     "type": "text",
     "placeholders": {}
   }

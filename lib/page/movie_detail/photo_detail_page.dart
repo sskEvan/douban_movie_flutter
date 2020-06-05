@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
+import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/photo_detail_list_vo.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
@@ -18,9 +19,7 @@ class PhotoDetailPage extends StatefulWidget {
   List<PhotoDetailInfo> photoDetailList;
   int currentIndex;
 
-  PhotoDetailPage(
-      this.photoDetailList, this.currentIndex,
-      {Key key})
+  PhotoDetailPage(this.photoDetailList, this.currentIndex, {Key key})
       : super(key: key);
 
   @override
@@ -171,8 +170,8 @@ class _PhotoDetailState extends State<PhotoDetailPage>
                 },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 6),
-                  child: const Text(
-                    '保存',
+                  child: Text(
+                    DouBanLocalizations.of(context).save,
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
@@ -183,8 +182,8 @@ class _PhotoDetailState extends State<PhotoDetailPage>
                 },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 6),
-                  child: const Text(
-                    '取消',
+                  child: Text(
+                    DouBanLocalizations.of(context).cancel,
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
@@ -222,15 +221,15 @@ class _PhotoDetailState extends State<PhotoDetailPage>
           context: context,
           builder: (context) {
             return AlertDialog(
-              title: Text("提示"),
-              content: Text("您当前没有存储文件到本地的权限"),
+              title: Text(DouBanLocalizations.of(context).tip),
+              content: Text(DouBanLocalizations.of(context).no_storage_permission_tip),
               actions: <Widget>[
                 FlatButton(
-                  child: Text("取消"),
+                  child: Text(DouBanLocalizations.of(context).cancel),
                   onPressed: () => Navigator.of(context).pop(), //关闭对话框
                 ),
                 FlatButton(
-                  child: Text("去开启"),
+                  child: Text(DouBanLocalizations.of(context).go_to_open),
                   onPressed: () {
                     openAppSettings();
                   },
@@ -249,9 +248,9 @@ class _PhotoDetailState extends State<PhotoDetailPage>
         await ImageGallerySaver.saveImage(Uint8List.fromList(response.data));
     print(result);
     if (result != null) {
-      showToast('保存成功');
+      showToast(DouBanLocalizations.of(context).save_success);
     } else {
-      showToast('保存失败');
+      showToast(DouBanLocalizations.of(context).save_failed);
     }
   }
 }

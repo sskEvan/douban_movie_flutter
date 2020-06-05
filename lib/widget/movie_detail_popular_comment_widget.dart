@@ -1,3 +1,4 @@
+import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/movie_detail_vo.dart';
 import 'package:douban_movie_flutter/model/popular_comment_vo.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
@@ -12,10 +13,10 @@ import 'movie_detail_section_widget.dart';
 /**
  * 电影详情页热门短评组件
  */
-class MovieDetailPopularCommendWidget extends StatelessWidget {
+class MovieDetailPopularCommentWidget extends StatelessWidget {
   final MovieDetailVo movieDetailVo;
 
-  MovieDetailPopularCommendWidget(this.movieDetailVo,
+  MovieDetailPopularCommentWidget(this.movieDetailVo,
       {Key key})
       : super(key: key);
 
@@ -32,8 +33,8 @@ class MovieDetailPopularCommendWidget extends StatelessWidget {
       child: Column(
         children: <Widget>[
           MovieDetailSectionWidget(
-              title: '短评',
-              actionText: '全部${movieDetailVo.commentsCount}',
+              title: DouBanLocalizations.of(context).comment,
+              actionText: '${DouBanLocalizations.of(context).all}${movieDetailVo.commentsCount}',
           onAction: () {
                 Navigator.of(context).pushNamed(RouteName.movieCommendPage, arguments: movieDetailVo.id);
           },),

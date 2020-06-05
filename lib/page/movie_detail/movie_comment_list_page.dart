@@ -1,4 +1,5 @@
-import 'package:douban_movie_flutter/provider/movie_commend_list_provider.dart';
+import 'package:douban_movie_flutter/i10n/localization_intl.dart';
+import 'package:douban_movie_flutter/provider/movie_comment_list_provider.dart';
 import 'package:douban_movie_flutter/widget/common_empty_widget.dart';
 import 'package:douban_movie_flutter/widget/common_error_widget.dart';
 import 'package:douban_movie_flutter/widget/common_loading_widget.dart';
@@ -13,10 +14,10 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 /**
  * 电影短评列表页
  */
-class MovieCommendListPage extends StatefulWidget {
+class MovieCommentListPage extends StatefulWidget {
   final String movieId;
 
-  MovieCommendListPage(this.movieId,
+  MovieCommentListPage(this.movieId,
       {Key key})
       : super(key: key);
 
@@ -26,7 +27,7 @@ class MovieCommendListPage extends StatefulWidget {
   }
 }
 
-class _MovieCommendState extends State<MovieCommendListPage> {
+class _MovieCommendState extends State<MovieCommentListPage> {
 
   _MovieCommendState();
 
@@ -42,16 +43,16 @@ class _MovieCommendState extends State<MovieCommendListPage> {
             },
           ),
           title: Text(
-            '短评',
+            DouBanLocalizations.of(context).comment,
             style: TextStyle(color: Colors.black87),
           ),
         ),
-        body: ViewStateWidget<MovieCommendListProvider>(
-            provider: MovieCommendListProvider(context),
+        body: ViewStateWidget<MovieCommentListProvider>(
+            provider: MovieCommentListProvider(context),
             onProviderReady: (provider) async {
               await provider.initData(arguments: widget.movieId);
             },
-            builder: (context, MovieCommendListProvider provider, child) {
+            builder: (context, MovieCommentListProvider provider, child) {
               if (provider.isBusy) {
                 return SkeletonList(
                   padding: EdgeInsets.symmetric(horizontal: 20),

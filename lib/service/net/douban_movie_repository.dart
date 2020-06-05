@@ -112,7 +112,7 @@ class DouBanMovieRepository {
     return movie;
   }
 
-  static Future getMovieCommendListVo({String movieId, int start, int count}) async {
+  static Future getMovieCommentListVo({String movieId, int start, int count}) async {
     ResultData resultData = await HttpManager.getInstance()
         .get('subject/${movieId}/comments', queryParameters: {"start": start, 'count': count});
     Map map = json.decode(resultData.data.toString());

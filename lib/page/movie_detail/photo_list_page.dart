@@ -1,3 +1,4 @@
+import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/photo_detail_list_vo.dart';
 import 'package:douban_movie_flutter/provider/photo_list_provider.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
@@ -39,7 +40,7 @@ class _PhotoListState extends State<PhotoListPage> {
               backgroundColor: Colors.white,
               brightness: Brightness.light,
               title: Text(
-                '全部照片',
+                DouBanLocalizations.of(context).all_photo,
                 style: TextStyle(color: Colors.black87),
               ),
               leading: IconButton(

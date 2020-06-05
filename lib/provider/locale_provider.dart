@@ -1,5 +1,3 @@
-
-
 import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/service/storage_manager.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,7 +11,7 @@ class LocaleProvider extends ChangeNotifier {
   int get localeIndex => _localeIndex;
 
   Locale get locale {
-    if(_localeIndex > 0) {
+    if (_localeIndex > 0) {
       var value = localeValueList[_localeIndex].split("-");
       return Locale(value[0], value.length == 2 ? value[1] : '');
     }
@@ -34,14 +32,13 @@ class LocaleProvider extends ChangeNotifier {
   static String localeName(index, context) {
     switch (index) {
       case 0:
-        return '跟随系统';
+        return DouBanLocalizations.of(context).follow_system;
       case 1:
-        return '中文';
+        return DouBanLocalizations.of(context).chinese;
       case 2:
-        return 'English';
+        return DouBanLocalizations.of(context).english;
       default:
         return '';
     }
   }
-
 }

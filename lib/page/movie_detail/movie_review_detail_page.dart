@@ -1,3 +1,4 @@
+import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/reviews_vo.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
@@ -75,7 +76,7 @@ class _MovieReviewDetailState extends State<MovieReviewDetailPage> {
               Offstage(
                 offstage: _offstageTitle,
                 child: Text(
-                  '影评详情',
+                  DouBanLocalizations.of(context).reviews_detail,
                   style: TextStyle(
                       color: Colors.black87,
                       fontSize: 18,
@@ -106,7 +107,7 @@ class _MovieReviewDetailState extends State<MovieReviewDetailPage> {
                       ],
                     ),
                     Container(
-                      width: 78,
+                      width: 92,
                       height: 30,
                       margin: EdgeInsets.only(right: 10),
                       child: RaisedButton.icon(
@@ -116,12 +117,12 @@ class _MovieReviewDetailState extends State<MovieReviewDetailPage> {
                           size: 14,
                         ),
                         label: Text(
-                          "关注",
+                          DouBanLocalizations.of(context).follow,
                           style: TextStyle(color: Colors.white, fontSize: 14),
                         ),
                         color: Colors.green,
                         onPressed: () {
-                          showToast("关注${widget.reviewsVo.author.name}",
+                          showToast("${DouBanLocalizations.of(context).follow}${widget.reviewsVo.author.name}",
                               context: context);
                         },
                         shape: RoundedRectangleBorder(
@@ -167,7 +168,7 @@ class _MovieReviewDetailState extends State<MovieReviewDetailPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        '${widget.reviewsVo.author.name} 的影评',
+                        '${widget.reviewsVo.author.name}${DouBanLocalizations.of(context).somebody_reviews}',
                         style: TextStyle(color: Colors.black45, fontSize: 13),
                       ),
                       SizedBox(

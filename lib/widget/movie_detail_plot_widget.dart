@@ -1,3 +1,4 @@
+import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/movie_detail_vo.dart';
 import 'package:douban_movie_flutter/widget/expandable_text.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,7 +22,7 @@ class MovieDetailPlotWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            '简介',
+            DouBanLocalizations.of(context).summary,
             style: TextStyle(
                 color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
           ),

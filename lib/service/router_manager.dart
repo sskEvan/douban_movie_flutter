@@ -5,7 +5,7 @@ import 'package:douban_movie_flutter/model/trailer_vo.dart';
 import 'package:douban_movie_flutter/page/billboard_detail_page.dart';
 import 'package:douban_movie_flutter/page/celebeity_works_page.dart';
 import 'package:douban_movie_flutter/page/index_page.dart';
-import 'package:douban_movie_flutter/page/movie_detail/movie_commend_list_page.dart';
+import 'package:douban_movie_flutter/page/movie_detail/movie_comment_list_page.dart';
 import 'package:douban_movie_flutter/page/movie_detail/movie_review_detail_page.dart';
 import 'package:douban_movie_flutter/page/movie_detail/movie_detail_page.dart';
 import 'package:douban_movie_flutter/page/movie_detail/photo_list_page.dart';
@@ -80,7 +80,7 @@ class Router {
         break;
       case RouteName.movieCommendPage:
         String movieId = settings.arguments;
-        return VerticalSlideRouteBuilder(MovieCommendListPage(movieId));
+        return VerticalSlideRouteBuilder(MovieCommentListPage(movieId));
         break;
       case RouteName.movieReviewDetailPage:
         ReviewsVo reviewsVo = settings.arguments;

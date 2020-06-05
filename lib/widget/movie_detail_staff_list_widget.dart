@@ -1,3 +1,4 @@
+import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/cast_vo.dart';
 import 'package:douban_movie_flutter/model/director_vo.dart';
 import 'package:douban_movie_flutter/model/movie_detail_vo.dart';
@@ -33,7 +34,7 @@ class MovieDetailStaffListWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          MovieDetailSectionWidget(title: '职员表'),
+          MovieDetailSectionWidget(title: DouBanLocalizations.of(context).staff_list),
           SizedBox(height: 10),
           SingleChildScrollView(
               scrollDirection: Axis.horizontal,
@@ -50,7 +51,7 @@ class MovieDetailStaffListWidget extends StatelessWidget {
                         id: _directorList[index].id,
                         avatars: _directorList[index].avatars?.small,
                         name: _directorList[index].name,
-                        post: '导演');
+                        post: DouBanLocalizations.of(context).director);
                   } else if (_writerList.length > 0 &&
                       index < _directorList.length + _writerList.length) {
                     return _buildStaffItem(
@@ -60,7 +61,7 @@ class MovieDetailStaffListWidget extends StatelessWidget {
                             .avatars
                             ?.small,
                         name: _writerList[index - _directorList.length].name,
-                        post: '编剧');
+                        post: DouBanLocalizations.of(context).writer);
                   } else {
                     return _buildStaffItem(
                         context: context,

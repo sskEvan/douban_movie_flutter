@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/search_keyword_vo.dart';
 import 'package:douban_movie_flutter/service/storage_manager.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
@@ -51,7 +52,7 @@ class SearchState extends State<SearchPage> {
           child: Stack(
             children: <Widget>[
               _buildHistoryKeywordTags(),
-              _buildSearchResult()
+              _buildSearchResult(context)
             ],
           ),
         ));
@@ -60,7 +61,7 @@ class SearchState extends State<SearchPage> {
   void _search(String keyword) {
     FocusScope.of(context).requestFocus(FocusNode());
     if (keyword.isEmpty) {
-      showToast('搜索内容不能为空');
+      showToast(DouBanLocalizations.of(context).search_content_no_empty);
     } else {
       _saveHistoryKeyword(keyword);
       _offstageHistoryKeywordTags = true;
@@ -115,7 +116,7 @@ class SearchState extends State<SearchPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    '最近搜索',
+                    DouBanLocalizations.of(context).recently_search,
                     style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -123,7 +124,6 @@ class SearchState extends State<SearchPage> {
                   ),
                   InkWell(
                     onTap: () {
-                      showToast('删除');
                       _clearHistoryKeywords();
                     },
                     child: Icon(
@@ -157,11 +157,11 @@ class SearchState extends State<SearchPage> {
     );
   }
 
-  Widget _buildSearchResult() {
+  Widget _buildSearchResult(BuildContext context) {
     return Offstage(
       offstage: !_offstageHistoryKeywordTags,
       child: CommonEmptyWidget(
-        message: "小朋友,你是不是有很多问号？因为豆瓣开放api搜索接口以及不能访问拉～～～",
+        message: DouBanLocalizations.of(context).search_error_tip,
         onPressed: () {
           showToast('不要挣扎拉～～～');
         },

@@ -1,3 +1,4 @@
+import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/movie_detail_vo.dart';
 import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
@@ -39,7 +40,7 @@ class MovieDetailRatingWidget extends StatelessWidget {
             Container(
               width: ScreenUtil.width,
               child: Text(
-                '豆瓣评分',
+                DouBanLocalizations.of(context).douban_score,
                 style: TextStyle(color: Colors.white, fontSize: 13),
               ),
             ),
@@ -208,12 +209,12 @@ class MovieDetailRatingWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Text(
-                  '${StringUtil.friendlyCount(movieDetailVo.wishCount)}想看',
+                  '${StringUtil.friendlyCount(movieDetailVo.wishCount)}${DouBanLocalizations.of(context).want_to_see}',
                   style: TextStyle(color: Colors.white, fontSize: 12),
                 ),
                 SizedBox(width: 15),
                 Text(
-                  '${StringUtil.friendlyCount(movieDetailVo.collectCount)}收藏',
+                  '${StringUtil.friendlyCount(movieDetailVo.collectCount)}${DouBanLocalizations.of(context).collect}',
                   style: TextStyle(color: Colors.white, fontSize: 12),
                 ),
               ],

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:date_format/date_format.dart';
+import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -64,7 +65,7 @@ class ExpandableState extends State<ExpandableText> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Text(expand ? '收起' : '展开',
+                    Text(expand ? DouBanLocalizations.of(context).pack_up : DouBanLocalizations.of(context).open,
                         style: TextStyle(
                             fontSize: style != null ? style.fontSize : 14,
                             color: style != null

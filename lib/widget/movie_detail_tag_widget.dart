@@ -1,3 +1,4 @@
+import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/movie_detail_vo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,7 @@ class MovieDetailTag extends StatelessWidget {
         child: Row(
           children: <Widget>[
             Text(
-              '所属频道',
+              DouBanLocalizations.of(context).channel,
               style: TextStyle(color: Color(0xAAFFFFFF), fontSize: 14),
             ),
             SizedBox(width: 10),

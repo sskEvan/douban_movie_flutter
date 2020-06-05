@@ -1,11 +1,13 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/provider/locale_provider.dart';
 import 'package:douban_movie_flutter/provider/theme_provider.dart';
 import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/bottom_clipper.dart';
+import 'package:douban_movie_flutter/widget/over_scroll_behaviour.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -22,19 +24,22 @@ class MinePage extends StatefulWidget {
   }
 }
 
-class MineState extends State<MinePage> {
+class MineState extends State<MinePage> with AutomaticKeepAliveClientMixin {
+  @override
   @override
   Widget build(BuildContext context) {
     return Container(
         height: ScreenUtil.height,
         color: Color(0xDDEFEFEF),
-        child: SingleChildScrollView(
-            child: Column(
-          children: <Widget>[
-            _buildHeader(),
-            _buildSettingItemList(),
-          ],
-        )));
+        child: ScrollConfiguration(
+            behavior: OverScrollBehavior(),
+            child: SingleChildScrollView(
+                child: Column(
+              children: <Widget>[
+                _buildHeader(),
+                _buildSettingItemList(context),
+              ],
+            ))));
   }
 
   Widget _buildHeader() {
@@ -84,7 +89,7 @@ class MineState extends State<MinePage> {
         ));
   }
 
-  Widget _buildSettingItemList() {
+  Widget _buildSettingItemList(BuildContext context) {
     var iconColor = Theme.of(context).accentColor;
     return Column(
       children: <Widget>[
@@ -96,7 +101,7 @@ class MineState extends State<MinePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    '多语言',
+                    DouBanLocalizations.of(context).multilingual,
                     style: TextStyle(),
                   ),
                   Text(
@@ -114,17 +119,17 @@ class MineState extends State<MinePage> {
               children: <Widget>[
                 Wrap(
                   children: List.generate(LocaleProvider.localeValueList.length,
-                          (index) {
-                        var provider = Provider.of<LocaleProvider>(context);
-                        return RadioListTile(
-                          value: index,
-                          onChanged: (index) {
-                            provider.switchLocale(index);
-                          },
-                          groupValue: provider.localeIndex,
-                          title: Text(LocaleProvider.localeName(index, context)),
-                        );
-                      }),
+                      (index) {
+                    var provider = Provider.of<LocaleProvider>(context);
+                    return RadioListTile(
+                      value: index,
+                      onChanged: (index) {
+                        provider.switchLocale(index);
+                      },
+                      groupValue: provider.localeIndex,
+                      title: Text(LocaleProvider.localeName(index, context)),
+                    );
+                  }),
                 )
               ]),
         ),
@@ -132,7 +137,7 @@ class MineState extends State<MinePage> {
         Container(
           color: Colors.white,
           child: ListTile(
-            title: Text('黑夜模式'),
+            title: Text(DouBanLocalizations.of(context).night_mode),
             onTap: () {},
             leading: Transform.rotate(
               angle: -pi,
@@ -153,9 +158,9 @@ class MineState extends State<MinePage> {
         Container(
           color: Colors.white,
           child: ExpansionTile(
-            title: Text('主题色彩'),
+            title: Text(DouBanLocalizations.of(context).theme_color),
             leading: Icon(
-              Icons.color_lens,
+              Icons.invert_colors,
               color: Theme.of(context).accentColor,
             ),
             children: <Widget>[
@@ -173,7 +178,8 @@ class MineState extends State<MinePage> {
                               var provider = Provider.of<ThemeProvider>(context,
                                   listen: false);
                               // var brightness = Theme.of(context).brightness;
-                              provider.switchTheme(color: Colors.primaries[index]);
+                              provider.switchTheme(
+                                  color: Colors.primaries[index]);
                             },
                             child: Container(
                               width: 40,
@@ -189,24 +195,24 @@ class MineState extends State<MinePage> {
         Container(
           color: Colors.white,
           child: ListTile(
-            title: Text('关于'),
+            title: Text(DouBanLocalizations.of(context).about),
             onTap: () {
-              showToast('关于...');
+              showToast('${DouBanLocalizations.of(context).about}...');
             },
             leading: Icon(
               Icons.create,
               color: iconColor,
             ),
-              trailing: Icon(Icons.chevron_right),
+            trailing: Icon(Icons.chevron_right),
           ),
         ),
         Divider(height: 1),
         Container(
           color: Colors.white,
           child: ListTile(
-            title: Text('检查更新'),
+            title: Text(DouBanLocalizations.of(context).check_update),
             onTap: () {
-              showToast('检查更新...');
+              showToast('${DouBanLocalizations.of(context).check_update}...');
             },
             leading: Icon(
               Icons.cloud_download,
@@ -219,4 +225,7 @@ class MineState extends State<MinePage> {
       ],
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

@@ -1,3 +1,4 @@
+import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/movie_detail_vo.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
@@ -31,8 +32,8 @@ class MovieDetailStillsWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           MovieDetailSectionWidget(
-              title: '剧照/预告片',
-              actionText: '全部',
+              title: DouBanLocalizations.of(context).stills_and_trailers,
+              actionText: DouBanLocalizations.of(context).all,
               onAction: () {
                 Navigator.of(context).pushNamed(RouteName.photoListPage,
                     arguments: [

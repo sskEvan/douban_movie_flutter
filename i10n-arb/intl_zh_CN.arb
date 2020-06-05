@@ -125,5 +125,299 @@
           "description": "other_billboard",
           "type": "text",
           "placeholders": {}
-        }
+        },
+         "comment": "短评",
+          "@comment": {
+            "description": "comment",
+            "type": "text",
+            "placeholders": {}
+          },
+          "reviews": "影评",
+          "@reviews": {
+            "description": "reviews",
+            "type": "text",
+            "placeholders": {}
+          },
+          "reviews_detail": "影评详情",
+          "@reviews_detail": {
+            "description": "reviews",
+            "type": "text",
+            "placeholders": {}
+          },
+          "somebody_reviews": "的影评",
+          "@somebody_reviews": {
+            "description": "somebody_reviews",
+            "type": "text",
+            "placeholders": {}
+          },
+          "movie": "电影",
+          "@movie": {
+            "description": "movie",
+            "type": "text",
+            "placeholders": {}
+          },
+          "all_movie": "全部影视",
+          "@all_movie": {
+            "description": "all_movie",
+            "type": "text",
+            "placeholders": {}
+          },
+          "follow": "关注",
+          "@follow": {
+            "description": "follow",
+            "type": "text",
+            "placeholders": {}
+          },
+          "useful": "有用",
+          "@useful": {
+            "description": "useful",
+            "type": "text",
+            "placeholders": {}
+          },
+          "reply": "回复",
+          "@reply": {
+            "description": "reply",
+            "type": "text",
+            "placeholders": {}
+          },
+          "save": "保存",
+          "@save": {
+            "description": "save",
+            "type": "text",
+            "placeholders": {}
+          },
+          "save_success": "保存成功",
+          "@save_success": {
+            "description": "save_success",
+            "type": "text",
+            "placeholders": {}
+          },
+          "save_failed": "保存失败",
+          "@save_failed": {
+            "description": "save_failed",
+            "type": "text",
+            "placeholders": {}
+          },
+          "go_to_open": "去开启",
+          "@go_to_open": {
+            "description": "go_to_open",
+            "type": "text",
+            "placeholders": {}
+          },
+          "tip": "提示",
+          "@tip": {
+            "description": "tip",
+            "type": "text",
+            "placeholders": {}
+          },
+          "no_storage_permission_tip": "您当前没有存储文件到本地的权限",
+          "@no_storage_permission_tip": {
+            "description": "no_storage_permission_tip",
+            "type": "text",
+            "placeholders": {}
+          },
+          "photo": "相册",
+          "@photo": {
+            "description": "photo",
+            "type": "text",
+            "placeholders": {}
+          },
+          "all_photo": "全部照片",
+          "@all_photo": {
+            "description": "all_photo",
+            "type": "text",
+            "placeholders": {}
+          },
+          "staff_info": "影人信息",
+          "@staff_info": {
+            "description": "staff_info",
+            "type": "text",
+            "placeholders": {}
+          },
+          "birthday": "出生日期",
+          "@birthday": {
+            "description": "birthday",
+            "type": "text",
+            "placeholders": {}
+          },
+          "sex": "性别",
+          "@sex": {
+            "description": "sex",
+            "type": "text",
+            "placeholders": {}
+          },
+          "more_english_name": "更多外文名",
+          "@more_english_name": {
+            "description": "more_english_name",
+            "type": "text",
+            "placeholders": {}
+          },
+          "more_chinese_name": "更多外文名",
+          "@more_chinese_name": {
+            "description": "more_chinese_name",
+            "type": "text",
+            "placeholders": {}
+          },
+          "summary": "简介",
+          "@summary": {
+            "description": "summary",
+            "type": "text",
+            "placeholders": {}
+          },
+          "none": "暂无",
+          "@none": {
+            "description": "none",
+            "type": "text",
+            "placeholders": {}
+          },
+          "douban_movie_top250": "豆瓣电影TOP250",
+          "@douban_movie_top250": {
+            "description": "douban_movie_top250",
+            "type": "text",
+            "placeholders": {}
+          },
+          "douban_movie_word_of_mouth": "豆瓣电影本周口碑榜",
+          "@douban_movie_word_of_mouth": {
+            "description": "douban_movie_word_of_mouth",
+            "type": "text",
+            "placeholders": {}
+          },
+          "douban_movie_new_movie_list": "豆瓣电影新片榜",
+          "@douban_movie_new_movie_list": {
+            "description": "douban_movie_new_movie_list",
+            "type": "text",
+            "placeholders": {}
+          },
+          "douban_movie_us_box_office": "豆瓣电影北美票房榜",
+          "@douban_movie_us_box_office": {
+            "description": "douban_movie_us_box_office",
+            "type": "text",
+            "placeholders": {}
+          },
+          "search_content_no_empty": "搜索内容不能为空",
+          "@search_content_no_empty": {
+            "description": "search_content_no_empty",
+            "type": "text",
+            "placeholders": {}
+          },
+          "recently_search": "最近搜索",
+          "@recently_search": {
+            "description": "recently_search",
+            "type": "text",
+            "placeholders": {}
+          },
+          "search_error_tip": "小朋友,你是不是有很多问号？因为豆瓣开放api搜索接口以及不能访问拉～～～",
+          "@search_error_tip": {
+            "description": "search_error_tip",
+            "type": "text",
+            "placeholders": {}
+          },
+          "collect": "收藏",
+          "@collect": {
+            "description": "collect",
+            "type": "text",
+            "placeholders": {}
+          },
+          "douban_score": "豆瓣评分",
+          "@douban_score": {
+            "description": "douban_score",
+            "type": "text",
+            "placeholders": {}
+          },
+          "staff_list": "职员表",
+          "@staff_list": {
+            "description": "staff_list",
+            "type": "text",
+            "placeholders": {}
+          },
+          "director": "导演",
+          "@director": {
+            "description": "director",
+            "type": "text",
+            "placeholders": {}
+          },
+          "writer": "编剧",
+          "@writer": {
+            "description": "writer",
+            "type": "text",
+            "placeholders": {}
+          },
+          "stills_and_trailers": "剧照&预告片",
+          "@stills_and_trailers": {
+            "description": "stills_and_trailers",
+            "type": "text",
+            "placeholders": {}
+          },
+          "channel": "所属频道",
+          "@channel": {
+            "description": "channel",
+            "type": "text",
+            "placeholders": {}
+          },
+          "pack_up": "收起",
+          "@pack_up": {
+            "description": "pack_up",
+            "type": "text",
+            "placeholders": {}
+          },
+          "open": "展开",
+          "@open": {
+            "description": "open",
+            "type": "text",
+            "placeholders": {}
+          },
+          "multilingual": "多语言",
+          "@multilingual": {
+            "description": "multilingual",
+            "type": "text",
+            "placeholders": {}
+          },
+          "night_mode": "黑夜模式",
+          "@night_mode": {
+            "description": "night_mode",
+            "type": "text",
+            "placeholders": {}
+          },
+          "day_mode": "白天模式",
+          "@day_mode": {
+            "description": "day_mode",
+            "type": "text",
+            "placeholders": {}
+          },
+          "theme_color": "主题色彩",
+          "@theme_color": {
+            "description": "theme_color",
+            "type": "text",
+            "placeholders": {}
+          },
+          "about": "关于",
+          "@about": {
+            "description": "about",
+            "type": "text",
+            "placeholders": {}
+          },
+          "check_update": "检查更新",
+          "@check_update": {
+            "description": "check_update",
+            "type": "text",
+            "placeholders": {}
+          },
+          "follow_system": "跟随系统",
+            "@follow_system": {
+              "description": "follow_system",
+              "type": "text",
+              "placeholders": {}
+            },
+            "chinese": "中文",
+            "@chinese": {
+              "description": "chinese",
+              "type": "text",
+              "placeholders": {}
+            },
+            "english": "英语",
+            "@english": {
+              "description": "english",
+              "type": "text",
+              "placeholders": {}
+            }
 }

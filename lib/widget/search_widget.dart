@@ -36,13 +36,13 @@ class SearchWidgetState extends State<SearchWidget> with TickerProviderStateMixi
     final CurvedAnimation curve =
         CurvedAnimation(parent: _animationController, curve: Curves.fastOutSlowIn);
     _widthAnimation =
-        Tween(begin: ScreenUtil.width - 36, end: ScreenUtil.width - 112)
+        Tween(begin: ScreenUtil.width - 36, end: ScreenUtil.width - 128)
             .animate(curve)
               ..addListener(() {
                 _searchTextFiledWidth = _widthAnimation.value;
                 debugPrint(
                     '_searchTextFiledWidth=${_searchTextFiledWidth},ScreenUtil.width=${ScreenUtil.width}');
-                if (_searchTextFiledWidth == ScreenUtil.width - 112) {
+                if (_searchTextFiledWidth == ScreenUtil.width - 128) {
                   _offstageCancelText = false;
                 }
                 setState(() {});
@@ -117,8 +117,8 @@ class SearchWidgetState extends State<SearchWidget> with TickerProviderStateMixi
               child: GestureDetector(
                 onTap: widget.onCancel,
                 child: Container(
-                  alignment: Alignment.centerRight,
-                  width: 44,
+                  alignment: Alignment.center,
+                  width: 60,
                   child: new Text(
                     DouBanLocalizations.of(context).cancel,
                     style: new TextStyle(fontSize: 16, color: Colors.white),

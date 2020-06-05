@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/movie_detail_vo.dart';
 import 'package:douban_movie_flutter/provider/movie_detail_provider.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
@@ -13,7 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:palette_generator/palette_generator.dart';
 
 import '../../widget/movie_detail_staff_list_widget.dart';
-import '../../widget/movie_detail_popular_commend_widget.dart';
+import '../../widget/movie_detail_popular_comment_widget.dart';
 import '../../widget/movie_detail_header.dart';
 import '../../widget/movie_detail_plot_widget.dart';
 import '../../widget/movie_detail_rating_widget.dart';
@@ -73,7 +74,7 @@ class MovieDetailState extends State<MovieDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: buildTitleBar(),
+          title: buildTitleBar(context),
           backgroundColor: pageColor,
         ),
         backgroundColor: pageColor,
@@ -100,13 +101,13 @@ class MovieDetailState extends State<MovieDetailPage> {
         ));
   }
 
-  Widget buildTitleBar() {
+  Widget buildTitleBar(BuildContext context) {
     return Stack(
       children: <Widget>[
         Offstage(
           offstage: offstageTitle,
           child: Text(
-            '电影',
+            DouBanLocalizations.of(context).movie,
             style: TextStyle(
                 color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
           ),
@@ -296,7 +297,7 @@ class BottomDrawerState extends State<BottomDrawerWidget>
                 MovieDetailPlotWidget(widget.movieDetailVo),
                 MovieDetailStaffListWidget(widget.movieDetailVo),
                 MovieDetailStillsWidget(widget.movieDetailVo),
-                MovieDetailPopularCommendWidget(widget.movieDetailVo),
+                MovieDetailPopularCommentWidget(widget.movieDetailVo),
               ],
             )));
   }
@@ -374,7 +375,7 @@ class BottomDrawerState extends State<BottomDrawerWidget>
                         GestureDetector(
                           behavior: HitTestBehavior.translucent,
                           child: Text(
-                            '影评',
+                            DouBanLocalizations.of(context).reviews,
                             style:
                                 TextStyle(color: Colors.black45, fontSize: 16),
                           ),

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/movie_item_vo.dart';
 import 'package:douban_movie_flutter/provider/billboard_new_movies_provider.dart';
 import 'package:douban_movie_flutter/provider/billboard_top250_provider.dart';
@@ -41,32 +42,27 @@ class _BillboardDetailState<T extends ViewStateRefreshListProvider>
   _BillboardDetailState();
 
   @override
-  void initState() {
-    super.initState();
-
+  Widget build(BuildContext context) {
+    debugPrint('BillboardDetailState---build done');
     switch (widget.actionType) {
       case RouteName.billboardTop250Page:
         _provider = BillboardTop250Provider(context);
-        _title = '豆瓣电影TOP250';
+        _title = DouBanLocalizations.of(context).douban_movie_top250;
         break;
       case RouteName.billboardWeeklyPage:
         _provider = BillboardWeeklyMovieProvider(context);
-        _title = '豆瓣电影本周口碑榜';
+        _title = DouBanLocalizations.of(context).douban_movie_word_of_mouth;
         break;
       case RouteName.billboardNewMoviesPage:
         _provider = BillboardNewMoviesProvider(context);
-        _title = '豆瓣电影新片榜';
+        _title = DouBanLocalizations.of(context).douban_movie_new_movie_list;
         break;
       case RouteName.billboardUsBoxPage:
         _provider = BillboardUsBoxMovieProvider(context);
-        _title = '豆瓣电影北美票房榜';
+        _title = DouBanLocalizations.of(context).douban_movie_us_box_office;
         break;
     }
-  }
 
-  @override
-  Widget build(BuildContext context) {
-    debugPrint('BillboardDetailState---build done');
     return new Scaffold(
         body: ViewStateWidget<T>(
             provider: _provider,

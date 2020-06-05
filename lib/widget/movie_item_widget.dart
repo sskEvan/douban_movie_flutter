@@ -170,7 +170,7 @@ class MovieItemWidget extends StatelessWidget {
               splashColor: Colors.redAccent,
               onTap: () {
                 showToast(
-                  '购票:${movieItemVo.title}',
+                  '${DouBanLocalizations.of(context).buy}:${movieItemVo.title}',
                   context: context,
                 );
               },

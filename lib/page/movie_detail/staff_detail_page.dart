@@ -1,3 +1,4 @@
+import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/movie_item_vo.dart';
 import 'package:douban_movie_flutter/model/staff_detail_vo.dart';
 import 'package:douban_movie_flutter/provider/staff_detail_provider.dart';
@@ -34,7 +35,7 @@ class _StaffDetailState extends State<StaffDetailPage> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            '影人信息',
+            DouBanLocalizations.of(context).staff_info,
             style: TextStyle(color: Colors.black87),
           ),
           backgroundColor: Colors.white,
@@ -57,16 +58,15 @@ class _StaffDetailState extends State<StaffDetailPage> {
               return CommonEmptyWidget(onPressed: provider.initData());
             } else if (provider.isError) {
               return CommonErrorWidget(
-                  error: provider.viewStateError,
-                  onPressed: provider.initData);
+                  error: provider.viewStateError, onPressed: provider.initData);
             }
             _staffDetailVo = provider.staffDetailVo;
-            return _buildBody();
+            return _buildBody(context);
           },
         ));
   }
 
-  Widget _buildBody() {
+  Widget _buildBody(BuildContext context) {
     return SingleChildScrollView(
       physics: BouncingScrollPhysics(),
       child: Container(
@@ -74,15 +74,15 @@ class _StaffDetailState extends State<StaffDetailPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              _buildHeader(),
-              _buildIntronduce(),
+              _buildHeader(context),
+              _buildIntronduce(context),
               SizedBox(height: 15),
               Offstage(
                 offstage: _staffDetailVo.works == null ||
                     _staffDetailVo.works.length == 0,
                 child: _buildSection(
-                    title: '影视',
-                    action: '全部',
+                    title: DouBanLocalizations.of(context).movie,
+                    action: DouBanLocalizations.of(context).all,
                     onTap: () {
                       Navigator.of(context).pushNamed(
                           RouteName.celebrityWorksPage,
@@ -103,8 +103,8 @@ class _StaffDetailState extends State<StaffDetailPage> {
                   offstage: _staffDetailVo.photos == null ||
                       _staffDetailVo.photos.length == 0,
                   child: _buildSection(
-                      title: '相册',
-                      action: '全部',
+                      title: DouBanLocalizations.of(context).photo,
+                      action: DouBanLocalizations.of(context).all,
                       onTap: () {
                         Navigator.of(context).pushNamed(RouteName.photoListPage,
                             arguments: [
@@ -120,7 +120,7 @@ class _StaffDetailState extends State<StaffDetailPage> {
     );
   }
 
-  Widget _buildHeader() {
+  Widget _buildHeader(BuildContext context) {
     return Container(
       child: Row(
         mainAxisSize: MainAxisSize.max,
@@ -172,12 +172,14 @@ class _StaffDetailState extends State<StaffDetailPage> {
                         size: 16,
                       ),
                       label: Text(
-                        "关注",
+                        DouBanLocalizations.of(context).follow,
                         style: TextStyle(color: Colors.white, fontSize: 16),
                       ),
                       color: Colors.green,
                       onPressed: () {
-                        showToast("关注${_staffDetailVo.name}", context: context);
+                        showToast(
+                            "${DouBanLocalizations.of(context).follow}${_staffDetailVo.name}",
+                            context: context);
                       },
                       shape: RoundedRectangleBorder(
                           side: BorderSide(color: Colors.green),
@@ -191,7 +193,7 @@ class _StaffDetailState extends State<StaffDetailPage> {
     );
   }
 
-  Widget _buildIntronduce() {
+  Widget _buildIntronduce(BuildContext context) {
     return Container(
         width: ScreenUtil.height,
         child: Column(
@@ -200,32 +202,32 @@ class _StaffDetailState extends State<StaffDetailPage> {
           children: <Widget>[
             SizedBox(height: 15),
             Text(
-              '出生日期:  ${_staffDetailVo.birthday}',
+              '${DouBanLocalizations.of(context).birthday}:  ${_staffDetailVo.birthday}',
               style: TextStyle(color: Colors.black87, fontSize: 15),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
             ),
             SizedBox(height: 6),
             Text(
-              '性别:  ${_staffDetailVo.gender}',
+              '${DouBanLocalizations.of(context).sex}:  ${_staffDetailVo.gender}',
               style: TextStyle(color: Colors.black87, fontSize: 15),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
             ),
             SizedBox(height: 6),
             Text(
-              '更多外文名:  ${_getString(_staffDetailVo.aka)}',
+              '${DouBanLocalizations.of(context).more_chinese_name}:  ${_getString(_staffDetailVo.aka)}',
               style: TextStyle(color: Colors.black87, fontSize: 15),
             ),
             SizedBox(height: 6),
             Text(
-              '更多英文名:  ${_getString(_staffDetailVo.akaEn)}',
+              '${DouBanLocalizations.of(context).more_english_name}:  ${_getString(_staffDetailVo.akaEn)}',
               style: TextStyle(color: Colors.black87, fontSize: 15),
             ),
             SizedBox(height: 6),
             ExpandableText(
               text:
-                  '简介: ${_staffDetailVo.summary.isEmpty ? '暂无' : _staffDetailVo.summary.isEmpty}',
+                  '${DouBanLocalizations.of(context).summary}: ${_staffDetailVo.summary.isEmpty ? DouBanLocalizations.of(context).none : _staffDetailVo.summary.isEmpty}',
               maxLines: 4,
               style: TextStyle(color: Colors.black87, fontSize: 15),
               expand: false,
@@ -236,7 +238,7 @@ class _StaffDetailState extends State<StaffDetailPage> {
 
   String _getString(List<String> data) {
     if (data == null || data.length == 0) {
-      return '暂无';
+      return DouBanLocalizations.of(context).none;
     }
     StringBuffer sb = StringBuffer();
     data.forEach((it) {

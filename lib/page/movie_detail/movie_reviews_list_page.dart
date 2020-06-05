@@ -1,3 +1,4 @@
+import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/reviews_vo.dart';
 import 'package:douban_movie_flutter/provider/movie_reviews_list_provider.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
@@ -124,7 +125,7 @@ class _MovieReviewsListState extends State<MovieReviewsListPage> {
                           ),
                           SizedBox(width: 15),
                           Text(
-                            '看过',
+                            DouBanLocalizations.of(context).seen,
                             style:
                                 TextStyle(fontSize: 13, color: Colors.black45),
                           ),
@@ -171,11 +172,11 @@ class _MovieReviewsListState extends State<MovieReviewsListPage> {
                   Row(
                     children: <Widget>[
                       Text(
-                        '${reviewsVo.usefulCount}有用 · ',
+                        '${reviewsVo.usefulCount}${DouBanLocalizations.of(context).useful} · ',
                         style: TextStyle(fontSize: 12, color: Colors.black45),
                       ),
                       Text(
-                        '${reviewsVo.commentsCount}回复 · ',
+                        '${reviewsVo.commentsCount}${DouBanLocalizations.of(context).reply} · ',
                         style: TextStyle(fontSize: 12, color: Colors.black45),
                       )
                     ],

@@ -1,3 +1,4 @@
+import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/provider/celebrity_works_provider.dart';
 import 'package:douban_movie_flutter/provider/movie_list_provider.dart';
 import 'package:douban_movie_flutter/widget/common_empty_widget.dart';
@@ -31,7 +32,7 @@ class _CelebrityWorksState extends State<CelebrityWorksPage>
     return new Scaffold(
         appBar: AppBar(
           title: Text(
-            '全部影视',
+            DouBanLocalizations.of(context).all_movie,
             style: TextStyle(color: Colors.black87),
           ),
           backgroundColor: Colors.white,
