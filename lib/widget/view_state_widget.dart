@@ -24,25 +24,25 @@ class ViewStateWidget<T extends ChangeNotifier> extends StatefulWidget {
 
 class _ViewStateWidgetState<T extends ChangeNotifier>
     extends State<ViewStateWidget<T>> {
-  T model;
+  T provider;
 
   @override
   void initState() {
-    model = widget.provider;
-    widget.onProviderReady?.call(model);
+    provider = widget.provider;
+    widget.onProviderReady?.call(provider);
     super.initState();
   }
 
   @override
   void dispose() {
-    if (widget.autoDispose) model.dispose();
+    if (widget.autoDispose) provider.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<T>.value(
-        value: model,
+        value: provider,
         child: Consumer<T>(
           builder: widget.builder,
           child: widget.child,

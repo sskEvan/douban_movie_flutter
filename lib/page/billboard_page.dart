@@ -5,6 +5,7 @@ import 'package:douban_movie_flutter/provider/billboard_provider.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/billboard_banner_widget.dart';
+import 'package:douban_movie_flutter/widget/search_label_widget.dart';
 import 'package:douban_movie_flutter/widget/skeleton/billboard_skeleton.dart';
 import 'package:douban_movie_flutter/widget/movie_item_widget2.dart';
 import 'package:douban_movie_flutter/widget/common_section_widget.dart';
@@ -29,13 +30,16 @@ class BillboardPage extends StatefulWidget {
 
 class _BillboardState extends State<BillboardPage>
     with AutomaticKeepAliveClientMixin {
-  var _banners;
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: AppBar(
-          title: SearchWidget(),
+          title: SearchLabelWidget(
+            onTap: () {
+              Navigator.of(context).pushNamed(RouteName.searchPage);
+            },
+          ),
         ),
         body: ViewStateWidget<BillboardProvider>(
           provider: BillboardProvider(context),

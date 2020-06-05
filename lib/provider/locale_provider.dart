@@ -33,6 +33,8 @@ class LocaleProvider extends ChangeNotifier {
 
   static String localeName(index, context) {
     switch (index) {
+      case 0:
+        return '跟随系统';
       case 1:
         return '中文';
       case 2:
