@@ -80,17 +80,17 @@ class MovieDetailState extends State<MovieDetailPage> {
         body: ViewStateWidget<MovieDetailVoProvider>(
           provider: MovieDetailVoProvider(context),
           onProviderReady: (provider) async {
-            await provider.initData(movieId);
+            await provider.initData(arguments: movieId);
           },
           builder: (context, MovieDetailVoProvider provider, child) {
             if (provider.isBusy) {
               return MovieDetailSkeleton();
             } else if (provider.isEmpty) {
-              return CommonEmptyWidget(onPressed: provider.initData(movieId));
+              return CommonEmptyWidget(onPressed: provider.initData());
             } else if (provider.isError) {
               return CommonErrorWidget(
                   error: provider.viewStateError,
-                  onPressed: provider.initData(movieId));
+                  onPressed: provider.initData);
             }
             movieDetailVo = provider.movieDetailVo;
             fetchPageColor(provider.movieDetailVo.images.small);

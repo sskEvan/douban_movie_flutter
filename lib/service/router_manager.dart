@@ -11,6 +11,7 @@ import 'package:douban_movie_flutter/page/movie_detail/movie_detail_page.dart';
 import 'package:douban_movie_flutter/page/movie_detail/photo_list_page.dart';
 import 'package:douban_movie_flutter/page/movie_detail/movie_trailer_page.dart';
 import 'package:douban_movie_flutter/page/movie_detail/staff_detail_page.dart';
+import 'package:douban_movie_flutter/page/search_page.dart';
 import 'package:douban_movie_flutter/page/splash_page.dart';
 import 'package:douban_movie_flutter/page/movie_detail/photo_detail_page.dart';
 import 'package:douban_movie_flutter/provider/billboard_new_movies_provider.dart';
@@ -35,6 +36,7 @@ class RouteName {
   static const String movieTrailersPage = 'movieTrailersPage';
   static const String staffDetailPage = 'staffDetailPage';
   static const String celebrityWorksPage = 'celebrityWorksPage';
+  static const String searchPage = 'searchPage';
 
 
 }
@@ -96,6 +98,10 @@ class Router {
         String id = settings.arguments;
         return VerticalSlideRouteBuilder(CelebrityWorksPage(id));
         break;
+      case RouteName.searchPage:
+        return NoAnimRouteBuilder(SearchPage());
+        break;
+
     }
   }
 }

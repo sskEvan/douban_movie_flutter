@@ -48,17 +48,17 @@ class _StaffDetailState extends State<StaffDetailPage> {
         body: ViewStateWidget<StaffDetailProvider>(
           provider: StaffDetailProvider(context),
           onProviderReady: (provider) async {
-            await provider.initData(widget.id);
+            await provider.initData(arguments: widget.id);
           },
           builder: (context, StaffDetailProvider provider, child) {
             if (provider.isBusy) {
               return StaffDetailSkeleton();
             } else if (provider.isEmpty) {
-              return CommonEmptyWidget(onPressed: provider.initData(widget.id));
+              return CommonEmptyWidget(onPressed: provider.initData());
             } else if (provider.isError) {
               return CommonErrorWidget(
                   error: provider.viewStateError,
-                  onPressed: provider.initData(widget.id));
+                  onPressed: provider.initData);
             }
             _staffDetailVo = provider.staffDetailVo;
             return _buildBody();
@@ -72,6 +72,7 @@ class _StaffDetailState extends State<StaffDetailPage> {
       child: Container(
           padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               _buildHeader(),
               _buildIntronduce(),

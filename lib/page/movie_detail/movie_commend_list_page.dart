@@ -59,11 +59,11 @@ class _MovieCommendState extends State<MovieCommendListPage> {
                 );
               } else if (provider.isEmpty) {
                 return CommonEmptyWidget(
-                    onPressed: provider.initData(arguments: widget.movieId));
+                    onPressed: provider.initData);
               } else if (provider.isError) {
                 return CommonErrorWidget(
                     error: provider.viewStateError,
-                    onPressed: provider.initData(arguments: widget.movieId));
+                    onPressed: provider.initData);
               }
               return Container(
                   color: Colors.white,

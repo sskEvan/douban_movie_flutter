@@ -9,8 +9,16 @@ abstract class ViewStateCommonProvider<T> extends ViewStateProvider {
   ViewStateCommonProvider(BuildContext context) : super(context);
 
   /// 第一次进入页面loading skeleton
-  initData(Object arguments) async {
-    this.arguments = arguments;
+  initData({Object arguments}) async {
+    if(arguments != null) {
+      this.arguments = arguments;
+    }
+    setBusy();
+    await refresh();
+  }
+
+  ///重试
+  retry() async {
     setBusy();
     await refresh();
   }

@@ -59,7 +59,7 @@ class _CelebrityWorksState extends State<CelebrityWorksPage>
               } else if (provider.isError) {
                 return CommonErrorWidget(
                     error: provider.viewStateError,
-                    onPressed: provider.initData(arguments: widget.id));
+                    onPressed: provider.initData);
               }
               return SmartRefresher(
                 controller: provider.refreshController,

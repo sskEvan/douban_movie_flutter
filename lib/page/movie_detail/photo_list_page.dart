@@ -52,18 +52,18 @@ class _PhotoListState extends State<PhotoListPage> {
             body: ViewStateWidget<PhotoListProvider>(
               provider: PhotoListProvider(context),
               onProviderReady: (provider) async {
-                await provider.initData([widget.action, widget.totalPhotoCount]);
+                await provider.initData(arguments: [widget.action, widget.totalPhotoCount]);
               },
               builder: (context, PhotoListProvider provider, child) {
                 if (provider.isBusy) {
                   return CommonLoadingWidget();
                 } else if (provider.isEmpty) {
                   return CommonEmptyWidget(
-                      onPressed: provider.initData([widget.action, widget.totalPhotoCount]));
+                      onPressed: provider.initData);
                 } else if (provider.isError) {
                   return CommonErrorWidget(
                       error: provider.viewStateError,
-                      onPressed: provider.initData([widget.action, widget.totalPhotoCount]));
+                      onPressed: provider.initData);
                 }
 
                 return GridView.builder(

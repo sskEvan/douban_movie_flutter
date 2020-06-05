@@ -10,7 +10,15 @@ abstract class ViewStateListProvider<T> extends ViewStateProvider {
 
   /// 第一次进入页面loading skeleton
   initData({Object arguments}) async {
-    this.arguments = arguments;
+    if(arguments != null) {
+      this.arguments = arguments;
+    }
+    setBusy();
+    await refresh(init: true);
+  }
+
+  ///重试
+  retry() async {
     setBusy();
     await refresh(init: true);
   }

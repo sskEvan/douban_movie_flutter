@@ -63,138 +63,141 @@ class MovieDetailRatingWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                Column(
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Image.asset(ImageHelper.wrapAssets('star_grey.png'),
-                            width: 8, height: 8),
-                        Image.asset(ImageHelper.wrapAssets('star_grey.png'),
-                            width: 8, height: 8),
-                        Image.asset(ImageHelper.wrapAssets('star_grey.png'),
-                            width: 8, height: 8),
-                        Image.asset(ImageHelper.wrapAssets('star_grey.png'),
-                            width: 8, height: 8),
-                        Image.asset(ImageHelper.wrapAssets('star_grey.png'),
-                            width: 8, height: 8),
-                        SizedBox(width: 5),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(3),
-                          child: Container(
-                            width: 150,
-                            height: 8,
-                            child: LinearProgressIndicator(
-                              value: totalRatingCount > 0 ? movieDetailVo.rating.details.i5 / totalRatingCount : 0,
-                              backgroundColor: Color(0xAAFFFFFF),
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                  Color(0xFFD7B018)),
+                SizedBox(
+                  width: 200,
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          Image.asset(ImageHelper.wrapAssets('star_grey.png'),
+                              width: 8, height: 8),
+                          Image.asset(ImageHelper.wrapAssets('star_grey.png'),
+                              width: 8, height: 8),
+                          Image.asset(ImageHelper.wrapAssets('star_grey.png'),
+                              width: 8, height: 8),
+                          Image.asset(ImageHelper.wrapAssets('star_grey.png'),
+                              width: 8, height: 8),
+                          Image.asset(ImageHelper.wrapAssets('star_grey.png'),
+                              width: 8, height: 8),
+                          SizedBox(width: 5),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(3),
+                            child: Container(
+                              width: 150,
+                              height: 8,
+                              child: LinearProgressIndicator(
+                                value: totalRatingCount > 0 ? movieDetailVo.rating.details.i5 / totalRatingCount : 0,
+                                backgroundColor: Color(0xAAFFFFFF),
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                    Color(0xFFD7B018)),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 5),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Image.asset(ImageHelper.wrapAssets('star_grey.png'),
-                            width: 8, height: 8),
-                        Image.asset(ImageHelper.wrapAssets('star_grey.png'),
-                            width: 8, height: 8),
-                        Image.asset(ImageHelper.wrapAssets('star_grey.png'),
-                            width: 8, height: 8),
-                        Image.asset(ImageHelper.wrapAssets('star_grey.png'),
-                            width: 8, height: 8),
-                        SizedBox(width: 5),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(3),
-                          child: Container(
-                            width: 150,
-                            height: 8,
-                            child: LinearProgressIndicator(
-                              value: totalRatingCount > 0 ? movieDetailVo.rating.details.i4 / totalRatingCount : 0,
-                              backgroundColor: Color(0xAAFFFFFF),
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                  Color(0xFFD7B018)),
+                        ],
+                      ),
+                      SizedBox(height: 5),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          Image.asset(ImageHelper.wrapAssets('star_grey.png'),
+                              width: 8, height: 8),
+                          Image.asset(ImageHelper.wrapAssets('star_grey.png'),
+                              width: 8, height: 8),
+                          Image.asset(ImageHelper.wrapAssets('star_grey.png'),
+                              width: 8, height: 8),
+                          Image.asset(ImageHelper.wrapAssets('star_grey.png'),
+                              width: 8, height: 8),
+                          SizedBox(width: 5),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(3),
+                            child: Container(
+                              width: 150,
+                              height: 8,
+                              child: LinearProgressIndicator(
+                                value: totalRatingCount > 0 ? movieDetailVo.rating.details.i4 / totalRatingCount : 0,
+                                backgroundColor: Color(0xAAFFFFFF),
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                    Color(0xFFD7B018)),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 5),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Image.asset(ImageHelper.wrapAssets('star_grey.png'),
-                            width: 8, height: 8),
-                        Image.asset(ImageHelper.wrapAssets('star_grey.png'),
-                            width: 8, height: 8),
-                        Image.asset(ImageHelper.wrapAssets('star_grey.png'),
-                            width: 8, height: 8),
-                        SizedBox(width: 5),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(3),
-                          child: Container(
-                            width: 150,
-                            height: 8,
-                            child: LinearProgressIndicator(
-                              value: totalRatingCount > 0 ? movieDetailVo.rating.details.i3 / totalRatingCount : 0,
-                              backgroundColor: Color(0xAAFFFFFF),
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                  Color(0xFFD7B018)),
+                        ],
+                      ),
+                      SizedBox(height: 5),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          Image.asset(ImageHelper.wrapAssets('star_grey.png'),
+                              width: 8, height: 8),
+                          Image.asset(ImageHelper.wrapAssets('star_grey.png'),
+                              width: 8, height: 8),
+                          Image.asset(ImageHelper.wrapAssets('star_grey.png'),
+                              width: 8, height: 8),
+                          SizedBox(width: 5),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(3),
+                            child: Container(
+                              width: 150,
+                              height: 8,
+                              child: LinearProgressIndicator(
+                                value: totalRatingCount > 0 ? movieDetailVo.rating.details.i3 / totalRatingCount : 0,
+                                backgroundColor: Color(0xAAFFFFFF),
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                    Color(0xFFD7B018)),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 5),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Image.asset(ImageHelper.wrapAssets('star_grey.png'),
-                            width: 8, height: 8),
-                        Image.asset(ImageHelper.wrapAssets('star_grey.png'),
-                            width: 8, height: 8),
-                        SizedBox(width: 5),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(3),
-                          child: Container(
-                            width: 150,
-                            height: 8,
-                            child: LinearProgressIndicator(
-                              value: totalRatingCount > 0 ? movieDetailVo.rating.details.i2 / totalRatingCount : 0,
-                              backgroundColor: Color(0xAAFFFFFF),
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                  Color(0xFFD7B018)),
+                        ],
+                      ),
+                      SizedBox(height: 5),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          Image.asset(ImageHelper.wrapAssets('star_grey.png'),
+                              width: 8, height: 8),
+                          Image.asset(ImageHelper.wrapAssets('star_grey.png'),
+                              width: 8, height: 8),
+                          SizedBox(width: 5),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(3),
+                            child: Container(
+                              width: 150,
+                              height: 8,
+                              child: LinearProgressIndicator(
+                                value: totalRatingCount > 0 ? movieDetailVo.rating.details.i2 / totalRatingCount : 0,
+                                backgroundColor: Color(0xAAFFFFFF),
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                    Color(0xFFD7B018)),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 5),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Image.asset(ImageHelper.wrapAssets('star_grey.png'),
-                            width: 8, height: 8),
-                        SizedBox(width: 5),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(3),
-                          child: Container(
-                            width: 150,
-                            height: 8,
-                            child: LinearProgressIndicator(
-                              value: totalRatingCount > 0 ? movieDetailVo.rating.details.i1 / totalRatingCount : 0,
-                              backgroundColor: Color(0xAAFFFFFF),
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                  Color(0xFFD7B018)),
+                        ],
+                      ),
+                      SizedBox(height: 5),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          Image.asset(ImageHelper.wrapAssets('star_grey.png'),
+                              width: 8, height: 8),
+                          SizedBox(width: 5),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(3),
+                            child: Container(
+                              width: 150,
+                              height: 8,
+                              child: LinearProgressIndicator(
+                                value: totalRatingCount > 0 ? movieDetailVo.rating.details.i1 / totalRatingCount : 0,
+                                backgroundColor: Color(0xAAFFFFFF),
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                    Color(0xFFD7B018)),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    )
-                  ],
+                        ],
+                      )
+                    ],
+                  ),
                 )
               ],
             ),

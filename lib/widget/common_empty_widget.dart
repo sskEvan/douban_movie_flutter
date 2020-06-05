@@ -1,6 +1,7 @@
 import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/view_state.dart';
 import 'package:douban_movie_flutter/service/resource_manager.dart';
+import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +18,7 @@ class CommonEmptyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
+      height: ScreenUtil.height,
       padding: EdgeInsets.symmetric(vertical: 40),
       child: Align(
         alignment: Alignment(0.0, -0.3),
