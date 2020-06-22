@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/movie_detail_vo.dart';
 import 'package:douban_movie_flutter/provider/movie_detail_provider.dart';
+import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:douban_movie_flutter/widget/common_empty_widget.dart';
@@ -41,9 +42,10 @@ bool offstageTitle;
 
 class MovieDetailState extends State<MovieDetailPage> {
   final String movieId;
-  Color pageColor = Colors.white;
-  MovieDetailVo movieDetailVo;
-  ScrollController bodyScrollController;
+  Color _pageColor = Colors.white;
+  MovieDetailVo _movieDetailVo;
+  ScrollController _bodyScrollController;
+  PaletteGenerator _paletteGenerator;
 
   MovieDetailState(this.movieId);
 
@@ -52,9 +54,9 @@ class MovieDetailState extends State<MovieDetailPage> {
     super.initState();
     offstageAutorInfo = true;
     offstageTitle = false;
-    bodyScrollController = ScrollController();
-    bodyScrollController.addListener(() {
-      if (bodyScrollController.offset > 150) {
+    _bodyScrollController = ScrollController();
+    _bodyScrollController.addListener(() {
+      if (_bodyScrollController.offset > 150) {
         if (offstageAutorInfo) {
           offstageAutorInfo = false;
           offstageTitle = true;
@@ -72,12 +74,17 @@ class MovieDetailState extends State<MovieDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
+    if(isDark) {
+      _pageColor = Color(0xFF272727);
+    }
+
     return Scaffold(
         appBar: AppBar(
           title: buildTitleBar(context),
-          backgroundColor: pageColor,
+          backgroundColor: _pageColor,
         ),
-        backgroundColor: pageColor,
+        backgroundColor: _pageColor,
         body: ViewStateWidget<MovieDetailVoProvider>(
           provider: MovieDetailVoProvider(context),
           onProviderReady: (provider) async {
@@ -90,13 +97,14 @@ class MovieDetailState extends State<MovieDetailPage> {
               return CommonEmptyWidget(onPressed: provider.initData());
             } else if (provider.isError) {
               return CommonErrorWidget(
-                  error: provider.viewStateError,
-                  onPressed: provider.initData);
+                  error: provider.viewStateError, onPressed: provider.initData);
             }
-            movieDetailVo = provider.movieDetailVo;
-            fetchPageColor(provider.movieDetailVo.images.small);
+            _movieDetailVo = provider.movieDetailVo;
+            if(!isDark) {
+              fetchPageColor(provider.movieDetailVo.images.small);
+            }
 
-            return BottomDrawerWidget(movieDetailVo, bodyScrollController);
+            return BottomDrawerWidget(_movieDetailVo, _bodyScrollController);
           },
         ));
   }
@@ -120,8 +128,8 @@ class MovieDetailState extends State<MovieDetailPage> {
               Row(
                 children: <Widget>[
                   CacheImageWidget(
-                      url: movieDetailVo != null
-                          ? movieDetailVo.images.small
+                      url: _movieDetailVo != null
+                          ? _movieDetailVo.images.small
                           : '',
                       radius: 2,
                       width: 27,
@@ -131,7 +139,7 @@ class MovieDetailState extends State<MovieDetailPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        '${movieDetailVo != null ? movieDetailVo.title : ''}',
+                        '${_movieDetailVo != null ? _movieDetailVo.title : ''}',
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 14,
@@ -141,8 +149,8 @@ class MovieDetailState extends State<MovieDetailPage> {
                         height: 5,
                       ),
                       StaticRatingBar(
-                        rate: movieDetailVo != null
-                            ? movieDetailVo.rating.average / 2
+                        rate: _movieDetailVo != null
+                            ? _movieDetailVo.rating.average / 2
                             : 0,
                         size: 12,
                       ),
@@ -158,23 +166,24 @@ class MovieDetailState extends State<MovieDetailPage> {
   }
 
   void fetchPageColor(url) async {
-    PaletteGenerator paletteGenerator =
-        await PaletteGenerator.fromImageProvider(
-      CachedNetworkImageProvider(url),
-    );
-
-    if (paletteGenerator.darkVibrantColor != null &&
-        pageColor != paletteGenerator.darkVibrantColor.color) {
-      setState(() {
-        pageColor = paletteGenerator.darkVibrantColor.color;
-      });
-    } else if (paletteGenerator.darkVibrantColor == null &&
-        pageColor != Color(0xff35374c)) {
-      setState(() {
-        pageColor = Color(0xff35374c);
-      });
+    if(_paletteGenerator == null) {
+      _paletteGenerator =
+      await PaletteGenerator.fromImageProvider(
+        CachedNetworkImageProvider(url),
+      );
     }
-    ;
+
+    if (_paletteGenerator.darkVibrantColor != null &&
+        _pageColor != _paletteGenerator.darkVibrantColor.color) {
+      _pageColor = _paletteGenerator.darkVibrantColor.color;
+      setState(() {});
+    } else if (_paletteGenerator.darkVibrantColor == null &&
+        _pageColor !=
+            ThemeHelper.wrapDarkBackgroundColor(context, Color(0xff35374c))) {
+      _pageColor =
+          ThemeHelper.wrapDarkBackgroundColor(context, Color(0xff35374c));
+      setState(() {});
+    }
   }
 }
 
@@ -235,7 +244,6 @@ class BottomDrawerState extends State<BottomDrawerWidget>
       //debugPrint("---------drawerOffset:${drawerOffset}");
       setState(() {});
     }
-    ;
   }
 
   @override
@@ -355,7 +363,7 @@ class BottomDrawerState extends State<BottomDrawerWidget>
                     width: ScreenUtil.width,
                     padding: EdgeInsets.all(5),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFFAFAFA),
+                      color: ThemeHelper.wrapColor(context, lightModeColor: Color(0xFFFAFAFA), darkModeColor: Color(0xFF444444)),
                       borderRadius: BorderRadius.only(
                           topLeft: const Radius.circular(10.0),
                           topRight: const Radius.circular(10.0)),
@@ -368,7 +376,7 @@ class BottomDrawerState extends State<BottomDrawerWidget>
                           width: 50,
                           height: 6,
                           decoration: BoxDecoration(
-                            color: Colors.black26,
+                            color: ThemeHelper.wrapDarkColor(context, Colors.black26),
                             borderRadius: BorderRadius.circular(3),
                           ),
                         ),
@@ -377,7 +385,7 @@ class BottomDrawerState extends State<BottomDrawerWidget>
                           child: Text(
                             DouBanLocalizations.of(context).reviews,
                             style:
-                                TextStyle(color: Colors.black45, fontSize: 16),
+                                TextStyle(color: ThemeHelper.wrapDarkColor(context, Colors.black45), fontSize: 16),
                           ),
                         ),
                         //Divider(height: 14, color: Color(0x66cccccc)),

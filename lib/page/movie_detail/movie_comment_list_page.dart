@@ -1,5 +1,6 @@
 import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/provider/movie_comment_list_provider.dart';
+import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/widget/common_empty_widget.dart';
 import 'package:douban_movie_flutter/widget/common_error_widget.dart';
 import 'package:douban_movie_flutter/widget/common_loading_widget.dart';
@@ -35,16 +36,16 @@ class _MovieCommendState extends State<MovieCommentListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: ThemeHelper.wrapDarkBackgroundColor(context, Colors.white),
           leading: IconButton(
-            icon: Icon(Icons.close, color: Colors.black87),
+            icon: Icon(Icons.close, color: ThemeHelper.wrapDarkColor(context, Colors.black87)),
             onPressed: () {
               Navigator.of(context).pop();
             },
           ),
           title: Text(
             DouBanLocalizations.of(context).comment,
-            style: TextStyle(color: Colors.black87),
+            style: TextStyle(color: ThemeHelper.wrapDarkColor(context, Colors.black87)),
           ),
         ),
         body: ViewStateWidget<MovieCommentListProvider>(
@@ -67,7 +68,7 @@ class _MovieCommendState extends State<MovieCommentListPage> {
                     onPressed: provider.initData);
               }
               return Container(
-                  color: Colors.white,
+                  color: ThemeHelper.wrapDarkBackgroundColor(context, Colors.white),
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: SmartRefresher(
                     controller: provider.refreshController,

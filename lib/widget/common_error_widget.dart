@@ -28,7 +28,7 @@ class CommonErrorWidget extends StatelessWidget {
       }
     }
     return Container(
-        color: Colors.white,
+        color: ThemeHelper.wrapDarkBackgroundColor(context, Colors.white),
         padding: EdgeInsets.symmetric(vertical: 40),
         child: Align(
           alignment: Alignment(0.0, -0.3),
@@ -45,7 +45,7 @@ class CommonErrorWidget extends StatelessWidget {
                 padding: EdgeInsets.fromLTRB(40, 20, 40, 40),
                 child: Text(
                   message,
-                  style: TextStyle(color: Colors.black38, fontSize: 16),
+                  style: TextStyle(color: ThemeHelper.wrapDarkColor(context, Colors.black38), fontSize: 16),
                 ),
               ),
               OutlineButton(
@@ -55,9 +55,9 @@ class CommonErrorWidget extends StatelessWidget {
                     style: TextStyle(fontSize: 16),
                   ),
                   onPressed: onPressed,
-                  textColor: Theme.of(context).primaryColor,
+                  textColor: ThemeHelper.wrapDarkColor(context, Theme.of(context).primaryColor),
                   borderSide: BorderSide(
-                    color: Theme.of(context).primaryColor,
+                    color: ThemeHelper.wrapDarkColor(context, Theme.of(context).primaryColor),
                   ),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5))),

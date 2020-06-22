@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/movie_item_vo.dart';
 import 'package:douban_movie_flutter/provider/billboard_provider.dart';
+import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/billboard_banner_widget.dart';
@@ -61,14 +62,14 @@ class _BillboardState extends State<BillboardPage>
                   CommonSection(
                     title: DouBanLocalizations.of(context).top_250,
                     action: DouBanLocalizations.of(context).all,
-                    backgroundColor: Color(0xFFF7F7F7),
+                    backgroundColor: ThemeHelper.wrapDarkBackgroundColor(context, Color(0xFFF7F7F7)),
                     padding: EdgeInsets.fromLTRB(15, 8, 5, 8),
                     titleStyle: TextStyle(
-                        color: Colors.black87,
+                        color: ThemeHelper.wrapDarkColor(context, Colors.black87),
                         fontSize: 20,
                         fontWeight: FontWeight.bold),
                     actionStyle: TextStyle(
-                      color: Colors.black87,
+                      color: ThemeHelper.wrapDarkColor(context, Colors.black87),
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
@@ -80,14 +81,14 @@ class _BillboardState extends State<BillboardPage>
                   _buildTop250GridView(context, provider.top250MovieItemVos),
                   CommonSection(
                     title: DouBanLocalizations.of(context).other_billboard,
-                    backgroundColor: Color(0xFFF7F7F7),
+                    backgroundColor: ThemeHelper.wrapDarkBackgroundColor(context, Color(0xFFF7F7F7)),
                     padding: EdgeInsets.fromLTRB(15, 8, 5, 8),
                     titleStyle: TextStyle(
-                        color: Colors.black87,
+                        color: ThemeHelper.wrapDarkColor(context, Colors.black87),
                         fontSize: 20,
                         fontWeight: FontWeight.bold),
                     actionStyle: TextStyle(
-                      color: Colors.black87,
+                      color: ThemeHelper.wrapDarkColor(context, Colors.black87),
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),

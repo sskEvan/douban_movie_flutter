@@ -1,3 +1,4 @@
+import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class CommonLoadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: ThemeHelper.wrapDarkBackgroundColor(context, Colors.white),
       alignment: Alignment.center,
       child:  CircularProgressIndicator(
           backgroundColor: Color(0xAAEEEEEE),

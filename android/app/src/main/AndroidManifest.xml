@@ -14,7 +14,7 @@
 
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="douban_movie_flutter"
+        android:label="仿豆瓣电影"
         android:icon="@mipmap/ic_launcher"
         android:networkSecurityConfig="@xml/network_security_config">
     <activity

@@ -1,4 +1,5 @@
 import 'package:douban_movie_flutter/model/comment_vo.dart';
+import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/rating_widget.dart';
 import 'package:douban_movie_flutter/widget/skeleton/skeleton.dart';
@@ -39,7 +40,7 @@ class MovieCommendItemWidget extends StatelessWidget {
                   commentVo.author.name,
                   style: TextStyle(
                       fontSize: 14,
-                      color: Colors.black87,
+                      color: ThemeHelper.wrapDarkColor(context, Colors.black87),
                       fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 2),
@@ -57,7 +58,7 @@ class MovieCommendItemWidget extends StatelessWidget {
         ExpandableText(
           text: commentVo.content,
           maxLines: 4,
-          style: TextStyle(fontSize: 14, color: Colors.black54),
+          style: TextStyle(fontSize: 14, color: ThemeHelper.wrapDarkColor(context, Colors.black54)),
         ),
         SizedBox(
           height: 5,
@@ -66,7 +67,7 @@ class MovieCommendItemWidget extends StatelessWidget {
           children: <Widget>[
             Icon(
               Icons.thumb_up,
-              color: Colors.black26,
+              color: ThemeHelper.wrapDarkColor(context, Colors.black26),
               size: 12,
             ),
             SizedBox(
@@ -76,7 +77,7 @@ class MovieCommendItemWidget extends StatelessWidget {
               '${commentVo.usefulCount}',
               style: TextStyle(
                 fontSize: 12,
-                color: Colors.black26,
+                color: ThemeHelper.wrapDarkColor(context, Colors.black26),
               ),
             )
           ],

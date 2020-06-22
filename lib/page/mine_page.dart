@@ -30,7 +30,7 @@ class MineState extends State<MinePage> with AutomaticKeepAliveClientMixin {
   Widget build(BuildContext context) {
     return Container(
         height: ScreenUtil.height,
-        color: Color(0xDDEFEFEF),
+        color: ThemeHelper.wrapDarkBackgroundColor(context, Color(0xDDEFEFEF)),
         child: ScrollConfiguration(
             behavior: OverScrollBehavior(),
             child: SingleChildScrollView(
@@ -95,7 +95,7 @@ class MineState extends State<MinePage> with AutomaticKeepAliveClientMixin {
       children: <Widget>[
         SizedBox(height: 12),
         Container(
-          color: Colors.white,
+          color: ThemeHelper.wrapColor(context, lightModeColor: Colors.white, darkModeColor: Color(0XFF333333)),
           child: ExpansionTile(
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -135,7 +135,7 @@ class MineState extends State<MinePage> with AutomaticKeepAliveClientMixin {
         ),
         SizedBox(height: 12),
         Container(
-          color: Colors.white,
+          color: ThemeHelper.wrapColor(context, lightModeColor: Colors.white, darkModeColor: Color(0XFF333333)),
           child: ListTile(
             title: Text(DouBanLocalizations.of(context).night_mode),
             onTap: () {},
@@ -151,12 +151,14 @@ class MineState extends State<MinePage> with AutomaticKeepAliveClientMixin {
             trailing: CupertinoSwitch(
                 activeColor: Theme.of(context).accentColor,
                 value: Theme.of(context).brightness == Brightness.dark,
-                onChanged: (value) {}),
+                onChanged: (value) {
+                  switchDarkMode(context);
+                }),
           ),
         ),
         Divider(height: 1),
         Container(
-          color: Colors.white,
+          color: ThemeHelper.wrapColor(context, lightModeColor: Colors.white, darkModeColor: Color(0XFF333333)),
           child: ExpansionTile(
             title: Text(DouBanLocalizations.of(context).theme_color),
             leading: Icon(
@@ -193,7 +195,7 @@ class MineState extends State<MinePage> with AutomaticKeepAliveClientMixin {
         ),
         SizedBox(height: 12),
         Container(
-          color: Colors.white,
+          color: ThemeHelper.wrapColor(context, lightModeColor: Colors.white, darkModeColor: Color(0XFF333333)),
           child: ListTile(
             title: Text(DouBanLocalizations.of(context).about),
             onTap: () {
@@ -208,7 +210,7 @@ class MineState extends State<MinePage> with AutomaticKeepAliveClientMixin {
         ),
         Divider(height: 1),
         Container(
-          color: Colors.white,
+          color: ThemeHelper.wrapColor(context, lightModeColor: Colors.white, darkModeColor: Color(0XFF333333)),
           child: ListTile(
             title: Text(DouBanLocalizations.of(context).check_update),
             onTap: () {
@@ -224,6 +226,17 @@ class MineState extends State<MinePage> with AutomaticKeepAliveClientMixin {
         SizedBox(height: 50),
       ],
     );
+  }
+
+  void switchDarkMode(BuildContext context) {
+    if (MediaQuery.of(context).platformBrightness ==
+        Brightness.dark) {
+      showToast("检测到系统为暗黑模式,已为你自动切换",position: ToastPosition.bottom);
+    } else {
+      Provider.of<ThemeProvider>(context,listen: false).switchTheme(
+          userDarkMode:
+          Theme.of(context).brightness == Brightness.light);
+    }
   }
 
   @override

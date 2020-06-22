@@ -6,17 +6,12 @@ import 'skeleton.dart';
  * 电梯列表骨架组件
  */
 class MovieItemSkeleton extends StatelessWidget {
-  var isDark;
   final bool showIndexNumber;
 
-  MovieItemSkeleton({this.showIndexNumber,Key key}) : super(key: key);
+  MovieItemSkeleton({this.showIndexNumber, Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    isDark = Theme
-        .of(context)
-        .brightness == Brightness.dark;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -27,18 +22,16 @@ class MovieItemSkeleton extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              _buildMoviePosterSkeleton(),
+              _buildMoviePosterSkeleton(context),
               SizedBox(width: 10),
-              _buildMovieInfoSkeleton(),
+              _buildMovieInfoSkeleton(context),
               SizedBox(width: 10),
               SizedBox(width: 10),
-              _buildTicketPurchaseSkeleton()
+              _buildTicketPurchaseSkeleton(context)
             ],
           ),
         ),
-        Divider(
-            height: 1,
-            color: Colors.black)
+        Divider(height: 1, color: Colors.black)
       ],
     );
   }
@@ -61,56 +54,56 @@ class MovieItemSkeleton extends StatelessWidget {
     );
   }
 
-  Widget _buildMoviePosterSkeleton() {
+  Widget _buildMoviePosterSkeleton(BuildContext context) {
     return Container(
       width: 90,
       height: 120,
-      decoration: SkeletonDecoration(isDark: isDark),
+      decoration: SkeletonDecoration(context: context),
     );
   }
 
-  Widget _buildMovieInfoSkeleton() {
+  Widget _buildMovieInfoSkeleton(BuildContext context) {
     return Expanded(
       child: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          _buildMovieTitleSkeleton(),
+          _buildMovieTitleSkeleton(context),
           SizedBox(height: 5),
-          _buildMovieScoreSkeleton(),
+          _buildMovieScoreSkeleton(context),
           SizedBox(height: 5),
-          _buildMovieTagSkeleton()
+          _buildMovieTagSkeleton(context)
         ],
       ),
     );
   }
 
-  Widget _buildMovieTitleSkeleton() {
+  Widget _buildMovieTitleSkeleton(BuildContext context) {
     return Container(
       width: 50,
       height: 8,
-      decoration: SkeletonDecoration(isDark: isDark),
+      decoration: SkeletonDecoration(context: context),
     );
   }
 
-  Widget _buildMovieScoreSkeleton() {
+  Widget _buildMovieScoreSkeleton(BuildContext context) {
     return Container(
       width: 50,
       height: 8,
-      decoration: SkeletonDecoration(isDark: isDark),
+      decoration: SkeletonDecoration(context: context),
     );
   }
 
-  Widget _buildMovieTagSkeleton() {
+  Widget _buildMovieTagSkeleton(BuildContext context) {
     return Container(
       width: 100,
       height: 16,
-      decoration: SkeletonDecoration(isDark: isDark),
+      decoration: SkeletonDecoration(context: context),
     );
   }
 
-  Widget _buildTicketPurchaseSkeleton() {
+  Widget _buildTicketPurchaseSkeleton(BuildContext context) {
     return Container(
       height: 120,
       child: Column(
@@ -119,17 +112,16 @@ class MovieItemSkeleton extends StatelessWidget {
           Container(
             width: 60,
             height: 16,
-            decoration: SkeletonDecoration(isDark: isDark),
+            decoration: SkeletonDecoration(context: context),
           ),
           SizedBox(height: 8),
           Container(
             width: 60,
             height: 8,
-            decoration: SkeletonDecoration(isDark: isDark),
+            decoration: SkeletonDecoration(context: context),
           ),
         ],
       ),
     );
   }
-
 }

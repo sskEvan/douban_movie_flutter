@@ -1,5 +1,6 @@
 import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/movie_item_vo.dart';
+import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
@@ -33,7 +34,7 @@ class MovieItemWidget2 extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               _buildMoviePoster(),
-              _buildMovieTitle(),
+              _buildMovieTitle(context),
               _buildMovieScore(context)
             ],
           ),
@@ -49,14 +50,14 @@ class MovieItemWidget2 extends StatelessWidget {
     );
   }
 
-  Widget _buildMovieTitle() {
+  Widget _buildMovieTitle(BuildContext context) {
     return SizedBox(
         width: contentWidth,
         child: Text(
           movieItemVo.title,
           textAlign: TextAlign.center,
           style: TextStyle(
-              color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),
+              color: ThemeHelper.wrapDarkColor(context, Colors.black), fontSize: 15, fontWeight: FontWeight.bold),
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
         ));
@@ -73,12 +74,12 @@ class MovieItemWidget2 extends StatelessWidget {
           ),
           SizedBox(width: 5),
           Text('${movieItemVo.rating.average}',
-              style: TextStyle(color: Colors.black45, fontSize: 13))
+              style: TextStyle(color: ThemeHelper.wrapDarkColor(context, Colors.black45), fontSize: 13))
         ],
       );
     } else {
       return Text(DouBanLocalizations.of(context).no_scare,
-          style: TextStyle(color: Colors.black45, fontSize: 13));
+          style: TextStyle(color: ThemeHelper.wrapDarkColor(context, Colors.black45), fontSize: 13));
     }
   }
 }

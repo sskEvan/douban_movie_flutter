@@ -74,6 +74,9 @@ class MovieDetailHeader extends StatelessWidget {
                     ),
                     label: Text(
                       DouBanLocalizations.of(context).want_to_see,
+                      style: TextStyle(
+                          color: Colors.black87
+                      ),
                     ),
                     onPressed: () {
                       showToast(DouBanLocalizations.of(context).want_to_see, context: context);
@@ -92,6 +95,9 @@ class MovieDetailHeader extends StatelessWidget {
                   ),
                   label: Text(
                     DouBanLocalizations.of(context).seen,
+                    style: TextStyle(
+                      color: Colors.black87
+                    ),
                   ),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5)),

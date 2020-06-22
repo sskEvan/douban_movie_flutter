@@ -21,7 +21,7 @@ class ThemeProvider extends ChangeNotifier {
         StorageManager.sharedPreferences.getBool(kThemeUserDarkMode) ?? false;
 
     _themeColor = Colors.primaries[
-        StorageManager.sharedPreferences.getInt(kThemeColorIndex) ?? 5];
+        StorageManager.sharedPreferences.getInt(kThemeColorIndex) ?? 9];
   }
 
   void switchThemeRandom({Brightness brightness}) {
@@ -41,9 +41,13 @@ class ThemeProvider extends ChangeNotifier {
 
   saveTheme2Storage(bool userDarkMode, MaterialColor themeColor) async {
     var index = Colors.primaries.indexOf(themeColor);
+    debugPrint('-----------------------------------------saveTheme2Storage index=$index');
+    if(index != -1) {
+      await StorageManager.sharedPreferences.setInt(kThemeColorIndex, index);
+    }
     await StorageManager.sharedPreferences
-        .setBool(kThemeColorIndex, userDarkMode);
-    await StorageManager.sharedPreferences.setInt(kThemeColorIndex, index);
+        .setBool(kThemeUserDarkMode, userDarkMode);
+
   }
 
   /**

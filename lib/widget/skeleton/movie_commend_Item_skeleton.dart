@@ -8,15 +8,10 @@ import 'skeleton.dart';
  * 电影短评列表item组件
  */
 class MovieCommendItemSkeleton extends StatelessWidget {
-  var isDark;
-
-
   MovieCommendItemSkeleton({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    isDark = Theme.of(context).brightness == Brightness.dark;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -29,7 +24,8 @@ class MovieCommendItemSkeleton extends StatelessWidget {
               width: 30,
               height: 30,
               child: Container(
-                decoration: SkeletonDecoration(isDark: isDark, isCircle: true),
+                decoration:
+                    SkeletonDecoration(context: context, isCircle: true),
               ),
             ),
             SizedBox(width: 10),
@@ -39,13 +35,13 @@ class MovieCommendItemSkeleton extends StatelessWidget {
                 Container(
                   width: 100,
                   height: 10,
-                  decoration: SkeletonDecoration(isDark: isDark),
+                  decoration: SkeletonDecoration(context: context),
                 ),
                 SizedBox(height: 2),
                 Container(
                   width: 100,
                   height: 10,
-                  decoration: SkeletonDecoration(isDark: isDark),
+                  decoration: SkeletonDecoration(context: context),
                 ),
               ],
             )
@@ -57,7 +53,7 @@ class MovieCommendItemSkeleton extends StatelessWidget {
         Container(
           width: ScreenUtil.width,
           height: 10,
-          decoration: SkeletonDecoration(isDark: isDark),
+          decoration: SkeletonDecoration(context: context),
         ),
         SizedBox(
           height: 10,
@@ -65,7 +61,7 @@ class MovieCommendItemSkeleton extends StatelessWidget {
         Container(
           width: ScreenUtil.width,
           height: 10,
-          decoration: SkeletonDecoration(isDark: isDark),
+          decoration: SkeletonDecoration(context: context),
         ),
         SizedBox(
           height: 10,
@@ -73,7 +69,7 @@ class MovieCommendItemSkeleton extends StatelessWidget {
         Container(
           width: ScreenUtil.width,
           height: 10,
-          decoration: SkeletonDecoration(isDark: isDark),
+          decoration: SkeletonDecoration(context: context),
         ),
         SizedBox(
           height: 10,
@@ -81,7 +77,7 @@ class MovieCommendItemSkeleton extends StatelessWidget {
         Container(
           width: 100,
           height: 10,
-          decoration: SkeletonDecoration(isDark: isDark),
+          decoration: SkeletonDecoration(context: context),
         ),
         SizedBox(
           height: 14,

@@ -2,6 +2,7 @@ import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/movie_item_vo.dart';
 import 'package:douban_movie_flutter/model/staff_detail_vo.dart';
 import 'package:douban_movie_flutter/provider/staff_detail_provider.dart';
+import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/common_section_widget.dart';
@@ -36,11 +37,11 @@ class _StaffDetailState extends State<StaffDetailPage> {
         appBar: AppBar(
           title: Text(
             DouBanLocalizations.of(context).staff_info,
-            style: TextStyle(color: Colors.black87),
+            style: TextStyle(color: ThemeHelper.wrapDarkColor(context, Colors.black87)),
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: ThemeHelper.wrapDarkBackgroundColor(context, Colors.white),
           leading: IconButton(
-            icon: Icon(Icons.close, color: Colors.black87),
+            icon: Icon(Icons.close, color: ThemeHelper.wrapDarkColor(context, Colors.black87)),
             onPressed: () {
               Navigator.of(context).pop();
             },
@@ -62,6 +63,7 @@ class _StaffDetailState extends State<StaffDetailPage> {
             }
             _staffDetailVo = provider.staffDetailVo;
             return _buildBody(context);
+            //return StaffDetailSkeleton();
           },
         ));
   }
@@ -70,6 +72,8 @@ class _StaffDetailState extends State<StaffDetailPage> {
     return SingleChildScrollView(
       physics: BouncingScrollPhysics(),
       child: Container(
+          height: ScreenUtil.height,
+          color: ThemeHelper.wrapDarkBackgroundColor(context, Colors.white),
           padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -142,7 +146,7 @@ class _StaffDetailState extends State<StaffDetailPage> {
                   Text(
                     _staffDetailVo.name,
                     style: TextStyle(
-                        color: Colors.black,
+                        color: ThemeHelper.wrapDarkColor(context, Colors.black),
                         fontSize: 20,
                         fontWeight: FontWeight.bold),
                     overflow: TextOverflow.ellipsis,
@@ -151,14 +155,14 @@ class _StaffDetailState extends State<StaffDetailPage> {
                   SizedBox(height: 6),
                   Text(
                     _staffDetailVo.nameEn,
-                    style: TextStyle(color: Colors.black87, fontSize: 16),
+                    style: TextStyle(color: ThemeHelper.wrapDarkColor(context, Colors.black87), fontSize: 16),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),
                   SizedBox(height: 6),
                   Text(
                     _staffDetailVo.bornPlace,
-                    style: TextStyle(color: Colors.black87, fontSize: 16),
+                    style: TextStyle(color: ThemeHelper.wrapDarkColor(context, Colors.black87), fontSize: 16),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),
@@ -168,12 +172,12 @@ class _StaffDetailState extends State<StaffDetailPage> {
                     child: RaisedButton.icon(
                       icon: Icon(
                         Icons.add,
-                        color: Colors.white,
+                        color: ThemeHelper.wrapDarkColor(context, Colors.white),
                         size: 16,
                       ),
                       label: Text(
                         DouBanLocalizations.of(context).follow,
-                        style: TextStyle(color: Colors.white, fontSize: 16),
+                        style: TextStyle(color: ThemeHelper.wrapDarkColor(context, Colors.white), fontSize: 16),
                       ),
                       color: Colors.green,
                       onPressed: () {
@@ -203,33 +207,33 @@ class _StaffDetailState extends State<StaffDetailPage> {
             SizedBox(height: 15),
             Text(
               '${DouBanLocalizations.of(context).birthday}:  ${_staffDetailVo.birthday}',
-              style: TextStyle(color: Colors.black87, fontSize: 15),
+              style: TextStyle(color: ThemeHelper.wrapDarkColor(context, Colors.black87), fontSize: 15),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
             ),
             SizedBox(height: 6),
             Text(
               '${DouBanLocalizations.of(context).sex}:  ${_staffDetailVo.gender}',
-              style: TextStyle(color: Colors.black87, fontSize: 15),
+              style: TextStyle(color: ThemeHelper.wrapDarkColor(context, Colors.black87), fontSize: 15),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
             ),
             SizedBox(height: 6),
             Text(
               '${DouBanLocalizations.of(context).more_chinese_name}:  ${_getString(_staffDetailVo.aka)}',
-              style: TextStyle(color: Colors.black87, fontSize: 15),
+              style: TextStyle(color: ThemeHelper.wrapDarkColor(context, Colors.black87), fontSize: 15),
             ),
             SizedBox(height: 6),
             Text(
               '${DouBanLocalizations.of(context).more_english_name}:  ${_getString(_staffDetailVo.akaEn)}',
-              style: TextStyle(color: Colors.black87, fontSize: 15),
+              style: TextStyle(color: ThemeHelper.wrapDarkColor(context, Colors.black87), fontSize: 15),
             ),
             SizedBox(height: 6),
             ExpandableText(
               text:
                   '${DouBanLocalizations.of(context).summary}: ${_staffDetailVo.summary.isEmpty ? DouBanLocalizations.of(context).none : _staffDetailVo.summary.isEmpty}',
               maxLines: 4,
-              style: TextStyle(color: Colors.black87, fontSize: 15),
+              style: TextStyle(color: ThemeHelper.wrapDarkColor(context, Colors.black87), fontSize: 15),
               expand: false,
             ),
           ],
@@ -253,9 +257,9 @@ class _StaffDetailState extends State<StaffDetailPage> {
       title: title,
       action: action,
       titleStyle: TextStyle(
-          color: Colors.black87, fontSize: 18, fontWeight: FontWeight.bold),
+          color: ThemeHelper.wrapDarkColor(context, Colors.black87), fontSize: 18, fontWeight: FontWeight.bold),
       actionStyle: TextStyle(
-        color: Colors.black45,
+        color: ThemeHelper.wrapDarkColor(context, Colors.black45),
         fontSize: 15,
       ),
       onTap: onTap,

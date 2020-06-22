@@ -1,4 +1,5 @@
 import 'package:douban_movie_flutter/i10n/localization_intl.dart';
+import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -85,8 +86,12 @@ class SearchWidgetState extends State<SearchWidget> with TickerProviderStateMixi
                       hintText:
                           DouBanLocalizations.of(context).search_content_hint,
                       contentPadding: EdgeInsets.all(0),
-                      icon: Icon(Icons.search),
+                      icon: Icon(Icons.search, color: Colors.black38),
                       alignLabelWithHint: true,
+                      hintStyle: TextStyle(
+                          fontSize: 14,
+                          textBaseline: TextBaseline.alphabetic,
+                          color: Colors.black38),
                       helperStyle: TextStyle(fontSize: 16),
 
                       //打开enabledBorder focusedBorde: 为了让文本居中
@@ -109,6 +114,7 @@ class SearchWidgetState extends State<SearchWidget> with TickerProviderStateMixi
                     style: TextStyle(
                       fontSize: 16,
                       textBaseline: TextBaseline.alphabetic,
+                      color: Colors.black87
                     ),
                   )),
             ),

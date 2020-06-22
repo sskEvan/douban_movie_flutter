@@ -48,7 +48,7 @@ class MovieItemWidget extends StatelessWidget {
                   SizedBox(width: 10),
                   _buildMovieInfo(context),
                   SizedBox(width: 10),
-                  _buildDottedLine(),
+                  _buildDottedLine(context),
                   SizedBox(width: 10),
                   _buildTicketPurchase(context)
                 ],
@@ -99,31 +99,31 @@ class MovieItemWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          _buildMovieTitle(),
+          _buildMovieTitle(context),
           SizedBox(height: 5),
           _buildMovieScore(context),
           SizedBox(height: 5),
-          _buildMovieTag()
+          _buildMovieTag(context)
         ],
       ),
     );
   }
 
-  Widget _buildDottedLine() {
+  Widget _buildDottedLine(BuildContext context) {
     return Container(
       height: 120,
       child: Center(
         child: DottledLine(
-            length: 100, spacing: 6, orientation: orientationVertical),
+            length: 100, spacing: 6, orientation: orientationVertical, color: ThemeHelper.wrapDarkColor(context, Colors.black38),),
       ),
     );
   }
 
-  Widget _buildMovieTitle() {
+  Widget _buildMovieTitle(BuildContext context) {
     return Text(
       movieItemVo.title,
       style: TextStyle(
-          color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+          color: ThemeHelper.wrapDarkColor(context, Colors.black), fontSize: 18, fontWeight: FontWeight.bold),
       overflow: TextOverflow.ellipsis,
       maxLines: 1,
     );
@@ -139,20 +139,20 @@ class MovieItemWidget extends StatelessWidget {
           ),
           SizedBox(width: 5),
           Text('${movieItemVo.rating.average}',
-              style: TextStyle(color: Colors.black45, fontSize: 13))
+              style: TextStyle(color: ThemeHelper.wrapDarkColor(context, Colors.black45), fontSize: 13))
         ],
       );
     } else {
       return Text(DouBanLocalizations.of(context).no_scare,
-          style: TextStyle(color: Colors.black45, fontSize: 13));
+          style: TextStyle(color: ThemeHelper.wrapDarkColor(context, Colors.black45), fontSize: 13));
     }
   }
 
-  Widget _buildMovieTag() {
+  Widget _buildMovieTag(BuildContext context) {
     return Text(
       '${movieItemVo.year} / ${_genres2String(movieItemVo.genres)} /${_durings2String(movieItemVo.durations)} '
       '/${_directors2String(movieItemVo.directors)} /${_cases2String(movieItemVo.casts)}',
-      style: TextStyle(color: Colors.black45, fontSize: 13),
+      style: TextStyle(color: ThemeHelper.wrapDarkColor(context, Colors.black45), fontSize: 13),
       overflow: TextOverflow.ellipsis,
       maxLines: 4,
     );
@@ -193,7 +193,7 @@ class MovieItemWidget extends StatelessWidget {
             SizedBox(height: 8),
             Text(
               '${StringUtil.friendlyCount(movieItemVo.collectCount)}${DouBanLocalizations.of(context).seen}',
-              style: TextStyle(color: Colors.black45, fontSize: 12),
+              style: TextStyle(color: ThemeHelper.wrapDarkColor(context, Colors.black45), fontSize: 12),
             ),
           ],
         ),
@@ -214,7 +214,7 @@ class MovieItemWidget extends StatelessWidget {
             SizedBox(height: 8),
             Text(
               '${StringUtil.friendlyCount(movieItemVo.collectCount)}${DouBanLocalizations.of(context).want_to_see}',
-              style: TextStyle(color: Colors.black45, fontSize: 12),
+              style: TextStyle(color: ThemeHelper.wrapDarkColor(context, Colors.black45), fontSize: 12),
             ),
           ],
         ),

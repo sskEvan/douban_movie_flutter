@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/skeleton/skeleton.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,49 +10,47 @@ import 'package:shimmer/shimmer.dart';
  * 首页榜单页面组件
  */
 class BillboardSkeleton extends StatelessWidget {
-  var isDark;
   var banners;
 
   BillboardSkeleton({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    isDark = Theme.of(context).brightness == Brightness.dark;
-
     banners = <Widget>[
-      BillboardBannerSkeleton(isDark),
-      BillboardBannerSkeleton(isDark),
-      BillboardBannerSkeleton(isDark),
+      BillboardBannerSkeleton(),
+      BillboardBannerSkeleton(),
+      BillboardBannerSkeleton(),
     ];
     return Shimmer.fromColors(
         period: Duration(milliseconds: 1200),
-        baseColor: isDark ? Colors.grey[700] : Colors.grey[350],
-        highlightColor: isDark ? Colors.grey[500] : Colors.grey[200],
+        baseColor: ThemeHelper.wrapDarkBackgroundColor(context, Colors.grey[350]),
+        highlightColor: ThemeHelper.wrapColor(context,
+            darkModeColor: Colors.grey[700], lightModeColor: Colors.grey[200]),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              _buildSectionSkeleton(),
-              _buildTop25OGridSkeleton(isDark),
-              _buildSectionSkeleton(),
+              _buildSectionSkeleton(context),
+              _buildTop25OGridSkeleton(context),
+              _buildSectionSkeleton(context),
               _buildOtherBillboardSkeleton()
             ]));
   }
 
-  Widget _buildSectionSkeleton() {
+  Widget _buildSectionSkeleton(BuildContext context) {
     return Container(
       height: 20,
       width: 100,
       margin: EdgeInsets.fromLTRB(15, 8, 5, 8),
-      decoration: SkeletonDecoration(isDark: isDark),
+      decoration: SkeletonDecoration(context: context),
     );
   }
 
-  Widget _buildTop25OGridSkeleton(bool isDark) {
+  Widget _buildTop25OGridSkeleton(BuildContext context) {
     return SkeletonGrid(
       padding: EdgeInsets.symmetric(horizontal: 10),
       childAspectRatio: 0.65,
       builder: (context, index) =>
-          BillboardTop250SkeletonItemWidget(index, isDark),
+          BillboardTop250SkeletonItemWidget(index),
     );
   }
 
@@ -69,12 +68,10 @@ class BillboardSkeleton extends StatelessWidget {
 
 class BillboardTop250SkeletonItemWidget extends StatelessWidget {
   final int index;
-  var isDark;
-
   var contentWidth;
   var contentHeight;
 
-  BillboardTop250SkeletonItemWidget(this.index, this.isDark);
+  BillboardTop250SkeletonItemWidget(this.index);
 
   @override
   Widget build(BuildContext context) {
@@ -86,9 +83,9 @@ class BillboardTop250SkeletonItemWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          _buildMoviePosterSkeleton(),
+          _buildMoviePosterSkeleton(context),
           SizedBox(height: 4),
-          _buildMovieTitleSkeleton(),
+          _buildMovieTitleSkeleton(context),
           SizedBox(height: 4),
           _buildMovieScoreSkeleton(context)
         ],
@@ -96,19 +93,19 @@ class BillboardTop250SkeletonItemWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildMoviePosterSkeleton() {
+  Widget _buildMoviePosterSkeleton(BuildContext context) {
     return Container(
       width: contentWidth,
       height: contentHeight - 25,
-      decoration: SkeletonDecoration(isDark: isDark),
+      decoration: SkeletonDecoration(context: context),
     );
   }
 
-  Widget _buildMovieTitleSkeleton() {
+  Widget _buildMovieTitleSkeleton(BuildContext context) {
     return Container(
       width: 80,
       height: 8,
-      decoration: SkeletonDecoration(isDark: isDark),
+      decoration: SkeletonDecoration(context: context),
     );
   }
 
@@ -116,19 +113,16 @@ class BillboardTop250SkeletonItemWidget extends StatelessWidget {
     return Container(
       width: 80,
       height: 8,
-      decoration: SkeletonDecoration(isDark: isDark),
+      decoration: SkeletonDecoration(context: context),
     );
   }
 }
 
 class BillboardBannerSkeleton extends StatelessWidget {
-  var isDark;
-
-  BillboardBannerSkeleton(this.isDark);
+  BillboardBannerSkeleton();
 
   @override
   Widget build(BuildContext context) {
-    isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 5.0),
       child: Stack(
@@ -138,7 +132,8 @@ class BillboardBannerSkeleton extends StatelessWidget {
               width: ScreenUtil.width,
               height: 190,
               decoration: BoxDecoration(
-                color: isDark ? Colors.grey[700] : Colors.grey[350],
+                color: ThemeHelper.wrapDarkBackgroundColor(
+                    context, Colors.grey[500]),
                 borderRadius: BorderRadius.all(Radius.circular(5)),
               ),
             ),

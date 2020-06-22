@@ -69,7 +69,7 @@ class _SplashState extends State<SplashPage> with TickerProviderStateMixin {
                         style: TextStyle(
                             decoration: TextDecoration.none,
                             fontSize: 16,
-                            color: Colors.black38),
+                            color: ThemeHelper.wrapDarkColor(context, Colors.black38)),
                       )),
                     ),
                     Padding(
@@ -79,7 +79,7 @@ class _SplashState extends State<SplashPage> with TickerProviderStateMixin {
                         style: TextStyle(
                             decoration: TextDecoration.none,
                             fontSize: 16,
-                            color: Colors.black38),
+                            color: ThemeHelper.wrapDarkColor(context, Colors.black38)),
                       )),
                     )
                   ]),
@@ -102,7 +102,7 @@ class _SplashState extends State<SplashPage> with TickerProviderStateMixin {
                             decoration: TextDecoration.none,
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black45),
+                            color: ThemeHelper.wrapDarkColor(context, Colors.black45)),
                       ),
                     )
                   ],

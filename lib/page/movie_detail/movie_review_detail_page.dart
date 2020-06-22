@@ -1,5 +1,6 @@
 import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/reviews_vo.dart';
+import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -63,12 +64,12 @@ class _MovieReviewDetailState extends State<MovieReviewDetailPage> {
     return Scaffold(
       appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.close, color: Colors.black87),
+            icon: Icon(Icons.close, color:ThemeHelper.wrapDarkColor(context, Colors.black87)),
             onPressed: () {
               Navigator.of(context).pop();
             },
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: ThemeHelper.wrapDarkBackgroundColor(context, Colors.white),
           brightness: Brightness.light,
           elevation: 1,
           title: Stack(
@@ -78,7 +79,7 @@ class _MovieReviewDetailState extends State<MovieReviewDetailPage> {
                 child: Text(
                   DouBanLocalizations.of(context).reviews_detail,
                   style: TextStyle(
-                      color: Colors.black87,
+                      color: ThemeHelper.wrapDarkColor(context, Colors.black87),
                       fontSize: 18,
                       fontWeight: FontWeight.bold),
                 ),
@@ -100,7 +101,7 @@ class _MovieReviewDetailState extends State<MovieReviewDetailPage> {
                         Text(
                           widget.reviewsVo.author.name,
                           style: TextStyle(
-                              color: Colors.black87,
+                              color: ThemeHelper.wrapDarkColor(context, Colors.black87),
                               fontSize: 18,
                               fontWeight: FontWeight.bold),
                         ),
@@ -113,12 +114,12 @@ class _MovieReviewDetailState extends State<MovieReviewDetailPage> {
                       child: RaisedButton.icon(
                         icon: Icon(
                           Icons.add,
-                          color: Colors.white,
+                          color: ThemeHelper.wrapDarkColor(context, Colors.white),
                           size: 14,
                         ),
                         label: Text(
                           DouBanLocalizations.of(context).follow,
-                          style: TextStyle(color: Colors.white, fontSize: 14),
+                          style: TextStyle(color: ThemeHelper.wrapDarkColor(context, Colors.white), fontSize: 14),
                         ),
                         color: Colors.green,
                         onPressed: () {
@@ -136,7 +137,7 @@ class _MovieReviewDetailState extends State<MovieReviewDetailPage> {
             ],
           )),
       body: Container(
-        color: Colors.white,
+        color: ThemeHelper.wrapDarkBackgroundColor(context, Colors.white),
         height: ScreenUtil.height,
         child: SingleChildScrollView(
           controller: _scrollController,
@@ -148,7 +149,7 @@ class _MovieReviewDetailState extends State<MovieReviewDetailPage> {
               Text(
                 widget.reviewsVo.title,
                 style: TextStyle(
-                    color: Colors.black87,
+                    color: ThemeHelper.wrapDarkColor(context, Colors.black87),
                     fontSize: 20,
                     fontWeight: FontWeight.bold),
               ),
@@ -169,14 +170,14 @@ class _MovieReviewDetailState extends State<MovieReviewDetailPage> {
                     children: <Widget>[
                       Text(
                         '${widget.reviewsVo.author.name}${DouBanLocalizations.of(context).somebody_reviews}',
-                        style: TextStyle(color: Colors.black45, fontSize: 13),
+                        style: TextStyle(color: ThemeHelper.wrapDarkColor(context, Colors.black45), fontSize: 13),
                       ),
                       SizedBox(
                         height: 5,
                       ),
                       Text(
                         '${widget.reviewsVo.createdAt}',
-                        style: TextStyle(color: Colors.black45, fontSize: 13),
+                        style: TextStyle(color:ThemeHelper.wrapDarkColor(context, Colors.black87), fontSize: 13),
                       ),
                     ],
                   )
@@ -185,7 +186,7 @@ class _MovieReviewDetailState extends State<MovieReviewDetailPage> {
               SizedBox(height: 20),
               Text(
                 widget.reviewsVo.content,
-                style: TextStyle(color: Colors.black54, fontSize: 16),
+                style: TextStyle(color: ThemeHelper.wrapDarkColor(context, Colors.black54), fontSize: 16),
               )
             ],
           ),

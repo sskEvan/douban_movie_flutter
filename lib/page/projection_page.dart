@@ -1,5 +1,6 @@
 import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/page/movie_list_page.dart';
+import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/widget/search_label_widget.dart';
 import 'package:douban_movie_flutter/widget/search_widget.dart';
@@ -41,7 +42,7 @@ class _ProjectionState extends State<ProjectionPage>
       body: Column(
         children: <Widget>[
           Container(
-            color: Theme.of(context).primaryColor,
+            color: ThemeHelper.wrapDarkBackgroundColor(context, Theme.of(context).primaryColor),
             child: TabBar(
               indicatorColor: Colors.white,
               labelStyle: TextStyle(fontSize: 16),

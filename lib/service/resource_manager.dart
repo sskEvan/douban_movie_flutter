@@ -1,10 +1,40 @@
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class ImageHelper {
 
   static String wrapAssets(String url) {
     return "assets/images/" + url;
+  }
+}
+
+class ThemeHelper {
+  static Color wrapDarkBackgroundColor(BuildContext context, Color lightModeColor) {
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
+    if(isDark) {
+      return Color(0xFF272727);
+    }else {
+      return lightModeColor;
+    }
+  }
+
+  static Color wrapDarkColor(BuildContext context, Color lightModeColor) {
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
+    if(isDark) {
+      return Color(0xffffffff);
+    }else {
+      return lightModeColor;
+    }
+  }
+
+  static Color wrapColor(BuildContext context, {Color lightModeColor, Color darkModeColor}) {
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
+    if(isDark) {
+      return darkModeColor;
+    }else {
+      return lightModeColor;
+    }
   }
 
 }

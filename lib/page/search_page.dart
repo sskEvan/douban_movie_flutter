@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/search_keyword_vo.dart';
+import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/service/storage_manager.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/common_empty_widget.dart';
@@ -120,7 +121,7 @@ class SearchState extends State<SearchPage> {
                     style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black45),
+                        color: ThemeHelper.wrapDarkColor(context, Colors.black45)),
                   ),
                   InkWell(
                     onTap: () {
@@ -129,7 +130,7 @@ class SearchState extends State<SearchPage> {
                     child: Icon(
                       Icons.delete_outline,
                       size: 22,
-                      color: Colors.black45,
+                      color: ThemeHelper.wrapDarkColor(context, Colors.black45),
                     ),
                   )
                 ],

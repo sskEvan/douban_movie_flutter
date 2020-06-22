@@ -1,6 +1,7 @@
 import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/provider/celebrity_works_provider.dart';
 import 'package:douban_movie_flutter/provider/movie_list_provider.dart';
+import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/widget/common_empty_widget.dart';
 import 'package:douban_movie_flutter/widget/common_error_widget.dart';
 import 'package:douban_movie_flutter/widget/movie_item_widget.dart';
@@ -33,11 +34,11 @@ class _CelebrityWorksState extends State<CelebrityWorksPage>
         appBar: AppBar(
           title: Text(
             DouBanLocalizations.of(context).all_movie,
-            style: TextStyle(color: Colors.black87),
+            style: TextStyle(color: ThemeHelper.wrapDarkColor(context, Colors.black87)),
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: ThemeHelper.wrapDarkBackgroundColor(context, Colors.white),
           leading: IconButton(
-            icon: Icon(Icons.close, color: Colors.black87),
+            icon: Icon(Icons.close, color: ThemeHelper.wrapDarkColor(context, Colors.black87)),
             onPressed: () {
               Navigator.of(context).pop();
             },

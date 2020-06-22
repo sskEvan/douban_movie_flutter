@@ -1,6 +1,7 @@
 import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/photo_detail_list_vo.dart';
 import 'package:douban_movie_flutter/provider/photo_list_provider.dart';
+import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
 import 'package:douban_movie_flutter/widget/common_empty_widget.dart';
@@ -37,14 +38,14 @@ class _PhotoListState extends State<PhotoListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.white,
+              backgroundColor: ThemeHelper.wrapDarkBackgroundColor(context, Colors.white),
               brightness: Brightness.light,
               title: Text(
                 DouBanLocalizations.of(context).all_photo,
-                style: TextStyle(color: Colors.black87),
+                style: TextStyle(color: ThemeHelper.wrapDarkColor(context, Colors.black87)),
               ),
               leading: IconButton(
-                icon: Icon(Icons.close, color: Colors.black87),
+                icon: Icon(Icons.close, color: ThemeHelper.wrapDarkColor(context, Colors.black87)),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },

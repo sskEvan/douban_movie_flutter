@@ -1,6 +1,7 @@
 import 'package:douban_movie_flutter/i10n/localization_intl.dart';
 import 'package:douban_movie_flutter/model/reviews_vo.dart';
 import 'package:douban_movie_flutter/provider/movie_reviews_list_provider.dart';
+import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:douban_movie_flutter/service/router_manager.dart';
 import 'package:douban_movie_flutter/utils/screen_util.dart';
 import 'package:douban_movie_flutter/widget/cache_image_widget.dart';
@@ -73,7 +74,7 @@ class _MovieReviewsListState extends State<MovieReviewsListPage> {
 
   Widget _buildReviewsContent(MovieReviewsListProvider provider) {
     return Container(
-        color: Colors.white,
+        color: ThemeHelper.wrapDarkBackgroundColor(context, Colors.white),
         child: RepaintBoundary(
             child: SmartRefresher(
           controller: provider.refreshController,
@@ -95,7 +96,7 @@ class _MovieReviewsListState extends State<MovieReviewsListPage> {
     return Column(
       children: <Widget>[
         Material(
-          color: Colors.white,
+          color: ThemeHelper.wrapDarkBackgroundColor(context, Colors.white),
           child: InkWell(
             onTap: () {
               Navigator.of(context).pushNamed(RouteName.movieReviewDetailPage,
@@ -121,13 +122,13 @@ class _MovieReviewsListState extends State<MovieReviewsListPage> {
                           Text(
                             reviewsVo.author.name,
                             style:
-                                TextStyle(fontSize: 13, color: Colors.black87),
+                                TextStyle(fontSize: 13, color: ThemeHelper.wrapDarkColor(context, Colors.black87)),
                           ),
                           SizedBox(width: 15),
                           Text(
                             DouBanLocalizations.of(context).seen,
                             style:
-                                TextStyle(fontSize: 13, color: Colors.black45),
+                                TextStyle(fontSize: 13, color: ThemeHelper.wrapDarkColor(context, Colors.black45)),
                           ),
                           SizedBox(width: 5),
                           Padding(
@@ -152,7 +153,7 @@ class _MovieReviewsListState extends State<MovieReviewsListPage> {
                       maxLines: 1,
                       style: TextStyle(
                           fontSize: 15,
-                          color: Colors.black87,
+                          color: ThemeHelper.wrapDarkColor(context, Colors.black87),
                           fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -163,7 +164,7 @@ class _MovieReviewsListState extends State<MovieReviewsListPage> {
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontSize: 14,
-                      color: Colors.black54,
+                      color: ThemeHelper.wrapDarkColor(context, Colors.black54),
                     ),
                   ),
                   SizedBox(
@@ -173,11 +174,11 @@ class _MovieReviewsListState extends State<MovieReviewsListPage> {
                     children: <Widget>[
                       Text(
                         '${reviewsVo.usefulCount}${DouBanLocalizations.of(context).useful} · ',
-                        style: TextStyle(fontSize: 12, color: Colors.black45),
+                        style: TextStyle(fontSize: 12, color: ThemeHelper.wrapDarkColor(context, Colors.black45)),
                       ),
                       Text(
                         '${reviewsVo.commentsCount}${DouBanLocalizations.of(context).reply} · ',
-                        style: TextStyle(fontSize: 12, color: Colors.black45),
+                        style: TextStyle(fontSize: 12, color: ThemeHelper.wrapDarkColor(context, Colors.black45)),
                       )
                     ],
                   ),
@@ -186,7 +187,7 @@ class _MovieReviewsListState extends State<MovieReviewsListPage> {
             ),
           ),
         ),
-        Container(height: 8, color: Color(0xFFFAFAFA))
+        Container(height: 8, color: ThemeHelper.wrapColor(context, lightModeColor: Color(0xFFFAFAFA), darkModeColor: Color(0xFF333333)))
       ],
     );
   }

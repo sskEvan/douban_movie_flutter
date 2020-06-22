@@ -1,3 +1,4 @@
+import 'package:douban_movie_flutter/service/resource_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -11,23 +12,20 @@ class SkeletonBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isDark = Theme.of(context).brightness == Brightness.dark;
     Divider.createBorderSide(context, width: 0.7);
     return Container(
       width: width,
       height: height,
-      decoration: SkeletonDecoration(isCircle: isCircle, isDark: isDark),
+      decoration: SkeletonDecoration(isCircle: isCircle, context: context),
     );
   }
 }
 
 /// 骨架屏 元素背景 ->形状及颜色
 class SkeletonDecoration extends BoxDecoration {
-  SkeletonDecoration({
-    isCircle: false,
-    isDark: false,
-  }) : super(
-          color: !isDark ? Colors.grey[300] : Colors.grey[500],
+  SkeletonDecoration({isCircle: false, BuildContext context})
+      : super(
+          color: Colors.grey[500],
           shape: isCircle ? BoxShape.circle : BoxShape.rectangle,
         );
 }
@@ -51,19 +49,13 @@ class SkeletonList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
-    bool isDark = theme.brightness == Brightness.dark;
-
-//    var highlightColor = isDark
-//        ? Colors.grey[500]
-//        : Color.alphaBlend(theme.accentColor.withAlpha(20), Colors.grey[100]);
-
     return SingleChildScrollView(
       physics: NeverScrollableScrollPhysics(),
       child: Shimmer.fromColors(
           period: Duration(milliseconds: 1200),
-          baseColor: isDark ? Colors.grey[700] : Colors.grey[350],
-          highlightColor: isDark ? Colors.grey[500] : Colors.grey[200],
+          baseColor: ThemeHelper.wrapDarkBackgroundColor(context, Colors.grey[350]),
+          highlightColor: ThemeHelper.wrapColor(context,
+              darkModeColor: Colors.grey[700], lightModeColor: Colors.grey[200]),
           child: Padding(
               padding: padding,
               child: Column(
@@ -91,20 +83,14 @@ class SkeletonGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
-    bool isDark = theme.brightness == Brightness.dark;
-
-//    var highlightColor = isDark
-//        ? Colors.grey[500]
-//        : Color.alphaBlend(theme.accentColor.withAlpha(20), Colors.grey[100]);
-
     return SingleChildScrollView(
       physics: NeverScrollableScrollPhysics(),
       child: Shimmer.fromColors(
           period: Duration(milliseconds: 1200),
-          baseColor: isDark ? Colors.grey[700] : Colors.grey[350],
-          highlightColor: isDark ? Colors.grey[500] : Colors.grey[200],
-              child: Padding(
+          baseColor: ThemeHelper.wrapDarkBackgroundColor(context, Colors.grey[350]),
+          highlightColor: ThemeHelper.wrapColor(context,
+              darkModeColor: Colors.grey[700], lightModeColor: Colors.grey[200]),
+          child: Padding(
             padding: padding,
             child: GridView.builder(
                 shrinkWrap: true,
