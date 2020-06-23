@@ -273,14 +273,12 @@ class _StaffDetailState extends State<StaffDetailPage> {
       child: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
-        child: Expanded(
           child: Row(
             children: List.generate(_staffDetailVo.works.length, (index) {
               MovieItemVo item = _staffDetailVo.works[index].movieItemVo;
               return MovieItemWidget2(movieItemVo: item);
             }),
           ),
-        ),
       ),
     );
   }
