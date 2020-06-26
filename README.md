@@ -27,6 +27,7 @@
 * video_player
 
 # Android版安装包
-[下载地址](https://www.pgyer.com/p8nV)
-![img](https://github.com/sskEvan/douban_movie_flutter/blob/master/introduce/introduce/download_qrcode.png)
+下载地址:[https://www.pgyer.com/p8nV](https://www.pgyer.com/p8nV)
+
+![img](https://github.com/sskEvan/douban_movie_flutter/blob/master/introduce/download_qrcode.png)
 
