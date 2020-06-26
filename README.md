@@ -26,5 +26,7 @@
 * chewie
 * video_player
 
-# Android版安装包下载地址
-![img](https://github.com/sskEvan/douban_movie_flutter/blob/master/introduce/download_qrcode.png)
+# Android版安装包
+[下载地址](https://www.pgyer.com/p8nV)
+![img](https://github.com/sskEvan/douban_movie_flutter/blob/master/introduce/introduce/download_qrcode.png)
+
